@@ -1,9 +1,12 @@
+package src;
 
 public class fantasi {
-
+	private int crushedDreams;
 	public fantasi(){
-		
-		int crushedDreams;
-		
+		crushedDreams = 4;
+	}
+	
+	public int returnDreams(){
+		return crushedDreams;
 	}
 }
