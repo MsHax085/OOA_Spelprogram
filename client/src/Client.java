@@ -2,7 +2,7 @@ package src;
 
 /**
  *
- * @author Richard
+ * @author Richard och lite oscar
  */
 public class Client {
     
