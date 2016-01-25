@@ -5,17 +5,17 @@ package src;
  * @author Richard och lite oscar
  */
 public class Client {
-    
-	public static boolean isOscarBest;
 	
     public static void main(String[] args) {
         System.out.println("HELLO WORLD!");
 		
-		isOscarBest= true; //Obviously
-		
-		if(isOscarBest)
+		if(isOscarBest())
 			System.out.println("Oscar is nice gaj");
 		else
-			System.out.println("Richard is crayey");
+			System.out.println("Richard is crayey, ^-(*.*)-^");
+    }
+    
+    private static boolean isOscarBest(){
+    	return false;
     }
 }
