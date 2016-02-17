@@ -27,7 +27,7 @@ public class FileHandler {
 	 
 	 */
 	
-	public String readFile(String fileName) //Maybe static??
+	public static String readFile(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -68,7 +68,7 @@ public class FileHandler {
 	 * each element of the string array becomes a row in the file.
 	 */
 	
-	public void writeFile(String fileName, String writeContent)
+	public static Boolean writeFile(String fileName, String writeContent)
 	{
 		String[] splitContent = writeContent.split("\n");
 		
@@ -82,11 +82,13 @@ public class FileHandler {
 				}
 		
 			out.close();
+			return true;
 		}
 		
 		catch (IOException e)
 		{
 			System.out.println("Write Error");
+			return false;
 		}
 		
 	}
