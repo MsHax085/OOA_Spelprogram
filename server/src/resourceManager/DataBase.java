@@ -6,9 +6,15 @@ package src.resourceManager;
  *
  */
 public class DataBase {
+	
+	public FileHandler fileHandlerObj;
 
+	
+	/* Constructs a FileHandler Object
+	 */
 	public DataBase() {
-		// TODO Auto-generated constructor stub
+		
+		fileHandlerObj = new FileHandler();
 	}
 
 	
@@ -18,8 +24,7 @@ public class DataBase {
 	 */
 	public String getFile(String fileName)
 	{
-		FileHandler filereader = new FileHandler();
-		return filereader.readFile(fileName);
+		return fileHandlerObj.readFile(fileName);
 	}
 	
 	
@@ -29,7 +34,6 @@ public class DataBase {
 	 */
 	public Boolean writeFile(String fileName, String writeContent)
 	{
-		FileHandler filewriter = new FileHandler();
-		return filewriter.writeFile(fileName,writeContent);
+		return fileHandlerObj.writeFile(fileName,writeContent);
 	}
 }
