@@ -5,15 +5,14 @@ import java.util.*;
 
 /**
  * 
- * @author ludwigfriborg
- *
+ * @author Oscar Andersson
  */
 public class Score implements FileHandler {
 
 	private String highscorePath = "highscore.txt";
 	
-	public Score() {
-		// TODO Auto-generated constructor stub
+	public Score(String highscorePath) {
+		this.highscorePath = highscorePath;
 	}
 
 	

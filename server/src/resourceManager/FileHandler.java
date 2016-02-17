@@ -11,7 +11,7 @@ import java.util.Scanner;
 public interface FileHandler {
 
 	
-	/* This method recieves 1 string containing the filename.
+	/* This method recieves one string containing the filename.
 	 * 
 	 * A stringbuilder is created and is later converted and returned as a string.
 	 * 

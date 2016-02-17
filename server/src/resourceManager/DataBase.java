@@ -6,16 +6,17 @@ import java.util.TreeMap;
  * 
  * @author Oscar Andersson
  *
+ * TODO Singleton designPattern
  */
 public class DataBase implements FileHandler{
 	
-	public Score scoreObj;
+	private Score scoreObj;
 
 	
-	/* Constructs a Score Object
+	/* Constructs a Score Object assigning its filepath. 
 	 */
 	public DataBase() {
-		scoreObj = new Score();
+		scoreObj = new Score("highscore.txt");
 	}
 
 	
