@@ -18,7 +18,8 @@ public class DataBase {
 	 */
 	public String getFile(String fileName)
 	{
-		return FileHandler.readFile(fileName);
+		FileHandler filereader = new FileHandler();
+		return filereader.readFile(fileName);
 	}
 	
 	
@@ -28,6 +29,7 @@ public class DataBase {
 	 */
 	public Boolean writeFile(String fileName, String writeContent)
 	{
-		return FileHandler.writeFile(fileName,writeContent);
+		FileHandler filewriter = new FileHandler();
+		return filewriter.writeFile(fileName,writeContent);
 	}
 }

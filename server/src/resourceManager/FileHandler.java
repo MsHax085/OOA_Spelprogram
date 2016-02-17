@@ -27,7 +27,7 @@ public class FileHandler {
 	 
 	 */
 	
-	public static String readFile(String fileName) 
+	public String readFile(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -68,7 +68,7 @@ public class FileHandler {
 	 * each element of the string array becomes a row in the file.
 	 */
 	
-	public static Boolean writeFile(String fileName, String writeContent)
+	public Boolean writeFile(String fileName, String writeContent)
 	{
 		String[] splitContent = writeContent.split("\n");
 		
