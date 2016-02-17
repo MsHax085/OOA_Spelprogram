@@ -8,26 +8,16 @@ import java.util.Scanner;
  * @author Oscar Andersson
  *
  */
-public class FileHandler {
+public interface FileHandler {
 
-	public FileHandler() {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	
-	
-	
-	
 	
 	/* This method recieves 1 string containing the filename.
 	 * 
 	 * A stringbuilder is created and is later converted and returned as a string.
 	 * 
-	 
 	 */
 	
-	public String readFile(String fileName) 
+	public default String readFile(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -66,9 +56,10 @@ public class FileHandler {
 	 * 
 	 * And finally it writes the content of the string array to the assigned file, 
 	 * each element of the string array becomes a row in the file.
+	 * Returning true if the write was successful, false otherwise.
 	 */
 	
-	public Boolean writeFile(String fileName, String writeContent)
+	public default Boolean writeFile(String fileName, String writeContent)
 	{
 		String[] splitContent = writeContent.split("\n");
 		
@@ -78,17 +69,15 @@ public class FileHandler {
 			for(int steg = 0; steg < splitContent.length ; steg++)
 				{
 				out.println(splitContent[steg]);
-				System.out.println(splitContent[steg]);
 				}
 		
 			out.close();
-			return true;
+			return true; //return true if writing was a success
 		}
 		
 		catch (IOException e)
 		{
-			System.out.println("Write Error");
-			return false;
+			return false; //return false if writing was not a success
 		}
 		
 	}

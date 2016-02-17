@@ -1,39 +1,32 @@
 package src.resourceManager;
 
+import java.util.TreeMap;
+
 /**
  * 
  * @author Oscar Andersson
  *
  */
-public class DataBase {
+public class DataBase implements FileHandler{
 	
-	public FileHandler fileHandlerObj;
+	public Score scoreObj;
 
 	
-	/* Constructs a FileHandler Object
+	/* Constructs a Score Object
 	 */
 	public DataBase() {
-		
-		fileHandlerObj = new FileHandler();
+		scoreObj = new Score();
 	}
 
 	
-	/* Returns a string containing the content
-	 * of the file specified in the argument.
-	 * 
+
+
+	/* Returns the highscore-list in the form of a treemap
+	 * sorting the fastest times first
 	 */
-	public String getFile(String fileName)
+	public TreeMap<Integer, String> getHighscore()
 	{
-		return fileHandlerObj.readFile(fileName);
+		return scoreObj.getScore();
 	}
-	
-	
-	
-	/* Returns true of false depending on how
-	 * sucessful the writing was. 
-	 */
-	public Boolean writeFile(String fileName, String writeContent)
-	{
-		return fileHandlerObj.writeFile(fileName,writeContent);
-	}
+
 }
