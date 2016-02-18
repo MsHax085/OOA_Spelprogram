@@ -18,8 +18,8 @@ public class Score implements FileHandler {
 	
 	
 	/* Returns a treemap of the highscore list.
-	 * It has the username in the first value, and
-	 * the time in the other.
+	 * It has the time in the first value, and
+	 * the username in the other.
 	 */
 	public TreeMap<Integer, String> getScore()
 	{
@@ -39,14 +39,18 @@ public class Score implements FileHandler {
 	}
 	
 	
+	/* Saves a treemap of the highscore list.
+	 * The treemap has the same "appearance" as in the getScore method.
+	 * Returns false if the writeFile method wasn't successful, and true if it was.
+	 */
 	public Boolean setScore(TreeMap<Integer,String> scoreSave)
 	{	
 		StringBuilder tempArr = new StringBuilder(); 
 		
-	    Set set = scoreSave.entrySet();
-	    Iterator iterator = set.iterator();
-	    while(iterator.hasNext()) {
-		       Map.Entry mentry = (Map.Entry)iterator.next();
+	    Set s = scoreSave.entrySet();
+	    Iterator it = s.iterator();
+	    while(it.hasNext()) {
+		       Map.Entry mentry = (Map.Entry)it.next();
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
 		return writeFile(highscorePath,tempArr.toString());
