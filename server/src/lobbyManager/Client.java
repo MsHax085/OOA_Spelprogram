@@ -1,33 +1,37 @@
 package src.lobbyManager;
+
+import java.net.InetAddress;
+
 /**
  * 
  * @author ludwigfriborg
  *
  */
-public class Client {
-	private String name;
-	private int id;
+public class Client extends ManagerItem{
 	private float gameTime;
+	private InetAddress ip;
+	private int port;
 	
-	public Client(String name, int id) {
-		this.name = name;
-		this.id = id;
+	public Client(String name, int id, InetAddress ip, int port) {
+		super(name, id);
 		gameTime = 0;
+		this.ip = ip;
+		this.port = port;
 	}
 	
 	public float getGameTime(){
 		return gameTime;
 	}
 	
-	public String getName(){
-		return name;
-	}
-	
-	public int getId(){
-		return id;
-	}
-	
 	public void setGameTime(float gameTime){
 		this.gameTime = gameTime;
+	}
+	
+	public InetAddress getIp(){
+		return ip;
+	}
+	
+	public int getPort(){
+		return port;
 	}
 }

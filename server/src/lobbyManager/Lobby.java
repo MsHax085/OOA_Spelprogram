@@ -7,54 +7,42 @@ import java.util.ArrayList;
  * @author ludwigfriborg
  *
  */
-public class Lobby {
+public class Lobby extends ManagerItem{
 	private ArrayList<Client> list;
 	private Client winner;
-	private String name;
 	
 	private boolean lobbyVacancy;
-	private int id;
 	private int maxClients;
 	
 	public Lobby(String name, int maxClients, int id) {
+		super(name, id);
 		list = new ArrayList<Client>();
 		lobbyVacancy = false;
 		winner = null;
 		
-		this.id = id;
 		this.maxClients = maxClients;
-		this.name = name;
 	}
 	
 	/*
 	 * Adds a client to the lobby list
 	 * Parameters	the client you wish to add or 
 	 * 				the name and id of the client you wish to add
+	 * 				returns true if success
 	 */
-	public void add(Client client){
+	public boolean add(Client client){
 		if(list.size() >= maxClients){
 			lobbyVacancy = true;
 			System.out.println("["+name+"] Lobby is full.");
+			return false;
 		}
 		else if(containsById(client.getId()) != null){
 			System.out.println("["+name+"] A client with the Id: "+client.getId()+" has allready joined.");
+			return false;
 		}
 		else{
 			list.add(client);
 			System.out.println("["+name+"] "+client.getName()+" joined lobby.");
-		}
-	}
-	public void add(String name, int id){
-		if(list.size() >= maxClients){
-			lobbyVacancy = true;
-			System.out.println("["+this.name+"] Lobby is full.");
-		}
-		else if(containsById(id) != null){
-			System.out.println("["+this.name+"] A client with the Id: "+id+" has allready joined.");
-		}
-		else{
-			list.add(new Client(name, id));
-			System.out.println("["+this.name+"] "+name+" joined lobby.");
+			return true;
 		}
 	}
 	
@@ -62,21 +50,16 @@ public class Lobby {
 	 * Removes a client from the lobby list
 	 * Parameters	the client you wish to remove or
 	 * 				the id of the client you wish to remove
+	 * 				returns true if success
 	 */
-	public void remove(Client client){
+	public boolean remove(Client client){
 		if(list.contains(client)){
 			list.remove(client);
 			System.out.println("["+name+"] "+client.getName()+" left lobby.");
+			return true;
 		}else{
 			System.out.println("["+name+"] "+client.getName()+" is not a member of the lobby.");
-		}
-	}
-	public void remove(int id){
-		Client client = containsById(id);
-		if(client != null){
-			remove(client);
-		}else{
-			System.out.println("["+name+"] No client with the id of "+id+" is a member of the lobby.");
+			return false;
 		}
 	}
 	
@@ -86,14 +69,6 @@ public class Lobby {
 	
 	public boolean isLobbyFull(){
 		return lobbyVacancy;
-	}
-	
-	public String getName(){
-		return name;
-	}
-	
-	public int getId(){
-		return id;
 	}
 	
 	/*
