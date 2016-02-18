@@ -30,4 +30,8 @@ public class DataBase implements FileHandler{
 		return scoreObj.getScore();
 	}
 
+	public Boolean setHighscore(TreeMap<Integer, String> saveScore)
+	{
+		return scoreObj.setScore(saveScore);
+	}
 }

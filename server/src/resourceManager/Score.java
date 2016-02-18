@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Score implements FileHandler {
 
-	private String highscorePath = "highscore.txt";
+	private String highscorePath;
 	
 	public Score(String highscorePath) {
 		this.highscorePath = highscorePath;
@@ -36,5 +36,21 @@ public class Score implements FileHandler {
 			scoreMap.put(Integer.parseInt(splitCol[1]),splitCol[0]);
 		}
 		return scoreMap;
+	}
+	
+	
+	public Boolean setScore(TreeMap<Integer,String> scoreSave)
+	{	
+		StringBuilder tempArr = new StringBuilder(); 
+		
+	    Set set = scoreSave.entrySet();
+	    Iterator iterator = set.iterator();
+	    while(iterator.hasNext()) {
+		       Map.Entry mentry = (Map.Entry)iterator.next();
+		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
+		      }
+		return writeFile(highscorePath,tempArr.toString());
+	    
+		
 	}
 }
