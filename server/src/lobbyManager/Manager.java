@@ -23,30 +23,6 @@ public class Manager {
 	private ArrayList<ManagerItem> list;
 	public Manager() {
 		list = new ArrayList<ManagerItem>();
-
-		Client stavros = initiateClient("Stavros", 135,  null, 1234);
-		Client clarance = initiateClient("Clarence", 56,  null, 1234);
-		Client edgar = initiateClient("Edgar", 24,  null, 1234);
-		Client yotsuba = initiateClient("Yotsuba", 45,  null, 1234);
-		initiateClient("Josh", 12,  null, 1234);
-		initiateClient("Arvid", 9,  null, 1234);
-		
-		Lobby bombardistisk = initiateLobby("BomSchak al Lacka", 5, 1);
-
-		System.out.println(toString());
-		addClientToLobby(stavros, bombardistisk);
-		addClientToLobby(stavros, bombardistisk);
-		addClientToLobby(clarance, bombardistisk);
-		addClientToLobby(edgar, bombardistisk);
-		addClientToLobby(yotsuba, bombardistisk);
-		removeClientFromLobby(stavros, bombardistisk);
-		System.out.println(bombardistisk.toString());
-		removeClient(stavros.getId());
-		removeClient(stavros.getId());
-		System.out.println(toString());
-		removeLobby(bombardistisk.getId());
-		
-		System.out.println(toString());
 	}
 	
 	/*
