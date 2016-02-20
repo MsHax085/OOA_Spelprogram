@@ -1,6 +1,7 @@
 package src;
 
 import src.frame.DefaultFrameState;
+import src.game.Game;
 import src.gui.UserInterface;
 
 /**
@@ -14,7 +15,7 @@ public class Core {
     private DefaultFrameState frameState;
     
     public Core() {
-        this.setState(new UserInterface());
+        this.setState(new Game());
         this.setupFrameState();
         this.viewFrameState();
     }
