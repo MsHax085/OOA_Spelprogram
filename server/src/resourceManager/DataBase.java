@@ -6,17 +6,18 @@ import java.util.TreeMap;
  * 
  * @author Oscar Andersson
  *
- * TODO Singleton designPattern
+ * TODO Singleton designPattern??
  */
 public class DataBase implements FileHandler{
 	
 	private Score scoreObj;
-
+	private Config confObj;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
 	public DataBase() {
 		scoreObj = new Score("highscore.txt");
+		confObj = new Config("config.txt");
 	}
 
 	
@@ -34,4 +35,17 @@ public class DataBase implements FileHandler{
 	{
 		return scoreObj.setScore(saveScore);
 	}
+	public String readFile(String fileN)
+	{
+		return readF(fileN);
+	}
+	public Boolean writeFile(String fileN,String writeC)
+	{
+		return writeF(fileN,writeC);
+	}
+	public String readConfig(String setting)
+	{
+		return confObj.readConf(setting);
+	}
+	
 }

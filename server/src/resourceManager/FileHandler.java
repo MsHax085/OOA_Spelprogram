@@ -17,7 +17,7 @@ public interface FileHandler {
 	 * 
 	 */
 	
-	public default String readFile(String fileName) 
+	default String readF(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -59,7 +59,7 @@ public interface FileHandler {
 	 * Returning true if the write was successful, false otherwise.
 	 */
 	
-	public default Boolean writeFile(String fileName, String writeContent)
+	default Boolean writeF(String fileName, String writeContent)
 	{
 		String[] splitContent = writeContent.split("\n");
 		

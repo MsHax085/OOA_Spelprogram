@@ -26,7 +26,7 @@ public class Score implements FileHandler {
 		TreeMap<Integer, String> scoreMap = 
 	             new TreeMap<Integer, String>();
 		
-		String tempString = readFile(highscorePath);
+		String tempString = readF(highscorePath);
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		
@@ -53,7 +53,7 @@ public class Score implements FileHandler {
 		       Map.Entry mentry = (Map.Entry)it.next();
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
-		return writeFile(highscorePath,tempArr.toString());
+		return writeF(highscorePath,tempArr.toString());
 	    
 		
 	}
