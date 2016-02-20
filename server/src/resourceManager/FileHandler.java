@@ -8,8 +8,29 @@ import java.util.Scanner;
  * @author Oscar Andersson
  *
  */
-public interface FileHandler {
+public class FileHandler {
 
+	private static FileHandler instance = null;
+	
+	private FileHandler()
+	{
+	}
+	
+	
+	/* Singleton Designpattern
+	 */
+	public static FileHandler getInstance(){
+		if(instance == null)
+		{
+			instance = new FileHandler();
+		}
+		return instance;
+	}
+		
+
+	
+	
+	
 	
 	/* This method recieves one string containing the filename.
 	 * 
@@ -17,7 +38,7 @@ public interface FileHandler {
 	 * 
 	 */
 	
-	default String readF(String fileName) 
+	public String readF(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -59,7 +80,7 @@ public interface FileHandler {
 	 * Returning true if the write was successful, false otherwise.
 	 */
 	
-	default Boolean writeF(String fileName, String writeContent)
+	public Boolean writeF(String fileName, String writeContent)
 	{
 		String[] splitContent = writeContent.split("\n");
 		

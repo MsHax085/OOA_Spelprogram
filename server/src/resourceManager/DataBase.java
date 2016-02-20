@@ -8,16 +8,18 @@ import java.util.TreeMap;
  *
  * TODO Singleton designPattern??
  */
-public class DataBase implements FileHandler{
+public class DataBase{
 	
 	private Score scoreObj;
 	private Config confObj;
+	private FileHandler fileObj;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
 	public DataBase() {
 		scoreObj = new Score("highscore.txt");
 		confObj = new Config("config.txt");
+		fileObj = FileHandler.getInstance();
 	}
 
 	
@@ -37,11 +39,11 @@ public class DataBase implements FileHandler{
 	}
 	public String readFile(String fileN)
 	{
-		return readF(fileN);
+		return fileObj.readF(fileN);
 	}
 	public Boolean writeFile(String fileN,String writeC)
 	{
-		return writeF(fileN,writeC);
+		return fileObj.writeF(fileN,writeC);
 	}
 	public String readConfig(String setting)
 	{

@@ -6,12 +6,14 @@ package src.resourceManager;
  * @author Oscar Andersson
  *
  */
-public class Config implements FileHandler{
+public class Config{
 
+	public FileHandler fh;
 	private String configPath;
 	
 	public Config(String configPath) {
 		this.configPath = configPath;
+		fh = FileHandler.getInstance();
 	}
 
 	
@@ -21,10 +23,9 @@ public class Config implements FileHandler{
 	 * And then search through the setting columns and returns
 	 * the value columns.
 	 */
-	
+
 	public String readConf(String setting){
-		
-		String tempString = readF(configPath);
+		String tempString = fh.readF(configPath);
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		

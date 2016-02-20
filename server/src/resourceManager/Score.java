@@ -7,12 +7,14 @@ import java.util.*;
  * 
  * @author Oscar Andersson
  */
-public class Score implements FileHandler {
+public class Score {
 
 	private String highscorePath;
+	public FileHandler fh;
 	
 	public Score(String highscorePath) {
 		this.highscorePath = highscorePath;
+		fh = FileHandler.getInstance();
 	}
 
 	
@@ -26,7 +28,7 @@ public class Score implements FileHandler {
 		TreeMap<Integer, String> scoreMap = 
 	             new TreeMap<Integer, String>();
 		
-		String tempString = readF(highscorePath);
+		String tempString = fh.readF(highscorePath);
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		
@@ -53,7 +55,7 @@ public class Score implements FileHandler {
 		       Map.Entry mentry = (Map.Entry)it.next();
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
-		return writeF(highscorePath,tempArr.toString());
+		return fh.writeF(highscorePath,tempArr.toString());
 	    
 		
 	}
