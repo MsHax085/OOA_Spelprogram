@@ -46,7 +46,7 @@ public class UserInterface implements DefaultFrameState, Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("UserInterface notified!");
-        final byte val = (byte) arg;
+        final int val = (int) arg;
         switch (val) {
             case 0:
                 label.setText(((Core) o).getUsername());

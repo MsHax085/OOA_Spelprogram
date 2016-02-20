@@ -1,48 +1,34 @@
 package src.game.entities;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  * 
  * @author ludwigfriborg
  *
  */
-public class Entity {
-
-    private int x = -1;
-    private int y = -1;
-    
-    public Entity(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-    
-    public Entity() {
-        this(-1, -1);
-    }
-
-    /**
-     * @return the x
-     */
-    public int getX() {
-        return x;
-    }
-
-    /**
-     * @param x the x to set
-     */
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    /**
-     * @return the y
-     */
-    public int getY() {
-        return y;
-    }
-
-    /**
-     * @param y the y to set
-     */
-    public void setY(int y) {
-        this.y = y;
-    }
+public abstract class Entity {
+	protected int x, y;
+	protected Color color;
+	
+	public Entity(int x, int y){
+		color = Color.pink;
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void draw(Graphics g, int blockSize){
+		g.setColor(color);
+		
+		//ritar dem p rätt ruta
+		g.fillRect(x*blockSize,y*blockSize, blockSize, blockSize);
+	}
+	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
 }

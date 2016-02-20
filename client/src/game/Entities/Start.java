@@ -5,8 +5,8 @@ package src.game.entities;
  * @author ludwigfriborg
  *
  */
-public class Goal extends Entity{	
-	public Goal(int x, int y) {
+public class Start extends Entity{	
+	public Start(int x, int y) {
 		super(x, y);
 	}
 }
