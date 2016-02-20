@@ -1,18 +1,15 @@
 package src;
-import src.network.*;
-import src.resourceManager.*;
-import src.lobbyManager.*;
-
-/**
- * 
- * @author ludwigfriborg
- *
- */
 
 public class Core {
 	
-	public Core() {
-		// TODO Auto-generated constructor stub
-	}
-
+    private static Core instance = null;
+    
+    public Core() {
+        System.out.println("Core started.");
+    }
+    
+    public static Core getInstance() {
+        if (instance == null) instance = new Core();
+        return instance;
+    }
 }
