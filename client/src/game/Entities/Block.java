@@ -1,14 +1,10 @@
-package src.game.Entities;
+package src.game.entities;
 
 /**
  * 
  * @author ludwigfriborg
  *
  */
-public class Block extends Entities {
-
-	public Block() {
-		// TODO Auto-generated constructor stub
-	}
+public class Block extends Entity {
 
 }

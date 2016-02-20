@@ -1,23 +1,36 @@
 package src.gui;
 
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JFrame;
+import src.frame.DefaultFrameState;
 
 /**
  *
  * @author Richard
  */
-public class UserInterface extends Observable implements Observer {
+public class UserInterface implements DefaultFrameState {
 
-    private final JFrame frame = new JFrame();
-    
-    public UserInterface() {
+    private JFrame frame;
+
+    @Override
+    public void setup() {
+        frame = new JFrame();
         frame.setTitle("Spelprogram");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(500, 500);
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        System.out.println("UserInterface notified!");
+    public void view() {
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void hide() {
+        frame.setVisible(false);
+    }
+
+    @Override
+    public void dispose() {
+        // Clear all
     }
 }

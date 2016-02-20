@@ -1,14 +1,9 @@
-package src.game.Entities;
+package src.game.entities;
 
 /**
  * 
  * @author ludwigfriborg
  *
  */
-public class Goal extends Entities{
-
-	public Goal() {
-		// TODO Auto-generated constructor stub
-	}
-
+public class Goal extends Entity{
 }

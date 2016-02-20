@@ -1,5 +1,8 @@
 package src;
 
+import src.frame.DefaultFrameState;
+import src.gui.UserInterface;
+
 /**
  * 
  * @author ludwigfriborg
@@ -8,13 +11,36 @@ package src;
 public class Core {
 	
     private static Core instance = null;
+    private DefaultFrameState frameState;
     
     public Core() {
-        System.out.println("Core started.");
+        this.setState(new UserInterface());
+        this.setupFrameState();
+        this.viewFrameState();
     }
     
     public static Core getInstance() {
         if (instance == null) instance = new Core();
         return instance;
+    }
+    
+    private void setState(DefaultFrameState frameState) {
+        this.frameState = frameState;
+    }
+    
+    private void setupFrameState() {
+        this.frameState.setup();
+    }
+    
+    private void viewFrameState() {
+        this.frameState.view();
+    }
+    
+    private void hideFrameState() {
+        this.frameState.hide();
+    }
+    
+    private void disposeFrameState() {
+        this.frameState.dispose();
     }
 }
