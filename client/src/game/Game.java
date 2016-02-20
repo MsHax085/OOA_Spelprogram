@@ -19,7 +19,7 @@ import src.game.entities.Start;
  * @author ludwigfriborg
  *
  */
-public class Game implements DefaultFrameState, Observer, KeyListener {
+public class Game implements DefaultFrameState, Observer {
     
     private JFrame frame;
     private Draw draw;
@@ -52,7 +52,7 @@ public class Game implements DefaultFrameState, Observer, KeyListener {
 	private void init(int blockSize){
 		gameOn = true;
 		
-		update = new Update();
+		update = new Update(list , player, draw);
 		list = (new MapHandler(blockSize).getMap(1));
 		player = new Player(1, 1);
 		list.add(player);
@@ -67,7 +67,6 @@ public class Game implements DefaultFrameState, Observer, KeyListener {
 		
 		draw = new Draw(list, blockSize, 10, 10);
 		draw.setPreferredSize(new Dimension(300, 300));//tvingar rutan till panelens storlek inget perma...
-		draw.addKeyListener(this);
         draw.setFocusable(true);
 	}
 	
@@ -78,26 +77,6 @@ public class Game implements DefaultFrameState, Observer, KeyListener {
 	/*private void isDone(){
 		//Server.sendTotaltime(time); dummy code atm :=)
 	}*/
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if(gameOn){
-			update.upt(list, player, e);
-			draw.drawList(list);
-			System.out.println("upt");
-		}
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
     @Override
     public void view() {
