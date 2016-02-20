@@ -1,13 +1,22 @@
 package src.network;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 /**
  * 
- * @author ludwigfriborg
+ * @author Richard
  *
  */
 public class PacketBuilder {
 
-	public PacketBuilder() {
-		// TODO Auto-generated constructor stub
-	}
-
+    public byte[] createHelloPacket() throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeShort(SendPacketOpcodes.PACKET1.getValue());
+        dataOutputStream.writeByte(1);// Ok byte
+        dataOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
 }
