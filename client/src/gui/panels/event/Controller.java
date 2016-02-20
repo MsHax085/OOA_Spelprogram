@@ -1,15 +1,17 @@
 package src.gui.panels.event;
 
 import java.awt.event.MouseListener;
+import src.Core;
 
 /**
  *
  * @author Richard
  */
-public class MouseEvent implements MouseListener {
+public class Controller implements MouseListener {
     
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
+        Core.getInstance().changeUsername("NEWNAME");
     }
 
     @Override
