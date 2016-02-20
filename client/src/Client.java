@@ -7,6 +7,7 @@ package src;
 public class Client {
 	
     public static void main(String[] args) {
-        System.out.println("HELLO WORLD client!");
+        System.out.println("Client started.");
+        Core.getInstance();// Start core
     }
 }
