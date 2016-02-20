@@ -3,10 +3,11 @@ package src.gui;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 import src.Core;
 import src.frame.DefaultFrameState;
-import src.gui.panels.event.Controller;
+import src.gui.panels.StartPanel;
+import src.gui.panels.event.ControllerStartPanel;
 
 /**
  *
@@ -15,8 +16,7 @@ import src.gui.panels.event.Controller;
 public class UserInterface implements DefaultFrameState, Observer {
 
     private JFrame frame;
-    private Controller controller;
-    private JLabel label;// Test
+    private JPanel visiblePanel;
 
     @Override
     public void setup() {
@@ -24,8 +24,9 @@ public class UserInterface implements DefaultFrameState, Observer {
         frame.setTitle("Spelprogram");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 500);
-        frame.getContentPane().addMouseListener((controller = new Controller()));
-        frame.getContentPane().add((label = new JLabel("NAME")));// Test
+        
+        this.visiblePanel = new StartPanel(500, 500);
+        frame.add(this.visiblePanel);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class UserInterface implements DefaultFrameState, Observer {
         final int val = (int) arg;
         switch (val) {
             case 0:
-                label.setText(((Core) o).getUsername());
+                // Do something, ex. update username?
                 break;
             case 1:
                 break;

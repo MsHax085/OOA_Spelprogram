@@ -2,16 +2,26 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseListener;
 import src.Core;
+import src.game.Game;
+import src.gui.panels.StartPanel;
 
 /**
  *
  * @author Richard
  */
-public class Controller implements MouseListener {
+public class ControllerStartPanel implements MouseListener {
+    
+    private StartPanel panel;
+    
+    public ControllerStartPanel(StartPanel panel) {
+        this.panel = panel;
+    }
     
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
-        Core.getInstance().changeUsername("NEWNAME");
+        if (e.getSource().equals(panel.getStartButton())) {
+            Core.getInstance().setStateObserver(new Game());
+        }
     }
 
     @Override

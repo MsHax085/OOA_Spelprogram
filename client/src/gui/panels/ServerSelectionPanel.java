@@ -6,4 +6,7 @@ package src.gui.panels;
  */
 public class ServerSelectionPanel extends SuperPanel {
     
+    public ServerSelectionPanel(int width, int height) {
+        super(width, height);
+    }
 }
