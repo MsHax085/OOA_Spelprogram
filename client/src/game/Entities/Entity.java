@@ -11,17 +11,17 @@ import java.awt.Graphics;
 public abstract class Entity {
 	protected int x, y;
 	protected Color color;
+	protected boolean solid;
 	
-	public Entity(int x, int y){
+	public Entity(int x, int y, boolean solid){
 		color = Color.pink;
 		this.x = x;
 		this.y = y;
+		this.solid = solid;
 	}
 	
 	public void draw(Graphics g, int blockSize){
 		g.setColor(color);
-		
-		//ritar dem p rätt ruta
 		g.fillRect(x*blockSize,y*blockSize, blockSize, blockSize);
 	}
 	
@@ -30,5 +30,9 @@ public abstract class Entity {
 	}
 	public int getY(){
 		return y;
+	}
+	
+	public boolean isSolid(){
+		return solid;
 	}
 }

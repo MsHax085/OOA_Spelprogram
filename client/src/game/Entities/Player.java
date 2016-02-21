@@ -10,7 +10,7 @@ import java.awt.Color;
 public class Player extends Entity {
 
 	public Player(int x, int y) {
-		super(x,y);
+		super(x,y,false);
 		color = Color.blue;
 	}
 
@@ -19,5 +19,10 @@ public class Player extends Entity {
 	}
 	public void setY(int y){
 		this.y = y;
+	}
+	
+	public void move(int x, int y){
+		this.x += x;
+		this.y += y;
 	}
 }

@@ -7,3 +7,5 @@
 /Player.class
 /Block.class
 /Goal.class
+/Update$lstnr.class
+/Game$gameListner.class

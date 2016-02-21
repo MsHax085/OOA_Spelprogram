@@ -1,23 +1,23 @@
 package src.game;
 
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.*;
 import src.frame.DefaultFrameState;
-import src.game.entities.Entity;
-import src.game.entities.Player;
-import src.game.entities.Start;
+import src.game.entities.*;
 
 
 /**
  * 
  * @author ludwigfriborg
  *
+ *MVC - for the game, not the whole client
+ *Game = Controller
+ *Update = Model
+ *JFrame frame, draw = View
  */
 public class Game implements DefaultFrameState, Observer {
     
@@ -26,9 +26,7 @@ public class Game implements DefaultFrameState, Observer {
     
 	private Update update;
 	private ArrayList<Entity> list;
-	private Player player;
-	private boolean gameOn;
-	Timer timer;
+	//private Timer timer;
 	
 
     @Override
@@ -50,33 +48,17 @@ public class Game implements DefaultFrameState, Observer {
 	}
 	
 	private void init(int blockSize){
-		gameOn = true;
-		
-		update = new Update(list , player, draw);
 		list = (new MapHandler(blockSize).getMap(1));
-		player = new Player(1, 1);
-		list.add(player);
-		
-		//finds and sets the player at the starting object
-		for(Entity ent : list){
-			if(ent.getClass() == Start.class){
-				player.setX(ent.getX());
-				player.setY(ent.getY());
-			}
-		}
-		
+		update = new Update(list);
 		draw = new Draw(list, blockSize, 10, 10);
-		draw.setPreferredSize(new Dimension(300, 300));//tvingar rutan till panelens storlek inget perma...
+		draw.setPreferredSize(new Dimension(320, 320));//tvingar rutan till panelens storlek inget perma...
         draw.setFocusable(true);
+        draw.addKeyListener(new gameListner());
 	}
-	
+
 	public ArrayList<Entity> getList(){
 		return list;
 	}
-
-	/*private void isDone(){
-		//Server.sendTotaltime(time); dummy code atm :=)
-	}*/
 
     @Override
     public void view() {
@@ -98,4 +80,22 @@ public class Game implements DefaultFrameState, Observer {
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    private class gameListner implements KeyListener{
+		@Override
+		public void keyReleased(KeyEvent e) {
+			update.doSomeThing(e);
+			draw.drawList(update.getList());
+		}
+	
+		@Override
+		public void keyPressed(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+		}
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 }

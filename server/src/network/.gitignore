@@ -5,3 +5,7 @@
 /PacketBuilder.class
 /Receive.class
 /Send.class
+/ImplPacketHandler.class
+/PacketProcessor.class
+/RecvPacketOpcodes.class
+/SendPacketOpcodes.class
