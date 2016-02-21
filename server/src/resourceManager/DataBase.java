@@ -13,6 +13,7 @@ public class DataBase{
 	private Score scoreObj;
 	private Config confObj;
 	private FileHandler fileObj;
+	private static DataBase instance = null;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
@@ -22,7 +23,13 @@ public class DataBase{
 		fileObj = FileHandler.getInstance();
 	}
 
-	
+	public static DataBase getInstance(){
+		if(instance == null)
+		{
+			instance = new DataBase();
+		}
+		return instance;
+	}
 
 
 	/* Returns the highscore-list in the form of a treemap
