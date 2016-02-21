@@ -1,7 +1,6 @@
 package src;
 
 import src.network.Network;
-import src.network.PacketProcessor;
 
 public class Core{
 	
@@ -10,7 +9,6 @@ public class Core{
     
     public Core() {
         System.out.println("Core started.");
-        PacketProcessor.getInstance().loadRecvHandlers();
         this.network = new Network();
         network.update();
     }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * 
- * @author Richard
+ * @author Richard, BögErik
  *
  */
 public class PacketBuilder {

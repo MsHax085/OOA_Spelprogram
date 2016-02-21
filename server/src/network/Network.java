@@ -8,13 +8,17 @@ import java.util.logging.Logger;
 
 /**
  * 
- * @author Richard
+ * @author Richard, BögErik
  *
  */
 
 public class Network {
 
     private boolean run = true;
+    
+    public Network() {
+    	PacketProcessor.getInstance().loadRecvHandlers();
+    }
     
     public void update() {
     	while (run) {

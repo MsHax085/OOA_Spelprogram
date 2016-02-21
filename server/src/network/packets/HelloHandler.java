@@ -9,7 +9,7 @@ import src.network.ImplPacketHandler;
 
 /**
  *
- * @author Richard
+ * @author Richard, BögErik
  */
 public class HelloHandler implements ImplPacketHandler {
 

@@ -4,6 +4,11 @@ import java.util.HashMap;
 import src.network.packets.HelloHandler;
 import src.network.packets.TestHandler;
 
+/*
+ * 
+ *  @author Richard, BögErik
+ */
+
 public class PacketProcessor {
 
     private static PacketProcessor packetProcessor;
