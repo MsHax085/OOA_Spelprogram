@@ -14,10 +14,11 @@ import src.game.entities.*;
  * 
  * @author ludwigfriborg
  *
- *MVC - for the game, not the whole client
- *Game = Controller
- *Update = Model
- *JFrame frame, draw = View
+ *	MVC - for the game, not the whole client
+ *	Game = Controller
+ *	Update = Model
+ *	JFrame frame, draw = View
+ *
  */
 
 public class Game implements DefaultFrameState, Observer {
@@ -35,7 +36,12 @@ public class Game implements DefaultFrameState, Observer {
         frame = new JFrame("P�g�ende spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//frame.setSize(new Dimension(500, 500));//atm f�r att tvingaa
-        frame.add(draw);
+        JPanel sSuper = new JPanel();
+        frame.add(sSuper);
+        sSuper.add(draw);
+        sSuper.add(new Draw(list, 32/2));
+        sSuper.add(new Draw(list, 32/2));
+        sSuper.add(new Draw(list, 32/2));
     }
 	
 	/**
