@@ -17,6 +17,7 @@ public class DataBase{
 	 */
 	private DataBase() {
 		fileObj = FileHandler.getInstance();
+		configObj = new Config("config.txt");
 	}
 	
 	public static DataBase getInstance(){
