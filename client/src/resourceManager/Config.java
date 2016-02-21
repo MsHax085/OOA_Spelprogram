@@ -36,7 +36,7 @@ public class Config{
 	public Boolean writeConf(String setting, String value)
 	{
 		StringBuilder tempArr = new StringBuilder(); 
-		String tempString = fh.readF("config.txt");
+		String tempString = fh.readF(configPath);
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		for(int i=0; i < splitRows.length; i++)

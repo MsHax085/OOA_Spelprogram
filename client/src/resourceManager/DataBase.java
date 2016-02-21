@@ -11,6 +11,7 @@ public class DataBase{
 	
 	private FileHandler fileObj;
 	private Config configObj;
+	private Map mapObj;
 	private static DataBase instance = null;
 	
 	/* Constructs a Score Object assigning its filepath. 
@@ -18,6 +19,7 @@ public class DataBase{
 	private DataBase() {
 		fileObj = FileHandler.getInstance();
 		configObj = new Config("config.txt");
+		mapObj = new Map("map");
 	}
 	
 	public static DataBase getInstance(){
@@ -47,5 +49,9 @@ public class DataBase{
 	public Boolean writeConfig(String setting, String value){
 		return configObj.writeConf(setting,value);
 		
+	}
+	public char[][] readMap(int mapnmb)
+	{
+		return mapObj.readMap(mapnmb);
 	}
 }
