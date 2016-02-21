@@ -1,0 +1,4 @@
+username,oscar
+test,10
+gameWidth, 16
+gameHeight, 10
