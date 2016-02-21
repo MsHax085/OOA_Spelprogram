@@ -19,6 +19,7 @@ import src.game.entities.*;
  *Update = Model
  *JFrame frame, draw = View
  */
+
 public class Game implements DefaultFrameState, Observer {
     
     private JFrame frame;
