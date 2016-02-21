@@ -22,7 +22,7 @@ public class DataBase{
 	public static DataBase getInstance(){
 		if(instance == null)
 		{
-			instance = new Database();
+			instance = new DataBase();
 		}
 		return instance;
 	}
