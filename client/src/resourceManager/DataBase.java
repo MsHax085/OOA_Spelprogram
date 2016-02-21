@@ -11,7 +11,7 @@ public class DataBase{
 	
 	private FileHandler fileObj;
 	private Config configObj;
-	private Static DataBase instance = null;
+	private static DataBase instance = null;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
@@ -22,7 +22,7 @@ public class DataBase{
 	public static DataBase getInstance(){
 		if(instance == null)
 		{
-			instance = new FileHandler();
+			instance = new Database();
 		}
 		return instance;
 	}
