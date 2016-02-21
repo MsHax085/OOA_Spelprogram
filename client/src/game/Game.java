@@ -51,8 +51,7 @@ public class Game implements DefaultFrameState, Observer {
 	private void init(int blockSize){
 		list = (new MapHandler(blockSize).getMap(1));
 		update = new Update(list);
-		draw = new Draw(list, blockSize, 10, 10);
-		draw.setPreferredSize(new Dimension(320, 320));//tvingar rutan till panelens storlek inget perma...
+		draw = new Draw(list, blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(new gameListner());
 	}

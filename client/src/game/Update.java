@@ -39,7 +39,6 @@ public class Update{
 		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			move(0, 1);
 		}
-		System.out.println("sweh");
 	}
 	
 	private void move(int x, int y){

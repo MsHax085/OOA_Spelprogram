@@ -3,6 +3,7 @@ package src.game;
 import java.util.ArrayList;
 
 import src.game.entities.*;
+import src.resourceManager.DataBase;
 
 /**
  * 
@@ -10,23 +11,38 @@ import src.game.entities.*;
  *
  */
 public class MapHandler {
-	private char[][] map = {{'3', '3', '0', '0'},
-							{'3', '0', '0', '0'},
-							{'3', '0', '3', '3'},
-							{'3', '0', '3', '3'},
-							{'3', '0', '0', '0'},
-							{'3', '3', '0', 's'}}; //lite för att testa
+	private char[][] map = {{'s', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '3', '0', '3', '0', '3', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},}; //lite för att testa
 	private int blockSize;
+	DataBase db;
+	
 	public MapHandler(int blockSize){
 		this.blockSize = blockSize;
+		db = DataBase.getInstance();
 	}
 	
 	public ArrayList<Entity> getMap(int mapNumber){
 		ArrayList<Entity> list = new ArrayList<Entity>();
-		//map = DataBase.getMap(mapNumber); -ska hämta mappen från lokalt doc, dummykod förövrigt
-		
-		for(int x = 0; x < 4; x++){
-			for(int y = 0; y < 6; y++){
+		//map = db.getMap(mapNumber);
+		int mapWidth, mapHeight;
+		try{
+			mapWidth = Integer.parseInt(db.readConfig("gameWidth"));
+			mapHeight = Integer.parseInt(db.readConfig("gameHeight"));
+		}catch(Exception e){
+			System.out.println("MapHandler - Couldn't read from config.");
+			mapWidth = 16;
+			mapHeight = 10;
+		}
+		for(int x = 0; x < mapWidth; x++){
+			for(int y = 0; y < mapHeight; y++){
 				if(map[y][x]=='3')
 					list.add(new Block(x, y));
 				else if(map[y][x]=='s')
