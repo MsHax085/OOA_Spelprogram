@@ -19,4 +19,13 @@ public class PacketBuilder {
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
+    
+    public byte[] createTestPacket() throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeShort(SendPacketOpcodes.PACKET2.getValue());
+        dataOutputStream.writeInt(1337);
+        dataOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
 }

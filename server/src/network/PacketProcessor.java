@@ -2,6 +2,7 @@ package src.network;
 
 import java.util.HashMap;
 import src.network.packets.HelloHandler;
+import src.network.packets.TestHandler;
 
 public class PacketProcessor {
 
@@ -20,6 +21,6 @@ public class PacketProcessor {
     public void loadRecvHandlers() {
         handlers = new HashMap<>();
         handlers.put(RecvPacketOpcodes.PACKET1.getValue(), new HelloHandler());
-        handlers.put(RecvPacketOpcodes.PACKET2.getValue(), null);
+        handlers.put(RecvPacketOpcodes.PACKET2.getValue(), new TestHandler());
     }
 }

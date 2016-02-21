@@ -25,6 +25,9 @@ public class Connection {
     private final int sendPort = 8989;
     private final int bufferSize = 1024;
     
+    private InetAddress fromIpAddress;
+    int fromPort;
+    
     public Connection() {
         try {
             this.receiveSocket = new DatagramSocket(receivePort);
@@ -44,12 +47,24 @@ public class Connection {
         final DatagramPacket packet = new DatagramPacket(bytes, bytes.length);
         receiveSocket.receive(packet);
         
+        // BögEriks code
+        fromIpAddress = packet.getAddress();
+        fromPort = packet.getPort();
+        
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         return new DataInputStream(byteArrayInputStream);
     }
     
-    public void sendPacket(byte[] packetData, InetAddress addr) throws IOException {
+    public void sendPacket(byte[] packetData, InetAddress addr, int sendPort) throws IOException {
         DatagramPacket packet = new DatagramPacket(packetData, packetData.length, addr, sendPort);
         sendSocket.send(packet);
+    }
+    
+    public InetAddress getFromIpAddress() {
+		return fromIpAddress;
+    }
+    
+    public int getFromPort() {
+		return fromPort;
     }
 }

@@ -1,6 +1,7 @@
 package src.network;
 
 import java.io.DataInputStream;
+import java.net.InetAddress;
 
 /**
  * 
@@ -9,5 +10,5 @@ import java.io.DataInputStream;
  */
 public interface ImplPacketHandler {
 
-    public void handlePacket(DataInputStream dis);
+    public void handlePacket(DataInputStream dis, InetAddress fromIpAddress, int fromPort);
 }
