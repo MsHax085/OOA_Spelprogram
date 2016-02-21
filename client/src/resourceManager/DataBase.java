@@ -5,7 +5,7 @@ package src.resourceManager;
  * 
  * @author Oscar Andersson
  *
- * TODO Singleton designPattern??
+ * 
  */
 public class DataBase{
 	

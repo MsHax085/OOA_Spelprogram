@@ -38,7 +38,6 @@ public class Map {
 			for(int p=0; p < splitCol.length;p++)
 			{
 				builder[i][p] = splitCol[p].charAt(0);
-				System.out.println(builder[i][p]);
 			}
 			
 		}
