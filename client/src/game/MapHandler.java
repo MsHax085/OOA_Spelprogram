@@ -20,7 +20,7 @@ public class MapHandler {
 							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '3', '0', '3', '0', '3', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},}; //lite för att testa
+							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'},}; //lite för att testa
 	private int blockSize;
 	DataBase db;
 	
@@ -47,6 +47,8 @@ public class MapHandler {
 					list.add(new Block(x, y));
 				else if(map[y][x]=='s')
 					list.add(new Start(x, y));
+				else if(map[y][x]=='g')
+					list.add(new Goal(x, y));
 			}
 		}
 		return list;

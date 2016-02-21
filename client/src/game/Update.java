@@ -12,10 +12,12 @@ import src.game.entities.*;
  */
 public class Update{
 	ArrayList<Entity> list;
+	boolean isDone;
 	Player player;
 	
 	public Update(ArrayList<Entity> list){
 		this.list = list;
+		isDone = false;
 		
 		player = new Player(0,0);
 		
@@ -46,6 +48,8 @@ public class Update{
 		for(Entity ent : list){
 			if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.isSolid()){
 				moveAllowed = false;
+			}else if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.getClass() == Goal.class){
+				isDone = true;
 			}
 		}
 		if(moveAllowed)
@@ -60,7 +64,7 @@ public class Update{
 	}
 	
 	public boolean isDone(){
-		return false;
+		return isDone;
 	}
 
 	public ArrayList<Entity> getList(){

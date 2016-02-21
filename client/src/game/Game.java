@@ -86,6 +86,12 @@ public class Game implements DefaultFrameState, Observer {
 		public void keyReleased(KeyEvent e) {
 			update.doSomeThing(e);
 			draw.drawList(update.getList());
+			
+			if(update.isDone()){
+				frame.dispose();
+				System.out.println("You have won");
+				System.exit(0);
+			}
 		}
 	
 		@Override
