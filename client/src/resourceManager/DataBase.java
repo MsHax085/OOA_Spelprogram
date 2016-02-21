@@ -10,6 +10,7 @@ package src.resourceManager;
 public class DataBase{
 	
 	private FileHandler fileObj;
+	private Config configObj;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
@@ -18,11 +19,6 @@ public class DataBase{
 	}
 
 	
-
-
-	/* Returns the highscore-list in the form of a treemap
-	 * sorting the fastest times first
-	 */
 
 	
 	public String readFile(String fileN)
@@ -34,5 +30,13 @@ public class DataBase{
 		return fileObj.writeF(fileN,writeC);
 	}
 	
+	public String readConfig(String setting){
+		return configObj.readConf(setting);
+	}
+
 	
+	public Boolean writeConfig(String setting, String value){
+		return configObj.writeConf(setting,value);
+		
+	}
 }
