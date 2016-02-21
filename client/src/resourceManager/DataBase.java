@@ -11,13 +11,21 @@ public class DataBase{
 	
 	private FileHandler fileObj;
 	private Config configObj;
+	private Static DataBase instance = null;
 	
 	/* Constructs a Score Object assigning its filepath. 
 	 */
-	public DataBase() {
+	private DataBase() {
 		fileObj = FileHandler.getInstance();
 	}
-
+	
+	public static DataBase getInstance(){
+		if(instance == null)
+		{
+			instance = new FileHandler();
+		}
+		return instance;
+	}
 	
 
 	
