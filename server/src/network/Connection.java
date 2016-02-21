@@ -12,17 +12,15 @@ import java.util.logging.Logger;
 
 /**
  * 
- * @author Richard
+ * @author Richard, BögErik
  *
  */
 public class Connection {
     
     private static Connection connection;
 
-    private DatagramSocket receiveSocket = null;
-    private DatagramSocket sendSocket = null;
+    private DatagramSocket serverSocket = null;
     private final int receivePort = 8989;
-    private final int sendPort = 8989;
     private final int bufferSize = 1024;
     
     private InetAddress fromIpAddress;
@@ -30,8 +28,7 @@ public class Connection {
     
     public Connection() {
         try {
-            this.receiveSocket = new DatagramSocket(receivePort);
-            this.sendSocket = new DatagramSocket();
+            this.serverSocket = new DatagramSocket(receivePort);
         } catch (SocketException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,19 +42,16 @@ public class Connection {
     public DataInputStream receivePacket() throws IOException {
         final byte[] bytes = new byte[bufferSize];
         final DatagramPacket packet = new DatagramPacket(bytes, bytes.length);
-        receiveSocket.receive(packet);
-        
-        // BögEriks code
+        serverSocket.receive(packet);
         fromIpAddress = packet.getAddress();
         fromPort = packet.getPort();
-        
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         return new DataInputStream(byteArrayInputStream);
     }
     
     public void sendPacket(byte[] packetData, InetAddress addr, int sendPort) throws IOException {
         DatagramPacket packet = new DatagramPacket(packetData, packetData.length, addr, sendPort);
-        receiveSocket.send(packet);
+        serverSocket.send(packet);
     }
     
     public InetAddress getFromIpAddress() {
