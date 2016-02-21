@@ -57,7 +57,7 @@ public class Connection {
     
     public void sendPacket(byte[] packetData, InetAddress addr, int sendPort) throws IOException {
         DatagramPacket packet = new DatagramPacket(packetData, packetData.length, addr, sendPort);
-        sendSocket.send(packet);
+        receiveSocket.send(packet);
     }
     
     public InetAddress getFromIpAddress() {
