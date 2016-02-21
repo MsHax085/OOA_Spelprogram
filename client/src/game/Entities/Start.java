@@ -7,6 +7,6 @@ package src.game.entities;
  */
 public class Start extends Entity{	
 	public Start(int x, int y) {
-		super(x, y);
+		super(x, y, false);
 	}
 }
