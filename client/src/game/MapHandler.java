@@ -21,29 +21,27 @@ public class MapHandler {
 							{'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'},}; //lite för att testa
-	private int blockSize;
 	DataBase db;
 	
-	public MapHandler(int blockSize){
-		this.blockSize = blockSize;
+	public MapHandler(){
 		db = DataBase.getInstance();
 	}
 	
 	public ArrayList<Entity> getMap(int mapNumber){
 		ArrayList<Entity> list = new ArrayList<Entity>();
-		//map = db.getMap(mapNumber);
 		int mapWidth, mapHeight;
 		try{
+			map = db.readMap(mapNumber);
 			mapWidth = Integer.parseInt(db.readConfig("gameWidth"));
 			mapHeight = Integer.parseInt(db.readConfig("gameHeight"));
 		}catch(Exception e){
-			System.out.println("MapHandler - Couldn't read from config.");
+			System.out.println("MapHandler - Couldn't read from config or map file.");
 			mapWidth = 16;
 			mapHeight = 10;
 		}
 		for(int x = 0; x < mapWidth; x++){
 			for(int y = 0; y < mapHeight; y++){
-				if(map[y][x]=='3')
+				if(map[y][x]=='b')
 					list.add(new Block(x, y));
 				else if(map[y][x]=='s')
 					list.add(new Start(x, y));

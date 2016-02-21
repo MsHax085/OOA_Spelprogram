@@ -41,15 +41,15 @@ public class Game implements DefaultFrameState, Observer {
 	/**
 	 * @param blockSize
 	 */
-	public Game(int blockSize){
-        init(blockSize);
+	public Game(int blockSize, int mapNumber){
+        init(blockSize, mapNumber);
 	}
 	public Game(){
-		init(32);
+		init(32, 1);
 	}
 	
-	private void init(int blockSize){
-		list = (new MapHandler(blockSize).getMap(1));
+	private void init(int blockSize, int mapNumber){
+		list = (new MapHandler().getMap(1));
 		update = new Update(list);
 		draw = new Draw(list, blockSize);
         draw.setFocusable(true);
