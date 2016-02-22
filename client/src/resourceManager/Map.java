@@ -20,6 +20,11 @@ public class Map {
 		cO = new Config("config.txt");
 	}
 	
+	
+	/* This method read the content of a map file and return the map
+	 * as a char[][].
+	 *
+	 */
 	public char[][] readMap(int mapnumber)
 	{
 		int width = Integer.parseInt(cO.readConf("gameWidth"));
@@ -45,7 +50,7 @@ public class Map {
 		}
 		catch(Exception e){
 			System.out.println("Error reading map");
-			return null;
+			return null; // Return null if the map "building" wasnt successful. 
 		}
 	}
 }

@@ -17,6 +17,9 @@ public class Config{
 		fh = FileHandler.getInstance();
 	}
 
+	/* Reads a value related to a specific setting.
+	 *
+	*/
 	public String readConf(String setting){
 		String tempString = fh.readF(configPath);
 		String[] splitRows = tempString.split("\n");
@@ -33,6 +36,9 @@ public class Config{
 		return null; //Marks that readConfig could not find the setting.
 	}
 	
+	/* Overwrites a value related to a specific setting. 
+	 * 
+	*/
 	public Boolean writeConf(String setting, String value)
 	{
 		StringBuilder tempArr = new StringBuilder(); 
