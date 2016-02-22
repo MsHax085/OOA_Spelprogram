@@ -20,6 +20,10 @@ public class Network {
     	PacketProcessor.getInstance().loadRecvHandlers();
     }
     
+    
+    /*
+     * Receives a packet, checks the ID of the packet and sends the packet information to the corresponding packet class.
+     */
     public void update() {
     	while (run) {
             try {

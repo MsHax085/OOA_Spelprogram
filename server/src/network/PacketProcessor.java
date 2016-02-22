@@ -7,6 +7,8 @@ import src.network.packets.TestHandler;
 /*
  * 
  *  @author Richard, BögErik
+ *  
+ *  Links Packet ID with packet classes
  */
 
 public class PacketProcessor {
@@ -23,6 +25,9 @@ public class PacketProcessor {
         return handlers.get(opCode);
     }
     
+    /*
+     * Add new packets to the HashMap here..
+     */
     public void loadRecvHandlers() {
         handlers = new HashMap<>();
         handlers.put(RecvPacketOpcodes.PACKET1.getValue(), new HelloHandler());

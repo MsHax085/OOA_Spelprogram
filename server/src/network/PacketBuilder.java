@@ -9,6 +9,12 @@ import java.io.IOException;
  * @author Richard, BögErik
  *
  */
+
+	//I might make this a singleton... or just use it differently
+
+/*
+ * collection of the packet building methods. 
+ */
 public class PacketBuilder {
 
     public byte[] createHelloPacket() throws IOException {
