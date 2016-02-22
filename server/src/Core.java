@@ -2,6 +2,13 @@ package src;
 
 import src.network.Network;
 
+/**
+ * 
+ * @author 
+ * 
+ * TODO: Load settings and shit from DataBase, Add a class to read commands from a CLI.
+ */
+
 public class Core{
 	
     private static Core instance = null;
@@ -10,7 +17,7 @@ public class Core{
     public Core() {
         System.out.println("Core started.");
         this.network = new Network();
-        network.update();
+        network.start();
     }
     
     public static Core getInstance() {

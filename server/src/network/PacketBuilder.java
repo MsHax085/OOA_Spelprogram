@@ -10,8 +10,6 @@ import java.io.IOException;
  *
  */
 
-	//I might make this a singleton... or just use it differently
-
 /*
  * collection of the packet building methods. 
  */

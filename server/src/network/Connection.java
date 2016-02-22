@@ -72,4 +72,8 @@ public class Connection {
     public int getFromPort() {
 		return fromPort;
     }
+    
+    public void closeSocket() {
+    	serverSocket.close();
+    }
 }

@@ -12,9 +12,9 @@ import java.util.logging.Logger;
  *
  */
 
-public class Network {
+public class Network implements Runnable{
 
-    private boolean run = true;
+    private boolean running;
     
     public Network() {
     	PacketProcessor.getInstance().loadRecvHandlers();
@@ -22,10 +22,29 @@ public class Network {
     
     
     /*
+     * Starts the thread.
+     */
+	public synchronized void start() {
+		System.out.println("Network Thread started");
+		running = true;
+		new Thread(this).start();
+	}
+	
+	/*
+     * Stops the tread after the run loop ends.
+     * Closes the socket to force an interrupt in the .receive(). This might be fucking insane.
+     */
+	public synchronized void stop() {
+		running = false;
+		Connection.getInstance().closeSocket();
+	}
+
+	/*
      * Receives a packet, checks the ID of the packet and sends the packet information to the corresponding packet class.
      */
-    public void update() {
-    	while (run) {
+	@Override
+	public void run() {
+		while (running) {
             try {
                 // TODO: Check for array out of bounds
                 final DataInputStream dis = Connection.getInstance().receivePacket();
@@ -37,5 +56,6 @@ public class Network {
                 Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
             }
     	}
-    }
+		
+	}
 }
