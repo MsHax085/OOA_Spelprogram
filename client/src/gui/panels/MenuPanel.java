@@ -8,10 +8,10 @@ import javax.swing.JButton;
  */
 public class MenuPanel extends SuperPanel {
 
-	private final JButton join;
-	private final JButton host;
-	private final JButton highscore;
-	private final JButton options;
+	private  JButton join;
+	private  JButton host;
+	private  JButton highscore;
+	private  JButton options;
 	
     public MenuPanel(int width, int height) {
         super(width, height);
