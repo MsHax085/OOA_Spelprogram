@@ -22,6 +22,8 @@ public class ServerCreationPanel extends SuperPanel {
     public ServerCreationPanel(int width, int height) {
         super(width, height);
         
+        this.setLayout(null);
+        
         JLabel text = new JLabel("Choose a server");
 		text.setSize(300,10);
 	    text.setLocation(50,50);

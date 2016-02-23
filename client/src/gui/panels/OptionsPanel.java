@@ -23,6 +23,8 @@ public class OptionsPanel extends SuperPanel {
     public OptionsPanel(int width, int height) {
         super(width, height);
         
+        this.setLayout(null);
+        
         JLabel text = new JLabel("Options");
 		text.setSize(300,10);
 		text.setLocation(50,50);

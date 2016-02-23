@@ -20,7 +20,8 @@ public class ControllerStartPanel implements MouseListener {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getStartButton())) {
-            Core.getInstance().setStateObserver(new Game());
+            //Core.getInstance().setStateObserver(new Game());
+        	
         }
     }
 

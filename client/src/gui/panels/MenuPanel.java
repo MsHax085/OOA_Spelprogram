@@ -16,6 +16,8 @@ public class MenuPanel extends SuperPanel {
     public MenuPanel(int width, int height) {
         super(width, height);
         
+        this.setLayout(null);
+        
         JButton join = new JButton("Join");
 		join.setSize(300,50);
 		join.setLocation(100,50);

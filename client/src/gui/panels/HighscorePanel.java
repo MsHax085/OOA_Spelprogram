@@ -20,6 +20,8 @@ public class HighscorePanel extends SuperPanel {
 	
     public HighscorePanel(int width, int height) {
         super(width, height);
+        
+        this.setLayout(null);
          
         JLabel text = new JLabel("Highscore");
 		text.setSize(300,50);
