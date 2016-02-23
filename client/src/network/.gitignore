@@ -1,0 +1,11 @@
+/Network.class
+/Connection.class
+/Packets.class
+/Handler.class
+/PacketBuilder.class
+/Receive.class
+/Send.class
+/ImplPacketHandler.class
+/PacketProcessor.class
+/RecvPacketOpcodes.class
+/SendPacketOpcodes.class
