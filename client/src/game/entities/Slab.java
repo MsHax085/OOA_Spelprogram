@@ -6,7 +6,7 @@ public class Slab extends Entity {
 
 	public Slab(int x, int y) {
 		super(x, y, false);
-		color = Color.gray;
+		color = new Color(158,40,53);
 	}
 
 }

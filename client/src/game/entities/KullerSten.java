@@ -6,7 +6,7 @@ public class KullerSten extends Entity {
 
 	public KullerSten(int x, int y) {
 		super(x, y, false);
-		color = Color.ORANGE;
+		color = new Color(173,149,152);
 	}
 
 }

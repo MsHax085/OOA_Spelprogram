@@ -10,6 +10,6 @@ import java.awt.Color;
 public class Goal extends Entity{	
 	public Goal(int x, int y) {
 		super(x, y, false);
-		color = Color.yellow;
+		color = new Color(214,227,138);
 	}
 }

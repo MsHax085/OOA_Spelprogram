@@ -58,7 +58,7 @@ public class Draw extends JPanel{
 	}
 	
 	public void paint(Graphics g){
-		g.setColor(Color.black);
+		g.setColor(new Color(39,161,14));
 		g.fillRect(0, 0, gameWidth * blockSize, gameHeight * blockSize);
 		
 		for(Entity ent : list){
