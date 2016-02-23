@@ -10,7 +10,6 @@ import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;
 import src.gui.panels.OptionsPanel;
-import src.gui.panels.Panels;
 import src.gui.panels.ServerCreationPanel;
 import src.gui.panels.ServerLobbyPanel;
 import src.gui.panels.ServerSelectionPanel;
@@ -24,7 +23,6 @@ import src.gui.panels.event.ControllerStartPanel;
 public class UserInterface implements DefaultFrameState, Observer {
 
     private JFrame frame;
-    //private JPanel visiblePanel;
     private JPanel panels;
     private CardLayout cl;
 	 private JPanel startPanel;
@@ -46,10 +44,7 @@ public class UserInterface implements DefaultFrameState, Observer {
         
         panels = new JPanel();
         panels.setLayout(cl);
-        /*
-        this.visiblePanel = new StartPanel(500, 500);
-        frame.add(this.visiblePanel);
-        */
+
         this.startPanel = new StartPanel(500,500);
 		this.menuPanel = new MenuPanel(500,500);
 		this.serverSelectionPanel = new ServerSelectionPanel(500,500);
@@ -69,6 +64,10 @@ public class UserInterface implements DefaultFrameState, Observer {
 		cl.show(panels, "startpanel");
         frame.add(panels);
         
+    }
+    
+    public JPanel getPanels(){
+    	return panels;
     }
 
     @Override

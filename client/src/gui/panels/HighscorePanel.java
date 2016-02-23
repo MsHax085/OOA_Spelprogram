@@ -12,8 +12,7 @@ import javax.swing.JTable;
  */
 public class HighscorePanel extends SuperPanel {
 
-	private JFrame frame;
-	private JPanel panel;
+
 	private JLabel text;
 	private JTable highScoreList;
 	private JButton prev;
@@ -26,17 +25,17 @@ public class HighscorePanel extends SuperPanel {
         JLabel text = new JLabel("Highscore");
 		text.setSize(300,50);
 		text.setLocation(50,50);
-		panel.add(text);
+		this.add(text);
 			 
 		JTable highScoreList = new JTable(14,1);
 		highScoreList.setSize(400,225);
 		highScoreList.setLocation(50, 100);
-		panel.add(highScoreList);	
+		this.add(highScoreList);	
 			
 		JButton prev = new JButton("Prev");
 		prev.setSize(125,50);
 		prev.setLocation(325,350);
-		panel.add(prev);
+		this.add(prev);
 		 
     }
 }

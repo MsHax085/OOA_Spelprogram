@@ -20,7 +20,7 @@ public class StartPanel extends SuperPanel {
         //this.setBackground(Color.BLACK);
         this.setLayout(null);
         
-        this.startButton = new JButton("Start Game");
+        this.startButton = new JButton("Ok");
         startButton.setSize(125,50);
 		startButton.setLocation(250,300);
 		
