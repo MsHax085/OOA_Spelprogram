@@ -53,6 +53,10 @@ public class Draw extends JPanel{
 		repaint();
 	}
 	
+	public ArrayList<Entity> getList(){
+		return list;
+	}
+	
 	public void paint(Graphics g){
 		g.setColor(Color.black);
 		g.fillRect(0, 0, gameWidth * blockSize, gameHeight * blockSize);

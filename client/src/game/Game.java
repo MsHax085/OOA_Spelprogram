@@ -1,6 +1,5 @@
 package src.game;
 
-import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -24,9 +23,11 @@ import src.game.entities.*;
 public class Game implements DefaultFrameState, Observer {
     
     private JFrame frame;
+    private JPanel superPanel;
     private Draw draw;
     
 	private Update update;
+	private MultiplayerHandler multiplayerHandler;
 	private ArrayList<Entity> list;
 	//private Timer timer;
 	
@@ -35,13 +36,7 @@ public class Game implements DefaultFrameState, Observer {
     public void setup() {
         frame = new JFrame("P�g�ende spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//frame.setSize(new Dimension(500, 500));//atm f�r att tvingaa
-        JPanel sSuper = new JPanel();
-        frame.add(sSuper);
-        sSuper.add(draw);
-        sSuper.add(new Draw(list, 32/2));
-        sSuper.add(new Draw(list, 32/2));
-        sSuper.add(new Draw(list, 32/2));
+        frame.add(superPanel);
     }
 	
 	/**
@@ -55,15 +50,27 @@ public class Game implements DefaultFrameState, Observer {
 	}
 	
 	private void init(int blockSize, int mapNumber){
-		list = (new MapHandler().getMap(1));
+		superPanel = new JPanel();
+		list = (new MapHandler().getMap(mapNumber));
 		update = new Update(list);
+		multiplayerHandler = new MultiplayerHandler(superPanel);
+		
 		draw = new Draw(list, blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(new gameListner());
+        superPanel.add(draw);
+
+        multiplayerHandler.addPlayer("sweg", mapNumber);
+        multiplayerHandler.addPlayer("sweg1", mapNumber);
+        multiplayerHandler.updatePlayer("sweg", 2, 3);
 	}
 
 	public ArrayList<Entity> getList(){
 		return list;
+	}
+	
+	public MultiplayerHandler getMultiplayerHandler(){
+		return multiplayerHandler;
 	}
 
     @Override
@@ -88,10 +95,14 @@ public class Game implements DefaultFrameState, Observer {
     }
     
     private class gameListner implements KeyListener{
+    	int i = 0;
 		@Override
 		public void keyReleased(KeyEvent e) {
 			update.doSomeThing(e);
 			draw.drawList(update.getList());
+	        multiplayerHandler.updatePlayer("sweg1", i, 0);
+	        
+	        i++;
 			
 			if(update.isDone()){
 				frame.dispose();

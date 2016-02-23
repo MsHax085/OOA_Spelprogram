@@ -13,13 +13,6 @@ public class Player extends Entity {
 		super(x,y,false);
 		color = Color.blue;
 	}
-
-	public void setX(int x){
-		this.x = x;
-	}
-	public void setY(int y){
-		this.y = y;
-	}
 	
 	public void move(int x, int y){
 		this.x += x;
