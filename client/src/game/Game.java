@@ -28,7 +28,6 @@ public class Game implements DefaultFrameState, Observer {
     
 	private Update update;
 	private MultiplayerHandler multiplayerHandler;
-	private ArrayList<Entity> list;
 	//private Timer timer;
 	
 
@@ -51,22 +50,16 @@ public class Game implements DefaultFrameState, Observer {
 	
 	private void init(int blockSize, int mapNumber){
 		superPanel = new JPanel();
-		list = (new MapHandler().getMap(mapNumber));
-		update = new Update(list);
+		update = new Update(mapNumber);
 		multiplayerHandler = new MultiplayerHandler(superPanel);
 		
-		draw = new Draw(list, blockSize);
+		draw = new Draw(update.getList(), blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(new gameListner());
         superPanel.add(draw);
 
         multiplayerHandler.addPlayer("sweg", mapNumber);
         multiplayerHandler.addPlayer("sweg1", mapNumber);
-        multiplayerHandler.updatePlayer("sweg", 2, 3);
-	}
-
-	public ArrayList<Entity> getList(){
-		return list;
 	}
 	
 	public MultiplayerHandler getMultiplayerHandler(){
@@ -100,7 +93,7 @@ public class Game implements DefaultFrameState, Observer {
 		public void keyReleased(KeyEvent e) {
 			update.doSomeThing(e);
 			draw.drawList(update.getList());
-	        multiplayerHandler.updatePlayer("sweg1", i, 0);
+	        multiplayerHandler.updatePlayer("sweg1", i, 1);
 	        
 	        i++;
 			

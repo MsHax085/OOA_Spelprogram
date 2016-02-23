@@ -47,6 +47,8 @@ public class MapHandler {
 					list.add(new Start(x, y));
 				else if(map[y][x]=='g')
 					list.add(new Goal(x, y));
+				else if(map[y][x]=='k')
+					list.add(new KullerSten(x, y));
 				else if(map[y][x]=='l')
 					list.add(new Slab(x, y));
 			}

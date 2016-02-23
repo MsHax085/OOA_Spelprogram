@@ -51,6 +51,17 @@ public class MultiplayerHandler {
 	}
 
 	public void updateSlab(String name, int x, int y){
-		
+		ArrayList<Entity> list = playerMap.get(name).getList();
+		for(Entity ent : list){
+			if(ent.getClass() == Slab.class){
+				ent.setX(x);
+				ent.setY(y);
+			}
+		}
+		playerMap.get(name).drawList(list);
+	}
+	
+	public void resetPlayer(String name, int mapNumber){
+		playerMap.get(name).drawList(new MapHandler().getMap(mapNumber));
 	}
 }

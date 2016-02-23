@@ -13,9 +13,4 @@ public class Player extends Entity {
 		super(x,y,false);
 		color = Color.blue;
 	}
-	
-	public void move(int x, int y){
-		this.x += x;
-		this.y += y;
-	}
 }
