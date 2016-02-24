@@ -22,15 +22,15 @@ public class StartPanel extends SuperPanel {
         
         this.startButton = new JButton("Ok");
         startButton.setSize(125,50);
-		startButton.setLocation(250,300);
+        startButton.setLocation(250,300);
 		
         this.startButton.addMouseListener(controller);
         this.add(startButton);
         
         JTextField usernameField = new JTextField(20);
-		usernameField.setSize(300,30);
-		usernameField.setLocation(100, 225);
-		this.add(usernameField);
+        usernameField.setSize(300,30);
+        usernameField.setLocation(100, 225);
+        this.add(usernameField);
     }
     
     public JButton getStartButton() {

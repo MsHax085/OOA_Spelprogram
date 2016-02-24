@@ -38,7 +38,7 @@ public class Draw extends JPanel{
 		try{
 			this.gameWidth = Integer.parseInt(db.readConfig("gameWidth"));
 			this.gameHeight = Integer.parseInt(db.readConfig("gameHeight"));
-		}catch(NullPointerException e){
+		}catch(NullPointerException | NumberFormatException e){
 			System.out.println("Draw - Couldn't read from config.");
 			
 			this.gameWidth = 16;

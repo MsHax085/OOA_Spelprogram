@@ -11,7 +11,7 @@ import src.gui.panels.StartPanel;
  */
 public class ControllerStartPanel implements MouseListener {
     
-    private StartPanel panel;
+    private final StartPanel panel;
 
     
     public ControllerStartPanel(StartPanel panel) {
@@ -21,7 +21,7 @@ public class ControllerStartPanel implements MouseListener {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getStartButton())) {
-            //Core.getInstance().setStateObserver(new Game());
+            Core.getInstance().setStateObserver(new Game());
         }
     }
 

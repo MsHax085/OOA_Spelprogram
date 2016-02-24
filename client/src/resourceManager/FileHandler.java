@@ -41,10 +41,14 @@ public class FileHandler {
 	public String readF(String fileName) 
 	{
 		StringBuilder tempArr = new StringBuilder(); 
-		
 		try
 		{
-			Scanner in = new Scanner(new FileReader(fileName));
+                        File f = new File(fileName);
+                        if (!f.exists()) {
+                            f = new File(System.getProperty("user.home") + File.separator + fileName);
+                        }
+                        FileReader fr = new FileReader(f);
+                        Scanner in = new Scanner(fr);
 			
 			
 			/* As this while loop "steps" through every row of the specified file,
