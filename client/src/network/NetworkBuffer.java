@@ -25,8 +25,12 @@ public class NetworkBuffer extends Observable {
     }
     
     public ImplPacketHandler getNext() {
-        if (handlerBuffer.isEmpty()) return null;
+        if (!hasNext()) return null;
         return handlerBuffer.pollFirst();
+    }
+    
+    public boolean hasNext() {
+        return !handlerBuffer.isEmpty();
     }
     
     public void addNewObserver(Observer observer) {

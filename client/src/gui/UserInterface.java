@@ -95,6 +95,9 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         switch (val) {
             case 0:
                 System.out.println("NETWORK EVENT");
+                if (NetworkBuffer.getInstance().hasNext()) {
+                    NetworkBuffer.getInstance().getNext().handlePacket();
+                }
                 break;
             case 1:
                 break;

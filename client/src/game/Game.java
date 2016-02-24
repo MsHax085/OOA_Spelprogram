@@ -114,7 +114,9 @@ public class Game implements DefaultFrameState, Observer {
     	
     	public void run(){
     		while(running){
-                        NetworkBuffer.getInstance().getNext().handlePacket();
+                        if (NetworkBuffer.getInstance().hasNext()) {
+                            NetworkBuffer.getInstance().getNext().handlePacket();
+                        }
     			update.doSomeThing(gl);
     			draw.drawList(update.getList(), time);
     			
