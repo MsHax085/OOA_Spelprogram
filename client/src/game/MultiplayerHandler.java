@@ -14,12 +14,14 @@ import src.game.entities.*;
  */
 
 public class MultiplayerHandler {
-	TreeMap<String, Draw> playerMap;
-	JPanel panel;
+	private TreeMap<String, Draw> playerMap;
+	private JPanel panel;
+	private boolean anyOneDone;
 	
 	public MultiplayerHandler(JPanel panel){
 		playerMap = new TreeMap<String, Draw>();
 		this.panel = panel;
+		anyOneDone = false;
 	}
 	
 	public TreeMap<String, Draw> getMap(){
@@ -60,6 +62,23 @@ public class MultiplayerHandler {
 			}
 		}
 		playerMap.get(name).drawList(list);
+	}
+	
+	
+	
+	public void playerIsDone(String name, int time){
+		boolean isWinner = true;
+		for(Draw ent : playerMap.values()){
+			if(ent.getIsDone()){
+				isWinner = false;
+			}
+		}
+		if(isWinner)
+			playerMap.get(name).setIsWinner();
+		playerMap.get(name).setIsDone();
+		playerMap.get(name).setTime(time);
+		playerMap.get(name).repaint();
+		
 	}
 	
 	public void resetPlayer(String name, int mapNumber){

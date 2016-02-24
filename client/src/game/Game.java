@@ -2,6 +2,9 @@ package src.game;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.*;
 import src.frame.DefaultFrameState;
 
@@ -24,9 +27,11 @@ public class Game implements DefaultFrameState, Observer {
     private Draw draw;
     private GameListener gl;
     private GameThread gt;
+    private TimerTask countTime;
     
 	private Update update;
 	private MultiplayerHandler multiplayerHandler;
+	private int time;
 	//private Timer timer;
 	
 
@@ -54,15 +59,28 @@ public class Game implements DefaultFrameState, Observer {
 		gl = new GameListener();
 		gt = new GameThread();
 		
-		draw = new Draw(update.getListOfEntities(), blockSize);
+		draw = new Draw(update.getList(), blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(gl);
         superPanel.add(draw);
 
+        //Här ska de andra spelarna initieras
         multiplayerHandler.addPlayer("sweg", mapNumber);
         multiplayerHandler.addPlayer("sweg1", mapNumber);
         
+        multiplayerHandler.playerIsDone("sweg", 23);
+        
         gt.start();
+        time = 0;
+    	countTime = new TimerTask(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				time++;
+			}	
+    	};
+    	new Timer().schedule(countTime, 0, 1000);
 	}
 	
 	public MultiplayerHandler getMultiplayerHandler(){
@@ -90,28 +108,32 @@ public class Game implements DefaultFrameState, Observer {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private class GameThread extends Thread {
-        
+    private class GameThread extends Thread{
     	private boolean running = true;
-        
-        @Override
+    	
     	public void run(){
-            while(running){
-                update.updateMovement(gl);
-                draw.drawList(update.getListOfEntities());
-
-                if (update.isGameFinished()){
-                    frame.dispose();
-                    System.out.println("You have won");
-                    running = false;
-                }
-                try {
-                    this.sleep(20);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
+    		while(running){
+    			update.doSomeThing(gl);
+    			draw.drawList(update.getList(), time);
+    			
+    			//här ska de andra spelarna uppdateras
+    			
+    			if(update.isDone()){
+    				System.out.println("You have won");
+    				running = false;
+    				countTime.cancel();
+    				
+    				//här ska vinnst text visas och paket till andra spelare skickas ut
+    				draw.setIsDone();
+    				draw.repaint();
+    			}
+    			try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
     	}
     }
 }

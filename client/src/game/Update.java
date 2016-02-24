@@ -1,6 +1,7 @@
 package src.game;
 
 import java.util.ArrayList;
+
 import src.game.entities.*;
 
 /**
@@ -10,14 +11,14 @@ import src.game.entities.*;
  */
 
 public class Update{
-	ArrayList<Entity> entities;
-	int mapNumber;
-	boolean gameFinished;
-	Player player;
+	private ArrayList<Entity> entities;
+	private int mapNumber;
+	private boolean gameFinnished, unsentPackage;
+	private Player player;
 	
 	public Update(int mapNumber){
 		this.mapNumber = mapNumber;
-		gameFinished = false;
+		gameFinnished = false;
 		
 		init();
 	}
@@ -35,12 +36,13 @@ public class Update{
 		}
 		
 		entities.add(player);
+
+		unsentPackage = false;
 	}
 	
-	public void updateMovement(GameListener gl){
+	public void doSomeThing(GameListener gl){
 		if(gl.getKeyLeft()){
 			move(-1, 0);
-			System.out.println("sweg");
 		}else if(gl.getKeyRight()){
 			move(1, 0);
 		}else if(gl.getKeyUp()){
@@ -67,6 +69,12 @@ public class Update{
 			player.move(x, y);
 			if(slab != null)
 				slab.move(x, y);
+			unsentPackage = true;
+			
+			if(slab != null)
+				currentPacket(player.getX(), player.getY(), slab.getX(), slab.getY());
+			else
+				currentPacket(player.getX(), player.getY(), 0, 0);
 		}
 	}
 	
@@ -75,7 +83,7 @@ public class Update{
 			if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() != Goal.class){
 				return false;
 			}else if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() == Goal.class){
-				gameFinished = true;
+				gameFinnished = true;
 			}
 		}
 		return true;
@@ -88,11 +96,24 @@ public class Update{
 		return false;
 	}
 	
-	public boolean isGameFinished(){
-		return gameFinished;
+	public void currentPacket(int playerX, int playerY, int slabX, int slabY){
+		unsentPackage = false;
+	}
+	
+	//ska returnera sträng eller byte[] eller nått
+	public String getUnsentPackage(){
+		return null;
+	}
+	
+	public boolean hasUnsentPackage(){
+		return unsentPackage;
+	}
+	
+	public boolean isDone(){
+		return gameFinnished;
 	}
 
-	public ArrayList<Entity> getListOfEntities(){
+	public ArrayList<Entity> getList(){
 		return entities;
 	}
 }

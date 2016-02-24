@@ -25,7 +25,9 @@ public class Draw extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Entity> list;
 	private int blockSize, gameWidth, gameHeight;
+	private int time;
 	private DataBase db;
+	private boolean isDone, isGameWinner;
 	
 	/**
 	 * @param list
@@ -34,6 +36,8 @@ public class Draw extends JPanel{
 	public Draw(ArrayList<Entity> list, int blockSize){
 		this.list = list; 
 		this.blockSize = blockSize;
+		isDone = false;
+		isGameWinner = false;
 		db = DataBase.getInstance();
 		
 		try{
@@ -48,14 +52,35 @@ public class Draw extends JPanel{
 		
 		this.setPreferredSize(new Dimension(gameWidth*this.blockSize, gameHeight*this.blockSize));
 	}
-	
+
 	public void drawList(ArrayList<Entity> list){
 		this.list = list;
 		repaint();
 	}
+	public void drawList(ArrayList<Entity> list, int time){
+		this.list = list;
+		setTime(time);
+		repaint();
+	}
+	
+	public void setIsDone(){
+		isDone = true;
+	}
+	
+	public void setIsWinner(){
+		isGameWinner = true;
+	}
+	
+	public void setTime(int time){
+		this.time = time;
+	}
 	
 	public ArrayList<Entity> getList(){
 		return list;
+	}
+	
+	public boolean getIsDone(){
+		return isDone;
 	}
 	
 	public void paint(Graphics g){
@@ -64,6 +89,20 @@ public class Draw extends JPanel{
 		
 		for(Entity ent : list){
 			ent.draw(g, blockSize);
+		}
+
+		if(isDone){
+			g.setColor(new Color(0,0,0,0.8f));
+			g.fillRect(0, 0, gameWidth * blockSize, gameHeight * blockSize);
+			if(isGameWinner){
+				g.setColor(Color.white);
+				g.drawString("You are the winner!", 100, 200);
+			}
+		}
+		
+		if(time != 0){
+			g.setColor(Color.white);
+			g.drawString("time: " + time, 10, 20);
 		}
 	}
 }
