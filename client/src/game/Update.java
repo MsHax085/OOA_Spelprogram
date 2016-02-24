@@ -37,16 +37,17 @@ public class Update{
 		list.add(player);
 	}
 	
-	public void doSomeThing(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+	public void doSomeThing(GameListener gl){
+		if(gl.getKeyLeft()){
 			move(-1, 0);
-		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			System.out.println("sweg");
+		}else if(gl.getKeyRight()){
 			move(1, 0);
-		}else if(e.getKeyCode() == KeyEvent.VK_UP){
+		}else if(gl.getKeyUp()){
 			move(0, -1);
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+		}else if(gl.getKeyDown()){
 			move(0, 1);
-		}else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+		}else if(gl.getKeySpace()){
 			init();
 		}
 	}
@@ -95,3 +96,7 @@ public class Update{
 		return list;
 	}
 }
+
+/*
+		
+*/

@@ -22,9 +22,9 @@ import src.resourceManager.DataBase;
  */
 public class Draw extends JPanel{
 	private static final long serialVersionUID = 1L;
-	ArrayList<Entity> list;
-	int blockSize, gameWidth, gameHeight;
-	DataBase db;
+	private ArrayList<Entity> list;
+	private int blockSize, gameWidth, gameHeight;
+	private DataBase db;
 	
 	/**
 	 * @param list
@@ -36,8 +36,8 @@ public class Draw extends JPanel{
 		db = DataBase.getInstance();
 		
 		try{
-			this.gameWidth = Integer.parseInt(db.readConfig("gameWidth"));
-			this.gameHeight = Integer.parseInt(db.readConfig("gameHeight"));
+			this.gameWidth = db.getConfigHandler().getGameWidth();
+			this.gameHeight = db.getConfigHandler().getGameHeight();
 		}catch(NullPointerException | NumberFormatException e){
 			System.out.println("Draw - Couldn't read from config.");
 			

@@ -9,3 +9,8 @@
 /Goal.class
 /Update$lstnr.class
 /Game$gameListner.class
+/Game$thread.class
+/Game$gameThread.class
+/Game$gameListener.class
+/GameListener.class
+/Game$GameThread.class

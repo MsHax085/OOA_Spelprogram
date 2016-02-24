@@ -21,7 +21,7 @@ public class MapHandler {
 							{'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'}};
-	DataBase db;
+	private DataBase db;
 	
 	public MapHandler(){
 		db = DataBase.getInstance();
@@ -31,9 +31,9 @@ public class MapHandler {
 		ArrayList<Entity> list = new ArrayList<Entity>();
 		int mapWidth, mapHeight;
 		try{
-			map = db.readMap(mapNumber);
-			mapWidth = Integer.parseInt(db.readConfig("gameWidth"));
-			mapHeight = Integer.parseInt(db.readConfig("gameHeight"));
+			map = db.getMap().readMap(mapNumber);
+			mapWidth = db.getConfigHandler().getGameWidth();
+			mapHeight = db.getConfigHandler().getGameHeight();
 		}catch(Exception e){
 			System.out.println("MapHandler - Couldn't read from config or map file.");
 			mapWidth = 16;

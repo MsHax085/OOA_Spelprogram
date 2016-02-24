@@ -23,6 +23,8 @@ public class Game implements DefaultFrameState, Observer {
     private JFrame frame;
     private JPanel superPanel;
     private Draw draw;
+    private GameListener gl;
+    private GameThread gt;
     
 	private Update update;
 	private MultiplayerHandler multiplayerHandler;
@@ -50,14 +52,18 @@ public class Game implements DefaultFrameState, Observer {
 		superPanel = new JPanel();
 		update = new Update(mapNumber);
 		multiplayerHandler = new MultiplayerHandler(superPanel);
+		gl = new GameListener();
+		gt = new GameThread();
 		
 		draw = new Draw(update.getList(), blockSize);
         draw.setFocusable(true);
-        draw.addKeyListener(new gameListner());
+        draw.addKeyListener(gl);
         superPanel.add(draw);
 
         multiplayerHandler.addPlayer("sweg", mapNumber);
         multiplayerHandler.addPlayer("sweg1", mapNumber);
+        
+        gt.start();
 	}
 	
 	public MultiplayerHandler getMultiplayerHandler(){
@@ -85,31 +91,25 @@ public class Game implements DefaultFrameState, Observer {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private class gameListner implements KeyListener{
-    	int i = 0;
-		@Override
-		public void keyReleased(KeyEvent e) {
-			update.doSomeThing(e);
-			draw.drawList(update.getList());
-	        multiplayerHandler.updatePlayer("sweg1", i, 1);
-	        
-	        i++;
-			
-			if(update.isDone()){
-				frame.dispose();
-				System.out.println("You have won");
-				System.exit(0);
-			}
-		}
-	
-		@Override
-		public void keyPressed(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-		}
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-	}
+    private class GameThread extends Thread{
+    	private boolean running = true;
+    	public void run(){
+    		while(running){
+    			update.doSomeThing(gl);
+    			draw.drawList(update.getList());
+    			
+    			if(update.isDone()){
+    				frame.dispose();
+    				System.out.println("You have won");
+    				running = false;
+    			}
+    			try {
+					this.sleep(20);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	}
+    }
 }
