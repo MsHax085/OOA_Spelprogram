@@ -1,5 +1,8 @@
 package src.resourceManager;
 
+import src.resourceManager.config.ConfigHandler;
+import src.resourceManager.file.FileHandler;
+
 
 /**
  * 
@@ -10,7 +13,7 @@ package src.resourceManager;
 public class DataBase{
 	
 	private FileHandler fileObj;
-	private Config configObj;
+	private ConfigHandler configObj;
 	private Map mapObj;
 	private static DataBase instance = null;
 	
@@ -18,7 +21,7 @@ public class DataBase{
 	 */
 	private DataBase() {
 		fileObj = FileHandler.getInstance();
-		configObj = new Config("config.txt");
+		configObj = new ConfigHandler("config.txt");
 		mapObj = new Map("map");
 	}
 	
@@ -34,20 +37,20 @@ public class DataBase{
 	
 	public String readFile(String fileN)
 	{
-		return fileObj.readF(fileN);
+		return fileObj.readFile(fileN);
 	}
 	public Boolean writeFile(String fileN,String writeC)
 	{
-		return fileObj.writeF(fileN,writeC);
+		return fileObj.writeFile(fileN,writeC);
 	}
 	
 	public String readConfig(String setting){
-		return configObj.readConf(setting);
+		return configObj.readConfig(setting);
 	}
 
 	
 	public Boolean writeConfig(String setting, String value){
-		return configObj.writeConf(setting,value);
+		return configObj.writeConfig(setting,value);
 		
 	}
 	public char[][] readMap(int mapnmb)

@@ -3,7 +3,9 @@ package src.gui.panels.event;
 import java.awt.event.MouseListener;
 import src.Core;
 import src.game.Game;
+import src.gui.UserInterface;
 import src.gui.panels.StartPanel;
+import src.resourceManager.DataBase;
 
 /**
  *
@@ -21,7 +23,9 @@ public class ControllerStartPanel implements MouseListener {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getStartButton())) {
-            Core.getInstance().setStateObserver(new Game());
+            UserInterface.changeCard("menupanel");
+//            DataBase.getInstance();
+//            Core.getInstance().setStateObserver(new Game());
         }
     }
 

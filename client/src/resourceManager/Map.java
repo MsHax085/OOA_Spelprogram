@@ -1,5 +1,8 @@
 package src.resourceManager;
 
+import src.resourceManager.config.ConfigHandler;
+import src.resourceManager.file.FileHandler;
+
 
 /**
  * 
@@ -11,13 +14,13 @@ public class Map {
 
 	
 	private FileHandler fh;
-	private Config cO;
+	private ConfigHandler cO;
 	private String mapPath;
 	
 	public Map(String mapPath) {
 		this.mapPath = mapPath;
 		fh = FileHandler.getInstance();
-		cO = new Config("config.txt");
+		cO = new ConfigHandler("config.txt");
 	}
 	
 	
@@ -27,11 +30,11 @@ public class Map {
 	 */
 	public char[][] readMap(int mapnumber)
 	{
-		int width = Integer.parseInt(cO.readConf("gameWidth"));
-		int height = Integer.parseInt(cO.readConf("gameHeight"));
+		int width = Integer.parseInt(cO.readConfig("gameWidth"));
+		int height = Integer.parseInt(cO.readConfig("gameHeight"));
 
 		
-		String tempString = fh.readF(mapPath+mapnumber+".txt");
+		String tempString = fh.readFile(mapPath+mapnumber+".txt");
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		char[][] builder = new char[height][width];

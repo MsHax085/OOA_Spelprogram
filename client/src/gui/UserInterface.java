@@ -23,8 +23,8 @@ import src.gui.panels.event.ControllerStartPanel;
 public class UserInterface implements DefaultFrameState, Observer {
 
     private JFrame frame;
-    private JPanel panels;
-    private CardLayout cl;
+    private static JPanel panels;
+    private static CardLayout cl;
     private JPanel startPanel;
     private JPanel menuPanel;
     private JPanel serverSelectionPanel;
@@ -61,12 +61,16 @@ public class UserInterface implements DefaultFrameState, Observer {
         panels.add(highscorePanel, "highscorepanel");
         panels.add(optionsPanel, "optionspanel");
 
-        cl.show(panels, "startpanel");
+        changeCard("startpanel");
         frame.add(panels);
     }
     
-    public JPanel getPanels(){
-    	return panels;
+//    public JPanel getPanels(){
+//    	return panels;
+//    }
+    
+    public static void changeCard(String panelName) {
+        cl.show(panels, panelName);
     }
 
     @Override
