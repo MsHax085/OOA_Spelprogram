@@ -1,12 +1,16 @@
 package src.game;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.*;
+import src.Core;
 import src.frame.DefaultFrameState;
+import src.gui.UserInterface;
 import src.network.NetworkBuffer;
 
 
@@ -21,7 +25,7 @@ import src.network.NetworkBuffer;
  *
  */
 
-public class Game implements DefaultFrameState, Observer {
+public class Game implements WindowListener, DefaultFrameState, Observer {
     
     private JFrame frame;
     private JPanel superPanel;
@@ -40,6 +44,7 @@ public class Game implements DefaultFrameState, Observer {
     public void setup() {
         frame = new JFrame("Pågående spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.addWindowListener(this);
         frame.add(superPanel);
     }
 	
@@ -106,7 +111,37 @@ public class Game implements DefaultFrameState, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.println("YES");
+        gt.running = false;
+        Core.getInstance().setStateObserver(new UserInterface());
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
     }
     
     private class GameThread extends Thread{
@@ -130,6 +165,7 @@ public class Game implements DefaultFrameState, Observer {
     				//här ska vinnst text visas och paket till andra spelare skickas ut
     				draw.setIsDone();
     				draw.repaint();
+                                //Core.getInstance().setStateObserver(new UserInterface());
     			}
     			try {
 					Thread.sleep(20);

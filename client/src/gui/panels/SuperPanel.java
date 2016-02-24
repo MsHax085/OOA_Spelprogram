@@ -1,8 +1,8 @@
 package src.gui.panels;
 
 import java.awt.Dimension;
+import java.awt.event.MouseListener;
 import javax.swing.JPanel;
-import src.gui.panels.event.ControllerStartPanel;
 
 /**
  *
@@ -10,7 +10,7 @@ import src.gui.panels.event.ControllerStartPanel;
  */
 public class SuperPanel extends JPanel {
     
-    protected ControllerStartPanel controller;
+    protected MouseListener controller;
     
     public SuperPanel(int width, int height) {
         this.setPreferredSize(new Dimension(width, height));

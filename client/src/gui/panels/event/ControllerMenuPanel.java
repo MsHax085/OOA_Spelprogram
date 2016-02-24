@@ -2,6 +2,8 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import src.Core;
+import src.game.Game;
 
 import src.gui.panels.MenuPanel;
 
@@ -31,6 +33,8 @@ public class ControllerMenuPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getSource().equals(panel.getJoinButton())) {
+            Core.getInstance().setStateObserver(new Game());
+        }
     }
 }
