@@ -18,11 +18,12 @@ import java.util.logging.Logger;
 public class Connection {
     
     private static Connection connection;
+    private static  int DEFAULTPORT = 8989;
 
-    private DatagramSocket serverSocket = null;
-    private final int serverPort = 8989;
     private final int bufferSize = 1024;
     
+    private DatagramSocket serverSocket = null;
+    private int serverPort;
     private InetAddress fromIpAddress;
     int fromPort;
     
@@ -30,6 +31,7 @@ public class Connection {
      * Constructor: starts the socket.
      */
     public Connection() {
+    	this.serverPort = DEFAULTPORT;
         try {
             this.serverSocket = new DatagramSocket(serverPort);
         } catch (SocketException ex) {
@@ -43,7 +45,8 @@ public class Connection {
     }
     
     /*
-     * Waits till a packet is received on the serverSocket. Saves the IP and port of the packet in local variables.
+     * This is used by the Network Thread. Waits till a packet is received on the serverSocket.
+     * Saves the IP and port of the packet in local variables.
      * @return: The packet data as an ByteArrayInputStream.
      */
     public DataInputStream receivePacket() throws IOException {
@@ -57,7 +60,7 @@ public class Connection {
     }
     
     /*
-     * Sends a packet to a specific node.
+     * This is called when a packet should be sent. Sends a packet to a specific node.
      * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
      */
     public void sendPacket(byte[] packetData, InetAddress addr, int sendPort) throws IOException {

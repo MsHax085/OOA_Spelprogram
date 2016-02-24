@@ -7,6 +7,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,20 +19,24 @@ import java.util.logging.Logger;
 public class Connection {
     
     private static Connection connection;
-
-    private DatagramSocket clientSocket = null;
-    private final int serverPort = 8989;
-    private InetAddress serverIpAddress;
+    private static String DEFAULTIP = "localhost";
+    private static int DEFAULTPORT = 8989;
     
     private final int bufferSize = 1024;
+
+    private DatagramSocket clientSocket = null;
+    private int serverPort;
+    private InetAddress serverIpAddress;
     
     /*
-     * Constructor: starts the socket.
+     * Constructor: starts the socket. loads the address.
      */
     public Connection() {
+    	this.serverPort = DEFAULTPORT;
         try {
+        	this.serverIpAddress = InetAddress.getByName(DEFAULTIP);
             this.clientSocket = new DatagramSocket();
-        } catch (SocketException ex) {
+        } catch (SocketException | UnknownHostException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -42,7 +47,8 @@ public class Connection {
     }
     
     /*
-     * Waits till a packet is received on the serverSocket. Saves the IP and port of the packet in local variables.
+     * This is used by the Network Thread. Waits till a packet is received on the serverSocket. 
+     * Saves the IP and port of the packet in local variables.
      * @return: The packet data as an ByteArrayInputStream.
      */
     public DataInputStream receivePacket() throws IOException {
@@ -54,7 +60,7 @@ public class Connection {
     }
     
     /*
-     * Sends a packet to a specific node.
+     * This is called when a packet should be sent. Sends a packet to a specific node.
      * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
      */
     public void sendPacket(byte[] packetData) throws IOException {
