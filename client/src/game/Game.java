@@ -44,6 +44,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     public void setup() {
         frame = new JFrame("Pågående spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.addWindowListener(this);
         frame.add(superPanel);
     }
@@ -119,7 +120,6 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
 
     @Override
     public void windowClosed(WindowEvent e) {
-        System.out.println("YES");
         gt.running = false;
         Core.getInstance().setStateObserver(new UserInterface());
     }

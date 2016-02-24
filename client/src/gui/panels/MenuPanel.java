@@ -1,5 +1,6 @@
 package src.gui.panels;
 
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import src.gui.panels.event.ControllerMenuPanel;
 
@@ -23,22 +24,26 @@ public class MenuPanel extends SuperPanel {
         join = new JButton("Join");
         join.setSize(300,50);
         join.setLocation(100,50);
-        join.addMouseListener(controller);
+        join.setFocusable(false);
+        join.addMouseListener((MouseListener) controller);
         this.add(join);
 
         host = new JButton("Host");
         host.setSize(300,50);
         host.setLocation(100,150);
+        join.setFocusable(false);
         this.add(host);
 
         highscore = new JButton("Highscore");
         highscore.setSize(300,50);
         highscore.setLocation(100,250);
+        join.setFocusable(false);
         this.add(highscore);
 
         options = new JButton("Options");
         options.setSize(300,50);
         options.setLocation(100,350);
+        join.setFocusable(false);
         this.add(options);
     }
     

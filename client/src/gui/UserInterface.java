@@ -2,11 +2,15 @@ package src.gui;
 
 import java.util.Observable;
 import java.awt.CardLayout;
+import java.awt.FlowLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observer;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import src.Core;
 import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;
@@ -24,7 +28,7 @@ import src.network.NetworkBuffer;
 public class UserInterface implements WindowListener, DefaultFrameState, Observer {
 
     private JFrame frame;
-    private static JPanel panels;
+    private static JPanel panelContainer;
     private static CardLayout cl;
     private JPanel startPanel;
     private JPanel menuPanel;
@@ -41,11 +45,12 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
         frame.addWindowListener(this);
         
-        panels = new JPanel();
+        panelContainer = new JPanel();
         cl = new CardLayout();
-        panels.setLayout(cl);
+        panelContainer.setLayout(cl);
 
         this.startPanel = new StartPanel(500,500);
         this.menuPanel = new MenuPanel(500,500);
@@ -55,22 +60,22 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         this.highscorePanel = new HighscorePanel(500,500);
         this.optionsPanel = new OptionsPanel(500,500);
 
-        panels.add(startPanel, "startpanel");
-        panels.add(menuPanel, "menupanel");
-        panels.add(serverSelectionPanel, "serverselectionpanel");
-        panels.add(serverCreationPanel, "servercreationpanel");
-        panels.add(serverLobbyPanel, "serverlobbypanel");
-        panels.add(highscorePanel, "highscorepanel");
-        panels.add(optionsPanel, "optionspanel");
+        panelContainer.add(startPanel, "startpanel");
+        panelContainer.add(menuPanel, "menupanel");
+        panelContainer.add(serverSelectionPanel, "serverselectionpanel");
+        panelContainer.add(serverCreationPanel, "servercreationpanel");
+        panelContainer.add(serverLobbyPanel, "serverlobbypanel");
+        panelContainer.add(highscorePanel, "highscorepanel");
+        panelContainer.add(optionsPanel, "optionspanel");
 
         changeCard("startpanel");
-        frame.add(panels);
+        frame.add(panelContainer);
         
         NetworkBuffer.getInstance().addNewObserver(this);
     }
     
     public static void changeCard(String panelName) {
-        cl.show(panels, panelName);
+        cl.show(panelContainer, panelName);
     }
 
     @Override
