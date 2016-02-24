@@ -2,10 +2,11 @@ package src.gui;
 
 import java.util.Observable;
 import java.awt.CardLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import src.Core;
 import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;
@@ -14,13 +15,13 @@ import src.gui.panels.ServerCreationPanel;
 import src.gui.panels.ServerLobbyPanel;
 import src.gui.panels.ServerSelectionPanel;
 import src.gui.panels.StartPanel;
-import src.gui.panels.event.ControllerStartPanel;
+import src.network.NetworkBuffer;
 
 /**
  *
  * @author Richard
  */
-public class UserInterface implements DefaultFrameState, Observer {
+public class UserInterface implements WindowListener, DefaultFrameState, Observer {
 
     private JFrame frame;
     private static JPanel panels;
@@ -40,6 +41,7 @@ public class UserInterface implements DefaultFrameState, Observer {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setResizable(false);
+        frame.addWindowListener(this);
         
         panels = new JPanel();
         cl = new CardLayout();
@@ -63,11 +65,9 @@ public class UserInterface implements DefaultFrameState, Observer {
 
         changeCard("startpanel");
         frame.add(panels);
+        
+        NetworkBuffer.getInstance().addNewObserver(this);
     }
-    
-//    public JPanel getPanels(){
-//    	return panels;
-//    }
     
     public static void changeCard(String panelName) {
         cl.show(panels, panelName);
@@ -94,12 +94,43 @@ public class UserInterface implements DefaultFrameState, Observer {
         final int val = (int) arg;
         switch (val) {
             case 0:
-                // Do something, ex. update username?
+                System.out.println("NETWORK EVENT");
                 break;
             case 1:
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        NetworkBuffer.getInstance().removeOldObserver(this);
+        // TODO: CLOSE EVERYTHING BEFORE EXIT
+        System.exit(0);
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
     }
 }

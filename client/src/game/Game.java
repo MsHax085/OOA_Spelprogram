@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 import javax.swing.*;
 import src.frame.DefaultFrameState;
+import src.network.NetworkBuffer;
 
 
 /**
@@ -113,6 +114,7 @@ public class Game implements DefaultFrameState, Observer {
     	
     	public void run(){
     		while(running){
+                        NetworkBuffer.getInstance().getNext().handlePacket();
     			update.doSomeThing(gl);
     			draw.drawList(update.getList(), time);
     			

@@ -48,7 +48,9 @@ public class Network implements Runnable{
                 // TODO: Check for array out of bounds
                 final DataInputStream dis = Connection.getInstance().receivePacket();
                 final short opCode = dis.readShort();
-                PacketProcessor.getInstance().getHandler(opCode).handlePacket(dis);
+                ImplPacketHandler handler = PacketProcessor.getInstance().getHandler(opCode);
+                handler.setDataInputStream(dis);
+                NetworkBuffer.getInstance().addHandler(handler);
             } catch (IOException ex) {
                 Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
             }

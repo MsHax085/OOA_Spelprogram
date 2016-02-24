@@ -9,5 +9,6 @@ import java.io.DataInputStream;
  */
 public interface ImplPacketHandler {
 
-    public void handlePacket(DataInputStream dis);
+    public void handlePacket();
+    public void setDataInputStream(DataInputStream dis);
 }
