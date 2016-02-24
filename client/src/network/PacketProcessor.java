@@ -6,7 +6,7 @@ import src.network.packets.TestHandler;
 
 /*
  * 
- *  @author Richard, BögErik
+ *  @author Richard, BÃ¶gErik
  *  
  *  Links Packet ID with packet classes
  *  TODO: Maybe start a PacketBuilder here so all packets could use it if needed.

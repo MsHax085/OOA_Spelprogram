@@ -8,7 +8,7 @@ import src.network.ImplPacketHandler;
 
 /**
  *
- * @author BögErik
+ * @author BÃ¶gErik
  */
 public class TestHandler implements ImplPacketHandler {
 	

@@ -5,7 +5,7 @@ import java.net.InetAddress;
 
 /**
  * 
- * @author Richard Dahlgren, BögErik
+ * @author Richard Dahlgren, BÃ¶gErik
  *
  */
 public interface ImplPacketHandler {

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  * 
- * @author Richard, BögErik
+ * @author Richard, BÃ¶gErik
  *
  */
 public class Connection {

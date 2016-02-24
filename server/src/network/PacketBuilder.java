@@ -6,7 +6,7 @@ import java.io.IOException;
 
  /**
  * 
- * @author Richard, BögErik
+ * @author Richard, BÃ¶gErik
  *
  */
 

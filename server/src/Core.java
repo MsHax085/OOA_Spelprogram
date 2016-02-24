@@ -6,7 +6,6 @@ import src.network.Network;
  * 
  * @author 
  * 
- * TODO: Load settings and shit from DataBase, Add a class to read commands from a CLI.
  */
 
 public class Core{

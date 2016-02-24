@@ -12,7 +12,7 @@ import src.network.PacketBuilder;
 
 /**
  *
- * @author BögErik
+ * @author BÃ¶gErik
  */
 public class TestHandler implements ImplPacketHandler {
 	
