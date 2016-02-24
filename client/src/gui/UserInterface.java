@@ -25,14 +25,13 @@ public class UserInterface implements DefaultFrameState, Observer {
     private JFrame frame;
     private JPanel panels;
     private CardLayout cl;
-	 private JPanel startPanel;
-	 private JPanel menuPanel;
-	 private JPanel serverSelectionPanel;
-	 private JPanel serverCreationPanel;
-	 private JPanel serverLobbyPanel;
-	 private JPanel highscorePanel;
-	 private JPanel optionsPanel;
-    
+    private JPanel startPanel;
+    private JPanel menuPanel;
+    private JPanel serverSelectionPanel;
+    private JPanel serverCreationPanel;
+    private JPanel serverLobbyPanel;
+    private JPanel highscorePanel;
+    private JPanel optionsPanel;
     
     @Override
     public void setup() {
@@ -43,27 +42,27 @@ public class UserInterface implements DefaultFrameState, Observer {
         frame.setResizable(false);
         
         panels = new JPanel();
+        cl = new CardLayout();
         panels.setLayout(cl);
 
         this.startPanel = new StartPanel(500,500);
-		this.menuPanel = new MenuPanel(500,500);
-		this.serverSelectionPanel = new ServerSelectionPanel(500,500);
-	    this.serverCreationPanel = new ServerCreationPanel(500,500);
-		this.serverLobbyPanel = new ServerLobbyPanel(500,500);
-		this.highscorePanel = new HighscorePanel(500,500);
-		this.optionsPanel = new OptionsPanel(500,500);
-		 
-		panels.add(startPanel, "startpanel");
-		panels.add(menuPanel, "menupanel");
-		panels.add(serverSelectionPanel, "serverselectionpanel");
-		panels.add(serverCreationPanel, "servercreationpanel");
-		panels.add(serverLobbyPanel, "serverlobbypanel");
-		panels.add(highscorePanel, "highscorepanel");
-		panels.add(optionsPanel, "optionspanel");
-		 
-		cl.show(panels, "startpanel");
+        this.menuPanel = new MenuPanel(500,500);
+        this.serverSelectionPanel = new ServerSelectionPanel(500,500);
+        this.serverCreationPanel = new ServerCreationPanel(500,500);
+        this.serverLobbyPanel = new ServerLobbyPanel(500,500);
+        this.highscorePanel = new HighscorePanel(500,500);
+        this.optionsPanel = new OptionsPanel(500,500);
+
+        panels.add(startPanel, "startpanel");
+        panels.add(menuPanel, "menupanel");
+        panels.add(serverSelectionPanel, "serverselectionpanel");
+        panels.add(serverCreationPanel, "servercreationpanel");
+        panels.add(serverLobbyPanel, "serverlobbypanel");
+        panels.add(highscorePanel, "highscorepanel");
+        panels.add(optionsPanel, "optionspanel");
+
+        cl.show(panels, "startpanel");
         frame.add(panels);
-        
     }
     
     public JPanel getPanels(){
