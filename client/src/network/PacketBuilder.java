@@ -19,7 +19,7 @@ public class PacketBuilder {
 	
 	private static PacketBuilder packetBuilder;
 	
-	public static PacketBuilder getInstance() {
+	public static synchronized PacketBuilder getInstance() {
         if (packetBuilder == null) packetBuilder = new PacketBuilder();
         return packetBuilder;
     }

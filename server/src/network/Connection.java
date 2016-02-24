@@ -30,7 +30,7 @@ public class Connection {
     /*
      * Constructor: starts the socket.
      */
-    public Connection() {
+    private Connection() {
     	this.serverPort = DEFAULTPORT;
         try {
             this.serverSocket = new DatagramSocket(serverPort);
@@ -39,7 +39,7 @@ public class Connection {
         }
     }
     
-    public static Connection getInstance() {
+    public static synchronized Connection getInstance() {
         if (connection == null) connection = new Connection();
         return connection;
     }

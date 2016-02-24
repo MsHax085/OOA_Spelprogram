@@ -30,8 +30,9 @@ public class Connection {
     
     /*
      * Constructor: starts the socket. loads the address.
+     * 
      */
-    public Connection() {
+    private Connection() {
     	this.serverPort = DEFAULTPORT;
         try {
         	this.serverIpAddress = InetAddress.getByName(DEFAULTIP);
@@ -41,7 +42,7 @@ public class Connection {
         }
     }
     
-    public static Connection getInstance() {
+    public static synchronized Connection getInstance() {
         if (connection == null) connection = new Connection();
         return connection;
     }

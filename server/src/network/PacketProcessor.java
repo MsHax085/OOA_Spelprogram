@@ -17,7 +17,7 @@ public class PacketProcessor {
     private static PacketProcessor packetProcessor;
     private HashMap<Integer, ImplPacketHandler> handlers;
     
-    public static PacketProcessor getInstance() {
+    public static synchronized PacketProcessor getInstance() {
         if (packetProcessor == null) packetProcessor = new PacketProcessor();
         return packetProcessor;
     }
