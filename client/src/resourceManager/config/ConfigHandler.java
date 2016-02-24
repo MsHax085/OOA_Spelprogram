@@ -21,6 +21,7 @@ public class ConfigHandler implements ImplConfigHandler {
     public ConfigHandler() {
     	configPath = "config.txt";
         fh = FileHandler.getInstance();
+        
         readConfig();
     }
     
@@ -55,9 +56,9 @@ public class ConfigHandler implements ImplConfigHandler {
     @Override
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
-        tempArr.append("username,"+username);
-        tempArr.append("gameWidth,"+gameWidth);
-        tempArr.append("gameHeight,"+gameHeight);
+        tempArr.append("username,"+username+"\n");
+        tempArr.append("gameWidth,"+gameWidth+"\n");
+        tempArr.append("gameHeight,"+gameHeight+"\n");
 	    if (fh.writeFile("config.txt", tempArr.toString())){
 	    	return true;
 	    }
