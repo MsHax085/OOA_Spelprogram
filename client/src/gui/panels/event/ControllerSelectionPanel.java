@@ -1,5 +1,6 @@
 package src.gui.panels.event;
 
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import src.gui.panels.ServerSelectionPanel;
@@ -11,9 +12,8 @@ public class ControllerSelectionPanel implements MouseListener {
     public ControllerSelectionPanel(ServerSelectionPanel panel) {
         this.panel = panel;
     }
-
 	
-	@Override
+    @Override
     public void mousePressed(java.awt.event.MouseEvent e) {
     }
 
@@ -27,5 +27,10 @@ public class ControllerSelectionPanel implements MouseListener {
 
     @Override
     public void mouseExited(java.awt.event.MouseEvent e) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
