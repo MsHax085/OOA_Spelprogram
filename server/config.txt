@@ -1,0 +1,2 @@
+gameWidth,16
+gameHeight,10

@@ -1,5 +1,6 @@
 package src.resourceManager;
 
+import src.resourceManager.file.FileHandler;
 import java.util.*;
 
 
@@ -9,15 +10,13 @@ import java.util.*;
  */
 public class Score {
 
-	private String highscorePath;
-	public FileHandler fh;
+	private final String highscorePath;
+	private final FileHandler fh;
 	
-	public Score(String highscorePath) {
-		this.highscorePath = highscorePath;
+	public Score() {
+		highscorePath = "highscore.txt";
 		fh = FileHandler.getInstance();
 	}
-
-	
 	
 	/* Returns a treemap of the highscore list.
 	 * It has the time in the first value, and
@@ -28,7 +27,7 @@ public class Score {
 		TreeMap<Integer, String> scoreMap = 
 	             new TreeMap<Integer, String>();
 		
-		String tempString = fh.readF(highscorePath);
+		String tempString = fh.readFile(highscorePath);
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		
@@ -57,7 +56,7 @@ public class Score {
 			Map.Entry mentry = (Map.Entry)it.next();
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
-		return fh.writeF(highscorePath,tempArr.toString());
+		return fh.writeFile(highscorePath,tempArr.toString());
 	    
 		
 	}

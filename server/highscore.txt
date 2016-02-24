@@ -1,0 +1,3 @@
+luddo,10
+erik,20
+oscar,30

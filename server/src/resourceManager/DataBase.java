@@ -1,60 +1,35 @@
 package src.resourceManager;
 
-import java.util.TreeMap;
-
+import src.resourceManager.config.ConfigHandler;
 /**
  * 
  * @author Oscar Andersson
  *
- * TODO Singleton designPattern??
  */
 public class DataBase{
 	
 	private Score scoreObj;
-	private Config confObj;
-	private FileHandler fileObj;
+	private ConfigHandler confObj;
 	private static DataBase instance = null;
 	
-	/* Constructs a Score Object assigning its filepath. 
-	 */
 	public DataBase() {
-		scoreObj = new Score("highscore.txt");
-		confObj = new Config("config.txt");
-		fileObj = FileHandler.getInstance();
+		scoreObj = new Score();
+		confObj = new ConfigHandler();
 	}
 
 	public static DataBase getInstance(){
-		if(instance == null)
-		{
+		if(instance == null){
 			instance = new DataBase();
 		}
 		return instance;
 	}
 
 
-	/* Returns the highscore-list in the form of a treemap
-	 * sorting the fastest times first
-	 */
-	public TreeMap<Integer, String> getHighscore()
-	{
-		return scoreObj.getScore();
+	public Score getScore(){
+		return scoreObj;
 	}
-
-	public Boolean setHighscore(TreeMap<Integer, String> saveScore)
-	{
-		return scoreObj.setScore(saveScore);
-	}
-	public String readFile(String fileN)
-	{
-		return fileObj.readF(fileN);
-	}
-	public Boolean writeFile(String fileN,String writeC)
-	{
-		return fileObj.writeF(fileN,writeC);
-	}
-	public String readConfig(String setting)
-	{
-		return confObj.readConf(setting);
-	}
+	public ConfigHandler getConfigHandler() {
+        return confObj;
+    }
 	
 }
