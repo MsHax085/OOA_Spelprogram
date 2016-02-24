@@ -10,34 +10,34 @@ import src.game.entities.*;
  */
 
 public class Update{
-	ArrayList<Entity> list;
+	ArrayList<Entity> entities;
 	int mapNumber;
-	boolean isDone;
+	boolean gameFinished;
 	Player player;
 	
 	public Update(int mapNumber){
 		this.mapNumber = mapNumber;
-		isDone = false;
+		gameFinished = false;
 		
 		init();
 	}
 	
 	public void init(){
-		list = new MapHandler().getMap(mapNumber);
+		entities = new MapHandler().getMap(mapNumber);
 		
 		player = new Player(0,0);
 		
-		for(Entity ent : list){
+		for(Entity ent : entities){
 			if(ent.getClass() == Start.class){
 				player.setX(ent.getX());
 				player.setY(ent.getY());
 			}
 		}
 		
-		list.add(player);
+		entities.add(player);
 	}
 	
-	public void doSomeThing(GameListener gl){
+	public void updateMovement(GameListener gl){
 		if(gl.getKeyLeft()){
 			move(-1, 0);
 			System.out.println("sweg");
@@ -55,7 +55,7 @@ public class Update{
 	private void move(int x, int y){
 		boolean moveAllowed = true;
 		Slab slab = null;
-		for(Entity ent : list){
+		for(Entity ent : entities){
 			if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.isSolid()){
 				moveAllowed = false;
 			}else if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.getClass() == Slab.class){
@@ -71,11 +71,11 @@ public class Update{
 	}
 	
 	private boolean isSlabMoveable(Slab slab, int x, int y){
-		for(Entity ent : list){
+		for(Entity ent : entities){
 			if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() != Goal.class){
 				return false;
 			}else if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() == Goal.class){
-				isDone = true;
+				gameFinished = true;
 			}
 		}
 		return true;
@@ -88,12 +88,12 @@ public class Update{
 		return false;
 	}
 	
-	public boolean isDone(){
-		return isDone;
+	public boolean isGameFinished(){
+		return gameFinished;
 	}
 
-	public ArrayList<Entity> getList(){
-		return list;
+	public ArrayList<Entity> getListOfEntities(){
+		return entities;
 	}
 }
 

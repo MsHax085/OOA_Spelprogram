@@ -54,7 +54,7 @@ public class Game implements DefaultFrameState, Observer {
 		gl = new GameListener();
 		gt = new GameThread();
 		
-		draw = new Draw(update.getList(), blockSize);
+		draw = new Draw(update.getListOfEntities(), blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(gl);
         superPanel.add(draw);
@@ -90,25 +90,28 @@ public class Game implements DefaultFrameState, Observer {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private class GameThread extends Thread{
+    private class GameThread extends Thread {
+        
     	private boolean running = true;
+        
+        @Override
     	public void run(){
-    		while(running){
-    			update.doSomeThing(gl);
-    			draw.drawList(update.getList());
-    			
-    			if(update.isDone()){
-    				frame.dispose();
-    				System.out.println("You have won");
-    				running = false;
-    			}
-    			try {
-					this.sleep(20);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
+            while(running){
+                update.updateMovement(gl);
+                draw.drawList(update.getListOfEntities());
+
+                if (update.isGameFinished()){
+                    frame.dispose();
+                    System.out.println("You have won");
+                    running = false;
+                }
+                try {
+                    this.sleep(20);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
     	}
     }
 }
