@@ -3,6 +3,12 @@ package src.game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * 
+ * @author ludwigfriborg
+ *
+ */
+
 public class GameListener implements KeyListener {	
 	private boolean keyPressed_left;
 	private boolean keyPressed_right;

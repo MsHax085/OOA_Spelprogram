@@ -20,6 +20,7 @@ import src.resourceManager.DataBase;
  *	does is to draw the passed list of entities
  *
  */
+
 public class Draw extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Entity> list;

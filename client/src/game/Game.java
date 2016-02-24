@@ -1,6 +1,5 @@
 package src.game;
 
-import java.awt.event.*;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
@@ -33,7 +32,7 @@ public class Game implements DefaultFrameState, Observer {
 
     @Override
     public void setup() {
-        frame = new JFrame("P�g�ende spel");
+        frame = new JFrame("Pågående spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(superPanel);
     }

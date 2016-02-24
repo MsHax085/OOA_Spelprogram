@@ -12,6 +12,7 @@ import src.game.entities.*;
  * @author ludwigfriborg
  *
  */
+
 public class MultiplayerHandler {
 	TreeMap<String, Draw> playerMap;
 	JPanel panel;

@@ -10,6 +10,7 @@ import src.resourceManager.DataBase;
  * @author ludwigfriborg
  *
  */
+
 public class MapHandler {
 	private char[][] map = {{'s', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
 							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},

@@ -1,6 +1,5 @@
 package src.game;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import src.game.entities.*;
 
@@ -9,6 +8,7 @@ import src.game.entities.*;
  * @author ludwigfriborg
  *
  */
+
 public class Update{
 	ArrayList<Entity> list;
 	int mapNumber;
