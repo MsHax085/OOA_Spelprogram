@@ -20,7 +20,7 @@ public class Map {
 	public Map(String mapPath) {
 		this.mapPath = mapPath;
 		fh = FileHandler.getInstance();
-		cO = new ConfigHandler("config.txt");
+		cO = new ConfigHandler();
 	}
 	
 	
@@ -30,8 +30,8 @@ public class Map {
 	 */
 	public char[][] readMap(int mapnumber)
 	{
-		int width = Integer.parseInt(cO.readConfig("gameWidth"));
-		int height = Integer.parseInt(cO.readConfig("gameHeight"));
+		int width = cO.getGameWidth();
+		int height = cO.getGameHeight();
 
 		
 		String tempString = fh.readFile(mapPath+mapnumber+".txt");

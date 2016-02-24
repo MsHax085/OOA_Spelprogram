@@ -1,3 +1,9 @@
 /MouseEvent.class
 /Controller.class
 /ControllerStartPanel.class
+/ControllerHighscorePanel.class
+/ControllerMenuPanel.class
+/ControllerOptionsPanel.class
+/ControllerSelectionPanel.class
+/ControllerServerCreationPanel.class
+/ControllerServerLobbyPanel.class

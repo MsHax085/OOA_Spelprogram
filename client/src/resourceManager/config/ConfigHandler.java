@@ -15,15 +15,15 @@ public class ConfigHandler implements ImplConfigHandler {
     private final String configPath;
     
     private String username;
-    private String test;
     private int gameWidth;
     private int gameHeight;
 
-    public ConfigHandler(String configPath) {
-        this.configPath = configPath;
+    public ConfigHandler() {
+    	configPath = "config.txt";
         fh = FileHandler.getInstance();
+        readConfig();
     }
-
+    
     /* Reads a value related to a specific setting.
      *
     */
@@ -35,8 +35,14 @@ public class ConfigHandler implements ImplConfigHandler {
 
         for (int i = 0; i < splitRows.length; i++) {
             splitCol = splitRows[i].split(",");
-            if (splitCol[0].equals(setting)){
-                return splitCol[1];
+            if (splitCol[0].equals("username")){
+                username = splitCol[1];
+            }
+            else if (splitCol[0].equals("gameWidth")){
+                gameWidth = Integer.parseInt(splitCol[1]);
+            }
+            else if (splitCol[0].equals("gameHeight")){
+                gameHeight = Integer.parseInt(splitCol[1]);
             }
         }
 
@@ -49,33 +55,16 @@ public class ConfigHandler implements ImplConfigHandler {
     @Override
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
-        final String tempString = fh.readFile(configPath);
-        final String[] splitRows = tempString.split("\n");
-        String[] splitCol;
-        for(int i = 0; i < splitRows.length; i++) {
-            splitCol = splitRows[i].split(",");
-
-            if (splitCol[0].equals(setting)) {
-                splitCol[1] = value;
-                int p;
-                for(p = 0; p < i; p++){
-                    tempArr.append(splitRows[p]);
-                    tempArr.append("\n");
-                }
-                tempArr.append(splitCol[0]).append(",").append(value);
-                tempArr.append("\n");	
-                p++; 
-                while(p < splitRows.length) {
-                    tempArr.append(splitRows[p]);
-                    tempArr.append("\n");
-                    p++;
-                }
-                fh.writeFile("config.txt", tempArr.toString());
-                return true;
-            }
-        }
-        return false;
-    }
+        tempArr.append("username,"+username);
+        tempArr.append("gameWidth,"+gameWidth);
+        tempArr.append("gameHeight,"+gameHeight);
+	    if (fh.writeFile("config.txt", tempArr.toString())){
+	    	return true;
+	    }
+	    else {
+	    	return false;
+	    }
+   }
 
     /**
      * @return the username
@@ -91,19 +80,6 @@ public class ConfigHandler implements ImplConfigHandler {
         this.username = username;
     }
 
-    /**
-     * @return the test
-     */
-    public String getTest() {
-        return test;
-    }
-
-    /**
-     * @param test the test to set
-     */
-    public void setTest(String test) {
-        this.test = test;
-    }
 
     /**
      * @return the gameWidth
