@@ -42,12 +42,15 @@ public class MenuPanel extends SuperPanel {
         join.setText("Join a server");
 
         host.setFocusable(false);
+        host.addMouseListener((MouseListener) controller);
         host.setText("Host a server");
 
         highscore.setFocusable(false);
+        highscore.addMouseListener((MouseListener) controller);
         highscore.setText("Highscore");
 
         options.setFocusable(false);
+        options.addMouseListener((MouseListener) controller);
         options.setText("Options");
 
         GroupLayout panel1Layout = new GroupLayout(container);
@@ -95,5 +98,17 @@ public class MenuPanel extends SuperPanel {
     
     public JButton getJoinButton() {
         return join;
+    }
+    
+    public JButton getHostButton() {
+        return host;
+    }
+    
+    public JButton getHighscoreButton() {
+        return highscore;
+    }
+    
+    public JButton getOptionsButton() {
+        return options;
     }
 }

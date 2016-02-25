@@ -3,6 +3,7 @@ package src.gui.panels.event;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import src.gui.UserInterface;
 import src.gui.panels.ServerCreationPanel;
 
 public class ControllerServerCreationPanel implements MouseListener {
@@ -31,7 +32,12 @@ public class ControllerServerCreationPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	if (e.getSource().equals(panel.getPrevButton())) {
+            UserInterface.changeCard("menupanel");
+        } 
+    	else if (e.getSource().equals(panel.getCreateButton())) {
+            UserInterface.changeCard("serverlobbypanel");
+        }
     }
 }
 

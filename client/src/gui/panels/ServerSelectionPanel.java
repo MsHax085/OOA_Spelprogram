@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import java.awt.event.MouseListener;
+import src.gui.panels.event.ControllerSelectionPanel;
 
 /**
  *
@@ -20,26 +22,40 @@ public class ServerSelectionPanel extends SuperPanel {
     public ServerSelectionPanel(int width, int height) {
         super(width, height);
         
+        this.controller = new ControllerSelectionPanel(this);
+        
         this.setLayout(null);
 		 
-        JLabel text = new JLabel("Choose a server");
+        text = new JLabel("Choose a server");
         text.setSize(300,50);
         text.setLocation(50,50);
         this.add(text);
 
-        JTable serverList = new JTable(14,1);
+        serverList = new JTable(14,1);
         serverList.setSize(400,225);
         serverList.setLocation(50, 100);
         this.add(serverList);
 
-        JButton prev = new JButton("Prev");
+        prev = new JButton("Prev");
         prev.setSize(125,50);
         prev.setLocation(175,350);
+        prev.addMouseListener((MouseListener) controller);
         this.add(prev);
 
-        JButton join = new JButton("Join");
+        join = new JButton("Join");
         join.setSize(125,50);
         join.setLocation(325,350);
+        join.addMouseListener((MouseListener) controller);
         this.add(join);
     }
+    
+    public JButton getJoinButton() {
+        return join;
+    }
+    
+    public JButton getPrevButton() {
+        return prev;
+    }
 }
+
+	
