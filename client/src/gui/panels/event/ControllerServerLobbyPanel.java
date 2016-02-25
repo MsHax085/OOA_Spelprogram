@@ -2,6 +2,8 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import src.Core;
+import src.game.Game;
 
 import src.gui.UserInterface;
 import src.gui.panels.ServerLobbyPanel;
