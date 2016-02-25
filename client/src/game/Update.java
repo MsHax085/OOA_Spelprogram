@@ -13,12 +13,12 @@ import src.game.entities.*;
 public class Update{
 	private ArrayList<Entity> entities;
 	private int mapNumber;
-	private boolean gameFinnished, unsentPackage;
+	private boolean hasFinished, unsentPackage;
 	private Player player;
 	
 	public Update(int mapNumber){
 		this.mapNumber = mapNumber;
-		gameFinnished = false;
+		hasFinished = false;
 		
 		init();
 	}
@@ -83,7 +83,7 @@ public class Update{
 			if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() != Goal.class){
 				return false;
 			}else if(intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() == Goal.class){
-				gameFinnished = true;
+				hasFinished = true;
 			}
 		}
 		return true;
@@ -109,8 +109,8 @@ public class Update{
 		return unsentPackage;
 	}
 	
-	public boolean isDone(){
-		return gameFinnished;
+	public boolean hasFinished(){
+		return hasFinished;
 	}
 
 	public ArrayList<Entity> getList(){

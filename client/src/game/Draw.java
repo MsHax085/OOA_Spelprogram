@@ -27,7 +27,7 @@ public class Draw extends JPanel{
 	private int blockSize, gameWidth, gameHeight;
 	private int time;
 	private DataBase db;
-	private boolean isDone, isGameWinner;
+	private boolean hasFinished, isGameWinner;
 	
 	/**
 	 * @param list
@@ -36,7 +36,7 @@ public class Draw extends JPanel{
 	public Draw(ArrayList<Entity> list, int blockSize){
 		this.list = list; 
 		this.blockSize = blockSize;
-		isDone = false;
+		hasFinished = false;
 		isGameWinner = false;
 		db = DataBase.getInstance();
 		
@@ -63,8 +63,8 @@ public class Draw extends JPanel{
 		repaint();
 	}
 	
-	public void setIsDone(){
-		isDone = true;
+	public void setHasFinished(){
+		hasFinished = true;
 	}
 	
 	public void setIsWinner(){
@@ -79,8 +79,8 @@ public class Draw extends JPanel{
 		return list;
 	}
 	
-	public boolean getIsDone(){
-		return isDone;
+	public boolean getHasFinished(){
+		return hasFinished;
 	}
 	
 	public void paint(Graphics g){
@@ -91,12 +91,12 @@ public class Draw extends JPanel{
 			ent.draw(g, blockSize);
 		}
 
-		if(isDone){
+		if(hasFinished){
 			g.setColor(new Color(0,0,0,0.8f));
 			g.fillRect(0, 0, gameWidth * blockSize, gameHeight * blockSize);
 			if(isGameWinner){
-				g.setColor(Color.white);
-				g.drawString("You are the winner!", 100, 200);
+				g.setColor(Color.magenta);
+				g.drawString("The winner!", 10, 50);
 			}
 		}
 		

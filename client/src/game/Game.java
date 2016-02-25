@@ -75,7 +75,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         multiplayerHandler.addPlayer("sweg", mapNumber);
         multiplayerHandler.addPlayer("sweg1", mapNumber);
         
-        multiplayerHandler.playerIsDone("sweg", 23);
+        multiplayerHandler.playerHasFinished("sweg", 23);
         
         gt.start();
         time = 0;
@@ -149,22 +149,32 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     	
     	public void run(){
     		while(running){
-                        if (NetworkBuffer.getInstance().hasNext()) {
-                            NetworkBuffer.getInstance().getNext().handlePacket();
-                        }
+                if (NetworkBuffer.getInstance().hasNext()) {
+                    NetworkBuffer.getInstance().getNext().handlePacket();
+                }
+                
     			update.doSomeThing(gl);
     			draw.drawList(update.getList(), time);
     			
-    			//här ska de andra spelarna uppdateras
+    			//här ska de andra spelarna uppdateras förmodligen med egen metod
+    			multiplayerHandler.updatePlayer("sweg1", 1, 2);
+    			multiplayerHandler.updateSlab("sweg1", 1, 6);
     			
-    			if(update.isDone()){
+    			if(update.hasFinished()){
     				System.out.println("You have won");
     				running = false;
     				countTime.cancel();
     				
-    				//här ska vinnst text visas och paket till andra spelare skickas ut
-    				draw.setIsDone();
+    				draw.setHasFinished();
+    				if(!multiplayerHandler.getAnyOneHasFinished()){
+    					draw.setIsWinner();
+    				}
     				draw.repaint();
+
+    				//här ska vinnst text visas och paket till andra spelare skickas ut
+    				
+    					//time, IsWinner
+    				
                                 //Core.getInstance().setStateObserver(new UserInterface());
     			}
     			try {

@@ -9,3 +9,4 @@
 /PacketProcessor.class
 /RecvPacketOpcodes.class
 /SendPacketOpcodes.class
+/NetworkBuffer.class
