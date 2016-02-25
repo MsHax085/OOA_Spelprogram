@@ -3,6 +3,7 @@ package src.network;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  *
@@ -12,32 +13,63 @@ public class NetworkBuffer extends Observable {
 
     private static NetworkBuffer networkBuffer = null;
     private final LinkedList<ImplPacketHandler> handlerBuffer = new LinkedList<>();
+    private final static ReentrantReadWriteLock rrwl = new ReentrantReadWriteLock(true);
     
-    public static synchronized NetworkBuffer getInstance() {
-        if (networkBuffer == null) networkBuffer = new NetworkBuffer();
-        return networkBuffer;
+    public static NetworkBuffer getInstance() {
+        rrwl.readLock().lock();
+        try {
+            if (networkBuffer == null) networkBuffer = new NetworkBuffer();
+            return networkBuffer;
+        } finally {
+            rrwl.readLock().unlock();
+        }
     }
     
     public void addHandler(ImplPacketHandler handler) {
-        handlerBuffer.addLast(handler);
-        setChanged();
-        notifyObservers(0);
+        rrwl.writeLock().lock();
+        try {
+            handlerBuffer.addLast(handler);
+            setChanged();
+            notifyObservers(0);
+        } finally {
+            rrwl.writeLock().unlock();
+        }
     }
     
     public ImplPacketHandler getNext() {
-        if (!hasNext()) return null;
-        return handlerBuffer.pollFirst();
+        rrwl.writeLock().lock();
+        try {
+            if (!hasNext()) return null;
+            return handlerBuffer.pollFirst();
+        } finally {
+            rrwl.writeLock().unlock();
+        }
     }
     
     public boolean hasNext() {
-        return !handlerBuffer.isEmpty();
+        rrwl.readLock().lock();
+        try {
+            return !handlerBuffer.isEmpty();
+        } finally {
+            rrwl.readLock().unlock();
+        }
     }
     
     public void addNewObserver(Observer observer) {
-        addObserver(observer);
+        rrwl.writeLock().lock();
+        try {
+            addObserver(observer);
+        } finally {
+            rrwl.readLock().unlock();
+        }
     }
     
     public void removeOldObserver(Observer observer) {
-        deleteObserver(observer);
+        rrwl.writeLock().lock();
+        try {
+            deleteObserver(observer);
+        } finally {
+            rrwl.readLock().unlock();
+        }
     }
 }
