@@ -2,9 +2,13 @@ package src.gui.panels;
 
 import java.awt.event.MouseListener;
 
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.JPanel;
+import java.awt.Color;
 
 import src.gui.panels.event.ControllerOptionsPanel;
 
@@ -21,50 +25,77 @@ public class OptionsPanel extends SuperPanel {
 	private JTextField serverIpField;
 	private JButton save;
 	private JButton prev;
+	private JPanel container;
 	
     public OptionsPanel(int width, int height) {
         super(width, height);
         
         this.controller = new ControllerOptionsPanel(this);
-        
-        this.setLayout(null);
-        
+        container = new JPanel();
         text = new JLabel("Options");
-		text.setSize(300,10);
-		text.setLocation(50,50);
-		this.add(text);
-		 
 		username = new JLabel("Username");
-		username.setSize(300,30);
-		username.setLocation(50, 100);
-		this.add(username);
-		 
 		usernameField = new JTextField(20);
-		usernameField.setSize(300,30);
-		usernameField.setLocation(100, 150);
-		this.add(usernameField);
-		
 		serverIp = new JLabel("Server IP Port");
-		serverIp.setSize(300,50);
-		serverIp.setLocation(50,200);
-		this.add(serverIp);
-		 
 		serverIpField = new JTextField(20);
-		serverIpField.setSize(300,30);
-		serverIpField.setLocation(100, 250);
-		this.add(serverIpField);
-		 
 		prev = new JButton("Prev");
-		prev.setSize(125,50);
-		prev.setLocation(175,350);
-		prev.addMouseListener((MouseListener) controller);
-		this.add(prev);
-		 
 		save = new JButton("Save");
-		save.setSize(125,50);
-		save.setLocation(325,350);
+		
+		container.setBackground(new Color(0, 0, 0, 0));
+		
+		prev.setFocusable(false);
+		prev.addMouseListener((MouseListener) controller);
+		
+		save.setFocusable(false);
 		save.addMouseListener((MouseListener) controller);
-		this.add(save);
+		
+		GroupLayout panel1Layout = new GroupLayout(container);
+        container.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(text, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameField, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverIp, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE))
+                	.addComponent(serverIpField, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                	.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                	.addComponent(prev, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                	.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
+                	.addComponent(save, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
+        ;
+        panel1Layout.setVerticalGroup(
+                panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(panel1Layout.createSequentialGroup()
+                    .addGap(51, 51, 51)// Add gap before
+                    .addComponent(text, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    .addComponent(username, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    .addComponent(usernameField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    .addComponent(serverIp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    .addComponent(serverIpField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    // MÅSTE FIXAS!!!!
+                    .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
+                    .addComponent(save, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addGap(98, 98, 98))// Add gap after
+            );
+        GroupLayout layout = new GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(80, 80, 80))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }
 
     public JButton getPrevButton() {

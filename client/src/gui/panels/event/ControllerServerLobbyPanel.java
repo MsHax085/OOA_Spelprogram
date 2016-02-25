@@ -38,7 +38,7 @@ public class ControllerServerLobbyPanel implements MouseListener {
             UserInterface.changeCard("menupanel");
         } 
     	else if (e.getSource().equals(panel.getStartButton())) {
-    		Core.getInstance().setStateObserver(new Game());
+    		//Core.getInstance().setStateObserver(new Game());
         }
     }
 }
