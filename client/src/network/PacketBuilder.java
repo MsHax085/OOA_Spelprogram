@@ -72,8 +72,8 @@ public class PacketBuilder {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET01.getValue());
-        dataOutputStream.writeChars(username);
-        dataOutputStream.writeChars(password);
+        dataOutputStream.writeUTF(username);
+        dataOutputStream.writeUTF(password);
         dataOutputStream.writeInt(lobbyId);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
@@ -104,9 +104,9 @@ public class PacketBuilder {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET03.getValue());
-        dataOutputStream.writeChars(username);
-        dataOutputStream.writeChars(lobbyName);
-        dataOutputStream.writeChars(password);
+        dataOutputStream.writeUTF(username);
+        dataOutputStream.writeUTF(lobbyName);
+        dataOutputStream.writeUTF(password);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
