@@ -2,9 +2,10 @@ package src.network;
 
 /**
  *
+ * The ID of the packets that can be received.
+ *
  * @author Richard
  * 
- * The ID of the packets that can be received.
  */
 
 /*

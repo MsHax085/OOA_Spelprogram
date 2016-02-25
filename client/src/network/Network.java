@@ -20,8 +20,8 @@ public class Network implements Runnable{
     }
     
     
-    /*
-     * Starts the thread.
+    /**
+     * Starts the Network thread.
      */
 	public synchronized void start() {
 		System.out.println("Network Thread started");
@@ -29,7 +29,7 @@ public class Network implements Runnable{
 		new Thread(this).start();
 	}
 	
-	/*
+	/**
      * Stops the tread after the run loop ends.
      * Closes the socket to force an interrupt in the .receive(). This might be fucking insane.
      */
@@ -38,7 +38,7 @@ public class Network implements Runnable{
 		Connection.getInstance().closeSocket();
 	}
 
-	/*
+	/**
      * Receives a packet, checks the ID of the packet and sends the packet information to the corresponding packet class.
      */
 	@Override

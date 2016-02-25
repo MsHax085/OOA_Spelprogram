@@ -27,7 +27,7 @@ public class Connection {
     private InetAddress fromIpAddress;
     int fromPort;
     
-    /*
+    /**
      * Constructor: starts the socket.
      */
     private Connection() {
@@ -44,7 +44,7 @@ public class Connection {
         return connection;
     }
     
-    /*
+    /**
      * This is used by the Network Thread. Waits till a packet is received on the serverSocket.
      * Saves the IP and port of the packet in local variables.
      * @return: The packet data as an ByteArrayInputStream.
@@ -59,7 +59,7 @@ public class Connection {
         return new DataInputStream(byteArrayInputStream);
     }
     
-    /*
+    /**
      * This is called when a packet should be sent. Sends a packet to a specific node.
      * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
      */

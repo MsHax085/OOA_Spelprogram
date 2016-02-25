@@ -5,16 +5,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
  /**
+ * collection of the packet building methods. 
  * 
+ * IMPLEMENTATION: packetDataAsByteArray = PacketBuilder.getInstance().create'packet name'(arguments);
  * @author Richard, BögErik
  *
  */
 
-/*
- * collection of the packet building methods. 
- * 
- * IMPLEMENTATION: packetDataAsByteArray = PacketBuilder.getInstance().create'packet name'(arguments);
- */
 public class PacketBuilder {
 	
 	private static PacketBuilder packetBuilder;

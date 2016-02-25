@@ -4,12 +4,12 @@ import java.util.HashMap;
 import src.network.packets.HelloHandler;
 import src.network.packets.TestHandler;
 
-/*
+/**
+ * 
+ *  Links Packet ID with packet handler classes.
  * 
  *  @author Richard, BögErik
  *  
- *  Links Packet ID with packet classes
- *  TODO: Maybe start a PacketBuilder here so all packets could use it if needed.
  */
 
 public class PacketProcessor {
