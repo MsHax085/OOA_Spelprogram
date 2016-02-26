@@ -1,2 +1,11 @@
 /HelloHandler.class
 /TestHandler.class
+/Handler00LobbyListResponce.class
+/Handler01JoinLobbyResponce.class
+/Handler02UpdateClientLobby.class
+/Handler03CreateLobbyStatus.class
+/Handler04StartGame.class
+/Handler05HighscoreResponce.class
+/Handler06MoveGameEnteties.class
+/Handler07PlayerWon.class
+/Handler08ClientMapReset.class

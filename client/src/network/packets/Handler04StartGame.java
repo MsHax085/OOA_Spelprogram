@@ -10,7 +10,7 @@ import src.network.ImplPacketHandler;
  *
  * @author BögErik
  */
-public class TestHandler implements ImplPacketHandler {
+public class Handler04StartGame implements ImplPacketHandler {
     
     private DataInputStream dis = null;
 	
@@ -19,9 +19,10 @@ public class TestHandler implements ImplPacketHandler {
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            System.out.println("Test packet recived with message: " + dis.readInt() + " from server");
+            int mapId = dis.readInt();
+            System.out.println("Server commands the client to start the game with mapID: " + mapId);
         } catch (IOException ex) {
-            Logger.getLogger(TestHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Handler04StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

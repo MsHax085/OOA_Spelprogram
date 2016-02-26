@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 import src.network.ImplPacketHandler;
 
 /**
- *
+ * This handles the packet that tells the client that another client has resets its map.
  * @author BögErik
  */
-public class TestHandler implements ImplPacketHandler {
+public class Handler08ClientMapReset implements ImplPacketHandler {
     
     private DataInputStream dis = null;
 	
@@ -19,9 +19,10 @@ public class TestHandler implements ImplPacketHandler {
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            System.out.println("Test packet recived with message: " + dis.readInt() + " from server");
+            int clientId = dis.readInt();
+            System.out.println("Client with ID: " + clientId + " has reseted its map");
         } catch (IOException ex) {
-            Logger.getLogger(TestHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Handler08ClientMapReset.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

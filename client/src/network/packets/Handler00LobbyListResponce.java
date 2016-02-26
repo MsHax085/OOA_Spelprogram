@@ -7,21 +7,22 @@ import java.util.logging.Logger;
 import src.network.ImplPacketHandler;
 
 /**
- *
+ * NOT COMPLETED
  * @author BögErik
  */
-public class TestHandler implements ImplPacketHandler {
+public class Handler00LobbyListResponce implements ImplPacketHandler {
     
     private DataInputStream dis = null;
 	
     @Override
     public void handlePacket() {
+        System.out.println("00LobbyListResponce recived from server");
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            System.out.println("Test packet recived with message: " + dis.readInt() + " from server");
+            dis.readInt();
         } catch (IOException ex) {
-            Logger.getLogger(TestHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Handler00LobbyListResponce.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

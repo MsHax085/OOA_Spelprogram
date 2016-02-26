@@ -152,12 +152,12 @@ public class PacketBuilder {
      * @return
      * @throws IOException
      */
-    public byte[] create07PlayerWonPacket(int clientId, int TimeOfCompletion) throws IOException {
+    public byte[] create07PlayerWonPacket(int clientId, int timeOfCompletion) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET07.getValue());
         dataOutputStream.writeInt(clientId);
-        dataOutputStream.writeInt(TimeOfCompletion);
+        dataOutputStream.writeInt(timeOfCompletion);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

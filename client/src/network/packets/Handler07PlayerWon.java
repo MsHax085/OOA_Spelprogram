@@ -7,21 +7,23 @@ import java.util.logging.Logger;
 import src.network.ImplPacketHandler;
 
 /**
- *
- * @author Richard
+ * This handles the packet that tells the client if and when another client cleared the map.
+ * @author BögErik
  */
-public class HelloHandler implements ImplPacketHandler {
+public class Handler07PlayerWon implements ImplPacketHandler {
     
     private DataInputStream dis = null;
-
+	
     @Override
     public void handlePacket() {
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            dis.readInt();
+            int clientId = dis.readInt();
+            int timeOfCompletion = dis.readInt();
+            System.out.println("Client with ID: " + clientId + " cleared the map at time: " + timeOfCompletion);
         } catch (IOException ex) {
-            Logger.getLogger(HelloHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Handler07PlayerWon.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
