@@ -9,6 +9,7 @@ import java.awt.Graphics;
  *
  */
 public class Entity implements ImplEntity {
+    
     protected int x, y;
     protected Color color;
     protected boolean solid;

@@ -26,9 +26,9 @@ import java.io.IOException;
  */
 public class PacketBuilder {
 	
-	private static PacketBuilder packetBuilder;
-	
-	public static synchronized PacketBuilder getInstance() {
+    private static PacketBuilder packetBuilder;
+
+    public static synchronized PacketBuilder getInstance() {
         if (packetBuilder == null) packetBuilder = new PacketBuilder();
         return packetBuilder;
     }
@@ -164,5 +164,4 @@ public class PacketBuilder {
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
-    
 }

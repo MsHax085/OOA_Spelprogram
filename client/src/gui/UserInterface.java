@@ -2,15 +2,11 @@ package src.gui;
 
 import java.util.Observable;
 import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Observer;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import src.Core;
 import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;

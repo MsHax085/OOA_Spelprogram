@@ -8,7 +8,7 @@ import src.gui.panels.ServerCreationPanel;
 
 public class ControllerServerCreationPanel implements MouseListener {
 	
-	private ServerCreationPanel panel;
+    private ServerCreationPanel panel;
     
     public ControllerServerCreationPanel(ServerCreationPanel panel) {
         this.panel = panel;
@@ -34,8 +34,7 @@ public class ControllerServerCreationPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
     	if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
-        } 
-    	else if (e.getSource().equals(panel.getCreateButton())) {
+        } else if (e.getSource().equals(panel.getCreateButton())) {
             UserInterface.changeCard("serverlobbypanel");
         }
     }

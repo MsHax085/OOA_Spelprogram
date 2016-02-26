@@ -8,7 +8,7 @@ import src.gui.panels.OptionsPanel;
 
 public class ControllerOptionsPanel implements MouseListener {
 	
-	private OptionsPanel panel;
+    private OptionsPanel panel;
     
     public ControllerOptionsPanel(OptionsPanel panel) {
         this.panel = panel;
@@ -35,8 +35,7 @@ public class ControllerOptionsPanel implements MouseListener {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     	if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
-        } 
-    	else if (e.getSource().equals(panel.getSaveButton())) {
+        } else if (e.getSource().equals(panel.getSaveButton())) {
             
         }
     }

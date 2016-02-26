@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -19,10 +18,10 @@ import src.gui.panels.event.ControllerHighscorePanel;
  */
 public class HighscorePanel extends SuperPanel {
 
-	private JPanel container;
-	private JLabel text;
-	private JTable highScoreList;
-	private JButton prev;
+    private JPanel container;
+    private JLabel text;
+    private JTable highScoreList;
+    private JButton prev;
 	
     public HighscorePanel(int width, int height) {
         super(width, height);

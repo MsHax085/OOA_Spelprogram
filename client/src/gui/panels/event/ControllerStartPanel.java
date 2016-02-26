@@ -11,7 +11,6 @@ import src.gui.panels.StartPanel;
 public class ControllerStartPanel implements MouseListener {
     
     private final StartPanel panel;
-
     
     public ControllerStartPanel(StartPanel panel) {
         this.panel = panel;
@@ -21,8 +20,7 @@ public class ControllerStartPanel implements MouseListener {
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getContinueButton())) {
             UserInterface.changeCard("menupanel");
-        } else
-        if (e.getSource().equals(panel.getUsernameInput())) {
+        } else if (e.getSource().equals(panel.getUsernameInput())) {
             if (panel.getUsernameInput().getText().equals("Choose a username")) {
                 panel.getUsernameInput().setText("");
             }

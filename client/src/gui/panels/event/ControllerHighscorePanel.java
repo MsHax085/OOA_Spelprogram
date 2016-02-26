@@ -8,7 +8,7 @@ import src.gui.panels.HighscorePanel;
 
 public class ControllerHighscorePanel implements MouseListener {
 	
-	private HighscorePanel panel;
+    private HighscorePanel panel;
     
     public ControllerHighscorePanel(HighscorePanel panel) {
         this.panel = panel;

@@ -34,12 +34,11 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     private GameThread gt;
     private TimerTask countTime;
     
-	private Update update;
-	private MultiplayerHandler multiplayerHandler;
-	private int time;
-	//private Timer timer;
+    private Update update;
+    private MultiplayerHandler multiplayerHandler;
+    private int time;
+    //private Timer timer;
 	
-
     @Override
     public void setup() {
         frame = new JFrame("Pågående spel");
@@ -49,24 +48,25 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         frame.add(superPanel);
     }
 	
-	/**
-	 * @param blockSize
-	 */
-	public Game(int blockSize, int mapNumber){
+    /**
+     * @param blockSize
+     */
+    public Game(int blockSize, int mapNumber){
         init(blockSize, mapNumber);
-	}
-	public Game(){
-		init(32, 1);
-	}
-	
-	private void init(int blockSize, int mapNumber){
-		superPanel = new JPanel();
-		update = new Update(mapNumber);
-		multiplayerHandler = new MultiplayerHandler(superPanel);
-		gl = new GameListener();
-		gt = new GameThread();
-		
-		draw = new Draw(update.getList(), blockSize);
+    }
+
+    public Game(){
+        init(32, 1);
+    }
+
+    private void init(int blockSize, int mapNumber) {
+        superPanel = new JPanel();
+        update = new Update(mapNumber);
+        multiplayerHandler = new MultiplayerHandler(superPanel);
+        gl = new GameListener();
+        gt = new GameThread();
+
+        draw = new Draw(update.getList(), blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(gl);
         superPanel.add(draw);
@@ -74,25 +74,23 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         //Här ska de andra spelarna initieras
         multiplayerHandler.addPlayer("sweg", mapNumber);
         multiplayerHandler.addPlayer("sweg1", mapNumber);
-        
         multiplayerHandler.playerHasFinished("sweg", 23);
-        
+
         gt.start();
         time = 0;
-    	countTime = new TimerTask(){
+        countTime = new TimerTask() {
+            @Override
+            public void run() {
+                time++;
+            }	
+        };
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				time++;
-			}	
-    	};
-    	new Timer().schedule(countTime, 0, 1000);
-	}
-	
-	public MultiplayerHandler getMultiplayerHandler(){
-		return multiplayerHandler;
-	}
+        new Timer().schedule(countTime, 0, 1000);
+    }
+
+    public MultiplayerHandler getMultiplayerHandler(){
+        return multiplayerHandler;
+    }
 
     @Override
     public void view() {
@@ -144,46 +142,49 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     public void windowOpened(WindowEvent e) {
     }
     
-    private class GameThread extends Thread{
+    private class GameThread extends Thread {
+        
     	private boolean running = true;
     	
+        @Override
     	public void run(){
-    		while(running){
+            while (running) {
                 if (NetworkBuffer.getInstance().hasNext()) {
                     NetworkBuffer.getInstance().getNext().handlePacket();
                 }
-                
-    			update.doSomeThing(gl);
-    			draw.drawList(update.getList(), time);
-    			
-    			//här ska de andra spelarna uppdateras förmodligen med egen metod
-    			multiplayerHandler.updatePlayer("sweg1", 1, 2);
-    			multiplayerHandler.updateSlab("sweg1", 1, 6);
-    			
-    			if(update.hasFinished()){
-    				System.out.println("You have won");
-    				running = false;
-    				countTime.cancel();
-    				
-    				draw.setHasFinished();
-    				if(!multiplayerHandler.getAnyOneHasFinished()){
-    					draw.setIsWinner();
-    				}
-    				draw.repaint();
 
-    				//här ska vinnst text visas och paket till andra spelare skickas ut
-    				
-    					//time, IsWinner
-    				
-                                //Core.getInstance().setStateObserver(new UserInterface());
-    			}
-    			try {
-					Thread.sleep(20);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		}
+                update.doSomeThing(gl);
+                draw.drawList(update.getList(), time);
+
+                //här ska de andra spelarna uppdateras förmodligen med egen metod
+                multiplayerHandler.updatePlayer("sweg1", 1, 2);
+                multiplayerHandler.updateSlab("sweg1", 1, 6);
+
+                if (update.hasFinished()) {
+                    System.out.println("You have won");
+                    running = false;
+                    countTime.cancel();
+
+                    draw.setHasFinished();
+
+                    if (!multiplayerHandler.getAnyOneHasFinished()) {
+                        draw.setIsWinner();
+                    }
+
+                    draw.repaint();
+
+                    //här ska vinnst text visas och paket till andra spelare skickas ut
+
+                    //time, IsWinner
+
+                    //Core.getInstance().setStateObserver(new UserInterface());
+                }
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
     	}
     }
 }

@@ -2,7 +2,6 @@ package src.gui.panels;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -18,11 +17,11 @@ import src.gui.panels.event.ControllerSelectionPanel;
  */
 public class ServerSelectionPanel extends SuperPanel {
     
-	private JLabel text;
-	private JTable serverList;
-	private JButton join;
-	private JButton prev;
-	private JPanel container;
+    private JLabel text;
+    private JTable serverList;
+    private JButton join;
+    private JButton prev;
+    private JPanel container;
 	
     public ServerSelectionPanel(int width, int height) {
         super(width, height);

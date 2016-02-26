@@ -18,11 +18,11 @@ import src.gui.panels.event.ControllerServerLobbyPanel;
  */
 public class ServerLobbyPanel extends SuperPanel {
     
-	private JLabel text;
-	private JTable lobbyList;
-	private JButton start;
-	private JButton quit;
-	private JPanel container;
+    private JLabel text;
+    private JTable lobbyList;
+    private JButton start;
+    private JButton quit;
+    private JPanel container;
 	
     public ServerLobbyPanel(int width, int height) {
     	super(width, height);

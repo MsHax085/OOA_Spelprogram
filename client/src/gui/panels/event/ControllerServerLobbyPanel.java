@@ -2,15 +2,13 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import src.Core;
-import src.game.Game;
 
 import src.gui.UserInterface;
 import src.gui.panels.ServerLobbyPanel;
 
 public class ControllerServerLobbyPanel implements MouseListener {
 	
-	private ServerLobbyPanel panel;
+    private ServerLobbyPanel panel;
     
     public ControllerServerLobbyPanel(ServerLobbyPanel panel) {
         this.panel = panel;
@@ -36,9 +34,8 @@ public class ControllerServerLobbyPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
     	if (e.getSource().equals(panel.getQuitButton())) {
             UserInterface.changeCard("menupanel");
-        } 
-    	else if (e.getSource().equals(panel.getStartButton())) {
-    		//Core.getInstance().setStateObserver(new Game());
+        } else if (e.getSource().equals(panel.getStartButton())) {
+            //Core.getInstance().setStateObserver(new Game());
         }
     }
 }

@@ -19,14 +19,14 @@ import src.gui.panels.event.ControllerServerCreationPanel;
  */
 public class ServerCreationPanel extends SuperPanel {
 
-	private JLabel text;
-	private JLabel serverName;
-	private JLabel serverPassword;
-	private JTextField name;
-	private JPasswordField password;
-	private JButton create;
-	private JButton prev;
-	private JPanel container;
+    private JLabel text;
+    private JLabel serverName;
+    private JLabel serverPassword;
+    private JTextField name;
+    private JPasswordField password;
+    private JButton create;
+    private JButton prev;
+    private JPanel container;
 	
     public ServerCreationPanel(int width, int height) {
         super(width, height);
@@ -34,22 +34,22 @@ public class ServerCreationPanel extends SuperPanel {
         this.controller = new ControllerServerCreationPanel(this);
         container = new JPanel();
         text = new JLabel("Options");
-		serverName = new JLabel("Server name");
-		name = new JTextField(20);
-		serverPassword = new JLabel("Server password");
-		password = new JPasswordField(20);
-		prev = new JButton("Prev");
-		create = new JButton("Create");
-		
-		container.setBackground(new Color(0, 0, 0, 0));
-		
-		prev.setFocusable(false);
-		prev.addMouseListener((MouseListener) controller);
-		
-		create.setFocusable(false);
-		create.addMouseListener((MouseListener) controller);
-		
-		GroupLayout panel1Layout = new GroupLayout(container);
+        serverName = new JLabel("Server name");
+        name = new JTextField(20);
+        serverPassword = new JLabel("Server password");
+        password = new JPasswordField(20);
+        prev = new JButton("Prev");
+        create = new JButton("Create");
+
+        container.setBackground(new Color(0, 0, 0, 0));
+
+        prev.setFocusable(false);
+        prev.addMouseListener((MouseListener) controller);
+
+        create.setFocusable(false);
+        create.addMouseListener((MouseListener) controller);
+
+        GroupLayout panel1Layout = new GroupLayout(container);
         container.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)

@@ -18,14 +18,14 @@ import src.gui.panels.event.ControllerOptionsPanel;
  */
 public class OptionsPanel extends SuperPanel {
 
-	private JLabel text;
-	private JLabel username;
-	private JLabel serverIp;
-	private JTextField usernameField;
-	private JTextField serverIpField;
-	private JButton save;
-	private JButton prev;
-	private JPanel container;
+    private JLabel text;
+    private JLabel username;
+    private JLabel serverIp;
+    private JTextField usernameField;
+    private JTextField serverIpField;
+    private JButton save;
+    private JButton prev;
+    private JPanel container;
 	
     public OptionsPanel(int width, int height) {
         super(width, height);
@@ -33,22 +33,22 @@ public class OptionsPanel extends SuperPanel {
         this.controller = new ControllerOptionsPanel(this);
         container = new JPanel();
         text = new JLabel("Options");
-		username = new JLabel("Username");
-		usernameField = new JTextField(20);
-		serverIp = new JLabel("Server IP Port");
-		serverIpField = new JTextField(20);
-		prev = new JButton("Prev");
-		save = new JButton("Save");
-		
-		container.setBackground(new Color(0, 0, 0, 0));
-		
-		prev.setFocusable(false);
-		prev.addMouseListener((MouseListener) controller);
-		
-		save.setFocusable(false);
-		save.addMouseListener((MouseListener) controller);
-		
-		GroupLayout panel1Layout = new GroupLayout(container);
+        username = new JLabel("Username");
+        usernameField = new JTextField(20);
+        serverIp = new JLabel("Server IP Port");
+        serverIpField = new JTextField(20);
+        prev = new JButton("Prev");
+        save = new JButton("Save");
+
+        container.setBackground(new Color(0, 0, 0, 0));
+
+        prev.setFocusable(false);
+        prev.addMouseListener((MouseListener) controller);
+
+        save.setFocusable(false);
+        save.addMouseListener((MouseListener) controller);
+
+        GroupLayout panel1Layout = new GroupLayout(container);
         container.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)

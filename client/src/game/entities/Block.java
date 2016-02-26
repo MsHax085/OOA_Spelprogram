@@ -8,8 +8,9 @@ import java.awt.Color;
  *
  */
 public class Block extends Entity {
-	public Block(int x, int y) {
-		super(x, y, true);
-		color = new Color(85,99,82);
-	}
+    
+    public Block(int x, int y) {
+        super(x, y, true);
+        color = new Color(85,99,82);
+    }
 }

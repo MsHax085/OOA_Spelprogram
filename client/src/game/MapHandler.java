@@ -12,48 +12,49 @@ import src.resourceManager.DataBase;
  */
 
 public class MapHandler {
-	private char[][] map = {{'s', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '3', '0', '3', '0', '3', '0', '3', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
-							{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'}};
-	private DataBase db;
-	
-	public MapHandler(){
-		db = DataBase.getInstance();
-	}
-	
-	public ArrayList<Entity> getMap(int mapNumber){
-		ArrayList<Entity> list = new ArrayList<Entity>();
-		int mapWidth, mapHeight;
-		try{
-			map = db.getMap().readMap(mapNumber);
-			mapWidth = db.getConfigHandler().getGameWidth();
-			mapHeight = db.getConfigHandler().getGameHeight();
-		}catch(Exception e){
-			System.out.println("MapHandler - Couldn't read from config or map file.");
-			mapWidth = 16;
-			mapHeight = 10;
-		}
-		for(int x = 0; x < mapWidth; x++){
-			for(int y = 0; y < mapHeight; y++){
-				if(map[y][x]=='b')
-					list.add(new Block(x, y));
-				else if(map[y][x]=='s')
-					list.add(new Start(x, y));
-				else if(map[y][x]=='g')
-					list.add(new Goal(x, y));
-				else if(map[y][x]=='k')
-					list.add(new KullerSten(x, y));
-				else if(map[y][x]=='l')
-					list.add(new Slab(x, y));
-			}
-		}
-		return list;
-	}
+    
+    private char[][] map = {{'s', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '3', '0', '0', '0', '3', '0', '3', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '3', '0', '3', '0', '3', '0', '3', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+                            {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'}};
+    private DataBase db;
+
+    public MapHandler(){
+        db = DataBase.getInstance();
+    }
+
+    public ArrayList<Entity> getMap(int mapNumber){
+        ArrayList<Entity> list = new ArrayList<>();
+        int mapWidth, mapHeight;
+        try{
+            map = db.getMap().readMap(mapNumber);
+            mapWidth = db.getConfigHandler().getGameWidth();
+            mapHeight = db.getConfigHandler().getGameHeight();
+        } catch (Exception e) {
+            System.out.println("MapHandler - Couldn't read from config or map file.");
+            mapWidth = 16;
+            mapHeight = 10;
+        }
+        for (int x = 0; x < mapWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) {
+                if(map[y][x]=='b')
+                    list.add(new Block(x, y));
+                else if(map[y][x]=='s')
+                    list.add(new Start(x, y));
+                else if(map[y][x]=='g')
+                    list.add(new Goal(x, y));
+                else if(map[y][x]=='k')
+                    list.add(new KullerSten(x, y));
+                else if(map[y][x]=='l')
+                    list.add(new Slab(x, y));
+            }
+        }
+        return list;
+    }
 }

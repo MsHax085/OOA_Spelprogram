@@ -17,12 +17,12 @@ import src.gui.panels.event.ControllerMenuPanel;
  */
 public class MenuPanel extends SuperPanel {
 
-        private JButton join;
-        private JButton host;
-        private JButton highscore;
-        private JButton options;
-        private JLabel icon;
-        private JPanel container;
+    private JButton join;
+    private JButton host;
+    private JButton highscore;
+    private JButton options;
+    private JLabel icon;
+    private JPanel container;
 	
     public MenuPanel(int width, int height) {
         super(width, height);

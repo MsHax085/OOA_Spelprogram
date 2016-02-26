@@ -60,7 +60,7 @@ public class NetworkBuffer extends Observable {
         try {
             addObserver(observer);
         } finally {
-            rrwl.readLock().unlock();
+            rrwl.writeLock().unlock();
         }
     }
     
@@ -69,7 +69,7 @@ public class NetworkBuffer extends Observable {
         try {
             deleteObserver(observer);
         } finally {
-            rrwl.readLock().unlock();
+            rrwl.writeLock().unlock();
         }
     }
 }
