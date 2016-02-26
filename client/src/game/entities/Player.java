@@ -1,6 +1,6 @@
 package src.game.entities;
 
-import java.awt.Color;
+import src.resourceManager.Material;
 
 /**
  * 
@@ -11,6 +11,6 @@ public class Player extends Entity {
 
     public Player(int x, int y) {
         super(x,y,false);
-        color = new Color(151,195,209);
+        material = Material.BOX.getValue();
     }
 }

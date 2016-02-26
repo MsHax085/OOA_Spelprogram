@@ -1,6 +1,6 @@
 package src.game.entities;
 
-import java.awt.Color;
+import src.resourceManager.Material;
 
 /**
  * 
@@ -11,6 +11,6 @@ public class Goal extends Entity {
     
     public Goal(int x, int y) {
         super(x, y, false);
-        color = new Color(214,227,138);
+        material = Material.DIAMOND.getValue();
     }
 }

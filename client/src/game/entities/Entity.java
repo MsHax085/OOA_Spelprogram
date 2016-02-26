@@ -1,7 +1,7 @@
 package src.game.entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import src.resourceManager.Resources;
 
 /**
  * 
@@ -11,11 +11,10 @@ import java.awt.Graphics;
 public class Entity implements ImplEntity {
     
     protected int x, y;
-    protected Color color;
+    protected int material;
     protected boolean solid;
 
     public Entity(int x, int y, boolean solid){
-        color = Color.pink;
         this.x = x;
         this.y = y;
         this.solid = solid;
@@ -23,8 +22,7 @@ public class Entity implements ImplEntity {
 
     @Override
     public void draw(Graphics g, int blockSize){
-        g.setColor(color);
-        g.fillRect(x*blockSize,y*blockSize, blockSize, blockSize);
+        g.drawImage(Resources.getInstance().getImage(material), x * blockSize, y * blockSize, blockSize, blockSize, null);
     }
 
     @Override

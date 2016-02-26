@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import src.game.entities.Entity;
+import src.resourceManager.Material;
+import src.resourceManager.Resources;
 import src.resourceManager.config.ConfigHandler;
 
 /**
@@ -49,6 +51,7 @@ public class Draw extends JPanel {
             this.gameHeight = 10;
         }
 
+        Resources.getInstance().loadImages();
         this.setPreferredSize(new Dimension(gameWidth*this.blockSize, gameHeight*this.blockSize));
     }
 
@@ -83,9 +86,12 @@ public class Draw extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g){
-        g.setColor(new Color(39,161,14));
-        g.fillRect(0, 0, gameWidth * blockSize, gameHeight * blockSize);
+    public void paint(Graphics g) {
+        for (int x = 0; x < gameWidth * blockSize; x += blockSize) {
+            for (int y = 0; y < gameHeight * blockSize; y += blockSize) {
+                g.drawImage(Resources.getInstance().getImage(Material.SAND.getValue()), x, y, blockSize, blockSize, null);
+            }
+        }
 
         for (Entity ent : list){
             ent.draw(g, blockSize);

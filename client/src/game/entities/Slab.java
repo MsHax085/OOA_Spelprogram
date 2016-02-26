@@ -1,11 +1,11 @@
 package src.game.entities;
 
-import java.awt.Color;
+import src.resourceManager.Material;
 
 public class Slab extends Entity {
 
     public Slab(int x, int y) {
         super(x, y, false);
-        color = new Color(158,40,53);
+        material = Material.TNT.getValue();
     }
 }
