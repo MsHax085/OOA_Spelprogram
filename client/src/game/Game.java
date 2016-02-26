@@ -34,7 +34,6 @@ public class Game implements DefaultFrameState, Observer {
     public void setup() {
         frame = new JFrame("Pågående spel");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
         frame.addWindowListener(new GameWindowListener(this));
         frame.add(superPanel);
     }
@@ -77,6 +76,7 @@ public class Game implements DefaultFrameState, Observer {
     @Override
     public void view() {
     	frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
