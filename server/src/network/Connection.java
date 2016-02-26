@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import src.client.ClientManager;
+import src.client.ClientSession;
 
 /**
  * 
@@ -24,8 +26,6 @@ public class Connection {
     
     private DatagramSocket serverSocket = null;
     private int serverPort;
-    private InetAddress fromIpAddress;
-    int fromPort;
     
     /**
      * Constructor: starts the socket.
@@ -49,31 +49,23 @@ public class Connection {
      * Saves the IP and port of the packet in local variables.
      * @return: The packet data as an ByteArrayInputStream.
      */
-    public DataInputStream receivePacket() throws IOException {
+    public Packet receivePacket() throws IOException {
         final byte[] bytes = new byte[bufferSize];
         final DatagramPacket packet = new DatagramPacket(bytes, bytes.length);
         serverSocket.receive(packet);
-        fromIpAddress = packet.getAddress();
-        fromPort = packet.getPort();
+        final ClientSession cs = ClientManager.getInstance().getRegistredClientSession(packet.getAddress(), packet.getPort());
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-        return new DataInputStream(byteArrayInputStream);
+        final DataInputStream stream = new DataInputStream(byteArrayInputStream);
+        return new Packet(cs, stream);
     }
     
     /**
      * This is called when a packet should be sent. Sends a packet to a specific node.
      * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
      */
-    public void sendPacket(byte[] packetData, InetAddress addr, int sendPort) throws IOException {
-        DatagramPacket packet = new DatagramPacket(packetData, packetData.length, addr, sendPort);
+    public void sendPacket(byte[] packetData, ClientSession cs) throws IOException {
+        DatagramPacket packet = new DatagramPacket(packetData, packetData.length, cs.getAddress(), cs.getPort());
         serverSocket.send(packet);
-    }
-    
-    public InetAddress getFromIpAddress() {
-		return fromIpAddress;
-    }
-    
-    public int getFromPort() {
-		return fromPort;
     }
     
     public void closeSocket() {

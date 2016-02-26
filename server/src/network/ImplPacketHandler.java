@@ -1,8 +1,5 @@
 package src.network;
 
-import java.io.DataInputStream;
-import java.net.InetAddress;
-
 /**
  * 
  * @author Richard Dahlgren, BögErik
@@ -10,5 +7,5 @@ import java.net.InetAddress;
  */
 public interface ImplPacketHandler {
 
-    public void handlePacket(DataInputStream dis, InetAddress fromIpAddress, int fromPort);
+    public void handlePacket(Packet packet);
 }

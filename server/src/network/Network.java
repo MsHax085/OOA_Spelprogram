@@ -47,12 +47,10 @@ public class Network implements Runnable{
 		while (running) {
             try {
                 // TODO: Check for array out of bounds
-                final DataInputStream dis = Connection.getInstance().receivePacket();
-                final short opCode = dis.readShort();
-                final InetAddress fromIpAddress = Connection.getInstance().getFromIpAddress();
-                final int fromPort = Connection.getInstance().getFromPort();
+                final Packet packet = Connection.getInstance().receivePacket();
+                final short opCode = packet.getPacket().readShort();
                 final ImplPacketHandler handler = PacketProcessor.getInstance().getHandler(opCode);
-                if (handler != null) handler.handlePacket(dis, fromIpAddress, fromPort);
+                if (handler != null) handler.handlePacket(packet);
             } catch (IOException ex) {
                 Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
             }
