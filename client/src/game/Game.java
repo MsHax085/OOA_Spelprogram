@@ -31,7 +31,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     private JPanel superPanel;
     private Draw draw;
     private GameListener gl;
-    private GameThread gt;
+    private GameThread gameThread;
     private TimerTask countTime;
     
     private Update update;
@@ -64,7 +64,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         update = new Update(mapNumber);
         multiplayerHandler = new MultiplayerHandler(superPanel);
         gl = new GameListener();
-        gt = new GameThread();
+        gameThread = new GameThread(this);
 
         draw = new Draw(update.getList(), blockSize);
         draw.setFocusable(true);
@@ -76,7 +76,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         multiplayerHandler.addPlayer("sweg1", mapNumber);
         multiplayerHandler.playerHasFinished("sweg", 23);
 
-        gt.start();
+        new Thread(gameThread).start();
         time = 0;
         countTime = new TimerTask() {
             @Override
@@ -107,6 +107,39 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     public void dispose() {
         // Clear all
     }
+    
+    public void updateGame() {
+        if (NetworkBuffer.getInstance().hasNext()) {
+            NetworkBuffer.getInstance().getNext().handlePacket();
+        }
+
+        update.doSomeThing(gl);
+        draw.drawList(update.getList(), time);
+
+        //här ska de andra spelarna uppdateras förmodligen med egen metod
+        multiplayerHandler.updatePlayer("sweg1", 1, 2);
+        multiplayerHandler.updateSlab("sweg1", 1, 6);
+
+        if (update.hasFinished()) {
+            System.out.println("You have won");
+            gameThread.setRunning(false);
+            countTime.cancel();
+
+            draw.setHasFinished();
+
+            if (!multiplayerHandler.getAnyOneHasFinished()) {
+                draw.setIsWinner();
+            }
+
+            draw.repaint();
+
+            //här ska vinnst text visas och paket till andra spelare skickas ut
+
+            //time, IsWinner
+
+            //Core.getInstance().setStateObserver(new UserInterface());
+        }
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -118,7 +151,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
 
     @Override
     public void windowClosed(WindowEvent e) {
-        gt.running = false;
+        gameThread.setRunning(false);
         Core.getInstance().setStateObserver(new UserInterface());
     }
 
@@ -142,49 +175,5 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     public void windowOpened(WindowEvent e) {
     }
     
-    private class GameThread extends Thread {
-        
-    	private boolean running = true;
-    	
-        @Override
-    	public void run(){
-            while (running) {
-                if (NetworkBuffer.getInstance().hasNext()) {
-                    NetworkBuffer.getInstance().getNext().handlePacket();
-                }
 
-                update.doSomeThing(gl);
-                draw.drawList(update.getList(), time);
-
-                //här ska de andra spelarna uppdateras förmodligen med egen metod
-                multiplayerHandler.updatePlayer("sweg1", 1, 2);
-                multiplayerHandler.updateSlab("sweg1", 1, 6);
-
-                if (update.hasFinished()) {
-                    System.out.println("You have won");
-                    running = false;
-                    countTime.cancel();
-
-                    draw.setHasFinished();
-
-                    if (!multiplayerHandler.getAnyOneHasFinished()) {
-                        draw.setIsWinner();
-                    }
-
-                    draw.repaint();
-
-                    //här ska vinnst text visas och paket till andra spelare skickas ut
-
-                    //time, IsWinner
-
-                    //Core.getInstance().setStateObserver(new UserInterface());
-                }
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-    	}
-    }
 }
