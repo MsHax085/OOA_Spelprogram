@@ -2,6 +2,7 @@ package src.lobbyManager;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * 
@@ -20,10 +21,16 @@ import java.util.ArrayList;
  *
  */
 public class Manager {
+        private static Manager manager;
 	private ArrayList<ManagerItem> list;
 	public Manager() {
 		list = new ArrayList<ManagerItem>();
 	}
+        
+        public static Manager getInstance() {
+            if (manager == null) manager = new Manager();
+            return manager;
+        }
 	
 	/*
 	 * Creates a new lobby
@@ -142,8 +149,12 @@ public class Manager {
 		}
 		return text;
 	}
+        
+        public int getAmount() {
+            return list.size();
+        }
 
-	public ArrayList<ManagerItem> getList(){
-		return list;
+	public Iterator getList(){
+		return list.iterator();
 	}
 }

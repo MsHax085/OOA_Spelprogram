@@ -7,6 +7,8 @@ import java.awt.event.WindowListener;
 import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import src.Changes;
+import src.Core;
 import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;
@@ -26,16 +28,18 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     private JFrame frame;
     private static JPanel panelContainer;
     private static CardLayout cl;
-    private JPanel startPanel;
-    private JPanel menuPanel;
-    private JPanel serverSelectionPanel;
-    private JPanel serverCreationPanel;
-    private JPanel serverLobbyPanel;
-    private JPanel highscorePanel;
-    private JPanel optionsPanel;
+    private StartPanel startPanel;
+    private MenuPanel menuPanel;
+    private ServerSelectionPanel serverSelectionPanel;
+    private ServerCreationPanel serverCreationPanel;
+    private ServerLobbyPanel serverLobbyPanel;
+    private HighscorePanel highscorePanel;
+    private OptionsPanel optionsPanel;
     
     @Override
     public void setup() {
+        NetworkBuffer.getInstance().addNewObserver(this);
+        
         frame = new JFrame();
         frame.setTitle("Spelprogram");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -66,8 +70,6 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
 
         changeCard("startpanel");
         frame.add(panelContainer);
-        
-        NetworkBuffer.getInstance().addNewObserver(this);
     }
     
     public static void changeCard(String panelName) {
@@ -93,17 +95,15 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     public void update(Observable o, Object arg) {
         System.out.println("UserInterface notified!");
         final int val = (int) arg;
-        switch (val) {
-            case 0:
-                System.out.println("NETWORK EVENT");
-                if (NetworkBuffer.getInstance().hasNext()) {
-                    NetworkBuffer.getInstance().getNext().handlePacket();
-                }
-                break;
-            case 1:
-                break;
-            default:
-                break;
+        if (val == Changes.PACKET_RECEIVED.getValue()) {
+            System.out.println("Packet received!");
+            if (NetworkBuffer.getInstance().hasNext()) {
+                NetworkBuffer.getInstance().getNext().handlePacket();
+            }
+        } else
+        if (val == Changes.LOBBYLIST_CHANGE.getValue()) {
+            System.out.println("Lobby updated!");
+            serverSelectionPanel.updateServerList();
         }
     }
 
@@ -114,6 +114,7 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     @Override
     public void windowClosed(WindowEvent e) {
         NetworkBuffer.getInstance().removeOldObserver(this);
+        Core.getInstance().stop();
         // TODO: CLOSE EVERYTHING BEFORE EXIT
         System.exit(0);
     }

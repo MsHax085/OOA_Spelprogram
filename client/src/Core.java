@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import src.frame.DefaultFrameState;
 import src.game.Game;
+import src.network.Network;
 
 /**
  * 
@@ -14,11 +15,12 @@ public class Core extends Observable {
 	
     private static Core instance = null;
     private DefaultFrameState frameState;
-    
-    private String username = "NAME";
+    private final Network network;
     
     public Core() {
         this.setStateObserver(new Game());
+        this.network = new Network();
+        this.network.start();
     }
     
     public static Core getInstance() {
@@ -44,9 +46,9 @@ public class Core extends Observable {
     
     public final void setStateObserver(DefaultFrameState frameState) {
         if (this.frameState != null) {
+            this.deleteObserver((Observer) this.frameState);
             this.frameState.hide();
             this.frameState.dispose();
-            this.deleteObserver((Observer) this.frameState);
         }
         
         this.frameState = frameState;
@@ -55,13 +57,12 @@ public class Core extends Observable {
         this.viewFrameState();
     }
     
-    public void changeUsername(String newName) {
-        this.username = newName;
+    public void signalObservers(int value) {
         this.setChanged();
-        this.notifyObservers((int) 0);
+        this.notifyObservers(value);
     }
     
-    public String getUsername() {
-        return username;
+    public void stop() {
+        this.network.stop();
     }
 }

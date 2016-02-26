@@ -3,6 +3,7 @@ package src.network;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import src.lobbyManager.ManagerItem;
 
@@ -41,12 +42,15 @@ public class PacketBuilder {
      * @return
      * @throws IOException
      */
-    public byte[] create00LobbyListResponcePacket() throws IOException {
+    public byte[] create00LobbyListResponsePacket(int lobbys, Iterator list) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET00.getValue());
         
-        // TODO: Fix the lobby manager so it can be used here.
+        dataOutputStream.writeInt(lobbys);
+        while (list.hasNext()) {
+            dataOutputStream.writeUTF(((ManagerItem) list.next()).getName());
+        }
         
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();

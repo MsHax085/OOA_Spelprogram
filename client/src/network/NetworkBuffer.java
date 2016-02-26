@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import src.Changes;
 
 /**
  *
@@ -30,7 +31,7 @@ public class NetworkBuffer extends Observable {
         try {
             handlerBuffer.addLast(handler);
             setChanged();
-            notifyObservers(0);
+            notifyObservers(Changes.PACKET_RECEIVED.getValue());
         } finally {
             rrwl.writeLock().unlock();
         }

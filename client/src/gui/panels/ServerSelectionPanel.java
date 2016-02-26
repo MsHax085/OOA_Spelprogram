@@ -9,7 +9,15 @@ import javax.swing.LayoutStyle;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import src.gui.panels.event.ControllerSelectionPanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
+import src.resourceManager.Database;
 
 /**
  *
@@ -29,7 +37,7 @@ public class ServerSelectionPanel extends SuperPanel {
         this.controller = new ControllerSelectionPanel(this);
     	container = new JPanel();
         text = new JLabel("Choose a server");
-        serverList = new JTable(14,1);
+        serverList = new JTable(0,1);
         prev = new JButton("Prev");
         join = new JButton("Join");
         
@@ -83,6 +91,26 @@ public class ServerSelectionPanel extends SuperPanel {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        
+        try {
+            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create00RequestLobbyListPacket());
+        } catch (IOException ex) {
+            Logger.getLogger(ServerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateServerList() {
+        final Iterator itr = Database.getInstance().getLobbyNames();
+        while (itr.hasNext()) {
+            String s = (String) itr.next();
+            System.out.println(s);
+            addRow(s);
+        }
+    }
+    
+    private void addRow(String str) {
+        DefaultTableModel model = (DefaultTableModel) serverList.getModel();
+        model.addRow(new Object[]{str});
     }
     
     public JButton getJoinButton() {

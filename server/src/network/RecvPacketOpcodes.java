@@ -12,6 +12,7 @@ package src.network;
  * Add new packets ID here.
  */
 public enum RecvPacketOpcodes {
+    PACKET00(0x00),
     PACKET1(0x10),
     PACKET2(0x91);
     
