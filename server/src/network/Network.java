@@ -51,7 +51,8 @@ public class Network implements Runnable{
                 final short opCode = dis.readShort();
                 final InetAddress fromIpAddress = Connection.getInstance().getFromIpAddress();
                 final int fromPort = Connection.getInstance().getFromPort();
-                PacketProcessor.getInstance().getHandler(opCode).handlePacket(dis, fromIpAddress, fromPort);
+                final ImplPacketHandler handler = PacketProcessor.getInstance().getHandler(opCode);
+                if (handler != null) handler.handlePacket(dis, fromIpAddress, fromPort);
             } catch (IOException ex) {
                 Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
             }
