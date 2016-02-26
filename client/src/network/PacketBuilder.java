@@ -63,9 +63,9 @@ public class PacketBuilder {
     /** 
      * Tells the server that this client would like to enter a lobby.
      * @Param	username	User name of this client.
-     * 			password	Password as an unencrypted string, just to make life easier for the NSA.
-     * 			lobbyId		The ID of the chosen lobby.
-     * @Return				The packet message as an byte array.
+     * 		password	Password as an unencrypted string, just to make life easier for the NSA.
+     * 		lobbyId		The ID of the chosen lobby.
+     * @Return			The packet message as an byte array.
      */
     public byte[] create01JoinLobbyPacket(String username, String password, int lobbyId) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -81,7 +81,7 @@ public class PacketBuilder {
     /**
      * Tells the server that this client is ready to start a game.
      * @Param	clientId	The ID of this client.
-     * @Return				The packet message as an byte array.
+     * @Return			The packet message as an byte array.
      */
     public byte[] create02ReadyRequest(int clientId) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -95,9 +95,9 @@ public class PacketBuilder {
     /**
      * Tells the server to create a new lobby with specific settings. The server joins this client to the lobby.
      * @Param	username	User name of the client.
-     * 			lobbyName	The name of the lobby that should be created.
-     * 			password	Password as an unencrypted string, just to make life easier for the NSA.
-     * @Return				The packet message as an byte array.
+     * 		lobbyName	The name of the lobby that should be created.
+     * 		password	Password as an unencrypted string, just to make life easier for the NSA.
+     * @Return			The packet message as an byte array.
      */
     public byte[] create03CreateLobbyPacket(String username, String lobbyName, String password) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -138,8 +138,8 @@ public class PacketBuilder {
     /**
      * Tells the server that this client has completed the map and the time of completion.
      * @Param	clientId	This clients ID.
-     * 			time		This clients time of completion
-     * @Return				The packet message as an byte array.
+     * 		time		This clients time of completion
+     * @Return			The packet message as an byte array.
      */
     public byte[] create06PlayerWonPacket(int clientId, int time) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -154,7 +154,7 @@ public class PacketBuilder {
     /**
      * Asks for all lobbies on the server.
      * @Param	clientId	This clients ID.
-     * @Return				The packet message as an byte array.
+     * @Return			The packet message as an byte array.
      */
     public byte[] create07PlayerResetPacket(int clientId) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
