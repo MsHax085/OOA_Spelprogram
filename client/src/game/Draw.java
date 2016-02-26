@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import src.game.entities.Entity;
-import src.resourceManager.DataBase;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * 
@@ -27,7 +27,6 @@ public class Draw extends JPanel {
     private ArrayList<Entity> list;
     private int blockSize, gameWidth, gameHeight;
     private int time;
-    private DataBase db;
     private boolean hasFinished, isGameWinner;
 
     /**
@@ -39,11 +38,10 @@ public class Draw extends JPanel {
         this.blockSize = blockSize;
         hasFinished = false;
         isGameWinner = false;
-        db = DataBase.getInstance();
 
         try{
-            this.gameWidth = db.getConfigHandler().getGameWidth();
-            this.gameHeight = db.getConfigHandler().getGameHeight();
+            this.gameWidth = ConfigHandler.getInstance().getGameWidth();
+            this.gameHeight = ConfigHandler.getInstance().getGameHeight();
         } catch (NullPointerException | NumberFormatException e) {
             System.out.println("Draw - Couldn't read from config.");
 

@@ -3,7 +3,8 @@ package src.game;
 import java.util.ArrayList;
 
 import src.game.entities.*;
-import src.resourceManager.DataBase;
+import src.resourceManager.Map;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * 
@@ -23,19 +24,14 @@ public class MapHandler {
                             {'0', '0', '0', '0', '0', '0', '0', '3', '3', '0', '3', '3', '0', '3', '0', '0'},
                             {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
                             {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'}};
-    private DataBase db;
-
-    public MapHandler(){
-        db = DataBase.getInstance();
-    }
 
     public ArrayList<Entity> getMap(int mapNumber){
         ArrayList<Entity> list = new ArrayList<>();
         int mapWidth, mapHeight;
         try{
-            map = db.getMap().readMap(mapNumber);
-            mapWidth = db.getConfigHandler().getGameWidth();
-            mapHeight = db.getConfigHandler().getGameHeight();
+            map = Map.getInstance().readMap(mapNumber);
+            mapWidth = ConfigHandler.getInstance().getGameWidth();
+            mapHeight = ConfigHandler.getInstance().getGameHeight();
         } catch (Exception e) {
             System.out.println("MapHandler - Couldn't read from config or map file.");
             mapWidth = 16;

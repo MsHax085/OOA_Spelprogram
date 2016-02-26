@@ -3,7 +3,7 @@ package src;
 import java.util.Observable;
 import java.util.Observer;
 import src.frame.DefaultFrameState;
-import src.gui.UserInterface;
+import src.game.Game;
 
 /**
  * 
@@ -18,7 +18,7 @@ public class Core extends Observable {
     private String username = "NAME";
     
     public Core() {
-        this.setStateObserver(new UserInterface());
+        this.setStateObserver(new Game());
     }
     
     public static Core getInstance() {
