@@ -7,9 +7,9 @@ import src.resourceManager.Material;
  * @author ludwigfriborg
  *
  */
-public class WALL extends Entity {
+public class Wall extends Entity {
     
-    public WALL(int x, int y) {
+    public Wall(int x, int y) {
         super(x, y, true);
         material = Material.SLAB.getValue();
     }

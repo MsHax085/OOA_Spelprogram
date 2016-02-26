@@ -40,7 +40,7 @@ public class MapHandler {
         for (int x = 0; x < mapWidth; x++) {
             for (int y = 0; y < mapHeight; y++) {
                 if(map[y][x]=='b')
-                    list.add(new WALL(x, y));
+                    list.add(new Wall(x, y));
                 else if(map[y][x]=='s')
                     list.add(new Start(x, y));
                 else if(map[y][x]=='g')
