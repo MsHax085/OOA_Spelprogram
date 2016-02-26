@@ -13,7 +13,7 @@ public class ConfigHandler implements ImplConfigHandler {
 
     private final FileHandler fh;
     private final String configPath;
-    
+    private static ConfigHandler instance = null;
     private String username;
     private int gameWidth;
     private int gameHeight;
@@ -23,6 +23,10 @@ public class ConfigHandler implements ImplConfigHandler {
         fh = FileHandler.getInstance();
         
         readConfig();
+    }
+    public static ConfigHandler getInstance() {
+        if (instance == null) instance = new ConfigHandler();
+        return instance;
     }
     
     /* Reads a value related to a specific setting.
