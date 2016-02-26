@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
  *
  */
 
-public class GameListener implements KeyListener {	
+public class GameKeyListener implements KeyListener {	
     
     private boolean keyPressed_left;
     private boolean keyPressed_right;
@@ -17,7 +17,7 @@ public class GameListener implements KeyListener {
     private boolean keyPressed_down;
     private boolean keyPressed_space;
 
-    public GameListener() {
+    public GameKeyListener() {
         keyPressed_left = false;
         keyPressed_right = false;
         keyPressed_up = false;

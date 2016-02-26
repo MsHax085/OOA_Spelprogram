@@ -39,7 +39,7 @@ public class Update{
         unsentPackage = false;
     }
 
-    public void doSomeThing(GameListener gl){
+    public void updateMovement(GameKeyListener gl){
         if (gl.getKeyLeft()) {
             move(-1, 0);
         } else if(gl.getKeyRight()) {
