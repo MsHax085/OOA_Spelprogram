@@ -102,9 +102,7 @@ public class ServerSelectionPanel extends SuperPanel {
     public void updateServerList() {
         final Iterator itr = Database.getInstance().getLobbyNames();
         while (itr.hasNext()) {
-            String s = (String) itr.next();
-            System.out.println(s);
-            addRow(s);
+            addRow((String) itr.next());
         }
     }
     
