@@ -10,32 +10,53 @@ public class GameThread implements Runnable  {
 
     private final Game game;
     private boolean run = true;
-    private final ReentrantReadWriteLock rrwl = new ReentrantReadWriteLock(true);
+    private final ReentrantReadWriteLock rrwl_running_boolean = new ReentrantReadWriteLock(true);
+    private final ReentrantReadWriteLock rrwl_time_long = new ReentrantReadWriteLock(true);
+    private long startupTimestampInMillis = 0;
     
     public GameThread(Game game) {
         this.game = game;
     }
     
+    public int getTimeRunningInSeconds() {
+        rrwl_time_long.readLock().lock();
+        try {
+            return (int) ((System.currentTimeMillis() - startupTimestampInMillis) / 1000);
+        } finally {
+            rrwl_time_long.readLock().unlock();
+        }
+    }
+    
     public boolean isRunning() {
-        rrwl.readLock().lock();
+        rrwl_running_boolean.readLock().lock();
         try {
             return run;
         } finally {
-            rrwl.readLock().unlock();
+            rrwl_running_boolean.readLock().unlock();
         }
     }
     
     public void setRunning(boolean run) {
-        rrwl.writeLock().lock();
+        rrwl_running_boolean.writeLock().lock();
         try {
             this.run = run;
         } finally {
-            rrwl.writeLock().unlock();
+            rrwl_running_boolean.writeLock().unlock();
+        }
+    }
+    
+    private void setTimeRunningInSeconds(long time) {
+        rrwl_time_long.writeLock().lock();
+        try {
+            startupTimestampInMillis = time;
+        } finally {
+            rrwl_time_long.writeLock().unlock();
         }
     }
 
     @Override
     public void run(){
+        setTimeRunningInSeconds(System.currentTimeMillis());
         while (isRunning()) {
             game.updateGame();
             try {

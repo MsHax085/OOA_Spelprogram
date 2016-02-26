@@ -32,11 +32,9 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
     private Draw draw;
     private GameListener gl;
     private GameThread gameThread;
-    private TimerTask countTime;
     
     private Update update;
     private MultiplayerHandler multiplayerHandler;
-    private int time;
     //private Timer timer;
 	
     @Override
@@ -77,15 +75,6 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         multiplayerHandler.playerHasFinished("sweg", 23);
 
         new Thread(gameThread).start();
-        time = 0;
-        countTime = new TimerTask() {
-            @Override
-            public void run() {
-                time++;
-            }	
-        };
-
-        new Timer().schedule(countTime, 0, 1000);
     }
 
     public MultiplayerHandler getMultiplayerHandler(){
@@ -114,7 +103,7 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         }
 
         update.doSomeThing(gl);
-        draw.drawList(update.getList(), time);
+        draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
 
         //här ska de andra spelarna uppdateras förmodligen med egen metod
         multiplayerHandler.updatePlayer("sweg1", 1, 2);
@@ -123,7 +112,6 @@ public class Game implements WindowListener, DefaultFrameState, Observer {
         if (update.hasFinished()) {
             System.out.println("You have won");
             gameThread.setRunning(false);
-            countTime.cancel();
 
             draw.setHasFinished();
 
