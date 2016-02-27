@@ -81,8 +81,9 @@ public class ClientManager {
     }
     
     public void registerClientAsLoggedIn(ClientSession cs, String username) {
-        ClientLoggedIn cli = (ClientLoggedIn) cs;
-        cli.setUsername(username);
+        ClientLoggedIn cli = new ClientLoggedIn(cs.getId(), username, cs.getAddress(), cs.getPort());
+        //ClientLoggedIn cli = (ClientLoggedIn) cs;
+        //cli.setUsername(username);
         clientLogIns.add(cli);
     }
 }
