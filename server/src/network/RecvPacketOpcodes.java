@@ -13,6 +13,8 @@ package src.network;
  */
 public enum RecvPacketOpcodes {
     PACKET00(0x00),
+    PACKET01(0x01),
+    PACKET03(0x03),
     TESTPACKET(0x91),
     PACKET08(0x08);
     

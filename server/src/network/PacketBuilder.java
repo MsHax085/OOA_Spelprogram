@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import src.client.ClientLoggedIn;
+import src.client.Lobby;
 import src.lobbyManager.ManagerItem;
 
  /**
@@ -73,17 +75,24 @@ public class PacketBuilder {
     
     /**
      * NOT COMPLETED
+     * TODO: get if a client is ready to start a game.
      * Creates packet data with basic information(name, ready to start) about all clients in the current lobby.
      * @return
      * @throws IOException
      */
-    public byte[] create02UpdateClientLobbyPacket() throws IOException {
+    public byte[] create02UpdateClientLobbyPacket(int numberOfClientsInLobby, Iterator listOfClientsInLobby) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET02.getValue());
         
-        // TODO: Fix the lobby manager so it can be used here.
-        
+        dataOutputStream.writeInt(numberOfClientsInLobby);
+        while (listOfClientsInLobby.hasNext()) {
+            ClientLoggedIn cli = (ClientLoggedIn) listOfClientsInLobby.next();
+            dataOutputStream.writeUTF(cli.getUsername()); // name
+            dataOutputStream.writeInt(cli.getId());
+            //dataOutputStream.writeByte(cli.getReadyForGame);
+            dataOutputStream.writeByte(0); // not ready to start
+        }
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

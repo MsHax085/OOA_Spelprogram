@@ -26,8 +26,8 @@ public class LobbyManager {
         return false;
     }
     
-    public void addLobby(String lobbyName) {
-        addLobby(new Lobby(lobbyName));
+    public void addLobby(String lobbyName, String password) {
+        addLobby(new Lobby(lobbyName, password));
     }
     
     public void addLobby(Lobby lobby) {

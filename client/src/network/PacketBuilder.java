@@ -67,13 +67,12 @@ public class PacketBuilder {
      * 		lobbyId		The ID of the chosen lobby.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create01JoinLobbyPacket(int clientId, String password, int lobbyId) throws IOException {
+    public byte[] create01JoinLobbyPacket(String lobbyName, String password) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET01.getValue());
-        dataOutputStream.writeInt(clientId);
         dataOutputStream.writeUTF(password);
-        dataOutputStream.writeInt(lobbyId);
+        dataOutputStream.writeUTF(lobbyName);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
@@ -99,11 +98,10 @@ public class PacketBuilder {
      * 		password	Password as an unencrypted string, just to make life easier for the NSA.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create03CreateLobbyPacket(int clientId, String lobbyName, String password) throws IOException {
+    public byte[] create03CreateLobbyPacket(String lobbyName, String password) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET03.getValue());
-        dataOutputStream.writeInt(clientId);
         dataOutputStream.writeUTF(lobbyName);
         dataOutputStream.writeUTF(password);
         dataOutputStream.close();

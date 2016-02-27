@@ -10,10 +10,12 @@ import java.util.Iterator;
 public class Lobby {
 
     private final String lobbyName;
+    private final String lobbyPassword;
     private final ArrayList<ClientLoggedIn> clientLogIns = new ArrayList<>();// Logged in clients and registred in lobby
     
-    public Lobby(String lobbyName) {
+    public Lobby(String lobbyName, String lobbyPassword) {
         this.lobbyName = lobbyName;
+        this.lobbyPassword = lobbyPassword;
     }
     
     public boolean isClientRegistredInLobby(ClientLoggedIn cli) {
@@ -32,7 +34,15 @@ public class Lobby {
         return lobbyName;
     }
     
+    public String getLobbyPassword() {
+        return lobbyPassword;
+    }
+    
     public void removeClientFromLobby(ClientLoggedIn cli) {
         clientLogIns.remove(cli);
+    }
+
+    public int getNumberOfClients() {
+        return clientLogIns.size();
     }
 }
