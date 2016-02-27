@@ -182,16 +182,16 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the status of the client login; logged in:0, client with same name:1.
+     * Creates packet data with the clients ID; -1 if the login failed
      * @param   clientLoginStatus   as an int.
      * @return
      * @throws IOException
      */
-    public byte[] create09ClientLoginStatusPacket(int clientLoginStatus) throws IOException {
+    public byte[] create09ClientLoginResponsePacket(int clientId) throws IOException {
     final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET09.getValue());
-        dataOutputStream.writeByte(clientLoginStatus);
+        dataOutputStream.writeInt(clientId);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

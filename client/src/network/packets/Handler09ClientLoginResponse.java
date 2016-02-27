@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 import src.network.ImplPacketHandler;
 
 /**
- * This handles the packet that tells if the server could successfully create the lobby
+ * This handles the packet that tells if the server could successfully login the client.
  * @author BögErik
  */
-public class Handler09ClientLoginStatus implements ImplPacketHandler {
+public class Handler09ClientLoginResponse implements ImplPacketHandler {
     
     private DataInputStream dis = null;
 	
@@ -19,14 +19,14 @@ public class Handler09ClientLoginStatus implements ImplPacketHandler {
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            int createLobbyStatus = dis.readByte();
-            if (createLobbyStatus == 0) {
-                System.out.println("Login Successfull");
-            } else if (createLobbyStatus == 1) {
+            int clientId = dis.readInt();
+            if (clientId >= 0) {
+                System.out.println("Login Successfull with id: " + clientId);
+            } else {
                 System.out.println("Login failed: username is taken");
             }
         } catch (IOException ex) {
-            Logger.getLogger(Handler09ClientLoginStatus.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Handler09ClientLoginResponse.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

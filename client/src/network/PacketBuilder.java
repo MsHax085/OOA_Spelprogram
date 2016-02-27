@@ -62,16 +62,16 @@ public class PacketBuilder {
     
     /** 
      * Tells the server that this client would like to enter a lobby.
-     * @Param	username	User name of this client.
+     * @Param	clientId	ID of this client.
      * 		password	Password as an unencrypted string, just to make life easier for the NSA.
      * 		lobbyId		The ID of the chosen lobby.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create01JoinLobbyPacket(String username, String password, int lobbyId) throws IOException {
+    public byte[] create01JoinLobbyPacket(int clientId, String password, int lobbyId) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET01.getValue());
-        dataOutputStream.writeUTF(username);
+        dataOutputStream.writeInt(clientId);
         dataOutputStream.writeUTF(password);
         dataOutputStream.writeInt(lobbyId);
         dataOutputStream.close();
@@ -94,16 +94,16 @@ public class PacketBuilder {
     
     /**
      * Tells the server to create a new lobby with specific settings. The server joins this client to the lobby.
-     * @Param	username	User name of the client.
+     * @Param	clientId	ID of this client.
      * 		lobbyName	The name of the lobby that should be created.
      * 		password	Password as an unencrypted string, just to make life easier for the NSA.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create03CreateLobbyPacket(String username, String lobbyName, String password) throws IOException {
+    public byte[] create03CreateLobbyPacket(int clientId, String lobbyName, String password) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET03.getValue());
-        dataOutputStream.writeUTF(username);
+        dataOutputStream.writeInt(clientId);
         dataOutputStream.writeUTF(lobbyName);
         dataOutputStream.writeUTF(password);
         dataOutputStream.close();

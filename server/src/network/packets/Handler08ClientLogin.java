@@ -13,7 +13,7 @@ import src.network.PacketBuilder;
 
 /**
  * Adds the client session to the servers client list. Logs the client in with the username given by the client
- * The client is notified if the login was successful or not.
+ * The client is notified of the client ID and if the login failed.
  * @author BögErik
  */
 public class Handler08ClientLogin implements ImplPacketHandler {
@@ -24,15 +24,15 @@ public class Handler08ClientLogin implements ImplPacketHandler {
             // Opcode (first short) already read
             String username = packet.getPacket().readUTF();
             ClientSession cs = ClientManager.getInstance().getClientSessionByIpAndPort(packet.getSession().getAddress(), packet.getSession().getPort());
-            int clientLoginStatus = 1;
+            int clientId = -1;
             if (ClientManager.getInstance().getClientByUsername(username) == null) {
                 ClientManager.getInstance().registerClientAsLoggedIn(cs, username);
                 System.out.println(">" + username + " has logged in");
-                clientLoginStatus = 0;
+                clientId = cs.getId();
             } else {
                 System.out.println(">A client tried to login with a taken username");
             }
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginStatusPacket(clientLoginStatus), packet.getSession());
+            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(clientId), packet.getSession());
         } catch (IOException ex) {
             Logger.getLogger(Handler08ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
