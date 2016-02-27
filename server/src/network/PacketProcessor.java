@@ -2,7 +2,7 @@ package src.network;
 
 import java.util.HashMap;
 import src.network.packets.Handler00LobbyListRequest;
-import src.network.packets.HelloHandler;
+import src.network.packets.Handler08ClientLogin;
 import src.network.packets.TestHandler;
 
 /**
@@ -33,7 +33,7 @@ public class PacketProcessor {
     public void loadRecvHandlers() {
         handlers = new HashMap<>();
         handlers.put(RecvPacketOpcodes.PACKET00.getValue(), new Handler00LobbyListRequest());
-        handlers.put(RecvPacketOpcodes.PACKET1.getValue(), new HelloHandler());
-        handlers.put(RecvPacketOpcodes.PACKET2.getValue(), new TestHandler());
+        handlers.put(RecvPacketOpcodes.TESTPACKET.getValue(), new TestHandler());
+        handlers.put(RecvPacketOpcodes.PACKET08.getValue(), new Handler08ClientLogin());
     }
 }

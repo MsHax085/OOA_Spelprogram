@@ -9,3 +9,5 @@
 /Handler06MoveGameEnteties.class
 /Handler07PlayerWon.class
 /Handler08ClientMapReset.class
+/Handler00LobbyListResponse.class
+/Handler09ClientLoginStatus.class

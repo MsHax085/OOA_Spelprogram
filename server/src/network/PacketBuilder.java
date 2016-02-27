@@ -37,7 +37,7 @@ public class PacketBuilder {
     }
     
     /**
-     * NOT COMPLETED
+     * TODO: write; name, hasPassword(pass != ""/null), numberOfClients, maxNumberOfClients. for all lobbies
      * Creates packet data with basic information about all lobbies.
      * @return
      * @throws IOException
@@ -57,7 +57,7 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the status of the lobby; joined:0, incorrect password:1, lobby is full:2, client name in use:3.
+     * Creates packet data with the status of the lobby; joined:0, incorrect password:1, lobby is full:2.
      * @param	joinLobbyStatus	as an int
      * @return
      * @throws IOException
@@ -89,7 +89,7 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the status of the lobby creation; created:0, lobby with same name:1, client name in use:2.
+     * Creates packet data with the status of the lobby creation; created:0, lobby with same name:1.
      * @param	createLobbyStatus	as an int.
      * @return
      * @throws IOException
@@ -177,6 +177,21 @@ public class PacketBuilder {
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET08.getValue());
         dataOutputStream.writeInt(clientId);
+        dataOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
+     * Creates packet data with the status of the client login; logged in:0, client with same name:1.
+     * @param   clientLoginStatus   as an int.
+     * @return
+     * @throws IOException
+     */
+    public byte[] create09ClientLoginStatusPacket(int clientLoginStatus) throws IOException {
+    final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeShort(SendPacketOpcodes.PACKET09.getValue());
+        dataOutputStream.writeByte(clientLoginStatus);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

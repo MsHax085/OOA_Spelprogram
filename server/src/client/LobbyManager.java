@@ -6,5 +6,5 @@ package src.client;
  */
 public class LobbyManager {
 
-    // TODO: Implement loggy containing ClientLoggedIn's
+    // TODO: Implement lobby containing ClientLoggedIn's
 }

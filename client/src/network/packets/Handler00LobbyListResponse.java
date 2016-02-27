@@ -10,7 +10,7 @@ import src.network.ImplPacketHandler;
 import src.resourceManager.Database;
 
 /**
- * NOT COMPLETED
+ * TODO: Read; name, hasPassword(pass != ""/null), numberOfClients, maxNumberOfClients. for all lobbies
  * @author BögErik
  */
 public class Handler00LobbyListResponse implements ImplPacketHandler {

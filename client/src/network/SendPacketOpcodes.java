@@ -19,7 +19,8 @@ public enum SendPacketOpcodes {
 	PACKET04(0x04),
 	PACKET05(0x05),
 	PACKET06(0x06),
-	PACKET07(0x07);
+	PACKET07(0x07),
+	PACKET08(0x08);
     
     private final int value;
     

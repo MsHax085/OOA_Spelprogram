@@ -15,3 +15,6 @@
 /GameListener.class
 /Game$GameThread.class
 /Game$1.class
+/GameKeyListener.class
+/GameThread.class
+/GameWindowListener.class
