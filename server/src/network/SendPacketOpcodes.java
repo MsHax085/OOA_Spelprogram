@@ -12,7 +12,7 @@ package src.network;
  * Add new packets ID here.
  */
 public enum SendPacketOpcodes {
-    PACKET2(0x91),
+    TESTPACKET(0x91),
     PACKET00(0x00),
     PACKET01(0x01),
     PACKET02(0x02),

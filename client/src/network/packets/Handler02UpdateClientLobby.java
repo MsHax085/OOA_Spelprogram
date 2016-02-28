@@ -25,7 +25,7 @@ public class Handler02UpdateClientLobby implements ImplPacketHandler {
             for (int i = 0; i < numberOfClientsInLobby; i++) {
                 String username = dis.readUTF();
                 int clientId = dis.readInt();
-                int clientReadyToStart = dis.readByte();
+                boolean clientReadyToStart = dis.readBoolean();
                 System.out.println("Client: " + username + " with ID: " + clientId + " is ready: " + clientReadyToStart);
             }
         } catch (IOException ex) {

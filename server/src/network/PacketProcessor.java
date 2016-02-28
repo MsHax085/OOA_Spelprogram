@@ -3,7 +3,11 @@ package src.network;
 import java.util.HashMap;
 import src.network.packets.Handler00LobbyListRequest;
 import src.network.packets.Handler01JoinLobby;
+import src.network.packets.Handler02ReadyRequest;
 import src.network.packets.Handler03CreateLobby;
+import src.network.packets.Handler05MoveGameEntities;
+import src.network.packets.Handler06PlayerWon;
+import src.network.packets.Handler07PlayerReset;
 import src.network.packets.Handler08ClientLogin;
 import src.network.packets.TestHandler;
 
@@ -36,7 +40,11 @@ public class PacketProcessor {
         handlers = new HashMap<>();
         handlers.put(RecvPacketOpcodes.PACKET00.getValue(), new Handler00LobbyListRequest());
         handlers.put(RecvPacketOpcodes.PACKET01.getValue(), new Handler01JoinLobby());
+        handlers.put(RecvPacketOpcodes.PACKET02.getValue(), new Handler02ReadyRequest());
         handlers.put(RecvPacketOpcodes.PACKET03.getValue(), new Handler03CreateLobby());
+        handlers.put(RecvPacketOpcodes.PACKET05.getValue(), new Handler05MoveGameEntities());
+        handlers.put(RecvPacketOpcodes.PACKET06.getValue(), new Handler06PlayerWon());
+        handlers.put(RecvPacketOpcodes.PACKET07.getValue(), new Handler07PlayerReset());
         handlers.put(RecvPacketOpcodes.TESTPACKET.getValue(), new TestHandler());
         handlers.put(RecvPacketOpcodes.PACKET08.getValue(), new Handler08ClientLogin());
     }

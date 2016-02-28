@@ -38,11 +38,24 @@ public class LobbyManager {
         return lobbies.iterator();
     }
     
+    public int getNumberOfLobbies() {
+        return lobbies.size();
+    }
+    
     public Lobby getLobby(String lobbyName) {
         final Iterator itr = getLobbies();
         while (itr.hasNext()) {
             final Lobby lobby = (Lobby) itr.next();
             if (lobby.getLobbyName().equals(lobbyName)) return lobby;
+        }
+        return null;
+    }
+    
+    public Lobby getLobbyByClient(ClientLoggedIn cli) {
+        final Iterator itr = getLobbies();
+        while (itr.hasNext()) {
+            final Lobby lobby = (Lobby) itr.next();
+            if (lobby.isClientRegistredInLobby(cli)) return lobby;
         }
         return null;
     }

@@ -10,7 +10,8 @@ import src.network.ImplPacketHandler;
 import src.resourceManager.Database;
 
 /**
- * TODO: Read; name, hasPassword(pass != ""/null), numberOfClients, maxNumberOfClients. for all lobbies
+ * Reads info about all the lobbies in the server and saves it on this client.
+ * TODO: Do something funny with lobbyInfo
  * @author BögErik
  */
 public class Handler00LobbyListResponse implements ImplPacketHandler {
@@ -19,13 +20,15 @@ public class Handler00LobbyListResponse implements ImplPacketHandler {
 	
     @Override
     public void handlePacket() {
-        System.out.println("00LobbyListResponse recived from server");
         if (dis == null) return;
         try {
             // Opcode (first short) already read
-            int lobbys = dis.readInt();
-            for (int i = 0; i < lobbys; i++) {
-                Database.getInstance().addLobby(dis.readUTF());
+            int numberOfLobbies = dis.readInt();
+            for (int i = 0; i < numberOfLobbies; i++) {
+                String lobbyName = dis.readUTF();
+                String lobbyInfo = lobbyName + ":" + ((dis.readBoolean()) ? "Pass:" : "    :") + dis.readInt() + "/5";
+                Database.getInstance().addLobby(lobbyName);
+                System.out.println(lobbyInfo);
             }
             Core.getInstance().signalObservers(Changes.LOBBYLIST_CHANGE.getValue());
         } catch (IOException ex) {

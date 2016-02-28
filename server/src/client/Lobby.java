@@ -13,6 +13,8 @@ public class Lobby {
     private final String lobbyPassword;
     private final ArrayList<ClientLoggedIn> clientLogIns = new ArrayList<>();// Logged in clients and registred in lobby
     
+    private int lobbyCurrentMap = -1;
+    
     public Lobby(String lobbyName, String lobbyPassword) {
         this.lobbyName = lobbyName;
         this.lobbyPassword = lobbyPassword;
@@ -36,6 +38,14 @@ public class Lobby {
     
     public String getLobbyPassword() {
         return lobbyPassword;
+    }
+    
+    public int getLobbyCurrentMap() {
+        return lobbyCurrentMap;
+    }
+    
+    public void setLobbyCurrentMap(int lobbyCurrentMap) {
+        this.lobbyCurrentMap = lobbyCurrentMap;
     }
     
     public void removeClientFromLobby(ClientLoggedIn cli) {

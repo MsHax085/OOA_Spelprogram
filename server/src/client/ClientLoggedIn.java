@@ -9,6 +9,8 @@ import java.net.InetAddress;
 public class ClientLoggedIn extends ClientSession {
     
     private String username = "";
+    private boolean readyToStart = false;
+    private int timeOfCompletion = 0;
 
     public ClientLoggedIn(int id, String username, InetAddress ip, int port) {
         super(id, ip, port);
@@ -21,5 +23,21 @@ public class ClientLoggedIn extends ClientSession {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    
+    public void setReadyToStart(boolean readyToStart) {
+        this.readyToStart = readyToStart;
+    }
+    
+    public boolean isReadyToStart() {
+        return readyToStart;
+    }
+
+    public int getTimeOfCompletion() {
+        return timeOfCompletion;
+    }
+
+    public void setTimeOfCompletion(int timeOfCompletion) {
+        this.timeOfCompletion = timeOfCompletion;
     }
 }

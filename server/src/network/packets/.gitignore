@@ -8,3 +8,11 @@
 /Handler08ClientLogin.class
 /Handler01JoinLobby.class
 /Handler03CreateLobby.class
+/Handler02ReadyResponse.class
+/Handler05MoveGameEnterties.class
+/Handler06PlayerWonPacket.class
+/Handler07PlayerResetPacket.class
+/Handler06PlayerWon.class
+/Handler07PlayerReset.class
+/Handler02ReadyRequest.class
+/Handler05MoveGameEntities.class

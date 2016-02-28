@@ -32,26 +32,28 @@ public class PacketBuilder {
     public byte[] createTestPacket() throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-        dataOutputStream.writeShort(SendPacketOpcodes.PACKET2.getValue());
+        dataOutputStream.writeShort(SendPacketOpcodes.TESTPACKET.getValue());
         dataOutputStream.writeInt(1337);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
     
     /**
-     * TODO: write; name, hasPassword(pass != ""/null), numberOfClients, maxNumberOfClients. for all lobbies
      * Creates packet data with basic information about all lobbies.
      * @return
      * @throws IOException
      */
-    public byte[] create00LobbyListResponsePacket(int lobbys, Iterator list) throws IOException {
+    public byte[] create00LobbyListResponsePacket(int numberOfLobbies, Iterator lobbies) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET00.getValue());
         
-        dataOutputStream.writeInt(lobbys);
-        while (list.hasNext()) {
-            dataOutputStream.writeUTF(((ManagerItem) list.next()).getName());
+        dataOutputStream.writeInt(numberOfLobbies);
+        while (lobbies.hasNext()) {
+            Lobby lobby = (Lobby) lobbies.next();
+            dataOutputStream.writeUTF(lobby.getLobbyName());
+            dataOutputStream.writeBoolean((lobby.getLobbyPassword() == "") ? false : true); //hasPassword
+            dataOutputStream.writeInt(lobby.getNumberOfClients());
         }
         
         dataOutputStream.close();
@@ -74,8 +76,6 @@ public class PacketBuilder {
     }
     
     /**
-     * NOT COMPLETED
-     * TODO: get if a client is ready to start a game.
      * Creates packet data with basic information(name, ready to start) about all clients in the current lobby.
      * @return
      * @throws IOException
@@ -90,8 +90,7 @@ public class PacketBuilder {
             ClientLoggedIn cli = (ClientLoggedIn) listOfClientsInLobby.next();
             dataOutputStream.writeUTF(cli.getUsername()); // name
             dataOutputStream.writeInt(cli.getId());
-            //dataOutputStream.writeByte(cli.getReadyForGame);
-            dataOutputStream.writeByte(0); // not ready to start
+            dataOutputStream.writeBoolean(cli.isReadyToStart());
         }
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();

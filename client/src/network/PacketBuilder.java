@@ -82,11 +82,10 @@ public class PacketBuilder {
      * @Param	clientId	The ID of this client.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create02ReadyRequest(int clientId) throws IOException {
+    public byte[] create02ReadyRequest() throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET02.getValue());
-        dataOutputStream.writeInt(clientId);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
@@ -139,11 +138,10 @@ public class PacketBuilder {
      * 		time		This clients time of completion
      * @Return			The packet message as an byte array.
      */
-    public byte[] create06PlayerWonPacket(int clientId, int time) throws IOException {
+    public byte[] create06PlayerWonPacket(int time) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET06.getValue());
-        dataOutputStream.writeInt(clientId);
         dataOutputStream.writeInt(time);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
@@ -154,11 +152,10 @@ public class PacketBuilder {
      * @Param	clientId	This clients ID.
      * @Return			The packet message as an byte array.
      */
-    public byte[] create07PlayerResetPacket(int clientId) throws IOException {
+    public byte[] create07PlayerResetPacket() throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET07.getValue());
-        dataOutputStream.writeInt(clientId);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
