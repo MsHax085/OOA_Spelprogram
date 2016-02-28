@@ -2,6 +2,10 @@ package src.gui.panels;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -9,8 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.table.DefaultTableModel;
 
 import src.gui.panels.event.ControllerHighscorePanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
+import src.network.PacketProcessor;
+import src.network.RecvPacketOpcodes;
 
 /**
  *
@@ -29,7 +38,7 @@ public class HighscorePanel extends SuperPanel {
         this.controller = new ControllerHighscorePanel(this);
         container = new JPanel();
         text = new JLabel("Highscore");
-        highScoreList = new JTable(14,1);
+        highScoreList = new JTable(0,1);
         prev = new JButton("Prev");
         
         container.setBackground(new Color(0, 0, 0, 0));
@@ -74,6 +83,25 @@ public class HighscorePanel extends SuperPanel {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        
+        try {
+            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create04RequestHighscorePacket());
+        } catch (IOException ex) {
+            Logger.getLogger(HighscorePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //Fattar inte riktigt den här
+    public void updateHighscoreList() {
+        
+    	final Iterator itr = PacketProcessor.getInstance().getHandler(0x05));
+        while (itr.hasNext()) {
+            addRow((String) itr.next());
+        }
+    }
+    
+    private void addRow(String str) {
+        DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();
+        model.addRow(new Object[]{str});
     }
     
     public JButton getPrevButton() {

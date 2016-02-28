@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import src.gui.UserInterface;
 import src.gui.panels.StartPanel;
 import src.resourceManager.config.ConfigHandler;
+import javax.swing.JTextField;
 
 /**
  *
@@ -13,26 +14,23 @@ import src.resourceManager.config.ConfigHandler;
 public class ControllerStartPanel implements MouseListener {
     
     private final StartPanel panel;
+    private final JTextField usernameField;
     
     public ControllerStartPanel(StartPanel panel) {
         this.panel = panel;
+        this.usernameField = panel.getUsernameInput();
     }
     
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getContinueButton())) {
         	if(panel.getUsernameInput().getText().equals("Choose a username") || panel.getUsernameInput().getText().equals("")) {
-        		//panel.setBackground(Color.RED);
+        		//usernameField.setBackground(Color.RED);
         	}
         	else {
         		ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());
         		UserInterface.changeCard("menupanel");
-        	}
-        } else if (e.getSource().equals(panel.getUsernameInput())) {
-            if (panel.getUsernameInput().getText().equals("Choose a username")) {
-                panel.getUsernameInput().setText("");
-            }
-        }
+        	}}
     }
 
     @Override

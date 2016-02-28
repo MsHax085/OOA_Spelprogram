@@ -3,6 +3,7 @@ package src.gui.panels;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
@@ -111,12 +112,20 @@ public class ServerSelectionPanel extends SuperPanel {
         model.addRow(new Object[]{str});
     }
     
+    public String getPasswordPane() {
+    	return JOptionPane.showInputDialog("Enter password");
+    }
+    
     public JButton getJoinButton() {
         return join;
     }
     
     public JButton getPrevButton() {
         return prev;
+    }
+    
+    public JTable getServerList() {
+        return serverList;
     }
 }
 

@@ -2,6 +2,9 @@ package src.gui.panels;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -11,6 +14,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.JPanel;
 
 import src.gui.panels.event.ControllerServerLobbyPanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
 
 /**
  *
@@ -84,6 +89,7 @@ public class ServerLobbyPanel extends SuperPanel {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        
     }
     
     public JButton getQuitButton() {
