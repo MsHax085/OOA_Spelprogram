@@ -55,6 +55,6 @@ public class PacketProcessor {
         handlers.put(RecvPacketOpcodes.PACKET08.getValue(), new Handler08ClientMapReset());
         handlers.put(RecvPacketOpcodes.PACKET09.getValue(), new Handler09ClientLoginResponse());
         handlers.put(RecvPacketOpcodes.PACKET0A.getValue(), new Handler0AClientLogoutResponse());
-        handlers.put(RecvPacketOpcodes.PACKET09.getValue(), new Handler0BLeaveLobbyResponse());
+        handlers.put(RecvPacketOpcodes.PACKET0B.getValue(), new Handler0BLeaveLobbyResponse());
     }
 }
