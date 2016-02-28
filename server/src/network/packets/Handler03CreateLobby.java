@@ -25,22 +25,29 @@ public class Handler03CreateLobby implements ImplPacketHandler {
     @Override
     public void handlePacket(Packet packet) {
         try {
-            // Opcode (first short) already read
-            String lobbyName = packet.getPacket().readUTF();
-            String password = packet.getPacket().readUTF();
-            ClientSession cs = packet.getSession();
-            int createLobbyStatus = 1;
-            if (LobbyManager.getInstance().getLobby(lobbyName) != null) {
-                System.out.println(">ClientID: " + cs.getId() + " tried to create a lobby with another lobby's name");
+            ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
+            if (senderClient != null) { // if the client is logged in
+                // Opcode (first short) already read
+                String lobbyName = packet.getPacket().readUTF();
+                String password = packet.getPacket().readUTF();
+                ClientSession cs = packet.getSession();
+                int createLobbyStatus = 1;
+            
+                if (LobbyManager.getInstance().getLobby(lobbyName) != null) {
+                    System.out.println(">ClientID: " + cs.getId() + " tried to create a lobby with another lobby's name");
+                } else {
+                    LobbyManager.getInstance().addLobby(lobbyName, password);
+                    LobbyManager.getInstance().getLobby(lobbyName).addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
+                    System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
+                    createLobbyStatus = 0;
+                }
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyStatusPacket(createLobbyStatus), cs);
+                if (createLobbyStatus == 0) {
+                    Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02UpdateClientLobbyPacket(1, LobbyManager.getInstance().getLobby(lobbyName).getClientsInLobby()), cs);
+                }
             } else {
-                LobbyManager.getInstance().addLobby(lobbyName, password);
-                LobbyManager.getInstance().getLobby(lobbyName).addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
-                System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
-                createLobbyStatus = 0;
-            }
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyStatusPacket(createLobbyStatus), cs);
-            if (createLobbyStatus == 0) {
-                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02UpdateClientLobbyPacket(1, LobbyManager.getInstance().getLobby(lobbyName).getClientsInLobby()), cs);
+                // if the client isn't logged in: Send a failed to login packet.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler03CreateLobby.class.getName()).log(Level.SEVERE, null, ex);

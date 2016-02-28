@@ -26,14 +26,19 @@ public class Handler05MoveGameEntities implements ImplPacketHandler {
     public void handlePacket(Packet packet) {
         try {
             ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
-            Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
-            Iterator clientsInLobby = lobby.getClientsInLobby();
-            while (clientsInLobby.hasNext()) {
-                byte[] moveGameEntetiesPacket = PacketBuilder.getInstance().create06MoveGameEntetiesPacket();
-                ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                if(!cli.equals(senderClient)) {
-                    Connection.getInstance().sendPacket(moveGameEntetiesPacket, cli);
+            if (senderClient != null) { // if the client is logged in
+                Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                Iterator clientsInLobby = lobby.getClientsInLobby();
+                while (clientsInLobby.hasNext()) {
+                    byte[] moveGameEntetiesPacket = PacketBuilder.getInstance().create06MoveGameEntetiesPacket();
+                    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                    if(!cli.equals(senderClient)) {
+                        Connection.getInstance().sendPacket(moveGameEntetiesPacket, cli);
+                    }
                 }
+            } else {
+                // if the client isn't logged in: Send a failed to login packet.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler05MoveGameEntities.class.getName()).log(Level.SEVERE, null, ex);

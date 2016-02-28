@@ -25,33 +25,39 @@ public class Handler01JoinLobby implements ImplPacketHandler {
     @Override
     public void handlePacket(Packet packet) {
         try {
-            // Opcode (first short) already read
-            String password = packet.getPacket().readUTF();
-            String lobbyName = packet.getPacket().readUTF();
             ClientSession cs = packet.getSession();
-            Lobby lobby = LobbyManager.getInstance().getLobby(lobbyName);
-            int joinLobbyStatus = 3;
-            if (lobby == null) {
-                System.out.println(">ClientID: " + cs.getId() + " tried to join nonexisting lobby");
-            } else if (lobby.getNumberOfClients() >= 5) { // 5 is the maxNumberOFClients.
-                System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
-                joinLobbyStatus = 2;
-            } else if (!password.equals(lobby.getLobbyPassword())){
-                System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " with invalid password");
-                joinLobbyStatus = 1;
-            } else {
-                lobby.addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
-                System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
-                joinLobbyStatus = 0;
-            }
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyResponcePacket(joinLobbyStatus), cs);
-            if (joinLobbyStatus == 0) {
-                byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
-                Iterator clientsInLobby = lobby.getClientsInLobby();
-                while (clientsInLobby.hasNext()) {
-                    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                    Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+            ClientLoggedIn senderClient = (ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId());
+            if (senderClient != null) { //checks if the client is logged in
+                // Opcode (first short) already read
+                String password = packet.getPacket().readUTF();
+                String lobbyName = packet.getPacket().readUTF();
+                Lobby lobby = LobbyManager.getInstance().getLobby(lobbyName);
+                int joinLobbyStatus = 3;
+                if (lobby == null) {
+                    System.out.println(">ClientID: " + cs.getId() + " tried to join nonexisting lobby");
+                } else if (lobby.getNumberOfClients() >= 5) { // 5 is the maxNumberOFClients.
+                    System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
+                    joinLobbyStatus = 2;
+                } else if (!password.equals(lobby.getLobbyPassword())){
+                    System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " with invalid password");
+                    joinLobbyStatus = 1;
+                } else {
+                    lobby.addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
+                    System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
+                    joinLobbyStatus = 0;
                 }
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyResponcePacket(joinLobbyStatus), cs);
+                if (joinLobbyStatus == 0) {
+                    byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
+                    Iterator clientsInLobby = lobby.getClientsInLobby();
+                    while (clientsInLobby.hasNext()) {
+                        ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                        Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+                    }
+                }
+            } else {
+                //If the client isn't logged in: send a login failed packet instead.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), cs);
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler01JoinLobby.class.getName()).log(Level.SEVERE, null, ex);

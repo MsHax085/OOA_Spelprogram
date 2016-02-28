@@ -28,29 +28,33 @@ public class Handler06PlayerWon implements ImplPacketHandler {
     public void handlePacket(Packet packet) {
         try {
             ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
-            int time = packet.getPacket().readInt();
-            senderClient.setTimeOfCompletion(time);
-            boolean hasFinished = true;
-            Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
-            Iterator clientsInLobby = lobby.getClientsInLobby();
-            while (clientsInLobby.hasNext()) {
-                byte[] playerWonPacket = PacketBuilder.getInstance().create07PlayerWonPacket(senderClient.getId(), time);
-                ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                if (!cli.equals(senderClient)) {
-                    Connection.getInstance().sendPacket(playerWonPacket, cli);
-                }
-                if (cli.getTimeOfCompletion() <= 0) {
-                    hasFinished = false;
-                }
-            }
-            if (hasFinished) {
-                //TODO: Save all the times to the high score file.
-                clientsInLobby = lobby.getClientsInLobby();
+            if (senderClient != null) {
+                int time = packet.getPacket().readInt();
+                senderClient.setTimeOfCompletion(time);
+                boolean hasFinished = true;
+                Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                Iterator clientsInLobby = lobby.getClientsInLobby();
                 while (clientsInLobby.hasNext()) {
+                    byte[] playerWonPacket = PacketBuilder.getInstance().create07PlayerWonPacket(senderClient.getId(), time);
                     ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                    cli.setTimeOfCompletion(0);
+                    if (!cli.equals(senderClient)) {
+                        Connection.getInstance().sendPacket(playerWonPacket, cli);
+                    }
+                    if (cli.getTimeOfCompletion() <= 0) {
+                        hasFinished = false;
+                    }
                 }
-                
+                if (hasFinished) {
+                    //TODO: Save all the times to the high score file.
+                    clientsInLobby = lobby.getClientsInLobby();
+                    while (clientsInLobby.hasNext()) {
+                        ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                        cli.setTimeOfCompletion(0);
+                    }
+                }
+            } else {
+                // if the client isn't logged in: Send a failed to login packet.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler06PlayerWon.class.getName()).log(Level.SEVERE, null, ex);

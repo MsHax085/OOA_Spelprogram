@@ -25,13 +25,18 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
     public void handlePacket(Packet packet) {
         try {
             ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
-            senderClient.setReadyToStart(true);
-            Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
-            byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
-            Iterator clientsInLobby = lobby.getClientsInLobby();
-            while (clientsInLobby.hasNext()) {
-                ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+            if (senderClient != null) { // if the client is logged in
+                senderClient.setReadyToStart(true);
+                Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
+                Iterator clientsInLobby = lobby.getClientsInLobby();
+                while (clientsInLobby.hasNext()) {
+                    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                    Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+                }
+            } else {
+                // if the client isn't logged in: Send a failed to login packet.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler02ReadyRequest.class.getName()).log(Level.SEVERE, null, ex);

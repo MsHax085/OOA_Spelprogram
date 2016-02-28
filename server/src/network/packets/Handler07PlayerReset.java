@@ -25,14 +25,19 @@ public class Handler07PlayerReset implements ImplPacketHandler {
     public void handlePacket(Packet packet) {
         try {
             ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
-            Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
-            Iterator clientsInLobby = lobby.getClientsInLobby();
-            while (clientsInLobby.hasNext()) {
-                byte[] playerResetPacket = PacketBuilder.getInstance().create08ClientMapResetPacket(senderClient.getId());
-                ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                if(!cli.equals(senderClient)) {
-                    Connection.getInstance().sendPacket(playerResetPacket, cli);
+            if (senderClient != null) {
+                Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                Iterator clientsInLobby = lobby.getClientsInLobby();
+                while (clientsInLobby.hasNext()) {
+                    byte[] playerResetPacket = PacketBuilder.getInstance().create08ClientMapResetPacket(senderClient.getId());
+                    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                    if(!cli.equals(senderClient)) {
+                        Connection.getInstance().sendPacket(playerResetPacket, cli);
+                    }
                 }
+            } else {
+                // if the client isn't logged in: Send a failed to login packet.
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(-1), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler07PlayerReset.class.getName()).log(Level.SEVERE, null, ex);
