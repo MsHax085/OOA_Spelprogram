@@ -2,9 +2,15 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import src.gui.UserInterface;
 import src.gui.panels.ServerCreationPanel;
+import src.gui.panels.ServerSelectionPanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
 
 public class ControllerServerCreationPanel implements MouseListener {
 	
@@ -35,7 +41,15 @@ public class ControllerServerCreationPanel implements MouseListener {
     	if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
         } else if (e.getSource().equals(panel.getCreateButton())) {
-            UserInterface.changeCard("serverlobbypanel");
+        	if(!panel.getServerNameInput().getText().equals("") ) {
+        		try {
+                    Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyPacket(panel.getServerNameInput().getText(),panel.getServerPasswordInput().getText()));
+                } catch (IOException ex) {
+                    Logger.getLogger(ServerCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                UserInterface.changeCard("serverlobbypanel");
+        	}
+
         }
     }
 }

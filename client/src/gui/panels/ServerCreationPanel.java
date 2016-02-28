@@ -22,8 +22,8 @@ public class ServerCreationPanel extends SuperPanel {
     private JLabel text;
     private JLabel serverName;
     private JLabel serverPassword;
-    private JTextField name;
-    private JPasswordField password;
+    private JTextField serverNameField;
+    private JPasswordField serverPasswordField;
     private JButton create;
     private JButton prev;
     private JPanel container;
@@ -35,9 +35,9 @@ public class ServerCreationPanel extends SuperPanel {
         container = new JPanel();
         text = new JLabel("Options");
         serverName = new JLabel("Server name");
-        name = new JTextField(20);
+        serverNameField = new JTextField(20);
         serverPassword = new JLabel("Server password");
-        password = new JPasswordField(20);
+        serverPasswordField = new JPasswordField(20);
         prev = new JButton("Prev");
         create = new JButton("Create");
 
@@ -56,9 +56,9 @@ public class ServerCreationPanel extends SuperPanel {
                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(text, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                     .addComponent(serverName, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverNameField, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                     .addComponent(serverPassword, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE))
-                	.addComponent(password, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                	.addComponent(serverPasswordField, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                 	.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 	.addComponent(prev, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                 	.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
@@ -72,11 +72,11 @@ public class ServerCreationPanel extends SuperPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(serverName, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
-                    .addComponent(name, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverNameField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(serverPassword, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
-                    .addComponent(password, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverPasswordField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     // MÅSTE FIXAS!!!!
                     .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
@@ -105,6 +105,14 @@ public class ServerCreationPanel extends SuperPanel {
     
     public JButton getCreateButton() {
         return create;
+    }
+    
+    public JTextField getServerNameInput() {
+        return serverNameField;
+    }
+    
+    public JTextField getServerPasswordInput() {
+        return serverPasswordField;
     }
 }
 

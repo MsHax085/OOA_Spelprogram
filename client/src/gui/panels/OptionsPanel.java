@@ -105,4 +105,12 @@ public class OptionsPanel extends SuperPanel {
     public JButton getSaveButton() {
         return save;
     }
+    
+    public JTextField getUsernameInput() {
+        return usernameField;
+    }
+    
+    public JTextField getIpAdressInput() {
+        return serverIpField;
+    }
 }

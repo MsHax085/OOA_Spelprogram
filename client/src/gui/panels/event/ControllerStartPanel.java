@@ -1,8 +1,10 @@
 package src.gui.panels.event;
 
+import java.awt.Color;
 import java.awt.event.MouseListener;
 import src.gui.UserInterface;
 import src.gui.panels.StartPanel;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  *
@@ -19,7 +21,13 @@ public class ControllerStartPanel implements MouseListener {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getContinueButton())) {
-            UserInterface.changeCard("menupanel");
+        	if(panel.getUsernameInput().getText().equals("Choose a username") || panel.getUsernameInput().getText().equals("")) {
+        		//panel.setBackground(Color.RED);
+        	}
+        	else {
+        		ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());
+        		UserInterface.changeCard("menupanel");
+        	}
         } else if (e.getSource().equals(panel.getUsernameInput())) {
             if (panel.getUsernameInput().getText().equals("Choose a username")) {
                 panel.getUsernameInput().setText("");
