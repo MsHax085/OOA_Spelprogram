@@ -12,6 +12,8 @@ import src.network.packets.Handler06MoveGameEnteties;
 import src.network.packets.Handler07PlayerWon;
 import src.network.packets.Handler08ClientMapReset;
 import src.network.packets.Handler09ClientLoginResponse;
+import src.network.packets.Handler0AClientLogoutResponse;
+import src.network.packets.Handler0BLeaveLobbyResponse;
 import src.network.packets.TestHandler;
 
 /**
@@ -52,5 +54,7 @@ public class PacketProcessor {
         handlers.put(RecvPacketOpcodes.PACKET07.getValue(), new Handler07PlayerWon());
         handlers.put(RecvPacketOpcodes.PACKET08.getValue(), new Handler08ClientMapReset());
         handlers.put(RecvPacketOpcodes.PACKET09.getValue(), new Handler09ClientLoginResponse());
+        handlers.put(RecvPacketOpcodes.PACKET0A.getValue(), new Handler0AClientLogoutResponse());
+        handlers.put(RecvPacketOpcodes.PACKET09.getValue(), new Handler0BLeaveLobbyResponse());
     }
 }

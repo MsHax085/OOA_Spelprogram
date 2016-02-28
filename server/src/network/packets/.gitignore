@@ -16,3 +16,5 @@
 /Handler07PlayerReset.class
 /Handler02ReadyRequest.class
 /Handler05MoveGameEntities.class
+/Handler09ClientLogout.class
+/Handler0ALeaveLobby.class

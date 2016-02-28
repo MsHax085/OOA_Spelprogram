@@ -161,7 +161,8 @@ public class PacketBuilder {
     }
     
     /**
-     * Logs in to the server with this client username
+     * Logs in to the server with this client username. This is needed for teh server to
+     * Hhandle most of the packets.
      * @Param   username    This clients username
      * @Return          The packet message as an byte array.
      */
@@ -170,6 +171,35 @@ public class PacketBuilder {
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET08.getValue());
         dataOutputStream.writeUTF(username);
+        dataOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
+     * creates a packet that logs this client out of the server. If this client is in a lobby he is 
+     * automatically removed from it.
+     * @param username  This clients username.
+     * @return
+     * @throws IOException
+     */
+    public byte[] create09ClientLogoutPacket() throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeShort(SendPacketOpcodes.PACKET09.getValue());
+        dataOutputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
+    
+    /**
+     * creates a packet that removes this client from the lobby it is in.
+     * @param 
+     * @return
+     * @throws IOException
+     */
+    public byte[] create0ALeaveLobbyPacket() throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeShort(SendPacketOpcodes.PACKET0A.getValue());
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

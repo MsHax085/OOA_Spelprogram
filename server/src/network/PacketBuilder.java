@@ -13,7 +13,7 @@ import src.lobbyManager.ManagerItem;
  * collection of the packet building methods. 
  * 
  * IMPLEMENTATION: packetDataAsByteArray = PacketBuilder.getInstance().create'packet name'(arguments);
- * @author Richard, BögErik
+ * @author BögErik
  *
  */
 
@@ -203,4 +203,33 @@ public class PacketBuilder {
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
+    
+    /**
+     * creates a packet with status about the client logout.
+     * @param clientLogoutStatus    0:successful, 1:client is not loggedIn, 2:other problem.
+     * @return
+     * @throws IOException
+     */
+    public byte[] create0AClientLogoutResponsePacket(int clientLogoutStatus) throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+            dataOutputStream.writeShort(SendPacketOpcodes.PACKET0A.getValue());
+            dataOutputStream.writeByte(clientLogoutStatus);
+            dataOutputStream.close();
+            return byteArrayOutputStream.toByteArray();
+        }
+    /**
+     * creates a packet with status of leaving a lobby.
+     * @param clientLeaveLobbyStatus    0:successful, 1:lobby didn't exist. 2:other problem
+     * @return
+     * @throws IOException
+     */
+    public byte[] create0BLeaveLobbyResponsePacket(int clientLeaveLobbyStatus) throws IOException {
+        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
+            dataOutputStream.writeShort(SendPacketOpcodes.PACKET0B.getValue());
+            dataOutputStream.writeByte(clientLeaveLobbyStatus);
+            dataOutputStream.close();
+            return byteArrayOutputStream.toByteArray();
+        }
 }

@@ -21,7 +21,9 @@ public enum RecvPacketOpcodes {
     PACKET06(0x06),
     PACKET07(0x07),
     PACKET08(0x08),
-    PACKET09(0x09);
+    PACKET09(0x09),
+    PACKET0A(0x0A),
+    PACKET0B(0x0B);
     
     private final int value;
     
