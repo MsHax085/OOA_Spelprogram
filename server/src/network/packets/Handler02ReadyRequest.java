@@ -17,6 +17,7 @@ import src.network.PacketBuilder;
 /**
  * Changes the client who sent the packet, readyToStart to true. Sends out the 
  * current client status of all clients to all clients.
+ * If everyone is ready: send startGamePacket to all clients.
  * @author BögErik
  */
 public class Handler02ReadyRequest implements ImplPacketHandler {
@@ -28,11 +29,22 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
             if (senderClient != null) { // if the client is logged in
                 senderClient.setReadyToStart(true);
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                boolean isLobbyReadyToStart = true;
                 byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
                 Iterator clientsInLobby = lobby.getClientsInLobby();
                 while (clientsInLobby.hasNext()) {
                     ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
                     Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+                    if (!cli.isReadyToStart()) isLobbyReadyToStart = false;
+                }
+                if (isLobbyReadyToStart) {
+                    int mapId = 1;
+                    byte[] startGamePacket = PacketBuilder.getInstance().create04StartGamePacket(mapId);
+                    clientsInLobby = lobby.getClientsInLobby();
+                    while (clientsInLobby.hasNext()) {
+                	ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                	Connection.getInstance().sendPacket(startGamePacket, cli);
+                    }
                 }
             } else {
                 // if the client isn't logged in: Send a failed to login packet.
