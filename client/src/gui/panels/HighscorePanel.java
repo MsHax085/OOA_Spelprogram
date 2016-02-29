@@ -20,6 +20,7 @@ import src.network.Connection;
 import src.network.PacketBuilder;
 import src.network.PacketProcessor;
 import src.network.RecvPacketOpcodes;
+import src.resourceManager.Database;
 
 /**
  *
@@ -90,14 +91,14 @@ public class HighscorePanel extends SuperPanel {
             Logger.getLogger(HighscorePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    //Fattar inte riktigt den här
-    /*public void updateHighscoreList() {
+    
+    public void updateHighscoreList() {
         
-    	final Iterator itr = PacketProcessor.getInstance().getHandler(0x05));
+    	final Iterator itr = Database.getInstance().getHighscore();
         while (itr.hasNext()) {
             addRow((String) itr.next());
         }
-    }*/
+    }
     
     private void addRow(String str) {
         DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();

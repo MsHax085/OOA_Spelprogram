@@ -54,13 +54,11 @@ public class ControllerSelectionPanel implements MouseListener {
             	}
             	else {
             		password = panel.getPasswordPane();
-            		//Skajämföra lösenordet med det i jtablen men har inte fattat hur jag ska göra det än!
-            		if(serverList.getValueAt(serverList.getSelectedRow(), 1) == password) {
-            			UserInterface.changeCard("serverlobbypanel");
-            			try {
-                            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket("",password));
-                        } catch (IOException ex) {
-                            Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            		UserInterface.changeCard("serverlobbypanel");
+            		try {
+            			Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket("",password));
+                    } catch (IOException ex) {
+                    	Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
                         }
             		}
             		else {
