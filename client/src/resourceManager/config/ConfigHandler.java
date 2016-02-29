@@ -17,6 +17,8 @@ public class ConfigHandler implements ImplConfigHandler {
     private String username;
     private int gameWidth;
     private int gameHeight;
+    private String serverIp;
+    private int serverPort;
 
     public ConfigHandler() {
     	configPath = "config.txt";
@@ -50,6 +52,12 @@ public class ConfigHandler implements ImplConfigHandler {
                 case "gameHeight":
                     gameHeight = Integer.parseInt(splitCol[1]);
                     break;
+                case "serverIp":
+                	serverIp = splitCol[1];
+                    break;
+                case "serverPort":
+                	serverPort = Integer.parseInt(splitCol[1]);
+                    break;
             }
         }
 
@@ -65,6 +73,8 @@ public class ConfigHandler implements ImplConfigHandler {
         tempArr.append("username,").append(username).append("\n");
         tempArr.append("gameWidth,").append(gameWidth).append("\n");
         tempArr.append("gameHeight,").append(gameHeight).append("\n");
+        tempArr.append("serverIp").append(serverIp).append("\n");
+        tempArr.append("serverPort").append(serverPort).append("\n");
         return fh.writeFile("config.txt", tempArr.toString());
    }
 
@@ -76,7 +86,7 @@ public class ConfigHandler implements ImplConfigHandler {
     }
 
     /**
-     * @param username the username to set
+     * @param username, the username to set
      */
     public void setUsername(String username) {
         this.username = username;
@@ -91,7 +101,7 @@ public class ConfigHandler implements ImplConfigHandler {
     }
 
     /**
-     * @param gameWidth the gameWidth to set
+     * @param gameWidth, the gameWidth to set
      */
     public void setGameWidth(int gameWidth) {
         this.gameWidth = gameWidth;
@@ -105,9 +115,36 @@ public class ConfigHandler implements ImplConfigHandler {
     }
 
     /**
-     * @param gameHeight the gameHeight to set
+     * @param gameHeight, the gameHeight to set
      */
     public void setGameHeight(int gameHeight) {
         this.gameHeight = gameHeight;
+    }
+    
+    /**
+     * @return the serverIp
+     */
+    public String getServerIp() {
+        return username;
+    }
+
+    /**
+     * @param serverIp, the serverIp to set
+     */
+    public void setServerIp(String serverIp) {
+        this.serverIp = serverIp;
+    }
+    /**
+     * @return the serverPort
+     */
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    /**
+     * @param serverPort, the serverPort to set
+     */
+    public void setServerPort(int serverPort) {
+        this.serverPort = serverPort;
     }
 }

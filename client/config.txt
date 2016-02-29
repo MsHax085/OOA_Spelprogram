@@ -1,3 +1,5 @@
 username,oscar
 gameWidth,16
 gameHeight,10
+serverIp,127.0.0.1
+serverPort,8989
