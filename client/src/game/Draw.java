@@ -27,6 +27,7 @@ public class Draw extends JPanel {
     
     private static final long serialVersionUID = 1L;
     private ArrayList<Entity> list;
+    private String name;
     private int blockSize, gameWidth, gameHeight;
     private int time;
     private boolean hasFinished, isGameWinner;
@@ -35,9 +36,10 @@ public class Draw extends JPanel {
      * @param list
      * @param blockSize
      */
-    public Draw(ArrayList<Entity> list, int blockSize){
+    public Draw(ArrayList<Entity> list, String name, int blockSize){
         this.list = list; 
         this.blockSize = blockSize;
+        this.name = name;
         hasFinished = false;
         isGameWinner = false;
 
@@ -77,6 +79,14 @@ public class Draw extends JPanel {
         this.time = time;
     }
 
+    public String getName(){
+    	return name;
+    }
+    
+    public void setName(String name){
+    	this.name = name;
+    }
+    
     public ArrayList<Entity> getList(){
         return list;
     }

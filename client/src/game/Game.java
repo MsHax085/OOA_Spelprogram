@@ -59,7 +59,7 @@ public class Game implements DefaultFrameState, Observer {
         gameKeyListener = new GameKeyListener();
         gameThread = new GameThread(this);
 
-        draw = new Draw(update.getList(), blockSize);
+        draw = new Draw(update.getList(), "me", blockSize);
         draw.setFocusable(true);
         draw.addKeyListener(gameKeyListener);
         superPanel.add(draw);
@@ -97,17 +97,17 @@ public class Game implements DefaultFrameState, Observer {
         }
 
         //Här ska de andra spelarna initieras
-        multiplayerHandler.addPlayer("sweg", 1);
-        multiplayerHandler.addPlayer("yolo", 1);
+        multiplayerHandler.addPlayer(1, "sweg", 1);
+        multiplayerHandler.addPlayer(2, "yolo", 1);
 
         update.updateMovement(gameKeyListener);
         draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
 
         //här ska de andra spelarna uppdateras förmodligen med egen metod
-        multiplayerHandler.updatePlayer("yolo", 1, 2);
-        multiplayerHandler.updateSlab("sweg", 8,4);
-        multiplayerHandler.playerHasFinished("sweg", 23);
-        multiplayerHandler.playerHasFinished("yolo", 44);
+        multiplayerHandler.updatePlayer(1, 1, 2);
+        multiplayerHandler.updateSlab(2, 8, 4);
+        multiplayerHandler.playerHasFinished(1, 23);
+        multiplayerHandler.playerHasFinished(2, 44);
 
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){

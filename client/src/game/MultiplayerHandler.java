@@ -14,7 +14,7 @@ import src.game.entities.*;
  */
 
 public class MultiplayerHandler {
-    private TreeMap<String, Draw> playerMap;
+    private TreeMap<Integer, Draw> playerMap;
     private JPanel panel;
     private boolean anyOneHasFinished;
 	
@@ -24,12 +24,12 @@ public class MultiplayerHandler {
         anyOneHasFinished = false;
     }
 
-    public TreeMap<String, Draw> getMap(){
+    public TreeMap<Integer, Draw> getMap(){
         return playerMap;
     }
 
-    public void addPlayer(String name, int mapNumber){
-    	if(playerMap.get(name) == null){
+    public void addPlayer(int id , String name, int mapNumber){
+    	if(playerMap.get(id) == null){
 	        ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
 	        Player player = new Player(0, 0);
 	        for (Entity ent : list) {
@@ -39,32 +39,32 @@ public class MultiplayerHandler {
 	            }
 	        }
 	        list.add(player);
-	        playerMap.put(name, new Draw(list, 16));
-	        panel.add(playerMap.get(name));
+	        playerMap.put(id, new Draw(list, name, 16));
+	        panel.add(playerMap.get(id));
 	        System.out.println(name + " has been added.");
     	}
     }
 
-    public void updatePlayer(String name, int x, int y){
-        ArrayList<Entity> list = playerMap.get(name).getList();
+    public void updatePlayer(int id, int x, int y){
+        ArrayList<Entity> list = playerMap.get(id).getList();
         for (Entity ent : list) {
             if (ent.getClass() == Player.class) {
                 ent.setX(x);
                 ent.setY(y);
             }
         }
-        playerMap.get(name).drawList(list);
+        playerMap.get(id).drawList(list);
     }
 
-    public void updateSlab(String name, int x, int y){
-        ArrayList<Entity> list = playerMap.get(name).getList();
+    public void updateSlab(int id, int x, int y){
+        ArrayList<Entity> list = playerMap.get(id).getList();
         for (Entity ent : list) {
             if (ent.getClass() == Slab.class) {
                 ent.setX(x);
                 ent.setY(y);
             }
         }
-        playerMap.get(name).drawList(list);
+        playerMap.get(id).drawList(list);
     }
 
     public boolean getAnyOneHasFinished(){
@@ -83,16 +83,16 @@ public class MultiplayerHandler {
     	return temp;
     }
     
-    public void playerHasFinished(String name, int time){
-    	if(!playerMap.get(name).getHasFinished()){
+    public void playerHasFinished(int id, int time){
+    	if(!playerMap.get(id).getHasFinished()){
 	        if(anyOneHasFinished == false){
 	            anyOneHasFinished = true;
-	            playerMap.get(name).setIsWinner();
+	            playerMap.get(id).setIsWinner();
 	        }
-	        System.out.println(name + " is done.");
-	        playerMap.get(name).setHasFinished();
-	        playerMap.get(name).setTime(time);
-	        playerMap.get(name).repaint();
+	        System.out.println(playerMap.get(id).getName() + " is done.");
+	        playerMap.get(id).setHasFinished();
+	        playerMap.get(id).setTime(time);
+	        playerMap.get(id).repaint();
     	}
     }
 
