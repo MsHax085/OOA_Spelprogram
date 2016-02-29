@@ -91,13 +91,13 @@ public class HighscorePanel extends SuperPanel {
         }
     }
     //Fattar inte riktigt den här
-    public void updateHighscoreList() {
+    /*public void updateHighscoreList() {
         
     	final Iterator itr = PacketProcessor.getInstance().getHandler(0x05));
         while (itr.hasNext()) {
             addRow((String) itr.next());
         }
-    }
+    }*/
     
     private void addRow(String str) {
         DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();

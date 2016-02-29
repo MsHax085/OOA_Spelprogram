@@ -89,7 +89,10 @@ public class Game implements DefaultFrameState, Observer {
     public void dispose() {
         // Clear all
     }
-    
+
+    /**
+     * Updaterar spelet, tar nästa steget update, hämtar upateringar från network samt updaterar sina egna förändringar.
+     */
     public void updateGame() {
         if (NetworkBuffer.getInstance().hasNext()) {
             NetworkBuffer.getInstance().getNext().handlePacket();
