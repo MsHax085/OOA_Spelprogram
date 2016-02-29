@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
@@ -22,6 +24,7 @@ public class Handler07PlayerWon implements ImplPacketHandler {
             int clientId = dis.readInt();
             int timeOfCompletion = dis.readInt();
             System.out.println("Client with ID: " + clientId + " cleared the map at time: " + timeOfCompletion);
+            Game.getCurrentInstance().SetDoneMultiplayer(clientId, timeOfCompletion);
         } catch (IOException ex) {
             Logger.getLogger(Handler07PlayerWon.class.getName()).log(Level.SEVERE, null, ex);
         }

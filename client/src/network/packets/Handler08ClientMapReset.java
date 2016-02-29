@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
@@ -21,6 +23,7 @@ public class Handler08ClientMapReset implements ImplPacketHandler {
             // Opcode (first short) already read
             int clientId = dis.readInt();
             System.out.println("Client with ID: " + clientId + " has reseted its map");
+            Game.getCurrentInstance().ResetMultiplayer(clientId, 1);
         } catch (IOException ex) {
             Logger.getLogger(Handler08ClientMapReset.class.getName()).log(Level.SEVERE, null, ex);
         }

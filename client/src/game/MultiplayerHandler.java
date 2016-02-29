@@ -96,7 +96,7 @@ public class MultiplayerHandler {
     	}
     }
 
-    public void resetPlayer(String name, int mapNumber){
-        playerMap.get(name).drawList(new MapHandler().getMap(mapNumber));
+    public void resetPlayer(int id, int mapNumber){
+        playerMap.get(id).drawList(new MapHandler().getMap(mapNumber));
     }
 }

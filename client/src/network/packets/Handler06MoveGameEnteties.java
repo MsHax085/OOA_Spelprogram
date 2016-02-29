@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
@@ -24,6 +26,8 @@ public class Handler06MoveGameEnteties implements ImplPacketHandler {
             int playerPositionY = dis.readByte();
             int boxPositionX = dis.readByte();
             int boxPositionY = dis.readByte();
+            
+            Game.getCurrentInstance().UpdateMultiplayer(clieantId, playerPositionX, playerPositionY, boxPositionX, boxPositionY);
         } catch (IOException ex) {
             Logger.getLogger(Handler06MoveGameEnteties.class.getName()).log(Level.SEVERE, null, ex);
         }

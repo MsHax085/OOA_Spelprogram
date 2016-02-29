@@ -1,8 +1,11 @@
 package src.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import src.game.entities.*;
+import src.network.Connection;
+import src.network.PacketBuilder;
 
 /**
  * 
@@ -14,7 +17,7 @@ public class Update{
     
     private ArrayList<Entity> entities;
     private int mapNumber;
-    private boolean hasFinished, unsentPackage;
+    private boolean hasFinished;
     private Player player;
 
     public Update(int mapNumber){
@@ -36,7 +39,6 @@ public class Update{
         }
 
         entities.add(player);
-        unsentPackage = false;
     }
 
     public void updateMovement(GameKeyListener gl){
@@ -50,6 +52,7 @@ public class Update{
             move(0, 1);
         } else if(gl.getKeySpace()) {
             init();
+            UpdateResetMultiplayer();
         }
     }
 
@@ -65,13 +68,17 @@ public class Update{
             }
         }
 
+        
         if (moveAllowed) {
             player.move(x, y);
-            if (slab != null) slab.move(x, y);
-            unsentPackage = true;
-
-            if (slab != null) currentPacket(player.getX(), player.getY(), slab.getX(), slab.getY());
-            else currentPacket(player.getX(), player.getY(), 0, 0);
+            if (slab != null) {
+            	slab.move(x, y);
+            	UpdateMoveMultiplayer(player.getX(), player.getY(), slab.getX(), slab.getY());
+            }
+            else {
+            	//possitionen 255 betyder att det var ovörändrat
+            	UpdateMoveMultiplayer(player.getX(), player.getY(), 255, 255);
+            }
         }
     }
 
@@ -90,19 +97,26 @@ public class Update{
         return x1 == x2 && y1 == y2;
     }
 
-    public void currentPacket(int playerX, int playerY, int slabX, int slabY){
-        unsentPackage = false;
+    private void UpdateMoveMultiplayer(int playerX, int playerY, int slabX, int slabY){
+    	try {
+			Connection.getInstance().sendPacket(
+					PacketBuilder.getInstance().create05MoveGameEntetiesPacket(playerX, playerY, slabX, slabY));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
-
-    //ska returnera sträng eller byte[] eller nått
-    public String getUnsentPackage(){
-        return null;
+    
+    private void UpdateResetMultiplayer(){
+    	try {
+			Connection.getInstance().sendPacket(
+					PacketBuilder.getInstance().create07PlayerResetPacket());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
-
-    public boolean hasUnsentPackage(){
-        return unsentPackage;
-    }
-
+    
     public boolean hasFinished(){
         return hasFinished;
     }
