@@ -40,14 +40,16 @@ public class ConfigHandler implements ImplConfigHandler {
 
         for (int i = 0; i < splitRows.length; i++) {
             splitCol = splitRows[i].split(",");
-            if (splitCol[0].equals("username")){
-                username = splitCol[1];
-            }
-            else if (splitCol[0].equals("gameWidth")){
-                gameWidth = Integer.parseInt(splitCol[1]);
-            }
-            else if (splitCol[0].equals("gameHeight")){
-                gameHeight = Integer.parseInt(splitCol[1]);
+            switch (splitCol[0]) {
+                case "username":
+                    username = splitCol[1];
+                    break;
+                case "gameWidth":
+                    gameWidth = Integer.parseInt(splitCol[1]);
+                    break;
+                case "gameHeight":
+                    gameHeight = Integer.parseInt(splitCol[1]);
+                    break;
             }
         }
 
@@ -60,15 +62,10 @@ public class ConfigHandler implements ImplConfigHandler {
     @Override
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
-        tempArr.append("username,"+username+"\n");
-        tempArr.append("gameWidth,"+gameWidth+"\n");
-        tempArr.append("gameHeight,"+gameHeight+"\n");
-	    if (fh.writeFile("config.txt", tempArr.toString())){
-	    	return true;
-	    }
-	    else {
-	    	return false;
-	    }
+        tempArr.append("username,").append(username).append("\n");
+        tempArr.append("gameWidth,").append(gameWidth).append("\n");
+        tempArr.append("gameHeight,").append(gameHeight).append("\n");
+        return fh.writeFile("config.txt", tempArr.toString());
    }
 
     /**
