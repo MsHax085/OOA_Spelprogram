@@ -72,14 +72,25 @@ public class MultiplayerHandler {
         anyOneHasFinished = true;
     }
 
+    public boolean hasEveryBodyFinished(){
+    	boolean temp = true;
+    	for(Draw obj : playerMap.values()){
+    		temp = obj.getHasFinished();
+    	}
+    	return temp;
+    }
+    
     public void playerHasFinished(String name, int time){
-        if(anyOneHasFinished == false){
-            anyOneHasFinished = true;
-            playerMap.get(name).setIsWinner();
-        }
-        playerMap.get(name).setHasFinished();
-        playerMap.get(name).setTime(time);
-        playerMap.get(name).repaint();
+    	if(!playerMap.get(name).getHasFinished()){
+	        if(anyOneHasFinished == false){
+	            anyOneHasFinished = true;
+	            playerMap.get(name).setIsWinner();
+	        }
+	        System.out.println(name + " is done.");
+	        playerMap.get(name).setHasFinished();
+	        playerMap.get(name).setTime(time);
+	        playerMap.get(name).repaint();
+    	}
     }
 
     public void resetPlayer(String name, int mapNumber){

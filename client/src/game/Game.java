@@ -4,7 +4,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.*;
+
+import src.Core;
 import src.frame.DefaultFrameState;
+import src.gui.UserInterface;
 import src.network.NetworkBuffer;
 
 
@@ -63,8 +66,7 @@ public class Game implements DefaultFrameState, Observer {
 
         //Här ska de andra spelarna initieras
         multiplayerHandler.addPlayer("sweg", mapNumber);
-        multiplayerHandler.addPlayer("sweg1", mapNumber);
-        multiplayerHandler.playerHasFinished("sweg", 23);
+        multiplayerHandler.addPlayer("yolo", mapNumber);
 
         new Thread(gameThread).start();
     }
@@ -102,26 +104,29 @@ public class Game implements DefaultFrameState, Observer {
         draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
 
         //här ska de andra spelarna uppdateras förmodligen med egen metod
-        multiplayerHandler.updatePlayer("sweg1", 1, 2);
-        multiplayerHandler.updateSlab("sweg1", 1, 6);
+        multiplayerHandler.updatePlayer("yolo", 1, 2);
+        multiplayerHandler.updateSlab("sweg", 8,4);
+        multiplayerHandler.playerHasFinished("sweg", 23);
+        multiplayerHandler.playerHasFinished("yolo", 44);
 
         if (update.hasFinished()) {
-            System.out.println("You have won");
-            stopGame();
-
-            draw.setHasFinished();
-
-            if (!multiplayerHandler.getAnyOneHasFinished()) {
-                draw.setIsWinner();
+            if(!draw.getHasFinished()){
+	        	System.out.println("you are done.");	
+	            draw.setHasFinished();
+	            if (!multiplayerHandler.getAnyOneHasFinished()) {
+	                draw.setIsWinner();
+	            }
+	            
+	            draw.repaint();
             }
-
-            draw.repaint();
-
+            
             //här ska vinnst text visas och paket till andra spelare skickas ut
-
             //time, IsWinner
 
-            //Core.getInstance().setStateObserver(new UserInterface());
+            if(multiplayerHandler.hasEveryBodyFinished()){
+                stopGame();
+                Core.getInstance().setStateObserver(new UserInterface());
+            }
         }
     }
     
