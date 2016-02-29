@@ -14,10 +14,10 @@ public class ConfigHandler implements ImplConfigHandler {
     private final FileHandler fh;
     private final String configPath;
     private static ConfigHandler instance = null;
-    private String username;
-    private int gameWidth;
-    private int gameHeight;
-
+    private int portNumber;
+    private int maxClientsLobby;
+    private int numberOfMaps;
+    
     public ConfigHandler() {
     	configPath = "config.txt";
         fh = FileHandler.getInstance();
@@ -41,14 +41,14 @@ public class ConfigHandler implements ImplConfigHandler {
         for (int i = 0; i < splitRows.length; i++) {
             splitCol = splitRows[i].split(",");
             switch (splitCol[0]) {
-                case "username":
-                    username = splitCol[1];
+                case "portNumber":
+                    portNumber = Integer.parseInt(splitCol[1]);
                     break;
-                case "gameWidth":
-                    gameWidth = Integer.parseInt(splitCol[1]);
+                case "maxClientsLobby":
+                	maxClientsLobby = Integer.parseInt(splitCol[1]);
                     break;
-                case "gameHeight":
-                    gameHeight = Integer.parseInt(splitCol[1]);
+                case "numberOfMaps":
+                    numberOfMaps = Integer.parseInt(splitCol[1]);
                     break;
             }
         }
@@ -62,37 +62,52 @@ public class ConfigHandler implements ImplConfigHandler {
     @Override
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
-        tempArr.append("username,").append(username).append("\n");
-        tempArr.append("gameWidth,").append(gameWidth).append("\n");
-        tempArr.append("gameHeight,").append(gameHeight).append("\n");
-        return fh.writeFile("config.txt", tempArr.toString());
+        tempArr.append("portNumber,").append(portNumber).append("\n");
+        tempArr.append("maxClientsLobby,").append(maxClientsLobby).append("\n");
+        tempArr.append("numberOfMaps,").append(numberOfMaps).append("\n");
+        return fh.writeFile(configPath, tempArr.toString());
    }
 
     /**
-     * @return the gameWidth
+     * @return portNumber
      */
-    public int getGameWidth() {
-        return gameWidth;
+    public int getPortNumber() {
+        return portNumber;
     }
 
     /**
-     * @param gameWidth the gameWidth to set
+     * @param portNumber to be set
      */
-    public void setGameWidth(int gameWidth) {
-        this.gameWidth = gameWidth;
+    public void setPortNumber(int portNumber) {
+        this.portNumber = portNumber;
     }
 
     /**
-     * @return the gameHeight
+     * @return maxClientsLobby
      */
-    public int getGameHeight() {
-        return gameHeight;
+    public int getMaxClientsLobby() {
+        return maxClientsLobby;
     }
 
     /**
-     * @param gameHeight the gameHeight to set
+     * @param maxClientsLobby to be set
      */
-    public void setGameHeight(int gameHeight) {
-        this.gameHeight = gameHeight;
+    public void setMaxClientsLobby(int maxClientsLobby) {
+        this.maxClientsLobby = maxClientsLobby;
     }
+    
+    /**
+     * @return numberOfMaps
+     */
+    public int getNumberOfMaps() {
+        return numberOfMaps;
+    }
+
+    /**
+     * @param numberOfMaps to be set 
+     */
+    public void setNumberOfMaps(int numberOfMaps) {
+        this.numberOfMaps = numberOfMaps;
+    }
+    
 }
