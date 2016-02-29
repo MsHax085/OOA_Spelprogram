@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
  * 
  * @author ludwigfriborg
  *
+ * This KeyListner is based on toggles wich ar toggled when a key is pressed
+ * and released when the information is retreaved
  */
 
 public class GameKeyListener implements KeyListener {	
@@ -40,30 +42,50 @@ public class GameKeyListener implements KeyListener {
         }
     }
 
+    /**
+     * Detoggles the keystatus
+     * @return true if the left key had been pressed
+     */
     public boolean getKeyLeft(){
         boolean temp = keyPressed_left;
         keyPressed_left = false;
         return temp;
     }
 
+    /**
+     * Detoggles the keystatus
+     * @return true if the right key had been pressed
+     */
     public boolean getKeyRight(){
         boolean temp = keyPressed_right;
         keyPressed_right = false;
         return temp;
     }
 
+    /**
+     * Detoggles the keystatus
+     * @return true if the up key had been pressed
+     */
     public boolean getKeyUp(){
         boolean temp = keyPressed_up;
         keyPressed_up = false;
         return temp;
     }
 
+    /**
+     * Detoggles the keystatus
+     * @return true if the down key had been pressed
+     */
     public boolean getKeyDown(){
         boolean temp = keyPressed_down;
         keyPressed_down = false;
         return temp;
     }
 
+    /**
+     * Detoggles the keystatus
+     * @return true if the spacebar had been pressed
+     */
     public boolean getKeySpace(){
         boolean temp = keyPressed_space;
         keyPressed_space = false;

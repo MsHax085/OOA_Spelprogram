@@ -10,6 +10,9 @@ import src.network.PacketBuilder;
 /**
  * 
  * @author ludwigfriborg
+ * 
+ * Update is the model in the game packet and the class job is to keep track of the local game.
+ * It is here normal game logic is acounted for. 
  *
  */
 
@@ -27,6 +30,9 @@ public class Update{
         init();
     }
 
+    /**
+     * initiates the local player
+     */
     public void init(){
         entities = new MapHandler().getMap(mapNumber);
         player = new Player(0,0);
@@ -40,7 +46,11 @@ public class Update{
 
         entities.add(player);
     }
-
+    
+    /**
+     * updates the local player based on key input
+     * @param gl - a GameKeyListener
+     */
     public void updateMovement(GameKeyListener gl){
         if (gl.getKeyLeft()) {
             move(-1, 0);
@@ -56,6 +66,11 @@ public class Update{
         }
     }
 
+    /**
+     * moves the player aswell as other game object
+     * @param x - the relative x-position (delta x)
+     * @param y - the relative y-position (delta y)
+     */
     private void move(int x, int y){
         boolean moveAllowed = true;
         Slab slab = null;
@@ -82,6 +97,13 @@ public class Update{
         }
     }
 
+    /**
+     * checks if the slab is moveable and if it has reached the final destination if so, sets hasFinished true.
+     * @param slab - the desired slab object
+     * @param x - the relative x-position (delta x)
+     * @param y - the relative y-position (delta y)
+     * @return true if the slab is moveable else false
+     */
     private boolean isSlabMoveable(Slab slab, int x, int y){
         for(Entity ent : entities){
             if (intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() != Goal.class) {
@@ -97,6 +119,13 @@ public class Update{
         return x1 == x2 && y1 == y2;
     }
 
+    /**
+     * Updates the server if a move was made
+     * @param playerX
+     * @param playerY
+     * @param slabX
+     * @param slabY
+     */ 
     private void UpdateMoveMultiplayer(int playerX, int playerY, int slabX, int slabY){
     	try {
 			Connection.getInstance().sendPacket(
@@ -107,6 +136,9 @@ public class Update{
 		}
     }
     
+    /**
+     * Updates the server if a reset was made
+     */
     private void UpdateResetMultiplayer(){
     	try {
 			Connection.getInstance().sendPacket(

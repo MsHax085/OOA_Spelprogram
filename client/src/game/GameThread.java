@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  *
- * @author Richard
+ * @author Richard, ludwigfriborg
  */
 public class GameThread implements Runnable  {
 

@@ -19,8 +19,11 @@ import src.network.PacketBuilder;
  * 
  * @author ludwigfriborg
  *
- *	MVC - for the game, not the whole client
- *	Game = Controller
+ *	Semi singleton 
+ *	The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
+ *
+ *	MVC - for the game object
+ *	Game, MultiplayerHandler = Controller
  *	Update = Model
  *	JFrame frame, draw = View
  *
@@ -47,11 +50,8 @@ public class Game implements DefaultFrameState, Observer {
     }
 	
     /**
-     * getCurrentInstance
-     * 
-     * Semi singleton, typ singelton fast nästan bar, den skapar inte något om skit
-     * 
-     * @return current instance
+     * @return current instance if no current instance return null, 
+     * some kind of "catch" may be needed for protection agains mean nullpointers
      */
     public static Game getCurrentInstance(){
     	if(currentGame == null){
@@ -61,16 +61,12 @@ public class Game implements DefaultFrameState, Observer {
     }
     
     /**
-     * New Game
-     * @param mapNumber - vilken map
-     * @param clientSet - en Treemap med alla clienter i spelet, id och namn
+     * @param mapNumber - desired map
+     * @param clientSet - a treeMap containing the lobby's client names and ids
      */
     public Game(int mapNumber, TreeMap<Integer, String> clientSet){
         currentGame = this;
-        init(32, mapNumber, clientSet);
-    }
-
-    private void init(int blockSize, int mapNumber, TreeMap<Integer, String> clientSet) {
+        
     	this.mapNumber = mapNumber;
         superPanel = new JPanel();
         update = new Update(mapNumber);
@@ -78,21 +74,16 @@ public class Game implements DefaultFrameState, Observer {
         gameKeyListener = new GameKeyListener();
         gameThread = new GameThread(this);
 
-        draw = new Draw(update.getList(), "me", blockSize);
+        draw = new Draw(update.getList(), "me", 32);
         draw.setFocusable(true);
         draw.addKeyListener(gameKeyListener);
         superPanel.add(draw);
 
-        //Lägger till spelatna
         for(int id : clientSet.keySet()){
         	AddMultiplayers(id, clientSet.get(id));
         }
         
         new Thread(gameThread).start();
-    }
-
-    public MultiplayerHandler getMultiplayerHandler(){
-        return multiplayerHandler;
     }
 
     @Override
@@ -132,7 +123,8 @@ public class Game implements DefaultFrameState, Observer {
     }
     
     /**
-     * Updaterar spelet, tar nästa steget update, hämtar upateringar från network samt updaterar sina egna förändringar.
+     * Updates the game, reads packets and checks if the game is game is finished.
+     * If the game is finished the thread will be stopped and gamestate will be switched
      */
     public void updateGame() {
         if (NetworkBuffer.getInstance().hasNext()) {

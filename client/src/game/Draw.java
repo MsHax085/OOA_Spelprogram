@@ -24,7 +24,6 @@ import src.resourceManager.config.ConfigHandler;
  */
 
 public class Draw extends JPanel {
-    
     private static final long serialVersionUID = 1L;
     private ArrayList<Entity> list;
     private String name;
@@ -32,10 +31,6 @@ public class Draw extends JPanel {
     private int time;
     private boolean hasFinished, isGameWinner;
 
-    /**
-     * @param list
-     * @param blockSize
-     */
     public Draw(ArrayList<Entity> list, String name, int blockSize){
         this.list = list; 
         this.blockSize = blockSize;
@@ -57,10 +52,20 @@ public class Draw extends JPanel {
         this.setPreferredSize(new Dimension(gameWidth*this.blockSize, gameHeight*this.blockSize));
     }
 
+    /**
+     * Draws the desired entitylist to the panel
+     * @param list - desired entitylist 
+     */
     public void drawList(ArrayList<Entity> list){
         this.list = list;
         repaint();
     }
+    
+    /**
+     * Draws the desired entitylist to the panel aswell as updating the timestamp
+     * @param list - desired entitylist 
+     * @param time - new time
+     */
     public void drawList(ArrayList<Entity> list, int time){
         this.list = list;
         setTime(time);
