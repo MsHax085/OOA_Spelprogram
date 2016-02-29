@@ -23,7 +23,7 @@ public class Handler08ClientMapReset implements ImplPacketHandler {
             // Opcode (first short) already read
             int clientId = dis.readInt();
             System.out.println("Client with ID: " + clientId + " has reseted its map");
-            Game.getCurrentInstance().ResetMultiplayer(clientId, 1);
+            Game.getCurrentInstance().ResetMultiplayer(clientId);
         } catch (IOException ex) {
             Logger.getLogger(Handler08ClientMapReset.class.getName()).log(Level.SEVERE, null, ex);
         }

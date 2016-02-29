@@ -46,25 +46,33 @@ public class MultiplayerHandler {
     }
 
     public void updatePlayer(int id, int x, int y){
-        ArrayList<Entity> list = playerMap.get(id).getList();
-        for (Entity ent : list) {
-            if (ent.getClass() == Player.class) {
-                ent.setX(x);
-                ent.setY(y);
-            }
-        }
-        playerMap.get(id).drawList(list);
+    	if(playerMap.get(id) == null){
+    		System.out.println("client not available");
+    	}else{
+	        ArrayList<Entity> list = playerMap.get(id).getList();
+	        for (Entity ent : list) {
+	            if (ent.getClass() == Player.class) {
+	                ent.setX(x);
+	                ent.setY(y);
+	            }
+	        }
+	        playerMap.get(id).drawList(list);
+    	}
     }
 
     public void updateSlab(int id, int x, int y){
-        ArrayList<Entity> list = playerMap.get(id).getList();
-        for (Entity ent : list) {
-            if (ent.getClass() == Slab.class) {
-                ent.setX(x);
-                ent.setY(y);
-            }
-        }
-        playerMap.get(id).drawList(list);
+    	if(playerMap.get(id) == null){
+    		System.out.println("client not available");
+    	}else{
+	        ArrayList<Entity> list = playerMap.get(id).getList();
+	        for (Entity ent : list) {
+	            if (ent.getClass() == Slab.class) {
+	                ent.setX(x);
+	                ent.setY(y);
+	            }
+	        }
+	        playerMap.get(id).drawList(list);
+    	}
     }
 
     public boolean getAnyOneHasFinished(){
@@ -84,7 +92,7 @@ public class MultiplayerHandler {
     }
     
     public void playerHasFinished(int id, int time){
-    	if(!playerMap.get(id).getHasFinished()){
+    	if(!playerMap.get(id).getHasFinished() && playerMap.get(id) != null){
 	        if(anyOneHasFinished == false){
 	            anyOneHasFinished = true;
 	            playerMap.get(id).setIsWinner();
@@ -97,6 +105,10 @@ public class MultiplayerHandler {
     }
 
     public void resetPlayer(int id, int mapNumber){
-        playerMap.get(id).drawList(new MapHandler().getMap(mapNumber));
+    	if(playerMap.get(id) == null){
+    		System.out.println("client not available");
+    	}else{
+    		playerMap.get(id).drawList(new MapHandler().getMap(mapNumber));
+    	}
     }
 }

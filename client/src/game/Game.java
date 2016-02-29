@@ -3,6 +3,7 @@ package src.game;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.TreeMap;
 
 import javax.swing.*;
 
@@ -48,7 +49,7 @@ public class Game implements DefaultFrameState, Observer {
     /**
      * getCurrentInstance
      * 
-     * 
+     * Semi singleton, typ singelton fast nästan bar, den skapar inte något om skit
      * 
      * @return current instance
      */
@@ -60,18 +61,16 @@ public class Game implements DefaultFrameState, Observer {
     }
     
     /**
-     * @param blockSize
+     * New Game
+     * @param mapNumber - vilken map
+     * @param clientSet - en Treemap med alla clienter i spelet, id och namn
      */
-    public Game(int blockSize, int mapNumber){
-        init(blockSize, mapNumber);
+    public Game(int mapNumber, TreeMap<Integer, String> clientSet){
         currentGame = this;
+        init(32, mapNumber, clientSet);
     }
 
-    public Game(){
-        init(32, 1);
-    }
-
-    private void init(int blockSize, int mapNumber) {
+    private void init(int blockSize, int mapNumber, TreeMap<Integer, String> clientSet) {
     	this.mapNumber = mapNumber;
         superPanel = new JPanel();
         update = new Update(mapNumber);
@@ -84,7 +83,10 @@ public class Game implements DefaultFrameState, Observer {
         draw.addKeyListener(gameKeyListener);
         superPanel.add(draw);
 
-        //some way to add players from lobby
+        //Lägger till spelatna
+        for(int id : clientSet.keySet()){
+        	AddMultiplayers(id, clientSet.get(id));
+        }
         
         new Thread(gameThread).start();
     }
@@ -111,7 +113,7 @@ public class Game implements DefaultFrameState, Observer {
     }
 
     public void UpdateMultiplayer(int id, int pX, int pY, int sX, int sY){
-        multiplayerHandler.updatePlayer(id, 1, 2);
+        multiplayerHandler.updatePlayer(id, pX, 2);
         multiplayerHandler.updateSlab(id, 8, 4);
     }
     
@@ -123,7 +125,7 @@ public class Game implements DefaultFrameState, Observer {
     	multiplayerHandler.playerHasFinished(id, time);
     }
     
-    public void ResetMultiplayer(int id, int mapNumber){
+    public void ResetMultiplayer(int id){
     	multiplayerHandler.resetPlayer(id, mapNumber);
     }
     
