@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 
 /**
@@ -22,6 +24,7 @@ public class Handler09ClientLoginResponse implements ImplPacketHandler {
             int clientId = dis.readInt();
             if (clientId >= 0) {
                 System.out.println("Login Successfull with id: " + clientId);
+                UserInterface.changeCard("menupanel");
             } else {
                 System.out.println("Login failed: username is taken");
             }

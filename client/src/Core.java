@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import src.frame.DefaultFrameState;
 import src.game.Game;
+import src.gui.UserInterface;
 import src.network.Network;
 
 /**
@@ -18,7 +19,7 @@ public class Core extends Observable {
     private final Network network;
     
     public Core() {
-        this.setStateObserver(new Game());
+        this.setStateObserver(new UserInterface());
         this.network = new Network();
         this.network.start();
     }

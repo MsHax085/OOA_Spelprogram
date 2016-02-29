@@ -2,8 +2,12 @@ package src.gui.panels.event;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+
 import src.gui.UserInterface;
 import src.gui.panels.StartPanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 import javax.swing.JTextField;
 
@@ -29,7 +33,16 @@ public class ControllerStartPanel implements MouseListener {
         	}
         	else {
         		ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());
-        		UserInterface.changeCard("menupanel");
+        		try {
+					Connection.getInstance().sendPacket(
+							PacketBuilder.getInstance().create08ClientLoginPacket(panel.getUsernameInput().getText()));
+	        		
+				} catch (IOException e1) {
+					System.out.println("Couldn't successfully send the packet");
+					e1.printStackTrace();
+				}
+        		
+        		
         	}}
     }
 
