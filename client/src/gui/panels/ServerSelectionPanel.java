@@ -112,6 +112,15 @@ public class ServerSelectionPanel extends SuperPanel {
         model.addRow(new Object[]{str});
     }
     
+    public void getCouldNotJoinPane(int i) {
+    	if(i == 1) {
+    		JOptionPane.showMessageDialog(null,"Could not join lobby, wrong password!");
+    	}
+    	else {
+        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is full!");
+    	}
+    }
+    
     public String getPasswordPane() {
     	return JOptionPane.showInputDialog("Enter password");
     }

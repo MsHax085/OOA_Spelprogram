@@ -11,12 +11,14 @@ import src.gui.UserInterface;
 import src.gui.panels.ServerSelectionPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
+import src.network.packets.Handler01JoinLobbyResponce;
 
 public class ControllerSelectionPanel implements MouseListener {
 	
     private ServerSelectionPanel panel;
     private JTable serverList;
     private String password;
+    private Handler01JoinLobbyResponce h1jlb;
     
     public ControllerSelectionPanel(ServerSelectionPanel panel) {
         this.panel = panel;
@@ -51,25 +53,39 @@ public class ControllerSelectionPanel implements MouseListener {
                     } catch (IOException ex) {
                         Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            	}
+            		int i = h1jlb.getJoinLobbyStatus(); 
+            		if( i == 0) {
+            			UserInterface.changeCard("serverlobbypanel");
+            		}
+            		else {
+            			panel.getCouldNotJoinPane(i);
+            		} 
+            	} 
             	else {
             		password = panel.getPasswordPane();
-            		UserInterface.changeCard("serverlobbypanel");
+            		
             		try {
             			Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket("",password));
                     } catch (IOException ex) {
                     	Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
                         }
             		}
-            		else {
-            			UserInterface.changeCard("serverSelectionpanel");
-            		}
+            	int i = h1jlb.getJoinLobbyStatus(); 
+            	if( i == 0) {
+            		UserInterface.changeCard("serverlobbypanel");
+            	}
+            	else if(i == 1) {
+            		panel.getCouldNotJoinPane(i);
+            	} 
+            	else {
+            		panel.getCouldNotJoinPane(i);
             	}
             }
+     	}
             
     	else if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
     	}
     }
 }
-}
+

@@ -13,6 +13,7 @@ import src.network.ImplPacketHandler;
 public class Handler01JoinLobbyResponce implements ImplPacketHandler {
     
     private DataInputStream dis = null;
+	int joinLobbyStatus;
 	
     @Override
     public void handlePacket() {
@@ -35,5 +36,9 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
     @Override
     public void setDataInputStream(DataInputStream dis) {
         this.dis = dis;
+    }
+    
+    public int getJoinLobbyStatus() {
+    	return joinLobbyStatus;
     }
 }
