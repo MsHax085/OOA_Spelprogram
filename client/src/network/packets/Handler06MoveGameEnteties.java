@@ -19,8 +19,11 @@ public class Handler06MoveGameEnteties implements ImplPacketHandler {
         System.out.println("06MoveGameEnteties recived from server");
         if (dis == null) return;
         try {
-            // Opcode (first short) already read
-            dis.readInt();
+            int clieantId = dis.readInt();
+            int playerPositionX = dis.readByte();
+            int playerPositionY = dis.readByte();
+            int boxPositionX = dis.readByte();
+            int boxPositionY = dis.readByte();
         } catch (IOException ex) {
             Logger.getLogger(Handler06MoveGameEnteties.class.getName()).log(Level.SEVERE, null, ex);
         }

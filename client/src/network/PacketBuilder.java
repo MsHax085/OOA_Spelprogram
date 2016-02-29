@@ -122,12 +122,17 @@ public class PacketBuilder {
     }
     
     /**
-     * TODO: Yell at Ludwig until he gives me a good explanation about how he want this to work.
+     * Creates a packet with the position of the player and the movable block.
+     * @param	
      */
-    public byte[] create05MoveGameEntetiesPacket() throws IOException {
+    public byte[] create05MoveGameEntetiesPacket(int playerPositionX, int playerPositionY, int boxPositionX, int boxPositionY) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET05.getValue());
+        dataOutputStream.writeByte(playerPositionX);
+        dataOutputStream.writeByte(playerPositionY);
+        dataOutputStream.writeByte(boxPositionX);
+        dataOutputStream.writeByte(boxPositionY);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

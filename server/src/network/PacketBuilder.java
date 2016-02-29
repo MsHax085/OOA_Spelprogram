@@ -146,13 +146,22 @@ public class PacketBuilder {
      * NOT COMPLETED
      * Creates packet data with a clients entities position. 
      * TOTO: Yell at ludwig.
+     * @param boxPositionY 
+     * @param boxPositionX 
+     * @param playerPositionY 
+     * @param playerPositionX 
      * @return
      * @throws IOException
      */
-    public byte[] create06MoveGameEntetiesPacket() throws IOException {
+    public byte[] create06MoveGameEntetiesPacket(int clientId, int playerPositionX, int playerPositionY, int boxPositionX, int boxPositionY) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET06.getValue());
+        dataOutputStream.writeInt(clientId);
+        dataOutputStream.writeByte(playerPositionX);
+        dataOutputStream.writeByte(playerPositionY);
+        dataOutputStream.writeByte(boxPositionX);
+        dataOutputStream.writeByte(boxPositionY);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
