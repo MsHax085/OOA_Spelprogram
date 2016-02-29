@@ -1,5 +1,6 @@
 package src.resourceManager;
 
+
 import src.resourceManager.file.FileHandler;
 import java.util.*;
 
@@ -12,11 +13,16 @@ public class Score {
 
 	private final String highscorePath;
 	private final FileHandler fh;
+    private static Score instance = null;
 	
 	public Score() {
 		highscorePath = "highscore.txt";
 		fh = FileHandler.getInstance();
 	}
+    public static Score getInstance() {
+        if (instance == null) instance = new Score();
+        return instance;
+    }
 	
 	/* Returns a treemap of the highscore list.
 	 * It has the time in the first value, and
