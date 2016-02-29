@@ -15,10 +15,12 @@ public class Database {
     private String username = "NAME";
     private ArrayList<String> lobbyNameList = new ArrayList<>();
     private ArrayList<String> highscoreList = new ArrayList<>();
+    private ArrayList<String> clientLobbyList = new ArrayList<>();
     
     private final ReentrantReadWriteLock rrwl_username = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_lobbynamelist = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_highscorelist = new ReentrantReadWriteLock(true);
+    private final ReentrantReadWriteLock rrwl_clientlobbylist = new ReentrantReadWriteLock(true);
     
     public static Database getInstance() {
         if (database == null) database = new Database();
@@ -40,6 +42,24 @@ public class Database {
             return lobbyNameList.iterator();
         } finally {
             rrwl_lobbynamelist.readLock().unlock();
+        }
+    }
+    
+    public void addPlayer(String playerName) {
+        rrwl_clientlobbylist.writeLock().lock();
+        try {
+            clientLobbyList.add(playerName);
+        } finally {
+            rrwl_clientlobbylist.writeLock().unlock();
+        }
+    }
+    
+    public Iterator getPlayerNames() {
+        rrwl_clientlobbylist.readLock().lock();
+        try {
+            return clientLobbyList.iterator();
+        } finally {
+            rrwl_clientlobbylist.readLock().unlock();
         }
     }
     

@@ -3,6 +3,7 @@ package src.gui.panels;
 import java.awt.Color;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,11 +12,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
 import src.gui.panels.event.ControllerServerLobbyPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
+import src.resourceManager.Database;
 
 /**
  *
@@ -90,6 +93,24 @@ public class ServerLobbyPanel extends SuperPanel {
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         
+        try {
+            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
+        } catch (IOException ex) {
+            Logger.getLogger(ServerLobbyPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void updateLobbyList() {
+        final Iterator itr = Database.getInstance().getPlayerNames();
+        while (itr.hasNext()) {
+            addRow((String) itr.next());
+        }
+    }
+    
+    private void addRow(String str) {
+        DefaultTableModel model = (DefaultTableModel) lobbyList.getModel();
+        model.addRow(new Object[]{str});
     }
     
     public JButton getQuitButton() {

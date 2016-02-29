@@ -40,6 +40,11 @@ public class ControllerServerLobbyPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
     	if (e.getSource().equals(panel.getQuitButton())) {
             UserInterface.changeCard("menupanel");
+            try {
+                Connection.getInstance().sendPacket(PacketBuilder.getInstance().create0ALeaveLobbyPacket());
+            } catch (IOException ex) {
+                Logger.getLogger(ServerLobbyPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (e.getSource().equals(panel.getStartButton())) {
         	try {
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
