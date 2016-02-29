@@ -29,17 +29,20 @@ public class MultiplayerHandler {
     }
 
     public void addPlayer(String name, int mapNumber){
-        ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
-        Player player = new Player(0, 0);
-        for (Entity ent : list) {
-            if (ent.getClass() == Start.class) {
-                player.setX(ent.getX());
-                player.setY(ent.getY());
-            }
-        }
-        list.add(player);
-        playerMap.put(name, new Draw(list, 16));
-        panel.add(playerMap.get(name));
+    	if(playerMap.get(name) == null){
+	        ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
+	        Player player = new Player(0, 0);
+	        for (Entity ent : list) {
+	            if (ent.getClass() == Start.class) {
+	                player.setX(ent.getX());
+	                player.setY(ent.getY());
+	            }
+	        }
+	        list.add(player);
+	        playerMap.put(name, new Draw(list, 16));
+	        panel.add(playerMap.get(name));
+	        System.out.println(name + " has been added.");
+    	}
     }
 
     public void updatePlayer(String name, int x, int y){

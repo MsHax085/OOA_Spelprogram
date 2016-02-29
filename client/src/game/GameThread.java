@@ -18,15 +18,6 @@ public class GameThread implements Runnable  {
         this.game = game;
     }
     
-    public int getTimeRunningInSeconds() {
-        rrwl_time_long.readLock().lock();
-        try {
-            return (int) ((System.currentTimeMillis() - startupTimestampInMillis) / 1000);
-        } finally {
-            rrwl_time_long.readLock().unlock();
-        }
-    }
-    
     public boolean isRunning() {
         rrwl_running_boolean.readLock().lock();
         try {
@@ -42,6 +33,15 @@ public class GameThread implements Runnable  {
             this.run = run;
         } finally {
             rrwl_running_boolean.writeLock().unlock();
+        }
+    }
+
+    public int getTimeRunningInSeconds() {
+        rrwl_time_long.readLock().lock();
+        try {
+            return (int) ((System.currentTimeMillis() - startupTimestampInMillis) / 1000);
+        } finally {
+            rrwl_time_long.readLock().unlock();
         }
     }
     

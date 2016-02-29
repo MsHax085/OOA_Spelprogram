@@ -64,10 +64,6 @@ public class Game implements DefaultFrameState, Observer {
         draw.addKeyListener(gameKeyListener);
         superPanel.add(draw);
 
-        //Här ska de andra spelarna initieras
-        multiplayerHandler.addPlayer("sweg", mapNumber);
-        multiplayerHandler.addPlayer("yolo", mapNumber);
-
         new Thread(gameThread).start();
     }
 
@@ -100,6 +96,10 @@ public class Game implements DefaultFrameState, Observer {
             NetworkBuffer.getInstance().getNext().handlePacket();
         }
 
+        //Här ska de andra spelarna initieras
+        multiplayerHandler.addPlayer("sweg", 1);
+        multiplayerHandler.addPlayer("yolo", 1);
+
         update.updateMovement(gameKeyListener);
         draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
 
@@ -111,7 +111,7 @@ public class Game implements DefaultFrameState, Observer {
 
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){
-	        	System.out.println("you are done.");	
+	        	System.out.println("You are done.");	
 	            draw.setHasFinished();
 	            if (!multiplayerHandler.getAnyOneHasFinished()) {
 	                draw.setIsWinner();
