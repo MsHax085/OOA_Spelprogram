@@ -103,9 +103,21 @@ public class Game implements DefaultFrameState, Observer {
 
     @Override
     public void dispose() {
-        // Clear all
+        if(!update.hasFinished()){
+	    	try {
+			 	Connection.getInstance().sendPacket(
+						PacketBuilder.getInstance().create0ALeaveLobbyPacket());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
     }
 
+    /**
+     * Public method that can be accessed from the networkhandlerclasses.
+     * Updates the position of the slap and player for the multiplayer with 
+     * the assigned id.
+     */
     public void UpdateMultiplayer(int id, int pX, int pY, int sX, int sY){
         if(pX != -1 && pY != -1){
         	multiplayerHandler.updatePlayer(id, pX, pY);
@@ -114,15 +126,27 @@ public class Game implements DefaultFrameState, Observer {
         	multiplayerHandler.updateSlab(id, sX, sY);
         }
     }
-    
+
+    /**
+     * Public method that can be accessed from the networkhandlerclasses.
+     * Adds a multiplayer with the name and id
+     */
     public void AddMultiplayers(int id, String name){
     	multiplayerHandler.addPlayer(id, name, mapNumber);
     }
-    
+
+    /**
+     * Public method that can be accessed from the networkhandlerclasses.
+     * Sets the multiplayer to done
+     */
     public void SetDoneMultiplayer(int id, int time){
     	multiplayerHandler.playerHasFinished(id, time);
     }
-    
+
+    /**
+     * Public method that can be accessed from the networkhandlerclasses.
+     * Resets the player with the assigned id
+     */
     public void ResetMultiplayer(int id){
     	multiplayerHandler.resetPlayer(id, mapNumber);
     }
@@ -136,15 +160,15 @@ public class Game implements DefaultFrameState, Observer {
             NetworkBuffer.getInstance().getNext().handlePacket();
         }
     	
+        int time = gameThread.getTimeRunningInHundredthsOfSeconds();
         update.updateMovement(gameKeyListener);
-
+        
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){
             	try {
         			Connection.getInstance().sendPacket(
-        					PacketBuilder.getInstance().create06PlayerWonPacket(gameThread.getTimeRunningInSeconds()));
+        					PacketBuilder.getInstance().create06PlayerWonPacket(time));
         		} catch (IOException e) {
-        			// TODO Auto-generated catch block
         			e.printStackTrace();
         		}
             	
@@ -164,7 +188,7 @@ public class Game implements DefaultFrameState, Observer {
                 stopGame();
             }
         }else{
-            draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
+            draw.drawList(update.getList(), time);
         }
     }
     

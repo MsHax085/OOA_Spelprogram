@@ -36,16 +36,16 @@ public class GameThread implements Runnable  {
         }
     }
 
-    public int getTimeRunningInSeconds() {
+    public int getTimeRunningInHundredthsOfSeconds() {
         rrwl_time_long.readLock().lock();
         try {
-            return (int) ((System.currentTimeMillis() - startupTimestampInMillis) / 1000);
+            return (int) ((System.currentTimeMillis() - startupTimestampInMillis)/10);
         } finally {
             rrwl_time_long.readLock().unlock();
         }
     }
     
-    private void setTimeRunningInSeconds(long time) {
+    private void setTimeRunning(long time) {
         rrwl_time_long.writeLock().lock();
         try {
             startupTimestampInMillis = time;
@@ -56,7 +56,7 @@ public class GameThread implements Runnable  {
 
     @Override
     public void run(){
-        setTimeRunningInSeconds(System.currentTimeMillis());
+        setTimeRunning(System.currentTimeMillis());
         while (isRunning()) {
             game.updateGame();
             try {
