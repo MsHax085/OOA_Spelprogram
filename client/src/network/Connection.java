@@ -11,6 +11,8 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import src.resourceManager.config.ConfigHandler;
+
 /**
  * 
  * @author Richard, BögErik
@@ -33,13 +35,16 @@ public class Connection {
      * 
      */
     private Connection() {
-    	this.serverPort = DEFAULTPORT;
-        try {
+	String configIpAddress = ConfigHandler.getInstance().getServerIp();
+	if (configIpAddress != null) {
+	    try {
         	this.serverIpAddress = InetAddress.getByName(DEFAULTIP);
-            this.clientSocket = new DatagramSocket();
-        } catch (SocketException | UnknownHostException ex) {
-            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        	this.clientSocket = new DatagramSocket();
+	    } catch (SocketException | UnknownHostException ex) {
+		Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	}
+    	this.serverPort = ConfigHandler.getInstance().getServerPort();
     }
     
     public static synchronized Connection getInstance() {

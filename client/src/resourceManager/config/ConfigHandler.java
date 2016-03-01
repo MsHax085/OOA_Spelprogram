@@ -125,7 +125,7 @@ public class ConfigHandler implements ImplConfigHandler {
      * @return the serverIp
      */
     public String getServerIp() {
-        return username;
+        return serverIp;
     }
 
     /**
