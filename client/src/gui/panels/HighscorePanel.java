@@ -2,10 +2,7 @@ package src.gui.panels;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -16,15 +13,12 @@ import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 
 import src.gui.panels.event.ControllerHighscorePanel;
-import src.network.Connection;
-import src.network.PacketBuilder;
-import src.network.PacketProcessor;
-import src.network.RecvPacketOpcodes;
+
 import src.resourceManager.Database;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class HighscorePanel extends SuperPanel {
 
@@ -76,7 +70,7 @@ public class HighscorePanel extends SuperPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
         );
@@ -84,12 +78,6 @@ public class HighscorePanel extends SuperPanel {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        
-        try {
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create04RequestHighscorePacket());
-        } catch (IOException ex) {
-            Logger.getLogger(HighscorePanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public void updateHighscoreList() {

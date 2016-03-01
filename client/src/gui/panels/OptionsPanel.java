@@ -14,7 +14,7 @@ import src.gui.panels.event.ControllerOptionsPanel;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class OptionsPanel extends SuperPanel {
 
@@ -76,19 +76,18 @@ public class OptionsPanel extends SuperPanel {
                     .addComponent(serverIp, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(serverIpField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
-                    // MÅSTE FIXAS!!!!
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, 25)
+                    .addGroup(panel1Layout.createParallelGroup()
                     .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(save, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addGap(98, 98, 98))// Add gap after
-            );
+            ));
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
         );

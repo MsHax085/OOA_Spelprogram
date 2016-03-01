@@ -4,25 +4,21 @@ import java.awt.Color;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import src.gui.UserInterface;
 import src.gui.panels.StartPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
-import javax.swing.JTextField;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class ControllerStartPanel implements MouseListener {
     
     private final StartPanel panel;
-    private final JTextField usernameField;
     
     public ControllerStartPanel(StartPanel panel) {
         this.panel = panel;
-        this.usernameField = panel.getUsernameInput();
     }
     
     @Override

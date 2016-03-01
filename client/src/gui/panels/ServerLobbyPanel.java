@@ -2,10 +2,7 @@ package src.gui.panels;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -16,15 +13,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
 import src.gui.panels.event.ControllerServerLobbyPanel;
-import src.network.Connection;
-import src.network.PacketBuilder;
 import src.resourceManager.Database;
-import src.resourceManager.client.Lobby;
 import src.resourceManager.client.ServerClient;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class ServerLobbyPanel extends SuperPanel {
     
@@ -47,6 +41,7 @@ public class ServerLobbyPanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         lobbyList.setFocusable(false);
+        updateLobbyList();
         
         quit.setFocusable(false);
         quit.addMouseListener((MouseListener) controller);
@@ -73,20 +68,19 @@ public class ServerLobbyPanel extends SuperPanel {
                     .addComponent(text, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(lobbyList, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
-                    //MÅSTE FIXAS!!!
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, 25)
+                    .addGroup(panel1Layout.createParallelGroup()
                     .addComponent(quit, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
                     .addComponent(start, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))// Add gap after
                 	.addGap(98, 98, 98)
-     	);
+     	));
         
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
         );

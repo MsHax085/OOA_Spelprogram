@@ -6,6 +6,9 @@ import java.awt.event.MouseListener;
 import src.gui.UserInterface;
 import src.gui.panels.HighscorePanel;
 
+/*
+ * @author Gustav
+ */
 public class ControllerHighscorePanel implements MouseListener {
 	
     private HighscorePanel panel;

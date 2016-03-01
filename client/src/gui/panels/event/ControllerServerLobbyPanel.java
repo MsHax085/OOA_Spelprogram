@@ -7,11 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import src.gui.UserInterface;
-import src.gui.panels.ServerCreationPanel;
 import src.gui.panels.ServerLobbyPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
-
+/*
+ * @author Gustav
+ */
 public class ControllerServerLobbyPanel implements MouseListener {
 	
     private ServerLobbyPanel panel;
@@ -39,19 +40,18 @@ public class ControllerServerLobbyPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
     	if (e.getSource().equals(panel.getQuitButton())) {
-            UserInterface.changeCard("menupanel");
             try {
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create0ALeaveLobbyPacket());
             } catch (IOException ex) {
                 Logger.getLogger(ServerLobbyPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+            UserInterface.changeCard("menupanel");
         } else if (e.getSource().equals(panel.getStartButton())) {
         	try {
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
             } catch (IOException ex) {
                 Logger.getLogger(ServerLobbyPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //Core.getInstance().setStateObserver(new Game());
         }
     }
 }

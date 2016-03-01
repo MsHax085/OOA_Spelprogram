@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JTable;
 import src.gui.UserInterface;
 import src.gui.panels.ServerSelectionPanel;
 import src.network.Connection;
@@ -15,18 +14,18 @@ import src.network.PacketBuilder;
 import src.network.packets.Handler01JoinLobbyResponce;
 import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
-import src.resourceManager.client.ServerClient;
 
+/*
+ * @author Gustav
+ */
 public class ControllerSelectionPanel implements MouseListener {
 	
     private ServerSelectionPanel panel;
-    private JTable serverList;
     private String password;
     private Handler01JoinLobbyResponce h1jlb;
     
     public ControllerSelectionPanel(ServerSelectionPanel panel) {
         this.panel = panel;
-        this.serverList = panel.getServerList();
     }
 	
     @Override
@@ -74,6 +73,11 @@ public class ControllerSelectionPanel implements MouseListener {
                     }
             		int i = h1jlb.getJoinLobbyStatus(); 
             		if( i == 0) {
+            			try {
+                            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
+                        } catch (IOException ex) {
+                            Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
             			UserInterface.changeCard("serverlobbypanel");
             		}
             		else {
@@ -91,10 +95,12 @@ public class ControllerSelectionPanel implements MouseListener {
             		}
             	int i = h1jlb.getJoinLobbyStatus(); 
             	if( i == 0) {
+            		try {
+                        Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             		UserInterface.changeCard("serverlobbypanel");
-            	}
-            	else if(i == 1) {
-            		panel.getCouldNotJoinPane(i);
             	} 
             	else {
             		panel.getCouldNotJoinPane(i);

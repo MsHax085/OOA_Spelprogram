@@ -15,7 +15,7 @@ import src.gui.panels.event.ControllerServerCreationPanel;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class ServerCreationPanel extends SuperPanel {
 
@@ -77,19 +77,18 @@ public class ServerCreationPanel extends SuperPanel {
                     .addComponent(serverPassword, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(serverPasswordField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
-                    // MÅSTE FIXAS!!!!
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, 25)
+                    .addGroup(panel1Layout.createParallelGroup()
                     .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(create, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addGap(98, 98, 98))// Add gap after
-            );
+            ));
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
         );

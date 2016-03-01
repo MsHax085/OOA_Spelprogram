@@ -13,7 +13,7 @@ import src.gui.panels.event.ControllerMenuPanel;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class MenuPanel extends SuperPanel {
 

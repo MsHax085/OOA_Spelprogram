@@ -10,20 +10,15 @@ import javax.swing.LayoutStyle;
 
 import java.awt.Color;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import src.gui.panels.event.ControllerSelectionPanel;
-import src.network.Connection;
-import src.network.PacketBuilder;
 import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
 /**
  *
- * @author Richard
+ * @author Richard, Gustav
  */
 public class ServerSelectionPanel extends SuperPanel {
     
@@ -46,6 +41,7 @@ public class ServerSelectionPanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         serverList.setFocusable(false);
+        updateServerList();
         
         prev.setFocusable(false);
         prev.addMouseListener((MouseListener) controller);
@@ -72,20 +68,19 @@ public class ServerSelectionPanel extends SuperPanel {
                     .addComponent(text, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(serverList, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
-                    //MÅSTE FIXAS!!!
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, 25)
+                    .addGroup(panel1Layout.createParallelGroup()
                     .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
                     .addComponent(join, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))// Add gap after
                 	.addGap(98, 98, 98)
-     	);
+     	));
         
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(70, 70, 70)
                 .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(80, 80, 80))
         );
@@ -123,8 +118,14 @@ public class ServerSelectionPanel extends SuperPanel {
     	if(i == 1) {
     		JOptionPane.showMessageDialog(null,"Could not join lobby, wrong password!");
     	}
-    	else {
+    	else if(i == 2) {
         	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is full!");
+    	}
+    	else if(i == 3) {
+        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is running a game!");
+    	}
+    	else {
+        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby does not exist!");
     	}
     }
     
