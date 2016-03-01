@@ -15,7 +15,7 @@ public class Score {
 	private final FileHandler fh;
     private static Score instance = null;
 	
-	public Score() {
+	private Score() {
 		highscorePath = "highscore";
 		fh = FileHandler.getInstance();
 	}
@@ -24,7 +24,7 @@ public class Score {
         return instance;
     }
 	
-	/* Returns a treemap of the highscore list.
+	/* Returns a treemap of the highscore list for a specific map.
 	 * It has the time in the first value, and
 	 * the username in the other.
 	 */
@@ -63,7 +63,5 @@ public class Score {
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
 		return fh.writeFile((highscorePath+mapNumber+".txt"),tempArr.toString());
-	    
-		
 	}
 }
