@@ -2,6 +2,8 @@ package src.network.packets;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;
 import src.network.PacketBuilder;
+import src.resourceManager.Score;
 
 /**
  * NOT COMPLETED
@@ -47,7 +50,20 @@ public class Handler06PlayerWon implements ImplPacketHandler {
                     }
                 }
                 if (hasFinished) {
-                    //TODO: Save all the times to the high score file.
+                    TreeMap<Integer, String> tempScoreList = Score.getInstance().getScore(lobby.getLobbyCurrentMap());
+                    for (Map.Entry<Integer, String> entry : tempScoreList.entrySet()) {
+                	Integer scoreTime = entry.getKey();
+                	String scoreUsername = entry.getValue();
+                	clientsInLobby = lobby.getClientsInLobby();
+                	while (clientsInLobby.hasNext()) {
+                	    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                	    if (scoreUsername == cli.getUsername() && cli.getTimeOfCompletion() <= scoreTime) {
+                		tempScoreList.remove(scoreTime, scoreUsername);
+                		tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
+                	    }
+                	}
+                    }
+                    Score.getInstance().setScore(tempScoreList, lobby.getLobbyCurrentMap());
                     
                     
                     lobby.setLobbyCurrentMap(0);
