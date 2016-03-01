@@ -32,6 +32,7 @@ public class Handler0ALeaveLobby implements ImplPacketHandler {
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
                 if (lobby != null) {
                     lobby.removeClientFromLobby(senderClient);
+                    System.out.println(">Client:" + senderClient.getUsername() + " left lobby:" + lobby.getLobbyName());
                     if (lobby.getNumberOfClients() > 0){
                         byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
                         Iterator clientsInLobby = lobby.getClientsInLobby();

@@ -31,6 +31,7 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
             if (senderClient != null) { // if the client is logged in
                 senderClient.setReadyToStart(true);
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                if (lobby == null) return;
                 boolean isLobbyReadyToStart = updateAllClientsInLobby(lobby);
                 
                 if (isLobbyReadyToStart) {

@@ -31,8 +31,10 @@ public class Handler06PlayerWon implements ImplPacketHandler {
             if (senderClient != null) {
                 int time = packet.getPacket().readInt();
                 senderClient.setTimeOfCompletion(time);
+                System.out.println(">Client:" + senderClient.getUsername() + " HasCompletted the map in:" + time);
                 boolean hasFinished = true;
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                if (lobby == null) return;
                 Iterator clientsInLobby = lobby.getClientsInLobby();
                 while (clientsInLobby.hasNext()) {
                     byte[] playerWonPacket = PacketBuilder.getInstance().create07PlayerWonPacket(senderClient.getId(), time);

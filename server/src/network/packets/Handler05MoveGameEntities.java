@@ -32,6 +32,7 @@ public class Handler05MoveGameEntities implements ImplPacketHandler {
         	int boxPositionX = packet.getPacket().readByte();
         	int boxPositionY = packet.getPacket().readByte();
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                if (lobby == null) return;
                 Iterator clientsInLobby = lobby.getClientsInLobby();
                 byte[] moveGameEntetiesPacket = PacketBuilder.getInstance().create06MoveGameEntetiesPacket(senderClient.getId(), playerPositionX, playerPositionY, boxPositionX, boxPositionY);
                 while (clientsInLobby.hasNext()) {

@@ -27,6 +27,7 @@ public class Handler07PlayerReset implements ImplPacketHandler {
             ClientLoggedIn senderClient = (ClientLoggedIn) ClientManager.getInstance().getClientById(packet.getSession().getId());
             if (senderClient != null) {
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
+                if (lobby == null) return;
                 Iterator clientsInLobby = lobby.getClientsInLobby();
                 while (clientsInLobby.hasNext()) {
                     byte[] playerResetPacket = PacketBuilder.getInstance().create08ClientMapResetPacket(senderClient.getId());
