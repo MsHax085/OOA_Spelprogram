@@ -46,10 +46,15 @@ public class Handler06PlayerWon implements ImplPacketHandler {
                 }
                 if (hasFinished) {
                     //TODO: Save all the times to the high score file.
+                    
+                    
+                    lobby.setLobbyCurrentMap(0);
+                    byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
                     clientsInLobby = lobby.getClientsInLobby();
                     while (clientsInLobby.hasNext()) {
                         ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
                         cli.setTimeOfCompletion(0);
+                        Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
                     }
                 }
             } else {

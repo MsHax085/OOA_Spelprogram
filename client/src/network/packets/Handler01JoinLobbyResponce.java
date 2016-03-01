@@ -27,6 +27,10 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
                 System.out.println("Could not enter lobby: Incorrect password");
             } else if (joinLobbyStatus == 2) {
                 System.out.println("Could not enter lobby: Lobby is full");
+            } else if (joinLobbyStatus == 3) {
+        	System.out.println("Could not enter Lobby: Lobby is running a game");
+            } else if (joinLobbyStatus == 4) {
+        	System.out.println("Could not enter Lobby: Lobby does not exist");
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler01JoinLobbyResponce.class.getName()).log(Level.SEVERE, null, ex);

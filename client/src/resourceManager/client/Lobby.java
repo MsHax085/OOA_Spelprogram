@@ -7,11 +7,13 @@ package src.resourceManager.client;
 public class Lobby {
     private String lobbyName;
     private boolean lobbyHasPassword;
+    private int lobbyMapId;
     private int lobbyNumberOfClients;
     
-    public Lobby(String lobbyName, boolean lobbyHasPassword, int lobbyNumberOfClients) {
+    public Lobby(String lobbyName, boolean lobbyHasPassword, int lobbyMapId, int lobbyNumberOfClients) {
 	this.lobbyName = lobbyName;
 	this.lobbyHasPassword = lobbyHasPassword;
+	this.lobbyMapId = lobbyMapId;
 	this.lobbyNumberOfClients = lobbyNumberOfClients;
     }
 
@@ -24,8 +26,15 @@ public class Lobby {
     }
     
     public String getLobbyInfoAsString() {
-	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients;
+	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients + "/5 " + (isLobbyPlayingGame() ? ":GAME IN PROGGRESS" : "");
 	return lobbyInfo;
 	
+    }
+
+    public boolean isLobbyPlayingGame() {
+	if (lobbyMapId == 0) {
+	    return false;
+	}
+	return true;
     }
 }

@@ -32,9 +32,12 @@ public class Handler01JoinLobby implements ImplPacketHandler {
                 String password = packet.getPacket().readUTF();
                 String lobbyName = packet.getPacket().readUTF();
                 Lobby lobby = LobbyManager.getInstance().getLobby(lobbyName);
-                int joinLobbyStatus = 3;
+                int joinLobbyStatus = 4;
                 if (lobby == null) {
                     System.out.println(">ClientID: " + cs.getId() + " tried to join nonexisting lobby");
+                } else if (lobby.getLobbyCurrentMap() != 0){
+                    System.out.println(">ClientID: " + cs.getId() + " tried to join a lobby: " + lobbyName + " but the lobby is in a game");
+                    joinLobbyStatus = 3;
                 } else if (lobby.getNumberOfClients() >= 5) { // 5 is the maxNumberOFClients.
                     System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
                     joinLobbyStatus = 2;

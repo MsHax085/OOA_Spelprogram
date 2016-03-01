@@ -2,6 +2,7 @@ package src.network.packets;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;
 import src.network.PacketBuilder;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * Changes the client who sent the packet, readyToStart to true. Sends out the 
@@ -29,22 +31,20 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
             if (senderClient != null) { // if the client is logged in
                 senderClient.setReadyToStart(true);
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
-                boolean isLobbyReadyToStart = true;
-                byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
-                Iterator clientsInLobby = lobby.getClientsInLobby();
-                while (clientsInLobby.hasNext()) {
-                    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                    Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
-                    if (!cli.isReadyToStart()) isLobbyReadyToStart = false;
-                }
+                boolean isLobbyReadyToStart = updateAllClientsInLobby(lobby);
+                
                 if (isLobbyReadyToStart) {
-                    int mapId = 1;
+                    Random rand = new Random();
+                    int mapId = rand.nextInt(ConfigHandler.getInstance().getNumberOfMaps()) + 1;
+                    lobby.setLobbyCurrentMap(mapId);
                     byte[] startGamePacket = PacketBuilder.getInstance().create04StartGamePacket(mapId);
-                    clientsInLobby = lobby.getClientsInLobby();
+                    Iterator clientsInLobby = lobby.getClientsInLobby();
                     while (clientsInLobby.hasNext()) {
                 	ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
                 	Connection.getInstance().sendPacket(startGamePacket, cli);
+                	cli.setReadyToStart(false);
                     }
+                    updateAllClientsInLobby(lobby);
                 }
             } else {
                 // if the client isn't logged in: Send a failed to login packet.
@@ -53,5 +53,23 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
         } catch (IOException ex) {
             Logger.getLogger(Handler02ReadyRequest.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    /**
+     * sends a update lobby packet to all clients in the lobby
+     * @param lobby
+     * @return isLobbyReadyToStart
+     * @throws IOException
+     */
+    private  boolean updateAllClientsInLobby(Lobby lobby) throws IOException{
+	boolean isLobbyReadyToStart = true;
+	byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
+        Iterator clientsInLobby = lobby.getClientsInLobby();
+        while (clientsInLobby.hasNext()) {
+            ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+            Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+            if (!cli.isReadyToStart()) isLobbyReadyToStart = false;
+        }
+        return isLobbyReadyToStart;
     }
 }

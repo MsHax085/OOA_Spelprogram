@@ -13,7 +13,7 @@ public class Lobby {
     private final String lobbyPassword;
     private final ArrayList<ClientLoggedIn> clientLogIns = new ArrayList<>();// Logged in clients and registred in lobby
     
-    private int lobbyCurrentMap = -1;
+    private int lobbyCurrentMap = 0;
     
     public Lobby(String lobbyName, String lobbyPassword) {
         this.lobbyName = lobbyName;

@@ -53,6 +53,7 @@ public class PacketBuilder {
             Lobby lobby = (Lobby) lobbies.next();
             dataOutputStream.writeUTF(lobby.getLobbyName());
             dataOutputStream.writeBoolean(!lobby.getLobbyPassword().equals(""));
+            dataOutputStream.writeInt(lobby.getLobbyCurrentMap());
             dataOutputStream.writeInt(lobby.getNumberOfClients());
         }
         
