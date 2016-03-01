@@ -76,8 +76,8 @@ public class ConfigHandler implements ImplConfigHandler {
      */
     private void checkVars(){
     	if(portNumber == 0){portNumber=8989;}
-    	if(maxClientsLobby == 0){maxClientsLobby=10;}
-    	if(numberOfMaps == 0){numberOfMaps=16;}
+    	if(maxClientsLobby == 0){maxClientsLobby=5;}
+    	if(numberOfMaps == 0){numberOfMaps=2;}
     }
 
     /**
