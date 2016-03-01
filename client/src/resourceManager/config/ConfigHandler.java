@@ -20,11 +20,14 @@ public class ConfigHandler implements ImplConfigHandler {
     private String serverIp;
     private int serverPort;
 
-    public ConfigHandler() {
+    private ConfigHandler() {
     	configPath = "config.txt";
         fh = FileHandler.getInstance();
-        
+        gameWidth = 0;
+        gameHeight = 0;
+        serverPort = 0;
         readConfig();
+        checkVars();
     }
     public static ConfigHandler getInstance() {
         if (instance == null) instance = new ConfigHandler();
@@ -77,6 +80,17 @@ public class ConfigHandler implements ImplConfigHandler {
         tempArr.append("serverPort").append(serverPort).append("\n");
         return fh.writeFile("config.txt", tempArr.toString());
    }
+    
+    /* Checks variables
+     * If they are not assigned, assign default values to them
+     */
+    private void checkVars(){
+    	if(serverIp == null){serverIp="127.0.0.1";}
+    	if(serverPort == 0){serverPort=8989;}
+    	if(gameHeight == 0){gameHeight=10;}
+    	if(gameWidth == 0){gameWidth=16;}
+    	if(username == null){username="default";}
+    }
 
     /**
      * @return the username
