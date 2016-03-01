@@ -19,6 +19,7 @@ import src.gui.panels.event.ControllerSelectionPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 import src.resourceManager.Database;
+import src.resourceManager.client.Lobby;
 
 /**
  *
@@ -38,7 +39,7 @@ public class ServerSelectionPanel extends SuperPanel {
         this.controller = new ControllerSelectionPanel(this);
     	container = new JPanel();
         text = new JLabel("Choose a server");
-        serverList = new JTable(0,1);
+        serverList = new JTable(14,1);
         prev = new JButton("Prev");
         join = new JButton("Join");
         
@@ -92,19 +93,25 @@ public class ServerSelectionPanel extends SuperPanel {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        
-        try {
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create00RequestLobbyListPacket());
-        } catch (IOException ex) {
-            Logger.getLogger(ServerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
+    /**
+     * Clears the JTable, add the lobbies from DataBase to the JTable.
+     */
     public void updateServerList() {
-        final Iterator itr = Database.getInstance().getLobbyNames();
+	clearRows();
+	final Iterator itr = Database.getInstance().getLobbies();
         while (itr.hasNext()) {
-            addRow((String) itr.next());
+            Lobby lobby = (Lobby) itr.next();
+            addRow(lobby.getLobbyInfoAsString());
         }
+    }
+    /**
+     * Removes all things in the JTable.
+     */
+    private void clearRows() {
+	DefaultTableModel model = (DefaultTableModel) serverList.getModel();
+	model.setRowCount(0);
     }
     
     private void addRow(String str) {

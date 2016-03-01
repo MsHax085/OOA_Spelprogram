@@ -19,6 +19,8 @@ import src.gui.panels.event.ControllerServerLobbyPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 import src.resourceManager.Database;
+import src.resourceManager.client.Lobby;
+import src.resourceManager.client.ServerClient;
 
 /**
  *
@@ -93,19 +95,26 @@ public class ServerLobbyPanel extends SuperPanel {
             .addComponent(container, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         
-        try {
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
-        } catch (IOException ex) {
-            Logger.getLogger(ServerLobbyPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
     
+    /**
+     * Clears the JTable, adds information about all clients in the lobby.
+     */
     public void updateLobbyList() {
-        final Iterator itr = Database.getInstance().getPlayerNames();
+	clearRows();
+        final Iterator itr = Database.getInstance().getClients();
         while (itr.hasNext()) {
-            addRow((String) itr.next());
+            ServerClient client = (ServerClient) itr.next();
+            addRow(client.getClientInfoAsString());
         }
+    }
+    
+    /**
+     * Removes all things in the JTable.
+     */
+    private void clearRows() {
+	DefaultTableModel model = (DefaultTableModel) lobbyList.getModel();
+	model.setRowCount(0);
     }
     
     private void addRow(String str) {

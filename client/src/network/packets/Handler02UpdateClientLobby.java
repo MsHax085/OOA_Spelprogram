@@ -2,9 +2,15 @@ package src.network.packets;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.Changes;
+import src.Core;
 import src.network.ImplPacketHandler;
+import src.resourceManager.Database;
+import src.resourceManager.client.ServerClient;
 
 /**
  * NOT COMPLETED
@@ -21,13 +27,20 @@ public class Handler02UpdateClientLobby implements ImplPacketHandler {
         System.out.println("02UpdateClientLobby recived from server");
         if (dis == null) return;
         try {
+            //Clears the current list
+            final Iterator itr = Database.getInstance().getClients();
+            while (itr.hasNext()) {
+        	itr.next();
+        	itr.remove();
+            }
+            
             int numberOfClientsInLobby = dis.readInt();
             for (int i = 0; i < numberOfClientsInLobby; i++) {
-                String username = dis.readUTF();
-                int clientId = dis.readInt();
-                boolean clientReadyToStart = dis.readBoolean();
-                System.out.println("Client: " + username + " with ID: " + clientId + " is ready: " + clientReadyToStart);
+        	ServerClient client = new ServerClient(dis.readInt(), dis.readUTF(), dis.readBoolean());
+        	Database.getInstance().addClient(client);
+                System.out.println(client.getClientInfoAsString());
             }
+            Core.getInstance().signalObservers(Changes.CLIENTLIST_CHANGE.getValue());
         } catch (IOException ex) {
             Logger.getLogger(Handler02UpdateClientLobby.class.getName()).log(Level.SEVERE, null, ex);
         }

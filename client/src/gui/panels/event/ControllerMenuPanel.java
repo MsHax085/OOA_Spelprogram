@@ -2,8 +2,12 @@ package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+
 import src.gui.UserInterface;
 import src.gui.panels.MenuPanel;
+import src.network.Connection;
+import src.network.PacketBuilder;
 
 public class ControllerMenuPanel implements MouseListener {
 	
@@ -33,6 +37,11 @@ public class ControllerMenuPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getSource().equals(panel.getJoinButton())) {
             //Core.getInstance().setStateObserver(new Game());
+            try {
+		Connection.getInstance().sendPacket(PacketBuilder.getInstance().create00RequestLobbyListPacket());
+	    } catch (IOException e1) {
+		e1.printStackTrace();
+	    }
             UserInterface.changeCard("serverselectionpanel");
         } else if (e.getSource().equals(panel.getHostButton())) {
             UserInterface.changeCard("servercreationpanel");

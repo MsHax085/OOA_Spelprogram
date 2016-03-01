@@ -52,7 +52,7 @@ public class PacketBuilder {
         while (lobbies.hasNext()) {
             Lobby lobby = (Lobby) lobbies.next();
             dataOutputStream.writeUTF(lobby.getLobbyName());
-            dataOutputStream.writeBoolean((lobby.getLobbyPassword() == "") ? false : true); //hasPassword
+            dataOutputStream.writeBoolean(!lobby.getLobbyPassword().equals(""));
             dataOutputStream.writeInt(lobby.getNumberOfClients());
         }
         
@@ -88,8 +88,8 @@ public class PacketBuilder {
         dataOutputStream.writeInt(numberOfClientsInLobby);
         while (listOfClientsInLobby.hasNext()) {
             ClientLoggedIn cli = (ClientLoggedIn) listOfClientsInLobby.next();
-            dataOutputStream.writeUTF(cli.getUsername()); // name
             dataOutputStream.writeInt(cli.getId());
+            dataOutputStream.writeUTF(cli.getUsername());
             dataOutputStream.writeBoolean(cli.isReadyToStart());
         }
         dataOutputStream.close();

@@ -7,7 +7,8 @@ package src;
 public enum Changes {
     PACKET_RECEIVED(0),
     USERNAME_CHANGE(1),
-    LOBBYLIST_CHANGE(2);
+    LOBBYLIST_CHANGE(2),
+    CLIENTLIST_CHANGE(3);
     
     private final int value;
     

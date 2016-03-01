@@ -104,6 +104,9 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         if (val == Changes.LOBBYLIST_CHANGE.getValue()) {
             System.out.println("Lobby updated!");
             serverSelectionPanel.updateServerList();
+        } else if (val == Changes.CLIENTLIST_CHANGE.getValue()) {
+            System.out.println("Client list updated!");
+            serverLobbyPanel.updateLobbyList();
         }
     }
 
