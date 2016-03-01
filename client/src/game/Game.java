@@ -174,8 +174,8 @@ public class Game implements DefaultFrameState, Observer {
 	            	multiplayerHandler.setAnyOneHasFinished();
 	                draw.setIsWinner();
 	            }
-	            
-	            draw.repaint();
+
+	            draw.drawList(update.getList(), time);
             }
             
         	
