@@ -178,7 +178,7 @@ public class MultiplayerHandler {
     	
     	for(int id : playerMap.keySet()){
     		if(!list.contains(id)){
-    			playerMap.remove(id);
+    			playerMap.get(id).setHasFinished();
     		}
     	}
     }
