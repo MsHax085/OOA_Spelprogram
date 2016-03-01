@@ -50,17 +50,27 @@ public class Handler06PlayerWon implements ImplPacketHandler {
                     }
                 }
                 if (hasFinished) {
-                    TreeMap<Integer, String> tempScoreList = Score.getInstance().getScore(lobby.getLobbyCurrentMap());
-                    for (Map.Entry<Integer, String> entry : tempScoreList.entrySet()) {
-                	Integer scoreTime = entry.getKey();
-                	String scoreUsername = entry.getValue();
-                	clientsInLobby = lobby.getClientsInLobby();
-                	while (clientsInLobby.hasNext()) {
-                	    ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
-                	    if (scoreUsername == cli.getUsername() && cli.getTimeOfCompletion() <= scoreTime) {
-                		tempScoreList.remove(scoreTime, scoreUsername);
-                		tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
+                    TreeMap<Integer, String> scoreList = Score.getInstance().getScore(lobby.getLobbyCurrentMap());
+                    TreeMap<Integer, String> tempScoreList = new TreeMap<Integer, String>(scoreList);
+                    clientsInLobby = lobby.getClientsInLobby();
+                    while(clientsInLobby.hasNext()) {
+                	ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                	boolean isClientInScore = false;
+                	for (Map.Entry<Integer, String> entry : scoreList.entrySet()) {
+                	    Integer scoreTime = entry.getKey();
+                	    String scoreUsername = entry.getValue();
+                	    if (cli.getUsername().equals(scoreUsername)) {
+                		isClientInScore = true;
+                		if (cli.getTimeOfCompletion() <= scoreTime) {
+                		    System.out.println(">Client:" + cli.getUsername() + " got a highscore");
+                		    tempScoreList.remove(scoreTime, scoreUsername);
+                		    tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
+                	    	}
                 	    }
+                	}
+                	if (!isClientInScore) {
+                	    tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
+                	    System.out.println(">Client:" + cli.getUsername() + " was added to the highscore list");
                 	}
                     }
                     Score.getInstance().setScore(tempScoreList, lobby.getLobbyCurrentMap());
