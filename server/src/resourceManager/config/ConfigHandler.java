@@ -18,11 +18,14 @@ public class ConfigHandler implements ImplConfigHandler {
     private int maxClientsLobby;
     private int numberOfMaps;
     
-    public ConfigHandler() {
+    private ConfigHandler() {
     	configPath = "config.txt";
         fh = FileHandler.getInstance();
-        
+        portNumber=0;
+        maxClientsLobby=0;
+        numberOfMaps=0;
         readConfig();
+        checkVars();
     }
     public static ConfigHandler getInstance() {
         if (instance == null) instance = new ConfigHandler();
@@ -67,6 +70,15 @@ public class ConfigHandler implements ImplConfigHandler {
         tempArr.append("numberOfMaps,").append(numberOfMaps).append("\n");
         return fh.writeFile(configPath, tempArr.toString());
    }
+    
+    /* Checks variables
+     * If they are not assigned, assign default values to them
+     */
+    private void checkVars(){
+    	if(portNumber == 0){portNumber=8989;}
+    	if(maxClientsLobby == 0){maxClientsLobby=10;}
+    	if(numberOfMaps == 0){numberOfMaps=16;}
+    }
 
     /**
      * @return portNumber
