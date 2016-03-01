@@ -39,10 +39,13 @@ public class Score {
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		
-		for(int i=0; i < splitRows.length; i++)
-		{
+		try{
+		for(int i=0; i < splitRows.length; i++){
 			splitCol = splitRows[i].split(",");
 			scoreMap.put(Integer.parseInt(splitCol[1]),splitCol[0]);
+		}
+		} catch(Exception e){
+			System.out.println("TreeMap read error");
 		}
 		return scoreMap;
 	}
