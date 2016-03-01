@@ -89,6 +89,7 @@ public class MultiplayerHandler {
     	if(playerMap.get(id) == null){
     		System.out.println("client not available");
     	}else{
+    		System.out.println("slab pos for" + id + "pos_ " + x + y);
 	        ArrayList<Entity> list = playerMap.get(id).getList();
 	        for (Entity ent : list) {
 	            if (ent.getClass() == Slab.class) {

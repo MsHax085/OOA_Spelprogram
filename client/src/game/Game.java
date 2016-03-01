@@ -107,10 +107,12 @@ public class Game implements DefaultFrameState, Observer {
     }
 
     public void UpdateMultiplayer(int id, int pX, int pY, int sX, int sY){
-        if(pX < 255 && pY < 255)
+        if(pX != -1 && pY != -1){
         	multiplayerHandler.updatePlayer(id, pX, pY);
-        if(sX < 255 && sY < 255)
+        }
+        if(sX != -1 && sY != -1){
         	multiplayerHandler.updateSlab(id, sX, sY);
+        }
     }
     
     public void AddMultiplayers(int id, String name){
@@ -135,13 +137,13 @@ public class Game implements DefaultFrameState, Observer {
         }
     	
         update.updateMovement(gameKeyListener);
-        draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
 
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){
 	        	System.out.println("You are done.");	
 	            draw.setHasFinished();
 	            if (!multiplayerHandler.getAnyOneHasFinished()) {
+	            	multiplayerHandler.setAnyOneHasFinished();
 	                draw.setIsWinner();
 	            }
 	            
@@ -158,8 +160,9 @@ public class Game implements DefaultFrameState, Observer {
             
             if(multiplayerHandler.hasEveryBodyFinished()){
                 stopGame();
-                Core.getInstance().setStateObserver(new UserInterface());
             }
+        }else{
+            draw.drawList(update.getList(), gameThread.getTimeRunningInSeconds());
         }
     }
     
