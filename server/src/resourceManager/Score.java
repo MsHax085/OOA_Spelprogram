@@ -16,7 +16,7 @@ public class Score {
     private static Score instance = null;
 	
 	public Score() {
-		highscorePath = "highscore.txt";
+		highscorePath = "highscore";
 		fh = FileHandler.getInstance();
 	}
     public static Score getInstance() {
@@ -28,12 +28,12 @@ public class Score {
 	 * It has the time in the first value, and
 	 * the username in the other.
 	 */
-	public TreeMap<Integer, String> getScore()
+	public TreeMap<Integer, String> getScore(int mapNumber)
 	{
 		TreeMap<Integer, String> scoreMap = 
 	             new TreeMap<Integer, String>();
 		
-		String tempString = fh.readFile(highscorePath);
+		String tempString = fh.readFile(highscorePath+mapNumber+".txt");
 		String[] splitRows = tempString.split("\n");
 		String[] splitCol;
 		
@@ -46,12 +46,12 @@ public class Score {
 	}
 	
 	
-	/* Saves a treemap of the highscore list.
+	/* Saves a treemap of the highscore list of a specific map.
 	 * The treemap has the same "appearance" as in the getScore method.
 	 * Returns false if the writeFile method wasn't successful, and true if it was.
 	 */
 
-	public Boolean setScore(TreeMap<Integer,String> scoreSave)
+	public Boolean setScore(TreeMap<Integer,String> scoreSave, int mapNumber)
 	{	
 		StringBuilder tempArr = new StringBuilder(); 
 		
@@ -62,7 +62,7 @@ public class Score {
 			Map.Entry mentry = (Map.Entry)it.next();
 		       tempArr.append( mentry.getValue()+ ","+ mentry.getKey()+"\n");
 		      }
-		return fh.writeFile(highscorePath,tempArr.toString());
+		return fh.writeFile((highscorePath+mapNumber+".txt"),tempArr.toString());
 	    
 		
 	}
