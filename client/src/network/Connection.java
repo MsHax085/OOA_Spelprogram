@@ -36,11 +36,12 @@ public class Connection {
      */
     private Connection() {
 	try {
+	    this.serverPort = ConfigHandler.getInstance().getServerPort();
 	    this.serverIpAddress = InetAddress.getByName(ConfigHandler.getInstance().getServerIp());
-	} catch (UnknownHostException e) {
-	    e.printStackTrace();
+	    this.clientSocket = new DatagramSocket();
+	} catch (SocketException | UnknownHostException ex) {
+	    Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
 	}
-    	this.serverPort = ConfigHandler.getInstance().getServerPort();
     }
     
     public static synchronized Connection getInstance() {
