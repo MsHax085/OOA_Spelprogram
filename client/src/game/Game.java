@@ -4,13 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.TreeMap;
-
 import javax.swing.*;
 
-import src.Core;
 import src.frame.DefaultFrameState;
-import src.gui.UserInterface;
 import src.network.Connection;
 import src.network.NetworkBuffer;
 import src.network.PacketBuilder;
@@ -28,6 +24,9 @@ import src.resourceManager.client.ServerClient;
  *	Game, MultiplayerHandler = Controller
  *	Update = Model
  *	JFrame frame, draw = View
+ *
+ * @param mapNumber - desired map
+ * @param clientList - a list containing the lobby's ServerClients
  *
  */
 
@@ -62,10 +61,6 @@ public class Game implements DefaultFrameState, Observer {
     	return currentGame;
     }
     
-    /**
-     * @param mapNumber - desired map
-     * @param clientSet - a treeMap containing the lobby's client names and ids
-     */
     public Game(int mapNumber, ArrayList<ServerClient> clientList){
         currentGame = this;
         

@@ -24,7 +24,7 @@ public class GameWindowListener implements WindowListener {
     @Override
     public void windowClosed(WindowEvent e) {
         game.stopGame();
-        Core.getInstance().setStateObserver(new UserInterface());
+        Core.getInstance().setStateObserver(new UserInterface(5));
     }
 
     @Override

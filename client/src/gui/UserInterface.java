@@ -21,7 +21,10 @@ import src.network.NetworkBuffer;
 
 /**
  *
- * @author Richard
+ * @author Richard,++
+ * 
+ * @param Which panel you want to open, 1 for start, 2 for menu, 3 for serverselection,
+ * 4 for servercreation, 5 for serverlobby, 6 for highscore, 7 for optionspanel
  */
 public class UserInterface implements WindowListener, DefaultFrameState, Observer {
 
@@ -35,6 +38,11 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     private ServerLobbyPanel serverLobbyPanel;
     private HighscorePanel highscorePanel;
     private OptionsPanel optionsPanel;
+    private int panel;
+    
+    public UserInterface(int panel){
+    	this.panel = panel;
+    }
     
     @Override
     public void setup() {
@@ -67,8 +75,22 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         panelContainer.add(serverLobbyPanel, "serverlobbypanel");
         panelContainer.add(highscorePanel, "highscorepanel");
         panelContainer.add(optionsPanel, "optionspanel");
-
-        changeCard("startpanel");
+        
+        if(panel == 1){
+        	changeCard("startpanel");
+        }else if(panel == 2){
+        	changeCard("menupanel");
+        }else if(panel == 3){
+        	changeCard("serverselectionpanel");
+        }else if(panel == 4){
+        	changeCard("servercreationpanel");
+        }else if(panel == 5){
+        	changeCard("serverlobbypanel");
+        }else if(panel == 6){
+        	changeCard("highscorepanel");
+        }else if(panel == 7){
+        	changeCard("optionspanel");
+        }
         frame.add(panelContainer);
     }
     
