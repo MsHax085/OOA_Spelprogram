@@ -47,6 +47,7 @@ public class FileHandler implements ImplFileHandler {
             in.close();
         } catch (IOException e) {
             System.out.println("Read Error");
+            return null;
         }
         return tempArr.toString();
     }

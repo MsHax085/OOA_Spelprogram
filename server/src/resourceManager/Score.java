@@ -18,6 +18,8 @@ public class Score {
 	private Score() {
 		highscorePath = "highscore";
 		fh = FileHandler.getInstance();
+		if(fh.readFile(highscorePath+"1.txt")==null){fh.writeFile(highscorePath+"1.txt","");}
+		if(fh.readFile(highscorePath+"2.txt")==null){fh.writeFile(highscorePath+"2.txt","");}
 	}
     public static Score getInstance() {
         if (instance == null) instance = new Score();
