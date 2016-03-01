@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
+import src.resourceManager.Database;
 
 /**
  * This handles the packet that tells if the server could successfully login the client.
@@ -24,6 +25,7 @@ public class Handler09ClientLoginResponse implements ImplPacketHandler {
             int clientId = dis.readInt();
             if (clientId >= 0) {
                 System.out.println("Login Successfull with id: " + clientId);
+                Database.getInstance().setId(clientId);
                 UserInterface.changeCard("menupanel");
             } else {
                 System.out.println("Login failed: username is taken");

@@ -1,6 +1,7 @@
 package src.game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TreeMap;
@@ -13,6 +14,7 @@ import src.gui.UserInterface;
 import src.network.Connection;
 import src.network.NetworkBuffer;
 import src.network.PacketBuilder;
+import src.resourceManager.client.ServerClient;
 
 
 /**
@@ -64,7 +66,7 @@ public class Game implements DefaultFrameState, Observer {
      * @param mapNumber - desired map
      * @param clientSet - a treeMap containing the lobby's client names and ids
      */
-    public Game(int mapNumber, TreeMap<Integer, String> clientSet){
+    public Game(int mapNumber, ArrayList<ServerClient> clientList){
         currentGame = this;
         
     	this.mapNumber = mapNumber;
@@ -79,8 +81,9 @@ public class Game implements DefaultFrameState, Observer {
         draw.addKeyListener(gameKeyListener);
         superPanel.add(draw);
 
-        for(int id : clientSet.keySet()){
-        	AddMultiplayers(id, clientSet.get(id));
+        for(ServerClient obj : clientList){
+        	AddMultiplayers(obj.getClientId(), obj.getUsername());
+        	System.out.println(obj.getUsername() + " Has been added to the game");
         }
         
         new Thread(gameThread).start();

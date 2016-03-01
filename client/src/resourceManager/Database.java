@@ -16,14 +16,14 @@ public class Database {
     private static Database database = null;
     
     private String username = "NAME";
-    private ArrayList<String> lobbyNameList = new ArrayList<>();
+    private int id = -1;
     private ArrayList<String> highscoreList = new ArrayList<>();
-    private ArrayList<String> clientLobbyList = new ArrayList<>();
     
     private ArrayList<Lobby> lobbyList = new ArrayList<>();
     private ArrayList<ServerClient> clientList = new ArrayList<>();
-    
+
     private final ReentrantReadWriteLock rrwl_username = new ReentrantReadWriteLock(true);
+    private final ReentrantReadWriteLock rrwl_id = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_highscorelist = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_lobbylist = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_serverclientlist = new ReentrantReadWriteLock(true);
@@ -102,7 +102,7 @@ public class Database {
             rrwl_highscorelist.writeLock().unlock();
         }
     }
-    
+
     public String getUsername() {
         rrwl_username.readLock().lock();
         try {
@@ -118,6 +118,24 @@ public class Database {
             this.username = username;
         } finally {
             rrwl_username.writeLock().unlock();
+        }
+    }
+
+    public int getId() {
+        rrwl_id.readLock().lock();
+        try {
+            return id;
+        } finally {
+            rrwl_id.readLock().unlock();
+        }
+    }
+    
+    public void setId(int id) {
+        rrwl_id.writeLock().lock();
+        try {
+            this.id = id;
+        } finally {
+            rrwl_id.writeLock().unlock();
         }
     }
 }
