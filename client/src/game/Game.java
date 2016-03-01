@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.*;
 
+import src.Changes;
 import src.frame.DefaultFrameState;
 import src.network.Connection;
 import src.network.NetworkBuffer;
@@ -193,5 +194,8 @@ public class Game implements DefaultFrameState, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+    	if(Changes.CLIENTLIST_CHANGE.getValue()==(int)arg){
+    		multiplayerHandler.refreshList();
+    	}
     }
 }

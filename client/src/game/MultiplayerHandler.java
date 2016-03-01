@@ -1,11 +1,14 @@
 package src.game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 import javax.swing.JPanel;
 
 import src.game.entities.*;
+import src.resourceManager.Database;
+import src.resourceManager.client.ServerClient;
 
 /**
  * 
@@ -149,7 +152,34 @@ public class MultiplayerHandler {
     	if(playerMap.get(id) == null){
     		System.out.println("client not available");
     	}else{
-    		playerMap.get(id).drawList(new MapHandler().getMap(mapNumber));
+    		ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
+	        Player player = new Player(0, 0);
+	        for (Entity ent : list) {
+	            if (ent instanceof Start) {
+	                player.setX(ent.getX());
+	                player.setY(ent.getY());
+	            }
+	        }
+	        list.add(player);
+    		playerMap.get(id).drawList(list);
+    	}
+    }
+    
+    public void refreshList(){
+    	Iterator<ServerClient> it = Database.getInstance().getClients();
+    	
+    	ArrayList<Integer> list = new ArrayList<Integer>();
+    	while(it.hasNext()){
+    		ServerClient temp = it.next();
+    		if(temp.getClientId() != Database.getInstance().getId()){
+    			list.add(temp.getClientId());
+    		}
+    	}
+    	
+    	for(int id : playerMap.keySet()){
+    		if(!list.contains(id)){
+    			playerMap.remove(id);
+    		}
     	}
     }
 }
