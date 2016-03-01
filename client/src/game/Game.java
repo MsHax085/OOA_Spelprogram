@@ -140,6 +140,14 @@ public class Game implements DefaultFrameState, Observer {
 
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){
+            	try {
+        			Connection.getInstance().sendPacket(
+        					PacketBuilder.getInstance().create06PlayerWonPacket(gameThread.getTimeRunningInSeconds()));
+        		} catch (IOException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
+            	
 	        	System.out.println("You are done.");	
 	            draw.setHasFinished();
 	            if (!multiplayerHandler.getAnyOneHasFinished()) {
@@ -150,13 +158,7 @@ public class Game implements DefaultFrameState, Observer {
 	            draw.repaint();
             }
             
-        	try {
-    			Connection.getInstance().sendPacket(
-    					PacketBuilder.getInstance().create06PlayerWonPacket(gameThread.getTimeRunningInSeconds()));
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+        	
             
             if(multiplayerHandler.hasEveryBodyFinished()){
                 stopGame();
