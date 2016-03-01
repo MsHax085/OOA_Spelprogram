@@ -35,14 +35,10 @@ public class Connection {
      * 
      */
     private Connection() {
-	String configIpAddress = ConfigHandler.getInstance().getServerIp();
-	if (configIpAddress != null) {
-	    try {
-        	this.serverIpAddress = InetAddress.getByName(DEFAULTIP);
-        	this.clientSocket = new DatagramSocket();
-	    } catch (SocketException | UnknownHostException ex) {
-		Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-	    }
+	try {
+	    this.serverIpAddress = InetAddress.getByName(ConfigHandler.getInstance().getServerIp());
+	} catch (UnknownHostException e) {
+	    e.printStackTrace();
 	}
     	this.serverPort = ConfigHandler.getInstance().getServerPort();
     }
