@@ -38,7 +38,7 @@ public class Update{
         player = new Player(0,0);
 
         for (Entity ent : entities) {
-            if (ent.getClass() == Start.class) {
+            if (ent instanceof Start) {
                 player.setX(ent.getX());
                 player.setY(ent.getY());
             }
@@ -77,7 +77,7 @@ public class Update{
         for (Entity ent : entities) {
             if (intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.isSolid()) {
                 moveAllowed = false;
-            } else if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent.getClass() == Slab.class) {
+            } else if(intersect(player.getX() + x, ent.getX(), player.getY() + y, ent.getY()) && ent instanceof Slab) {
                 moveAllowed = isSlabMoveable((Slab)ent, x, y);
                 slab = (Slab)ent;
             }
@@ -106,9 +106,9 @@ public class Update{
      */
     private boolean isSlabMoveable(Slab slab, int x, int y){
         for(Entity ent : entities){
-            if (intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() != Goal.class) {
+            if (intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && !(ent instanceof Goal)) {
                 return false;
-            } else if (intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent.getClass() == Goal.class) {
+            } else if (intersect(slab.getX() + x, ent.getX(), slab.getY() + y, ent.getY()) && ent instanceof Goal) {
                 hasFinished = true;
             }
         }

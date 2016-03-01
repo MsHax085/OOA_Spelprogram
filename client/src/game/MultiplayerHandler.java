@@ -44,7 +44,7 @@ public class MultiplayerHandler {
 	        ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
 	        Player player = new Player(0, 0);
 	        for (Entity ent : list) {
-	            if (ent.getClass() == Start.class) {
+	            if (ent instanceof Start) {
 	                player.setX(ent.getX());
 	                player.setY(ent.getY());
 	            }
@@ -70,7 +70,7 @@ public class MultiplayerHandler {
     	}else{
 	        ArrayList<Entity> list = playerMap.get(id).getList();
 	        for (Entity ent : list) {
-	            if (ent.getClass() == Player.class) {
+	            if (ent instanceof Player) {
 	                ent.setX(x);
 	                ent.setY(y);
 	            }
@@ -91,7 +91,7 @@ public class MultiplayerHandler {
     	}else{
 	        ArrayList<Entity> list = playerMap.get(id).getList();
 	        for (Entity ent : list) {
-	            if (ent.getClass() == Slab.class) {
+	            if (ent instanceof Slab) {
 	                ent.setX(x);
 	                ent.setY(y);
 	            }
