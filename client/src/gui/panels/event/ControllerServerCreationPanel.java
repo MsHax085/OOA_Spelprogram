@@ -50,11 +50,6 @@ public class ControllerServerCreationPanel implements MouseListener {
                 } catch (IOException ex) {
                     Logger.getLogger(ControllerServerCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        		try {
-                    Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
-                } catch (IOException ex) {
-                    Logger.getLogger(ControllerServerCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 UserInterface.changeCard("serverlobbypanel");
         	}
 
