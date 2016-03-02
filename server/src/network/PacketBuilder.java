@@ -9,7 +9,6 @@ import java.util.TreeMap;
 
 import src.client.ClientLoggedIn;
 import src.client.Lobby;
-import src.lobbyManager.ManagerItem;
 import src.resourceManager.Score;
 
  /**

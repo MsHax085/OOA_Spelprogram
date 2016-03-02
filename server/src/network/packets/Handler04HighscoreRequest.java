@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import src.client.ClientLoggedIn;
 import src.client.LobbyManager;
-import src.lobbyManager.Manager;
 import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;

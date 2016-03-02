@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import src.client.LobbyManager;
-import src.lobbyManager.Manager;
 import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;
