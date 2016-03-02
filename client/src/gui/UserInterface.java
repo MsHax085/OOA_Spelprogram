@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.awt.CardLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +18,9 @@ import src.gui.panels.ServerCreationPanel;
 import src.gui.panels.ServerLobbyPanel;
 import src.gui.panels.ServerSelectionPanel;
 import src.gui.panels.StartPanel;
+import src.network.Connection;
 import src.network.NetworkBuffer;
+import src.network.PacketBuilder;
 
 /**
  *
@@ -138,6 +141,11 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
 
     @Override
     public void windowClosed(WindowEvent e) {
+	try {
+	    Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLogoutPacket());
+	} catch (IOException e1) {
+	    e1.printStackTrace();
+	}
         NetworkBuffer.getInstance().removeOldObserver(this);
         Core.getInstance().stop();
         // TODO: CLOSE EVERYTHING BEFORE EXIT
