@@ -52,6 +52,12 @@ public class Handler02ReadyRequest implements ImplPacketHandler {
                 	Connection.getInstance().sendPacket(startGamePacket, cli);
                 	cli.setReadyToStart(false);
                     }
+                    updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
+                    clientsInLobby = lobby.getClientsInLobby();
+                    while (clientsInLobby.hasNext()) {
+                        ClientLoggedIn cli = (ClientLoggedIn) clientsInLobby.next();
+                        Connection.getInstance().sendPacket(updateClientLobbyPacket, cli);
+                    }
                 }
             } else {
                 // if the client isn't logged in: Send a failed to login packet.
