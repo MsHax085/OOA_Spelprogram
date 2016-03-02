@@ -28,7 +28,7 @@ public class Handler04HighscoreRequest implements ImplPacketHandler {
         try {
             int mapId = packet.getPacket().readInt();
             if (mapId >= 1 && mapId <= ConfigHandler.getInstance().getNumberOfMaps()) {
-        	Connection.getInstance().sendPacket(PacketBuilder.getInstance().create05HighscoreResponcePacket(packet.getPacket().readInt()), packet.getSession());
+        	Connection.getInstance().sendPacket(PacketBuilder.getInstance().create05HighscoreResponcePacket(mapId), packet.getSession());
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler04HighscoreRequest.class.getName()).log(Level.SEVERE, null, ex);
