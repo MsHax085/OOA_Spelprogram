@@ -4,16 +4,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 import src.client.ClientLoggedIn;
 import src.client.Lobby;
 import src.lobbyManager.ManagerItem;
+import src.resourceManager.Score;
 
  /**
  * collection of the packet building methods. 
  * 
- * IMPLEMENTATION: packetDataAsByteArray = PacketBuilder.getInstance().create'packet name'(arguments);
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  *
  */
 
@@ -127,26 +129,34 @@ public class PacketBuilder {
     }
     
     /**
-     * NOT COMPLETED
-     * Creates packet data with the high score list.
+     * Creates packet data with the high score list of a specific map. The list only contains the first 20 players.
      * @return
      * @throws IOException
      */
-    public byte[] create05HighscoreResponcePacket() throws IOException {
+    public byte[] create05HighscoreResponcePacket(int mapId) throws IOException {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET05.getValue());
         
-        // TODO: Figure out how score should be sent to clients
+        TreeMap<Integer, String> scoreList = Score.getInstance().getScore(mapId);
+        int indexOfPlayer = 0;
+        int sizeOfSendingList = 20;
+        int sizeOfScoreList = scoreList.size();
+        if (sizeOfScoreList < sizeOfSendingList) sizeOfSendingList = sizeOfScoreList;
+        dataOutputStream.writeInt(sizeOfSendingList);
+        for (Map.Entry<Integer, String> entry : scoreList.entrySet()) {
+            if (indexOfPlayer >= sizeOfSendingList) break;
+            dataOutputStream.writeInt(entry.getKey());
+            dataOutputStream.writeUTF(entry.getValue());
+            indexOfPlayer++;
+        }
         
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }
     
     /**
-     * NOT COMPLETED
-     * Creates packet data with a clients entities position. 
-     * TOTO: Yell at ludwig.
+     * Creates packet data with positions of client player/movable-block.
      * @param boxPositionY 
      * @param boxPositionX 
      * @param playerPositionY 

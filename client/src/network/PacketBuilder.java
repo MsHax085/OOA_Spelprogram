@@ -7,23 +7,10 @@ import java.io.IOException;
 
 /**
  * Collection of the packets building methods.
- * IMPLEMENTATION: packetDataAsByteArray = PacketBuilder.getInstance().create'packet name'(arguments);
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  *
  */
 
- /* 
- * List of packets that can be sent:
- * 		create00RequestLobbyListPacket()
- * 		create01JoinLobbyPacket(String username, String password, int lobbyId)
- * 		create02ReadyRequest(int clientId)
- * 		create03CreateLobbyPacket(String username, String lobbyName, String password)
- * 		create04RequestHighscorePacket()	//Not completed
- * 		create05MoveGameEntetiesPacket()	//Not completed
- * 		create06PlayerWonPacket(int clientId, int time)
- * 		create07PlayerResetPacket(int clientId)
- * 		
- */
 public class PacketBuilder {
 	
     private static PacketBuilder packetBuilder;
@@ -107,16 +94,16 @@ public class PacketBuilder {
         return byteArrayOutputStream.toByteArray();
     }
     
-    /** TODO: Split the high score list so it doesn't exceed the packet buffer size. maybe 10 users per packet.
-     * 
-     * Asks for parts of the High score list.
-     * @Param 
+    /**
+     * Asks for top 20 highscore of the specified map.
+     * @Param mapId
      * @Return	The packet message as an byte array.
      */
-    public byte[] create04RequestHighscorePacket() throws IOException {
+    public byte[] create04RequestHighscorePacket(int mapId) throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET04.getValue());
+        dataOutputStream.writeInt(mapId);
         dataOutputStream.close();
         return byteArrayOutputStream.toByteArray();
     }

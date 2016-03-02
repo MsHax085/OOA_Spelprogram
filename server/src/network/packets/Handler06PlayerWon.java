@@ -18,12 +18,10 @@ import src.network.PacketBuilder;
 import src.resourceManager.Score;
 
 /**
- * NOT COMPLETED
  * Sends a packet to all clients but the sender. Containing the senders ID and time of completion.
- * The time is saved on the server for archiving.
- * TODO: Save the times to the high score list.
+ * The time is saved on the server. When all clients are done the times are saved in the highscore list.
  * 
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler06PlayerWon implements ImplPacketHandler {
     
