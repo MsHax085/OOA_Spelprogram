@@ -21,7 +21,8 @@ public class LobbyManager {
     public boolean isRegistredLobby(String lobbyName) {
         final Iterator itr = getLobbies();
         while (itr.hasNext()) {
-            if (((Lobby) itr.next()).getLobbyName().equals(lobbyName)) return true;
+            final Lobby lobby = (Lobby) itr.next();
+            if (lobby.getLobbyName().equals(lobbyName)) return true;
         }
         return false;
     }
