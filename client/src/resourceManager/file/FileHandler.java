@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * 
  * @author Oscar Andersson
  *
+ * This class handles all reading and writing of information to files.
  */
 public class FileHandler implements ImplFileHandler {
 

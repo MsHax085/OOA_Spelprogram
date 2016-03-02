@@ -6,8 +6,10 @@ import java.util.*;
 
 
 /**
- * 
  * @author Oscar Andersson
+ * 
+ * This class manages the storing of highscore information.
+ * It can load and save highscore information to highscore files.
  */
 public class Score {
 
@@ -26,9 +28,10 @@ public class Score {
         return instance;
     }
 	
-	/* Returns a treemap of the highscore list for a specific map.
+	/** Returns a treemap of the highscore list for a specific map.
 	 * It has the time in the first value, and
 	 * the username in the other.
+	 * @param mapNumber - specifies which highscore the method is going to get.
 	 */
 	public TreeMap<Integer, String> getScore(int mapNumber)
 	{
@@ -51,9 +54,11 @@ public class Score {
 	}
 	
 	
-	/* Saves a treemap of the highscore list of a specific map.
+	/** Saves a treemap of the highscore list of a specific map.
 	 * The treemap has the same "appearance" as in the getScore method.
 	 * Returns false if the writeFile method wasn't successful, and true if it was.
+	 * @param scoresave - A treemap of the new highscore.
+	 * @param mapnumber - specifies which highscore that is going to be set.
 	 */
 
 	public Boolean setScore(TreeMap<Integer,String> scoreSave, int mapNumber)

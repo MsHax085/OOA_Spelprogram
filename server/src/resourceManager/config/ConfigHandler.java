@@ -3,9 +3,11 @@ package src.resourceManager.config;
 import src.resourceManager.file.FileHandler;
 
 /**
- * 
  * @author Oscar Andersson
- * TODO Config based on java.util.prefs
+ * 
+ * This class manages the handling of the config-settings.
+ * The class have the ability to load settings from files and also
+ * handle the parametres of the running config and storing it to a config-file.
  */
 
 

@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * 
  * @author Oscar Andersson
  *
+ * This class handles all reading and writing of information to files.
  */
 public class FileHandler implements ImplFileHandler {
 
@@ -19,10 +19,11 @@ public class FileHandler implements ImplFileHandler {
         return instance;
     }
 
-    /* This method recieves one string containing the filename.
+    /** This method recieves one string containing the filename.
      * 
      * A stringbuilder is created and is later converted and returned as a string.
      * 
+     * @param fileName - the path of the file thats going to be written to.
      */
 
     @Override
@@ -52,7 +53,7 @@ public class FileHandler implements ImplFileHandler {
         return tempArr.toString();
     }
 
-    /* This method recieves 2 strings, a fileName and a string to write in the file
+    /** This method recieves 2 strings, a fileName and a string to write in the file
      * 
      * The content string will be "converted" into an
      * string array, devided by every \n character.
@@ -60,6 +61,9 @@ public class FileHandler implements ImplFileHandler {
      * And finally it writes the content of the string array to the assigned file, 
      * each element of the string array becomes a row in the file.
      * Returning true if the write was successful, false otherwise.
+     * 
+     * @param fileName - the path of the file thats going to be written to.
+     * @param writeContent - The content that is going to be written.
      */
 
     @Override
