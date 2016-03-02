@@ -33,7 +33,7 @@ public class HighscorePanel extends SuperPanel {
         this.controller = new ControllerHighscorePanel(this);
         container = new JPanel();
         text = new JLabel("Highscore");
-        highScoreList = new JTable(0,1);
+        highScoreList = new JTable(20,1);
         prev = new JButton("Prev");
         
         container.setBackground(new Color(0, 0, 0, 0));

@@ -42,6 +42,7 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     private HighscorePanel highscorePanel;
     private OptionsPanel optionsPanel;
     private int panel;
+    private String panelName;
     
     public UserInterface(int panel){
     	this.panel = panel;
@@ -132,6 +133,9 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         } else if (val == Changes.CLIENTLIST_CHANGE.getValue()) {
             System.out.println("Client list updated!");
             serverLobbyPanel.updateLobbyList();
+        } else if (val == Changes.HIGHSCORE_UPDATE.getValue()) {
+            System.out.println("Update Highscore!");
+            highscorePanel.updateHighscoreList();
         }
     }
 

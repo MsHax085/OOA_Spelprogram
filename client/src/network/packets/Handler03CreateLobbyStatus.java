@@ -4,6 +4,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.Changes;
+import src.Core;
+import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 
 /**
@@ -22,6 +26,7 @@ public class Handler03CreateLobbyStatus implements ImplPacketHandler {
             int createLobbyStatus = dis.readByte();
             if (createLobbyStatus == 0) {
                 System.out.println("Lobby successfully created");
+                UserInterface.changeCard("serverlobbypanel");
             } else if (createLobbyStatus == 1) {
                 System.out.println("Lobby not created: The lobby name is allready in use");
             }

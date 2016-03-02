@@ -11,7 +11,6 @@ import src.gui.UserInterface;
 import src.gui.panels.ServerSelectionPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
-import src.network.packets.Handler01JoinLobbyResponce;
 import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
@@ -22,7 +21,6 @@ public class ControllerSelectionPanel implements MouseListener {
 	
     private ServerSelectionPanel panel;
     private String password;
-    private Handler01JoinLobbyResponce h1jlb;
     
     public ControllerSelectionPanel(ServerSelectionPanel panel) {
         this.panel = panel;
@@ -50,64 +48,36 @@ public class ControllerSelectionPanel implements MouseListener {
             if(panel.getServerList().getSelectedRow() != -1) {
             	// Ska egentligen kolla om det finns något lösenord och om det är "" så ska inte en JOptionPane komma upp! 
         	
-        	// (Eriks lilla Kod) This gets the Lobby name/hasPassword of the selected row number.
-        	String selectedLobbyName = null;
-        	boolean selectedLobbyHasPassword = false;
-        	int lobbyIndex=0;
-        	final Iterator itr = Database.getInstance().getLobbies();
+                // (Eriks lilla Kod) This gets the Lobby name/hasPassword of the selected row number.
+                String selectedLobbyName = null;
+                boolean selectedLobbyHasPassword = false;
+                int lobbyIndex=0;
+                final Iterator itr = Database.getInstance().getLobbies();
                 while (itr.hasNext()) {
                     Lobby lobby = (Lobby) itr.next();
                     if(lobbyIndex == panel.getServerList().getSelectedRow()) {
-                	selectedLobbyName = lobby.getLobbyName();
-                	selectedLobbyHasPassword = lobby.isLobbyHasPassword();
+                        selectedLobbyName = lobby.getLobbyName();
+                        selectedLobbyHasPassword = lobby.isLobbyHasPassword();
                     }
                     lobbyIndex++;
                 }
         	
-            	if(!selectedLobbyHasPassword) { // Checks if the selected lobby doesn't have a password.
-            		UserInterface.changeCard("serverlobbypanel");
-            		try {
-                        Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket(selectedLobbyName,""));
+                if(!selectedLobbyHasPassword) { // Checks if the selected lobby doesn't have a password.
+                    try {
+                        Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket(selectedLobbyName, ""));
                     } catch (IOException ex) {
                         Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            		int i = h1jlb.getJoinLobbyStatus(); 
-            		if( i == 0) {
-            			try {
-                            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
-                        } catch (IOException ex) {
-                            Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-            			UserInterface.changeCard("serverlobbypanel");
-            		}
-            		else {
-            			panel.getCouldNotJoinPane(i);
-            		} 
-            	} 
-            	else {
-            		password = panel.getPasswordPane();
-            		
-            		try {
-            			Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket(selectedLobbyName,password));
-                    } catch (IOException ex) {
-                    	Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-            		}
-            	int i = h1jlb.getJoinLobbyStatus(); 
-            	if( i == 0) {
-            		try {
-                        Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
+                } else {
+                    password = panel.getPasswordPane();
+                    try {
+                        Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyPacket(selectedLobbyName, password));
                     } catch (IOException ex) {
                         Logger.getLogger(ControllerSelectionPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-            		UserInterface.changeCard("serverlobbypanel");
-            	} 
-            	else {
-            		panel.getCouldNotJoinPane(i);
-            	}
+                }	
             }
-     	}
-            
+    	}
     	else if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
     	}

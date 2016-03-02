@@ -4,9 +4,11 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.Changes;
+import src.Core;
 import src.network.ImplPacketHandler;
 import src.resourceManager.Database;
-import src.resourceManager.client.Lobby;
 
 /**
  * Reads info about the top 20 highscore of a map. Adds the scores to Database as strings.
@@ -30,6 +32,7 @@ public class Handler05HighscoreResponce implements ImplPacketHandler {
                 Database.getInstance().addhighscoreString(highscoreElementAsString);
                 System.out.println(highscoreElementAsString);
             }
+            Core.getInstance().signalObservers(Changes.HIGHSCORE_UPDATE.getValue());
         } catch (IOException ex) {
             Logger.getLogger(Handler05HighscoreResponce.class.getName()).log(Level.SEVERE, null, ex);
         }

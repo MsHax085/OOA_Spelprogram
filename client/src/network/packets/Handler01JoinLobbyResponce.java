@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 
 /**
@@ -23,6 +25,7 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
             int joinLobbyStatus = dis.readByte();
             if (joinLobbyStatus == 0){
                 System.out.println("This client successfully entered the lobby");
+                UserInterface.changeCard("serverlobbypanel");
             } else if (joinLobbyStatus == 1) {
                 System.out.println("Could not enter lobby: Incorrect password");
             } else if (joinLobbyStatus == 2) {
