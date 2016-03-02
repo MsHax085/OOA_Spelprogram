@@ -9,7 +9,7 @@ import src.resourceManager.file.FileHandler;
  */
 
 
-public class ConfigHandler implements ImplConfigHandler {
+public class ConfigHandler {
 
     private final FileHandler fh;
     private final String configPath;
@@ -37,7 +37,6 @@ public class ConfigHandler implements ImplConfigHandler {
     /* Reads a value related to a specific setting.
      *
     */
-    @Override
     public String readConfig() {
         final String tempString = fh.readFile(configPath);
         final String[] splitRows = tempString.split("\n");
@@ -70,7 +69,6 @@ public class ConfigHandler implements ImplConfigHandler {
     /* Overwrites a value related to a specific setting. 
      * 
     */
-    @Override
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
         tempArr.append("username,").append(username).append("\n");
