@@ -8,7 +8,7 @@ import src.network.ImplPacketHandler;
 
 /**
  * This handles the packet which tells this client if it was able to logout.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler0AClientLogoutResponse implements ImplPacketHandler {
     

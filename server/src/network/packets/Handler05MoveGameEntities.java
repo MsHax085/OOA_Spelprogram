@@ -15,10 +15,8 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * NOT COMPLETED
- * Sends a packet to all clients but the sender.
- * TODO: Figure out how the relevant game entitie's position should be sent in a packet.
- * @author BögErik
+ * Sends a packet to all clients but the sender containing game entities position.
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler05MoveGameEntities implements ImplPacketHandler {
     

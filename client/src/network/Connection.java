@@ -15,14 +15,12 @@ import src.resourceManager.config.ConfigHandler;
 
 /**
  * 
- * @author Richard, BögErik
+ * @author Richard, Erik Thorsson Högfeldt
  *
  */
 public class Connection {
     
     private static Connection connection;
-    private static String DEFAULTIP = "localhost";
-    private static int DEFAULTPORT = 8989;
     
     private final int bufferSize = 1024;
 

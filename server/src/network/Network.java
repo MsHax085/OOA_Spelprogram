@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 /**
  * 
- * @author Richard, BögErik
+ * @author Richard, Erik Thorsson Högfeldt
  *
  */
 

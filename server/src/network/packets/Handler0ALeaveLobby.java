@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import src.client.ClientLoggedIn;
 import src.client.ClientManager;
-import src.client.ClientSession;
 import src.client.Lobby;
 import src.client.LobbyManager;
 import src.network.Connection;
@@ -18,7 +17,7 @@ import src.network.PacketBuilder;
 /**
  * Checks if the client can leave a lobby. if it can the client is removed, all clients in the lobby is notified
  * and the client who left receives a status packet. If it fails the client is told why with the status packet.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler0ALeaveLobby implements ImplPacketHandler {
 	

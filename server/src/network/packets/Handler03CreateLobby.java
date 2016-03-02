@@ -1,14 +1,12 @@
 package src.network.packets;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import src.client.ClientLoggedIn;
 import src.client.ClientManager;
 import src.client.ClientSession;
-import src.client.Lobby;
 import src.client.LobbyManager;
 import src.network.Connection;
 import src.network.ImplPacketHandler;
@@ -18,7 +16,7 @@ import src.network.PacketBuilder;
 /**
  * Checks if the client can enter a lobby. if it can the client is added, all clients in the lobby is notified
  * and the client who joined receives a status packet. If it fails the client is told why with a status packet.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler03CreateLobby implements ImplPacketHandler {
 	

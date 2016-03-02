@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import src.Changes;
-import src.Core;
 import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 
 /**
  * This handles the packet that tells if the server could successfully create the lobby
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler03CreateLobbyStatus implements ImplPacketHandler {
     

@@ -13,10 +13,8 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- * NOT COMPLETED
  * Retrieves all clients in this clients lobby. (including it self)
- * TODO: Save the clients so they can be accessed when needed.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler02UpdateClientLobby implements ImplPacketHandler {
     

@@ -14,7 +14,7 @@ import src.network.PacketBuilder;
 /**
  * Adds the client session to the servers client list. Logs the client in with the username given by the client
  * The client is notified of the client ID and if the login failed.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler08ClientLogin implements ImplPacketHandler {
 	

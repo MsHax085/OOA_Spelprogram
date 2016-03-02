@@ -9,14 +9,13 @@ import java.util.logging.Logger;
 
 import src.Core;
 import src.game.Game;
-import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
  *
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler04StartGame implements ImplPacketHandler {
     

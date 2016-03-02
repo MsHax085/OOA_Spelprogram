@@ -17,7 +17,7 @@ import src.network.PacketBuilder;
 /**
  * Logs this client out of the server. If this client is in a lobby he is 
  * automatically removed from it.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler09ClientLogout implements ImplPacketHandler {
 	

@@ -9,7 +9,6 @@ import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
- * NOT COMPLETED
  * @author BögErik
  */
 public class Handler06MoveGameEnteties implements ImplPacketHandler {

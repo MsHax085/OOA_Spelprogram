@@ -2,7 +2,7 @@ package src.network;
 
 /**
  * 
- * @author Richard Dahlgren, BögErik
+ * @author Richard Dahlgren
  *
  */
 public interface ImplPacketHandler {

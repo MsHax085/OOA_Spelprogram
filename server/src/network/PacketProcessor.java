@@ -18,7 +18,7 @@ import src.network.packets.TestHandler;
  * 
  * Links Packet ID with packet classes
  * 
- * @author Richard, BögErik
+ * @author Richard
  *  
  */
 

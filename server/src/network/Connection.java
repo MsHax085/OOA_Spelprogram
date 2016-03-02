@@ -5,22 +5,21 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import src.client.ClientManager;
 import src.client.ClientSession;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * 
- * @author Richard, BögErik
+ * @author Richard, Erik Thorsson Högfeldt
  *
  */
 public class Connection {
     
     private static Connection connection;
-    private static  int DEFAULTPORT = 8989;
 
     private final int bufferSize = 1024;
     
@@ -31,7 +30,7 @@ public class Connection {
      * Constructor: starts the socket.
      */
     private Connection() {
-    	this.serverPort = DEFAULTPORT;
+    	this.serverPort = ConfigHandler.getInstance().getPortNumber();
         try {
             this.serverSocket = new DatagramSocket(serverPort);
         } catch (SocketException ex) {

@@ -5,15 +5,13 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import src.Changes;
-import src.Core;
 import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 import src.resourceManager.Database;
 
 /**
  * This handles the packet that tells if the server could successfully login the client.
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler09ClientLoginResponse implements ImplPacketHandler {
     

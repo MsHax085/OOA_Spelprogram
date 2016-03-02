@@ -1,7 +1,6 @@
 package src.network.packets;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +13,7 @@ import src.network.PacketBuilder;
 /**
  * Sends a create00LobbyListResponcePacket to the client who requested all the lobbies.
  * 
- * @author BögErik
+ * @author Erik Thorsson Högfeldt
  */
 public class Handler00LobbyListRequest implements ImplPacketHandler {
     
