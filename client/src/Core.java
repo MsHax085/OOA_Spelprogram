@@ -19,7 +19,7 @@ public class Core extends Observable {
     private final Network network;
     
     public Core() {
-        this.setStateObserver(new UserInterface(3));
+        this.setStateObserver(new UserInterface(1));
         this.network = new Network();
         this.network.start();
     }
