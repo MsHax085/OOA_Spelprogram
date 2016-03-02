@@ -30,6 +30,8 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
             } else if (joinLobbyStatus == 3) {
         	System.out.println("Could not enter Lobby: Lobby is running a game");
             } else if (joinLobbyStatus == 4) {
+        	System.out.println("Could not enter Lobby: Already in one");
+            } else if (joinLobbyStatus == 5) {
         	System.out.println("Could not enter Lobby: Lobby does not exist");
             }
         } catch (IOException ex) {
