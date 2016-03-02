@@ -39,6 +39,7 @@ public class HighscorePanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         highScoreList.setFocusable(false);
+        updateHighscoreList();
         
         prev.setFocusable(false);
         prev.addMouseListener((MouseListener) controller);
@@ -81,11 +82,17 @@ public class HighscorePanel extends SuperPanel {
     }
     
     public void updateHighscoreList() {
-        
+    	clearRows();
+    	
     	final Iterator itr = Database.getInstance().getHighscore();
         while (itr.hasNext()) {
             addRow((String) itr.next());
         }
+    }
+    
+    private void clearRows() {
+    	DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();
+    	model.setRowCount(0);
     }
     
     private void addRow(String str) {

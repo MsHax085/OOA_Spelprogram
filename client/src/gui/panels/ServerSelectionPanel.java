@@ -124,6 +124,9 @@ public class ServerSelectionPanel extends SuperPanel {
     	else if(i == 3) {
         	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is running a game!");
     	}
+    	else if(i == 4) {
+        	JOptionPane.showMessageDialog(null,"Could not join lobby, already in one!");
+    	}
     	else {
         	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby does not exist!");
     	}
