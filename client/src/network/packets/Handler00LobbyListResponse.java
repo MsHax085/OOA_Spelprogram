@@ -30,11 +30,12 @@ public class Handler00LobbyListResponse implements ImplPacketHandler {
             	itr.remove();
             }
             // Opcode (first short) already read
+            int maxNumberOfClients = dis.readInt();
             int numberOfLobbies = dis.readInt();
             
             // Adds the new list.
             for (int i = 0; i < numberOfLobbies; i++) {
-        	Lobby lobby = new Lobby(dis.readUTF(), dis.readBoolean(), dis.readInt(), dis.readInt());
+        	Lobby lobby = new Lobby(dis.readUTF(), dis.readBoolean(), dis.readInt(), dis.readInt(), maxNumberOfClients);
                 Database.getInstance().addLobby(lobby);
                 System.out.println(lobby.getLobbyInfoAsString());
             }

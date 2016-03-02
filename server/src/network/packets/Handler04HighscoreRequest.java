@@ -14,6 +14,7 @@ import src.network.ImplPacketHandler;
 import src.network.Packet;
 import src.network.PacketBuilder;
 import src.resourceManager.Score;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * Sends a create00LobbyListResponcePacket to the client who requested all the lobbies.
@@ -25,7 +26,10 @@ public class Handler04HighscoreRequest implements ImplPacketHandler {
     @Override
     public void handlePacket(Packet packet) {
         try {
-            Connection.getInstance().sendPacket(PacketBuilder.getInstance().create05HighscoreResponcePacket(packet.getPacket().readInt()), packet.getSession());
+            int mapId = packet.getPacket().readInt();
+            if (mapId >= 1 && mapId <= ConfigHandler.getInstance().getNumberOfMaps()) {
+        	Connection.getInstance().sendPacket(PacketBuilder.getInstance().create05HighscoreResponcePacket(packet.getPacket().readInt()), packet.getSession());
+            }
         } catch (IOException ex) {
             Logger.getLogger(Handler04HighscoreRequest.class.getName()).log(Level.SEVERE, null, ex);
         }

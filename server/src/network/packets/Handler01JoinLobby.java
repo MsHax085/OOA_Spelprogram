@@ -14,6 +14,7 @@ import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;
 import src.network.PacketBuilder;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  * Checks if the client can enter a lobby. if it can the client is added, all clients in the lobby is notified
@@ -41,7 +42,7 @@ public class Handler01JoinLobby implements ImplPacketHandler {
                 } else if (lobby.getLobbyCurrentMap() != 0){
                     System.out.println(">ClientID: " + cs.getId() + " tried to join a lobby: " + lobbyName + " but the lobby is in a game");
                     joinLobbyStatus = 3;
-                } else if (lobby.getNumberOfClients() >= 5) { // 5 is the maxNumberOFClients.
+                } else if (lobby.getNumberOfClients() >= ConfigHandler.getInstance().getMaxClientsLobby()) {
                     System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
                     joinLobbyStatus = 2;
                 } else if (!password.equals(lobby.getLobbyPassword())){

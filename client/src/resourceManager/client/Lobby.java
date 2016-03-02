@@ -9,12 +9,14 @@ public class Lobby {
     private boolean lobbyHasPassword;
     private int lobbyMapId;
     private int lobbyNumberOfClients;
+    private int maxNumberOfClients;
     
-    public Lobby(String lobbyName, boolean lobbyHasPassword, int lobbyMapId, int lobbyNumberOfClients) {
+    public Lobby(String lobbyName, boolean lobbyHasPassword, int lobbyMapId, int lobbyNumberOfClients, int maxNumberOfClients) {
 	this.lobbyName = lobbyName;
 	this.lobbyHasPassword = lobbyHasPassword;
 	this.lobbyMapId = lobbyMapId;
 	this.lobbyNumberOfClients = lobbyNumberOfClients;
+	this.maxNumberOfClients = maxNumberOfClients;
     }
 
     public String getLobbyName() {
@@ -26,7 +28,7 @@ public class Lobby {
     }
     
     public String getLobbyInfoAsString() {
-	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients + "/5 " + (isLobbyPlayingGame() ? ":GAME IN PROGGRESS" : "");
+	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients + "/" + maxNumberOfClients + (isLobbyPlayingGame() ? ":GAME IN PROGGRESS" : "");
 	return lobbyInfo;
 	
     }

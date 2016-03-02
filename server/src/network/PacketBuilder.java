@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import src.client.ClientLoggedIn;
 import src.client.Lobby;
 import src.resourceManager.Score;
+import src.resourceManager.config.ConfigHandler;
 
  /**
  * collection of the packet building methods. 
@@ -48,7 +49,7 @@ public class PacketBuilder {
 	final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         final DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeShort(SendPacketOpcodes.PACKET00.getValue());
-        
+        dataOutputStream.writeInt(ConfigHandler.getInstance().getMaxClientsLobby());
         dataOutputStream.writeInt(numberOfLobbies);
         while (lobbies.hasNext()) {
             Lobby lobby = (Lobby) lobbies.next();
