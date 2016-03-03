@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +33,7 @@ public class Handler0ALeaveLobby implements ImplPacketHandler {
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
                 if (lobby != null) {
                     lobby.removeClientFromLobby(senderClient);
-                    System.out.println(">Client:" + senderClient.getUsername() + " left lobby:" + lobby.getLobbyName());
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >Client   : " + senderClient.getUsername() + " left lobby:" + lobby.getLobbyName());
                     if (lobby.getNumberOfClients() > 0){
                         byte[] updateClientLobbyPacket = PacketBuilder.getInstance().create02UpdateClientLobbyPacket(lobby.getNumberOfClients(), lobby.getClientsInLobby());
                         Iterator clientsInLobby = lobby.getClientsInLobby();

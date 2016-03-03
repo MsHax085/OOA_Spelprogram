@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,7 +34,6 @@ public class Handler06PlayerWon implements ImplPacketHandler {
             if (senderClient != null) {
                 int time = packet.getPacket().readInt();
                 senderClient.setTimeOfCompletion(time);
-                System.out.println(">Client:" + senderClient.getUsername() + " HasCompletted the map in:" + time);
                 boolean hasFinished = true;
                 Lobby lobby = LobbyManager.getInstance().getLobbyByClient(senderClient);
                 if (lobby == null) return;
@@ -60,7 +61,6 @@ public class Handler06PlayerWon implements ImplPacketHandler {
                 	    if (cli.getUsername().equals(scoreUsername)) {
                 		isClientInScore = true;
                 		if (cli.getTimeOfCompletion() <= scoreTime) {
-                		    System.out.println(">Client:" + cli.getUsername() + " got a highscore");
                 		    tempScoreList.remove(scoreTime, scoreUsername);
                 		    tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
                 	    	}
@@ -68,7 +68,7 @@ public class Handler06PlayerWon implements ImplPacketHandler {
                 	}
                 	if (!isClientInScore) {
                 	    tempScoreList.put(cli.getTimeOfCompletion(), cli.getUsername());
-                	    System.out.println(">Client:" + cli.getUsername() + " was added to the highscore list");
+                	    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >Client   : " + cli.getUsername() + " was added to the highscore list");
                 	}
                     }
                     Score.getInstance().setScore(tempScoreList, lobby.getLobbyCurrentMap());

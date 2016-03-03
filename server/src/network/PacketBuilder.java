@@ -140,7 +140,7 @@ public class PacketBuilder {
         
         TreeMap<Integer, String> scoreList = Score.getInstance().getScore(mapId);
         int indexOfPlayer = 0;
-        int sizeOfSendingList = 20;
+        int sizeOfSendingList = 14;
         int sizeOfScoreList = scoreList.size();
         if (sizeOfScoreList < sizeOfSendingList) sizeOfSendingList = sizeOfScoreList;
         dataOutputStream.writeInt(sizeOfSendingList);

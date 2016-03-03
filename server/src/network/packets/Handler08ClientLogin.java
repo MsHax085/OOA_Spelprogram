@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,10 +29,10 @@ public class Handler08ClientLogin implements ImplPacketHandler {
             int clientId = -1;
             if (ClientManager.getInstance().getClientByUsername(username) == null) {
                 ClientManager.getInstance().registerClientAsLoggedIn(cs, username);
-                System.out.println(">" + username + " has logged in");
+                System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >Client   : " + username + " has logged in");
                 clientId = cs.getId();
             } else {
-                System.out.println(">A client tried to login with a taken username");
+                System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >Client   : " + username + " tried to login with a taken username");
             }
             Connection.getInstance().sendPacket(PacketBuilder.getInstance().create09ClientLoginResponsePacket(clientId), packet.getSession());
         } catch (IOException ex) {

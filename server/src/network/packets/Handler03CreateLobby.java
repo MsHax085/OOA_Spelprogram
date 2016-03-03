@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,11 +34,11 @@ public class Handler03CreateLobby implements ImplPacketHandler {
                 int createLobbyStatus = 1;
             
                 if (LobbyManager.getInstance().getLobby(lobbyName) != null) {
-                    System.out.println(">ClientID: " + cs.getId() + " tried to create a lobby with another lobby's name");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to create a lobby with another lobby's name");
                 } else {
                     LobbyManager.getInstance().addLobby(lobbyName, password);
                     LobbyManager.getInstance().getLobby(lobbyName).addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
-                    System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " has joined lobby: " + lobbyName);
                     createLobbyStatus = 0;
                 }
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyStatusPacket(createLobbyStatus), cs);

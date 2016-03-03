@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,22 +37,22 @@ public class Handler01JoinLobby implements ImplPacketHandler {
                 Lobby lobby = LobbyManager.getInstance().getLobby(lobbyName);
                 int joinLobbyStatus = 5;
                 if (lobby == null) {
-                    System.out.println(">ClientID: " + cs.getId() + " tried to join nonexisting lobby");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to join nonexisting lobby");
                 } else if (LobbyManager.getInstance().getLobbyByClient(senderClient) != null) {
                     joinLobbyStatus = 4;
-                    System.out.println(">ClientID: " + cs.getId() + " tried to join lobby while in an lobby");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to join lobby while in an lobby");
                 } else if (lobby.getLobbyCurrentMap() != 0){
-                    System.out.println(">ClientID: " + cs.getId() + " tried to join a lobby: " + lobbyName + " but the lobby is in a game");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to join a lobby: " + lobbyName + " but the lobby is in a game");
                     joinLobbyStatus = 3;
                 } else if (lobby.getNumberOfClients() >= ConfigHandler.getInstance().getMaxClientsLobby()) {
-                    System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to enter lobby: " + lobbyName + " but it was full");
                     joinLobbyStatus = 2;
                 } else if (!password.equals(lobby.getLobbyPassword())){
-                    System.out.println(">ClientID: " + cs.getId() + " tried to enter lobby: " + lobbyName + " with invalid password");
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " tried to enter lobby: " + lobbyName + " with invalid password");
                     joinLobbyStatus = 1;
                 } else {
                     lobby.addClientToLobby((ClientLoggedIn)ClientManager.getInstance().getClientById(cs.getId()));
-                    System.out.println(">ClintID: " + cs.getId() + " has joined lobby: " + lobbyName);
+                    System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >ClientID : " + cs.getId() + " has joined lobby: " + lobbyName);
                     joinLobbyStatus = 0;
                 }
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create01JoinLobbyResponcePacket(joinLobbyStatus), cs);

@@ -1,19 +1,13 @@
 package src.network.packets;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import src.client.ClientLoggedIn;
-import src.client.LobbyManager;
 import src.network.Connection;
 import src.network.ImplPacketHandler;
 import src.network.Packet;
 import src.network.PacketBuilder;
-import src.resourceManager.Score;
 import src.resourceManager.config.ConfigHandler;
 
 /**

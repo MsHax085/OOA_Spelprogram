@@ -1,6 +1,8 @@
 package src.network.packets;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +50,7 @@ public class Handler09ClientLogout implements ImplPacketHandler {
                 }
                 ClientManager.getInstance().deregisterClientAsLoggedIn(senderClient);;
                 clientLogoutStatus = 0;
-                System.out.println(">Client: " + senderClient.getUsername() + " logged out");
+                System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")) + " >Client   : " + senderClient.getUsername() + " logged out");
             }
             Connection.getInstance().sendPacket(PacketBuilder.getInstance().create0AClientLogoutResponsePacket(clientLogoutStatus), packet.getSession());
         } catch (IOException ex) {
