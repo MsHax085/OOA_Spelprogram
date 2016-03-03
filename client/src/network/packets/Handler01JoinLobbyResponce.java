@@ -25,7 +25,7 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
             int joinLobbyStatus = dis.readByte();
             if (joinLobbyStatus == 0){
                 System.out.println("This client successfully entered the lobby");
-                UserInterface.changeCard("serverlobbypanel");
+                UserInterface.changeCard("lobbypanel");
             } else if (joinLobbyStatus == 1) {
                 System.out.println("Could not enter lobby: Incorrect password");
             } else if (joinLobbyStatus == 2) {

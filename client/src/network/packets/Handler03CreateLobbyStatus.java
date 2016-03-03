@@ -24,7 +24,7 @@ public class Handler03CreateLobbyStatus implements ImplPacketHandler {
             int createLobbyStatus = dis.readByte();
             if (createLobbyStatus == 0) {
                 System.out.println("Lobby successfully created");
-                UserInterface.changeCard("serverlobbypanel");
+                UserInterface.changeCard("lobbypanel");
             } else if (createLobbyStatus == 1) {
                 System.out.println("Lobby not created: The lobby name is allready in use");
             }

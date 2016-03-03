@@ -46,9 +46,9 @@ public class ControllerMenuPanel implements MouseListener {
 	    } catch (IOException e1) {
 		e1.printStackTrace();
 	    }
-            UserInterface.changeCard("serverselectionpanel");
+            UserInterface.changeCard("lobbyselectionpanel");
         } else if (e.getSource().equals(panel.getHostButton())) {
-            UserInterface.changeCard("servercreationpanel");
+            UserInterface.changeCard("lobbycreationpanel");
         } else if (e.getSource().equals(panel.getHighscoreButton())) {
         	try {
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create04RequestHighscorePacket(1)); // ERIK HAS HARDCODED A MAP-ID HERE.
