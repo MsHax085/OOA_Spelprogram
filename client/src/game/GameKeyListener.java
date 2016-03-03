@@ -29,17 +29,7 @@ public class GameKeyListener implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            keyPressed_left = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            keyPressed_right = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            keyPressed_up = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            keyPressed_down = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            keyPressed_space = true;
-        }
+        
     }
 
     /**
@@ -93,8 +83,18 @@ public class GameKeyListener implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent arg0) {
-        // TODO Auto-generated method stub
+    public void keyPressed(KeyEvent e) {
+	if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            keyPressed_left = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            keyPressed_right = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            keyPressed_up = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            keyPressed_down = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            keyPressed_space = true;
+        }
     }
 
     @Override
