@@ -12,7 +12,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 
-import src.gui.panels.event.ControllerServerLobbyPanel;
+import src.gui.panels.event.ControllerLobbyPanel;
 import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
@@ -20,7 +20,7 @@ import src.resourceManager.client.ServerClient;
  *
  * @author Richard, Gustav
  */
-public class ServerLobbyPanel extends SuperPanel {
+public class LobbyPanel extends SuperPanel {
     
     private JLabel text;
     private JTable lobbyList;
@@ -28,10 +28,10 @@ public class ServerLobbyPanel extends SuperPanel {
     private JButton quit;
     private JPanel container;
 	
-    public ServerLobbyPanel(int width, int height) {
+    public LobbyPanel(int width, int height) {
     	super(width, height);
     	
-    	this.controller = new ControllerServerLobbyPanel(this);
+    	this.controller = new ControllerLobbyPanel(this);
     	container = new JPanel();
         text = new JLabel("Players joined");
         lobbyList = new JTable(14,1);

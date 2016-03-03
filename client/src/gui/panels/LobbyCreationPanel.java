@@ -11,13 +11,13 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.JPanel;
 
-import src.gui.panels.event.ControllerServerCreationPanel;
+import src.gui.panels.event.ControllerLobbyCreationPanel;
 
 /**
  *
  * @author Richard, Gustav
  */
-public class ServerCreationPanel extends SuperPanel {
+public class LobbyCreationPanel extends SuperPanel {
 
     private JLabel text;
     private JLabel serverName;
@@ -28,10 +28,10 @@ public class ServerCreationPanel extends SuperPanel {
     private JButton prev;
     private JPanel container;
 	
-    public ServerCreationPanel(int width, int height) {
+    public LobbyCreationPanel(int width, int height) {
         super(width, height);
         
-        this.controller = new ControllerServerCreationPanel(this);
+        this.controller = new ControllerLobbyCreationPanel(this);
         container = new JPanel();
         text = new JLabel("Options");
         serverName = new JLabel("Lobby name");

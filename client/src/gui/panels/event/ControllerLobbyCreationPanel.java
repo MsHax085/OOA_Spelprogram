@@ -8,18 +8,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import src.gui.UserInterface;
-import src.gui.panels.ServerCreationPanel;
+import src.gui.panels.LobbyCreationPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 
 /*
  * @authour Gustav
  */
-public class ControllerServerCreationPanel implements MouseListener {
+public class ControllerLobbyCreationPanel implements MouseListener {
 	
-    private ServerCreationPanel panel;
+    private LobbyCreationPanel panel;
     
-    public ControllerServerCreationPanel(ServerCreationPanel panel) {
+    public ControllerLobbyCreationPanel(LobbyCreationPanel panel) {
         this.panel = panel;
     }
 	
@@ -48,7 +48,7 @@ public class ControllerServerCreationPanel implements MouseListener {
         		try {
                     Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyPacket(panel.getServerNameInput().getText(),panel.getServerPasswordInput().getText()));
                 } catch (IOException ex) {
-                    Logger.getLogger(ControllerServerCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControllerLobbyCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
         	}
 

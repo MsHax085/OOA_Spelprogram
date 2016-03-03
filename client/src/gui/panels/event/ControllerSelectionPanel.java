@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import src.gui.UserInterface;
-import src.gui.panels.ServerSelectionPanel;
+import src.gui.panels.LobbySelectionPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 import src.resourceManager.Database;
@@ -19,10 +19,10 @@ import src.resourceManager.client.Lobby;
  */
 public class ControllerSelectionPanel implements MouseListener {
 	
-    private ServerSelectionPanel panel;
+    private LobbySelectionPanel panel;
     private String password;
     
-    public ControllerSelectionPanel(ServerSelectionPanel panel) {
+    public ControllerSelectionPanel(LobbySelectionPanel panel) {
         this.panel = panel;
     }
 	

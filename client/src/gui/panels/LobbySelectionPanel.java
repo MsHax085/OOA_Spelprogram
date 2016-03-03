@@ -20,7 +20,7 @@ import src.resourceManager.client.Lobby;
  *
  * @author Richard, Gustav
  */
-public class ServerSelectionPanel extends SuperPanel {
+public class LobbySelectionPanel extends SuperPanel {
     
     private JLabel text;
     private JTable serverList;
@@ -28,7 +28,7 @@ public class ServerSelectionPanel extends SuperPanel {
     private JButton prev;
     private JPanel container;
 	
-    public ServerSelectionPanel(int width, int height) {
+    public LobbySelectionPanel(int width, int height) {
         super(width, height);
         
         this.controller = new ControllerSelectionPanel(this);

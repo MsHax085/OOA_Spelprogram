@@ -14,9 +14,9 @@ import src.frame.DefaultFrameState;
 import src.gui.panels.HighscorePanel;
 import src.gui.panels.MenuPanel;
 import src.gui.panels.OptionsPanel;
-import src.gui.panels.ServerCreationPanel;
-import src.gui.panels.ServerLobbyPanel;
-import src.gui.panels.ServerSelectionPanel;
+import src.gui.panels.LobbyCreationPanel;
+import src.gui.panels.LobbyPanel;
+import src.gui.panels.LobbySelectionPanel;
 import src.gui.panels.StartPanel;
 import src.network.Connection;
 import src.network.NetworkBuffer;
@@ -36,9 +36,9 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
     private static CardLayout cl;
     private StartPanel startPanel;
     private MenuPanel menuPanel;
-    private ServerSelectionPanel serverSelectionPanel;
-    private ServerCreationPanel serverCreationPanel;
-    private ServerLobbyPanel serverLobbyPanel;
+    private LobbySelectionPanel serverSelectionPanel;
+    private LobbyCreationPanel serverCreationPanel;
+    private LobbyPanel serverLobbyPanel;
     private HighscorePanel highscorePanel;
     private OptionsPanel optionsPanel;
     private int panel;
@@ -66,17 +66,17 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
 
         this.startPanel = new StartPanel(500,500);
         this.menuPanel = new MenuPanel(500,500);
-        this.serverSelectionPanel = new ServerSelectionPanel(500,500);
-        this.serverCreationPanel = new ServerCreationPanel(500,500);
-        this.serverLobbyPanel = new ServerLobbyPanel(500,500);
+        this.serverSelectionPanel = new LobbySelectionPanel(500,500);
+        this.serverCreationPanel = new LobbyCreationPanel(500,500);
+        this.serverLobbyPanel = new LobbyPanel(500,500);
         this.highscorePanel = new HighscorePanel(500,500);
         this.optionsPanel = new OptionsPanel(500,500);
 
         panelContainer.add(startPanel, "startpanel");
         panelContainer.add(menuPanel, "menupanel");
-        panelContainer.add(serverSelectionPanel, "serverselectionpanel");
-        panelContainer.add(serverCreationPanel, "servercreationpanel");
-        panelContainer.add(serverLobbyPanel, "serverlobbypanel");
+        panelContainer.add(serverSelectionPanel, "lobbyselectionpanel");
+        panelContainer.add(serverCreationPanel, "lobbycreationpanel");
+        panelContainer.add(serverLobbyPanel, "lobbypanel");
         panelContainer.add(highscorePanel, "highscorepanel");
         panelContainer.add(optionsPanel, "optionspanel");
         
@@ -85,11 +85,11 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         }else if(panel == 2){
         	changeCard("menupanel");
         }else if(panel == 3){
-        	changeCard("serverselectionpanel");
+        	changeCard("lobbyselectionpanel");
         }else if(panel == 4){
-        	changeCard("servercreationpanel");
+        	changeCard("lobbycreationpanel");
         }else if(panel == 5){
-        	changeCard("serverlobbypanel");
+        	changeCard("lobbypanel");
         }else if(panel == 6){
         	changeCard("highscorepanel");
         }else if(panel == 7){
