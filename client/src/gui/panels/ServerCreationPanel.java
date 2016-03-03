@@ -34,11 +34,11 @@ public class ServerCreationPanel extends SuperPanel {
         this.controller = new ControllerServerCreationPanel(this);
         container = new JPanel();
         text = new JLabel("Options");
-        serverName = new JLabel("Server name");
+        serverName = new JLabel("Lobby name");
         serverNameField = new JTextField(20);
-        serverPassword = new JLabel("Server password");
+        serverPassword = new JLabel("Password (Optional)");
         serverPasswordField = new JPasswordField(20);
-        prev = new JButton("Prev");
+        prev = new JButton("Previous");
         create = new JButton("Create");
 
         container.setBackground(new Color(0, 0, 0, 0));

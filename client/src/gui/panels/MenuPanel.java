@@ -39,11 +39,11 @@ public class MenuPanel extends SuperPanel {
 
         join.setFocusable(false);
         join.addMouseListener((MouseListener) controller);
-        join.setText("Join a server");
+        join.setText("Join a lobby");
 
         host.setFocusable(false);
         host.addMouseListener((MouseListener) controller);
-        host.setText("Host a server");
+        host.setText("Start a new lobby");
 
         highscore.setFocusable(false);
         highscore.addMouseListener((MouseListener) controller);

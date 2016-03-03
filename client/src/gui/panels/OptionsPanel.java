@@ -35,9 +35,9 @@ public class OptionsPanel extends SuperPanel {
         text = new JLabel("Options");
         username = new JLabel("Username");
         usernameField = new JTextField(20);
-        serverIp = new JLabel("Server IP Port");
+        serverIp = new JLabel("Server IP-number");
         serverIpField = new JTextField(20);
-        prev = new JButton("Prev");
+        prev = new JButton("Previous");
         save = new JButton("Save");
 
         container.setBackground(new Color(0, 0, 0, 0));

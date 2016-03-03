@@ -33,7 +33,7 @@ public class ServerLobbyPanel extends SuperPanel {
     	
     	this.controller = new ControllerServerLobbyPanel(this);
     	container = new JPanel();
-        text = new JLabel("Joined players");
+        text = new JLabel("Players joined");
         lobbyList = new JTable(14,1);
         quit = new JButton("Quit");
         start = new JButton("Start");

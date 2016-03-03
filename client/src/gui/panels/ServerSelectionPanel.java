@@ -33,9 +33,9 @@ public class ServerSelectionPanel extends SuperPanel {
         
         this.controller = new ControllerSelectionPanel(this);
     	container = new JPanel();
-        text = new JLabel("Choose a server");
+        text = new JLabel("Select a lobby");
         serverList = new JTable(14,1);
-        prev = new JButton("Prev");
+        prev = new JButton("Previous");
         join = new JButton("Join");
         
         container.setBackground(new Color(0, 0, 0, 0));
