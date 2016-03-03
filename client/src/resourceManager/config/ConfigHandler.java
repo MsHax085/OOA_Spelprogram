@@ -77,8 +77,8 @@ public class ConfigHandler {
         tempArr.append("username,").append(username).append("\n");
         tempArr.append("gameWidth,").append(gameWidth).append("\n");
         tempArr.append("gameHeight,").append(gameHeight).append("\n");
-        tempArr.append("serverIp").append(serverIp).append("\n");
-        tempArr.append("serverPort").append(serverPort).append("\n");
+        tempArr.append("serverIp,").append(serverIp).append("\n");
+        tempArr.append("serverPort,").append(serverPort).append("\n");
         return fh.writeFile("config.txt", tempArr.toString());
    }
     
