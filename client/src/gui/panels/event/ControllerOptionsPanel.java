@@ -62,9 +62,6 @@ public class ControllerOptionsPanel implements MouseListener {
 					e1.printStackTrace();
 				}
     		}
-    		if (!panel.getIpAdressInput().getText().equals("")) {
-    			Connection.getInstance().changeIpAdress(panel.getIpAdressInput().getText());
-    		}
         }
     }
 }

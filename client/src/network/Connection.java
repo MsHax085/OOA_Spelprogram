@@ -72,13 +72,4 @@ public class Connection {
     public void closeSocket() {
     	clientSocket.close();
     }
-    
-    public void changeIpAdress(String serverIpAdress) {
-    	try {
-    	this.serverIpAddress = InetAddress.getByName(serverIpAdress);
-    	}	catch (UnknownHostException ex) {
-            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    	
-    }
 }
