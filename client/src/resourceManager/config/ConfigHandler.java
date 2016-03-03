@@ -90,7 +90,7 @@ public class ConfigHandler {
     	if(serverPort == 0){serverPort=8989;}
     	if(gameHeight == 0){gameHeight=10;}
     	if(gameWidth == 0){gameWidth=16;}
-    	if(username == null){username="default";}
+    	if(username == null){username="Choose a username";}
     }
 
     /**

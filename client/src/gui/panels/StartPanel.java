@@ -12,6 +12,8 @@ import javax.swing.LayoutStyle;
 import src.Core;
 
 import src.gui.panels.event.ControllerStartPanel;
+import src.resourceManager.Database;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  *
@@ -36,7 +38,7 @@ public class StartPanel extends SuperPanel {
 
 //        usernameField.addKeyListener((KeyListener) controller);
         usernameField.addMouseListener((MouseListener) controller);
-        usernameField.setText("Choose a username");
+        usernameField.setText(ConfigHandler.getInstance().getUsername());
 
         continueButton.setFocusable(false);
         continueButton.addMouseListener((MouseListener) controller);
