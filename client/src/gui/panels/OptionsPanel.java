@@ -36,8 +36,9 @@ public class OptionsPanel extends SuperPanel {
         text = new JLabel("Options");
         username = new JLabel("Username");
         usernameField = new JTextField(ConfigHandler.getInstance().getUsername(), 20);
-        serverIp = new JLabel("Server IP-number");
+        serverIp = new JLabel("Current server IP-number");
         serverIpField = new JTextField(ConfigHandler.getInstance().getServerIp(), 20);
+        serverIpField.setEditable(false); 
         prev = new JButton("Previous");
         save = new JButton("Save");
 
