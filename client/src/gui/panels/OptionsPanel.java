@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 
 import src.gui.panels.event.ControllerOptionsPanel;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  *
@@ -34,9 +35,9 @@ public class OptionsPanel extends SuperPanel {
         container = new JPanel();
         text = new JLabel("Options");
         username = new JLabel("Username");
-        usernameField = new JTextField(20);
+        usernameField = new JTextField(ConfigHandler.getInstance().getUsername(), 20);
         serverIp = new JLabel("Server IP-number");
-        serverIpField = new JTextField(20);
+        serverIpField = new JTextField(ConfigHandler.getInstance().getServerIp(), 20);
         prev = new JButton("Previous");
         save = new JButton("Save");
 
