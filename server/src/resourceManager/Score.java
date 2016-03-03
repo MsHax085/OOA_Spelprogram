@@ -1,6 +1,7 @@
 package src.resourceManager;
 
 
+import src.resourceManager.config.ConfigHandler;
 import src.resourceManager.file.FileHandler;
 import java.util.*;
 
@@ -20,8 +21,9 @@ public class Score {
 	private Score() {
 		highscorePath = "highscore";
 		fh = FileHandler.getInstance();
-		if(fh.readFile(highscorePath+"1.txt")==null){fh.writeFile(highscorePath+"1.txt","");}
-		if(fh.readFile(highscorePath+"2.txt")==null){fh.writeFile(highscorePath+"2.txt","");}
+		for (int i = 1; i <= ConfigHandler.getInstance().getNumberOfMaps(); i++) {
+		    if(fh.readFile(highscorePath + i + ".txt")==null){fh.writeFile(highscorePath + i + ".txt","");}
+		}
 	}
     public static Score getInstance() {
         if (instance == null) instance = new Score();
