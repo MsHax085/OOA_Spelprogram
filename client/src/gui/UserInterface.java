@@ -21,6 +21,7 @@ import src.gui.panels.StartPanel;
 import src.network.Connection;
 import src.network.NetworkBuffer;
 import src.network.PacketBuilder;
+import src.resourceManager.config.ConfigHandler;
 
 /**
  *
@@ -150,6 +151,7 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
 	} catch (IOException e1) {
 	    e1.printStackTrace();
 	}
+	ConfigHandler.getInstance().writeConfig();
         NetworkBuffer.getInstance().removeOldObserver(this);
         Core.getInstance().stop();
         // TODO: CLOSE EVERYTHING BEFORE EXIT
