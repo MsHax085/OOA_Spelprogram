@@ -27,6 +27,9 @@ import src.resourceManager.config.ConfigHandler;
  *
  * @author Richard,++
  * 
+ * UserInterface
+ * Initiates the JFrame for the GUI. changes between the panels in the cardlayout.
+ * 
  * @param Which panel you want to open, 1 for start, 2 for menu, 3 for serverselection,
  * 4 for servercreation, 5 for serverlobby, 6 for highscore, 7 for optionspanel
  */
@@ -99,6 +102,10 @@ public class UserInterface implements WindowListener, DefaultFrameState, Observe
         frame.add(panelContainer);
     }
     
+    /**
+     * Changes the panel shown in the cardlayout
+     * @param panelName
+     */
     public static void changeCard(String panelName) {
         cl.show(panelContainer, panelName);
     }
