@@ -10,8 +10,12 @@ import src.resourceManager.config.ConfigHandler;
 import src.network.Connection;
 import src.network.PacketBuilder;
 
-/*
+/**
+ * 
  * @author Gustav
+ * 
+ * ControllerOptionsPanel
+ * Controlls all the actions allowed in the optionspanel
  */
 public class ControllerOptionsPanel implements MouseListener {
 	

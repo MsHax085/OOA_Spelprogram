@@ -12,8 +12,12 @@ import src.gui.panels.LobbyCreationPanel;
 import src.network.Connection;
 import src.network.PacketBuilder;
 
-/*
- * @authour Gustav
+/**
+ * 
+ * @author Gustav
+ * 
+ * ControllerLobbyCreationPanel
+ * Controlls all the actions allowed in the lobbycreationpanel
  */
 public class ControllerLobbyCreationPanel implements MouseListener {
 	

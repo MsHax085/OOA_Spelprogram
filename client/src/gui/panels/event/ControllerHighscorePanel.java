@@ -6,8 +6,12 @@ import java.awt.event.MouseListener;
 import src.gui.UserInterface;
 import src.gui.panels.HighscorePanel;
 
-/*
+/**
+ * 
  * @author Gustav
+ * 
+ * ControllerHighscorePanel
+ * Controlls all the actions allowed in the highscorepanel
  */
 public class ControllerHighscorePanel implements MouseListener {
 	

@@ -12,12 +12,14 @@ import javax.swing.LayoutStyle;
 import src.Core;
 
 import src.gui.panels.event.ControllerStartPanel;
-import src.resourceManager.Database;
 import src.resourceManager.config.ConfigHandler;
 
 /**
  *
  * @author Richard
+ * 
+ * StartPanel
+ * Makes a startpanel
  */
 public class StartPanel extends SuperPanel {
     
@@ -36,7 +38,6 @@ public class StartPanel extends SuperPanel {
 
         container.setBackground(new Color(0, 0, 0, 0));
 
-//        usernameField.addKeyListener((KeyListener) controller);
         usernameField.addMouseListener((MouseListener) controller);
         usernameField.setText(ConfigHandler.getInstance().getUsername());
 

@@ -14,8 +14,12 @@ import src.network.PacketBuilder;
 import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
-/*
+/**
+ * 
  * @author Gustav
+ * 
+ * ControllerSelectionPanel
+ * Controlls all the actions allowed in the serverselectionpanel
  */
 public class ControllerSelectionPanel implements MouseListener {
 	
@@ -46,7 +50,6 @@ public class ControllerSelectionPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
     	if (e.getSource().equals(panel.getJoinButton())) {
             if(panel.getServerList().getSelectedRow() != -1) {
-            	// Ska egentligen kolla om det finns något lösenord och om det är "" så ska inte en JOptionPane komma upp! 
         	
                 // (Eriks lilla Kod) This gets the Lobby name/hasPassword of the selected row number.
                 String selectedLobbyName = null;

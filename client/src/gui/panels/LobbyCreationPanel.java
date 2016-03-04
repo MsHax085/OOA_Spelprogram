@@ -16,6 +16,9 @@ import src.gui.panels.event.ControllerLobbyCreationPanel;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * LobbyCreationPanel
+ * Makes a lobbycreationpanel
  */
 public class LobbyCreationPanel extends SuperPanel {
 

@@ -1,6 +1,6 @@
 package src.gui.panels.event;
 
-import java.awt.Color;
+
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
@@ -12,6 +12,9 @@ import src.resourceManager.config.ConfigHandler;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * ControllerStartPanel
+ * Controlls all the actions allowed in the startpanel
  */
 public class ControllerStartPanel implements MouseListener {
     
@@ -25,7 +28,6 @@ public class ControllerStartPanel implements MouseListener {
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getContinueButton())) {
         	if(panel.getUsernameInput().getText().equals("Choose a username") || panel.getUsernameInput().getText().equals("")) {
-        		//usernameField.setBackground(Color.RED);
         	}
         	else {
         		ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());

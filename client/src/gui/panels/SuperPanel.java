@@ -15,6 +15,9 @@ import src.Core;
 /**
  *
  * @author Richard
+ * 
+ * SuperPanel
+ * Makes a superpanel.
  */
 public class SuperPanel extends JPanel {
     

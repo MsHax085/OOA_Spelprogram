@@ -19,6 +19,9 @@ import src.resourceManager.client.Lobby;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * LobbySelectionPanel
+ * Makes a lobbyselectionpanel
  */
 public class LobbySelectionPanel extends SuperPanel {
     
@@ -41,7 +44,6 @@ public class LobbySelectionPanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         serverList.setFocusable(false);
-        updateServerList();
         
         prev.setFocusable(false);
         prev.addMouseListener((MouseListener) controller);

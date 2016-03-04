@@ -16,6 +16,9 @@ import src.resourceManager.config.ConfigHandler;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * OptionsPanel
+ * Makes a optionspanel
  */
 public class OptionsPanel extends SuperPanel {
 

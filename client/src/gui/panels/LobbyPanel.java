@@ -19,6 +19,9 @@ import src.resourceManager.client.ServerClient;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * LobbyPanel
+ * Makes a lobbypanel
  */
 public class LobbyPanel extends SuperPanel {
     
@@ -41,7 +44,6 @@ public class LobbyPanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         lobbyList.setFocusable(false);
-        updateLobbyList();
         
         quit.setFocusable(false);
         quit.addMouseListener((MouseListener) controller);

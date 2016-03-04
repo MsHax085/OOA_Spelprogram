@@ -17,8 +17,11 @@ import src.gui.panels.event.ControllerHighscorePanel;
 import src.resourceManager.Database;
 
 /**
- *
+ * 
  * @author Richard, Gustav
+ * 
+ * HighscorePanel
+ * Makes a highscorepanel
  */
 public class HighscorePanel extends SuperPanel {
 
@@ -39,7 +42,6 @@ public class HighscorePanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         highScoreList.setFocusable(false);
-        updateHighscoreList();
         
         prev.setFocusable(false);
         prev.addMouseListener((MouseListener) controller);
@@ -81,6 +83,9 @@ public class HighscorePanel extends SuperPanel {
         );
     }
     
+    /**
+     * Clears the JTable, adds information about all clients in the lobby.
+     */
     public void updateHighscoreList() {
     	clearRows();
     	
@@ -90,6 +95,9 @@ public class HighscorePanel extends SuperPanel {
         }
     }
     
+    /**
+     * Removes all things in the JTable.
+     */
     private void clearRows() {
     	DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();
     	model.setRowCount(0);

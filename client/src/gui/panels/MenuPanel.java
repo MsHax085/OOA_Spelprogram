@@ -14,6 +14,9 @@ import src.gui.panels.event.ControllerMenuPanel;
 /**
  *
  * @author Richard, Gustav
+ * 
+ * MenuPanel
+ * Makes a menupanel
  */
 public class MenuPanel extends SuperPanel {
 
