@@ -1,8 +1,8 @@
 package src.resourceManager.client;
 /**
- * Local instance of a server lobby. Is used by the GUI to: read lobby name, check if lobby has a password and return lobby info as a string.
+ * Local data of a server lobby. This is used to access information about all lobbies on the server.
  * @author Erik Thorsson Högfeldt
- *
+ * @version 2016-03-05
  */
 public class Lobby {
     private String lobbyName;
@@ -28,7 +28,7 @@ public class Lobby {
     }
     
     public String getLobbyInfoAsString() {
-	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients + "/" + maxNumberOfClients + (isLobbyPlayingGame() ? ":GAME IN PROGGRESS" : "");
+	String lobbyInfo = lobbyName + (lobbyHasPassword ? ":pass:" : ":    :") + lobbyNumberOfClients + "/" + maxNumberOfClients + (isLobbyPlayingGame() ? ":GAME IN PROGRES" : "");
 	return lobbyInfo;
 	
     }

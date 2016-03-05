@@ -4,8 +4,8 @@ import java.io.DataInputStream;
 
 /**
  * 
- * @author Richard Dahlgren, Erik Thorsson Högfeldt
- *
+ * @author Richard Dahlgren
+ * @version 2016-03-02
  */
 public interface ImplPacketHandler {
 

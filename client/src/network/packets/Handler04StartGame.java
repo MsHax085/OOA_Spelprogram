@@ -14,8 +14,9 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- *
+ * Handles the packet that tells the client to start a game.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler04StartGame implements ImplPacketHandler {
     
@@ -27,7 +28,7 @@ public class Handler04StartGame implements ImplPacketHandler {
         try {
             // Opcode (first short) already read
             int mapId = dis.readInt();
-            System.out.println("Server commands the client to start the game with mapID: " + mapId);
+            System.out.println("Starting game with mapID: " + mapId);
             
             ArrayList<ServerClient> lobbyList = new ArrayList<ServerClient>();
             Iterator<ServerClient> iterator = Database.getInstance().getClients();

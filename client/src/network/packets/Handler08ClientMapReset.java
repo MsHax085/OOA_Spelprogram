@@ -9,8 +9,9 @@ import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
- * This handles the packet that tells the client that another client has resets its map.
+ * This handles the packet that tells this client that another client has resets its map.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler08ClientMapReset implements ImplPacketHandler {
     

@@ -13,8 +13,9 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- * Retrieves all clients in this clients lobby. (including it self)
+ * Handles the packet that contains all clients in this clients lobby. (including it self)
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler02UpdateClientLobby implements ImplPacketHandler {
     
@@ -22,16 +23,16 @@ public class Handler02UpdateClientLobby implements ImplPacketHandler {
 	
     @Override
     public void handlePacket() {
-        System.out.println("02UpdateClientLobby recived from server");
         if (dis == null) return;
         try {
-            //Clears the current list
+            //Clears the current list of clients
             final Iterator itr = Database.getInstance().getClients();
             while (itr.hasNext()) {
         	itr.next();
         	itr.remove();
             }
             
+            //Adds the clients to the list
             int numberOfClientsInLobby = dis.readInt();
             for (int i = 0; i < numberOfClientsInLobby; i++) {
         	ServerClient client = new ServerClient(dis.readInt(), dis.readUTF(), dis.readBoolean());

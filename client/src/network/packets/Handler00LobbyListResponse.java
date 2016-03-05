@@ -14,6 +14,7 @@ import src.resourceManager.client.Lobby;
 /**
  * Reads info about all the lobbies in the server and saves it on this client.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler00LobbyListResponse implements ImplPacketHandler {
     

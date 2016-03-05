@@ -9,7 +9,9 @@ import src.game.Game;
 import src.network.ImplPacketHandler;
 
 /**
- * @author BögErik
+ * Reads the ID and the movable entities position of the specified client. The clients entities are moved accordingly.
+ * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler06MoveGameEnteties implements ImplPacketHandler {
     

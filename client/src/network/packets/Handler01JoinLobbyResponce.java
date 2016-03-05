@@ -11,6 +11,7 @@ import src.network.ImplPacketHandler;
 /**
  * This handles the packet which tells this client if it was able to enter a lobby.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler01JoinLobbyResponce implements ImplPacketHandler {
     

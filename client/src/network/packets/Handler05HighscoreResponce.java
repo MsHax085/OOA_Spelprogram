@@ -14,6 +14,7 @@ import src.resourceManager.Database;
 /**
  * Reads info about the top 20 highscore of a map. Adds the scores to Database as strings.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler05HighscoreResponce implements ImplPacketHandler {
     

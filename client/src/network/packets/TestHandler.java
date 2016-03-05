@@ -7,8 +7,9 @@ import java.util.logging.Logger;
 import src.network.ImplPacketHandler;
 
 /**
- *
+ * Handles the test packet from the server and prints the information send in the packet.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-02-26
  */
 public class TestHandler implements ImplPacketHandler {
     

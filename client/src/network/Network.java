@@ -6,9 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * Network thread for continuous receiving of packets.
  * @author Richard, Erik Thorsson Högfeldt
- *
+ * @version 2016-03-05
  */
 
 public class Network implements Runnable{

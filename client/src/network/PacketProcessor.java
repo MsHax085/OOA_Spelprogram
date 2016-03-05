@@ -18,10 +18,11 @@ import src.network.packets.TestHandler;
 
 /**
  * 
- *  Links Packet ID with packet handler classes.
+ *  List of the receiving packets handlers.
+ *  Is used to create a specific packet handler.
  * 
- *  @author Richard, BögErik
- *  
+ *  @author Richard, Erik Thorsson Högfeldt
+ * @version 2016-03-05
  */
 
 public class PacketProcessor {
@@ -38,8 +39,8 @@ public class PacketProcessor {
         return handlers.get(opCode);
     }
     
-    /*
-     * Add new packets to the HashMap here..
+    /**
+     * Initiate the list of packet handlers.
      */
     public void loadRecvHandlers() {
         handlers = new HashMap<>();

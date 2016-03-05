@@ -4,12 +4,10 @@ package src.network;
  * The ID of the packets that can be sent.
  *
  * @author Richard
+ * @version 2016-03-02
  * 
  */
 
-/*
- *  Add new packets ID here.
- */
 public enum SendPacketOpcodes {
     TESTPACKET(0x91),
     PACKET00(0x00),

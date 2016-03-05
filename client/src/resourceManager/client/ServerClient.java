@@ -1,9 +1,8 @@
 package src.resourceManager.client;
 /**
- * Local instance of client in the same server lobby. This is used to access information about all clients in the currently joined lobby.
- * 
+ * Local data of a client in the same server lobby. This is used to access information about all clients in the currently joined lobby.
  * @author Erik Thorsson Högfeldt
- *
+ * @version 2016-03-05
  */
 public class ServerClient {
     private int clientId;

@@ -12,6 +12,7 @@ import src.resourceManager.Database;
 /**
  * This handles the packet that tells if the server could successfully login the client.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler09ClientLoginResponse implements ImplPacketHandler {
     

@@ -9,6 +9,7 @@ import src.network.ImplPacketHandler;
 /**
  * This handles the packet which tells this client if it was able to leave a lobby.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler0BLeaveLobbyResponse implements ImplPacketHandler {
     

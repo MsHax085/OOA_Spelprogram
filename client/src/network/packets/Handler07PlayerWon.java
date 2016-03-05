@@ -11,6 +11,7 @@ import src.network.ImplPacketHandler;
 /**
  * This handles the packet that tells the client if and when another client cleared the map.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler07PlayerWon implements ImplPacketHandler {
     

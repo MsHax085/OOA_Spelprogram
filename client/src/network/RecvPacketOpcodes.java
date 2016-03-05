@@ -4,12 +4,9 @@ package src.network;
  * The ID of the packets that can be received.
  *
  * @author Richard
- * 
+ * @version 2016-02-28
  */
 
-/*
- * Add new packets ID here.
- */
 public enum RecvPacketOpcodes {
     TESTPACKET(0x91),
     PACKET00(0x00),

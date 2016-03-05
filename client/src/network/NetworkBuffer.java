@@ -7,8 +7,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import src.Changes;
 
 /**
- *
+ * Collects all incoming packets from the network thread to be read by the rest of the program.
  * @author Richard
+ * @version 2016-02-26
  */
 public class NetworkBuffer extends Observable {
 

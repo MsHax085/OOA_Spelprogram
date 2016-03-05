@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * 
+ * Starts a socket, sends and retrieves packets to and from the server.
  * @author Richard, Erik Thorsson Högfeldt
- *
+ * @version 2016-03-05
  */
 public class Connection {
     
@@ -29,8 +29,7 @@ public class Connection {
     private InetAddress serverIpAddress;
     
     /**
-     * Constructor: starts the socket. loads the address.
-     * 
+     * Constructor: starts the socket. loads the address and port from the config.
      */
     private Connection() {
 	try {
@@ -48,8 +47,7 @@ public class Connection {
     }
     
     /**
-     * This is used by the Network Thread. Waits till a packet is received on the serverSocket. 
-     * Saves the IP and port of the packet in local variables.
+     * Waits till a packet is received on the socket and return its data.
      * @return: The packet data as an ByteArrayInputStream.
      */
     public DataInputStream receivePacket() throws IOException {
@@ -61,14 +59,17 @@ public class Connection {
     }
     
     /**
-     * This is called when a packet should be sent. Sends a packet to the server.
-     * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
+     * Sends a packet to the server.
+     * @param: The message as an byte[] (ByteArrayStream).
      */
     public void sendPacket(byte[] packetData) throws IOException {
         DatagramPacket packet = new DatagramPacket(packetData, packetData.length, serverIpAddress, serverPort);
         clientSocket.send(packet);
     }
     
+    /**
+     * closes the socket and interrupts the receiving of packets.
+     */
     public void closeSocket() {
     	clientSocket.close();
     }

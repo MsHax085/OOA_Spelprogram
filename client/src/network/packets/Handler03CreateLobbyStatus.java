@@ -9,8 +9,9 @@ import src.gui.UserInterface;
 import src.network.ImplPacketHandler;
 
 /**
- * This handles the packet that tells if the server could successfully create the lobby
+ * Handles the packet that tells if the server could successfully create the lobby
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler03CreateLobbyStatus implements ImplPacketHandler {
     
