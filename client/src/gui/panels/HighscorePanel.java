@@ -8,8 +8,10 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 import src.gui.panels.event.ControllerHighscorePanel;
@@ -28,6 +30,8 @@ public class HighscorePanel extends SuperPanel {
     private JLabel text;
     private JTable highScoreList;
     private JButton prev;
+    private JButton refresh;
+    private JSpinner spinner;
 	
     public HighscorePanel(int width, int height) {
         super(width, height);
@@ -35,8 +39,10 @@ public class HighscorePanel extends SuperPanel {
         this.controller = new ControllerHighscorePanel(this);
         container = new JPanel();
         text = new JLabel("Highscore");
-        highScoreList = new JTable(20,1);
+        highScoreList = new JTable(14,1);
         prev = new JButton("Previous");
+        refresh = new JButton("Refresh");
+        spinner = new JSpinner(new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1));
         
         container.setBackground(new Color(0, 0, 0, 0));
         
@@ -45,6 +51,10 @@ public class HighscorePanel extends SuperPanel {
         prev.setFocusable(false);
         prev.addMouseListener((MouseListener) controller);
         
+        refresh.setFocusable(false);
+        refresh.addMouseListener((MouseListener) controller);
+        
+        
         GroupLayout panel1Layout = new GroupLayout(container);
         container.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -52,7 +62,10 @@ public class HighscorePanel extends SuperPanel {
                     	.addComponent(text, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                     	.addComponent(highScoreList, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                     	.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                    		.addComponent(prev, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
+                    	.addComponent(prev, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                    	.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
+                    	.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    	.addComponent(refresh, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
         );
         
         panel1Layout.setVerticalGroup(
@@ -63,7 +76,10 @@ public class HighscorePanel extends SuperPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                     .addComponent(highScoreList, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, 20)
-                    .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel1Layout.createParallelGroup()
+                	    .addComponent(prev, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                	    .addComponent(spinner, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                	    .addComponent(refresh, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
                     .addGap(98, 98, 98))// Add gap after
             );
         
@@ -109,5 +125,13 @@ public class HighscorePanel extends SuperPanel {
     
     public JButton getPrevButton() {
         return prev;
+    }
+    
+    public JButton getRefreshButton() {
+	return refresh;
+    }
+    
+    public JSpinner getSpinner() {
+	return spinner;
     }
 }
