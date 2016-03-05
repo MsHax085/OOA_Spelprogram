@@ -7,10 +7,11 @@ import java.util.*;
 
 
 /**
- * @author Oscar Andersson
- * 
  * This class manages the storing of highscore information.
  * It can load and save highscore information to highscore files.
+ * 
+ * @author Oscar Andersson
+ * @version 2016-03-03
  */
 public class Score {
 

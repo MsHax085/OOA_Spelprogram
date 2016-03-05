@@ -5,9 +5,10 @@ import src.resourceManager.file.FileHandler;
 
 
 /**
- * @author Oscar Andersson
- *
  * This class handles reading of map files. 
+ * 
+ * @author Oscar Andersson
+ * @version 2016-2-28
  */
 
 public class Map {
