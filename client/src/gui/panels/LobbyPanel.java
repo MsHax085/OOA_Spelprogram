@@ -43,6 +43,7 @@ public class LobbyPanel extends SuperPanel {
         container.setBackground(new Color(0, 0, 0, 0));
         
         lobbyList.setFocusable(false);
+        updateLobbyList();
         
         quit.setFocusable(false);
         quit.addMouseListener((MouseListener) controller);
