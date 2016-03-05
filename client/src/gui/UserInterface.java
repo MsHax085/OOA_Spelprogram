@@ -24,14 +24,13 @@ import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- *
- * @author Richard,++
- * 
- * UserInterface
  * Initiates the JFrame for the GUI. changes between the panels in the cardlayout.
  * 
  * @param Which panel you want to open, 1 for start, 2 for menu, 3 for serverselection,
  * 4 for servercreation, 5 for serverlobby, 6 for highscore, 7 for optionspanel
+ * 
+ * @author Richard,++
+ * @version 2016-03-04
  */
 public class UserInterface implements WindowListener, DefaultFrameState, Observer {
 

@@ -15,11 +15,10 @@ import src.gui.panels.event.ControllerStartPanel;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- *
- * @author Richard
- * 
- * StartPanel
  * Makes a startpanel
+ * 
+ * @author Richard
+ * @version 2016-03-04
  */
 public class StartPanel extends SuperPanel {
     

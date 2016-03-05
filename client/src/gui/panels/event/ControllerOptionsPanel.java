@@ -11,11 +11,10 @@ import src.network.Connection;
 import src.network.PacketBuilder;
 
 /**
- * 
- * @author Gustav
- * 
- * ControllerOptionsPanel
  * Controlls all the actions allowed in the optionspanel
+ * 
+ * @author Gustav Ländström
+ * @version 2016-03-04
  */
 public class ControllerOptionsPanel implements MouseListener {
 	

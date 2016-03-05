@@ -7,11 +7,10 @@ import src.gui.UserInterface;
 import src.gui.panels.HighscorePanel;
 
 /**
- * 
- * @author Gustav
- * 
- * ControllerHighscorePanel
  * Controlls all the actions allowed in the highscorepanel
+ * 
+ * @author Gustav Ländström
+ * @version 2016-03-04
  */
 public class ControllerHighscorePanel implements MouseListener {
 	

@@ -10,11 +10,10 @@ import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- *
- * @author Richard, Gustav
- * 
- * ControllerStartPanel
  * Controlls all the actions allowed in the startpanel
+ * 
+ * @author Richard, Gustav Ländström
+ * @version 2016-03-04
  */
 public class ControllerStartPanel implements MouseListener {
     

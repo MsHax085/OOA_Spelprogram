@@ -13,11 +13,10 @@ import javax.swing.JPanel;
 import src.Core;
 
 /**
- *
- * @author Richard
+ * Makes a superpanel
  * 
- * SuperPanel
- * Makes a superpanel.
+ * @author Richard
+ * @version 2016-03-04
  */
 public class SuperPanel extends JPanel {
     

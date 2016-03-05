@@ -12,11 +12,10 @@ import src.Core;
 import src.gui.panels.event.ControllerMenuPanel;
 
 /**
- *
- * @author Richard, Gustav
- * 
- * MenuPanel
  * Makes a menupanel
+ * 
+ * @author Richard, Gustav
+ * @version 2016-03-04
  */
 public class MenuPanel extends SuperPanel {
 

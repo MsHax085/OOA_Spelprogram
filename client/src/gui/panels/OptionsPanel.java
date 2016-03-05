@@ -13,12 +13,11 @@ import java.awt.Color;
 import src.gui.panels.event.ControllerOptionsPanel;
 import src.resourceManager.config.ConfigHandler;
 
-/**
- *
- * @author Richard, Gustav
- * 
- * OptionsPanel
+/** 
  * Makes a optionspanel
+ * 
+ * @author Richard, Gustav
+ * @version 2016-03-04
  */
 public class OptionsPanel extends SuperPanel {
 

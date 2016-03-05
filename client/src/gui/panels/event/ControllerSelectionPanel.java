@@ -15,11 +15,10 @@ import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
 /**
- * 
- * @author Gustav
- * 
- * ControllerSelectionPanel
  * Controlls all the actions allowed in the serverselectionpanel
+ * 
+ * @author Gustav Ländström
+ * @version 2016-03-04
  */
 public class ControllerSelectionPanel implements MouseListener {
 	

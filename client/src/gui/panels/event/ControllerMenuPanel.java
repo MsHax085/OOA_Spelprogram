@@ -12,11 +12,10 @@ import src.network.Connection;
 import src.network.PacketBuilder;
 
 /**
- * 
- * @author Gustav
- * 
- * ControllerMenuPanel
  * Controlls all the actions allowed in the menupanel
+ * 
+ * @author Gustav Ländström
+ * @version 2016-03-04
  */
 public class ControllerMenuPanel implements MouseListener {
 	

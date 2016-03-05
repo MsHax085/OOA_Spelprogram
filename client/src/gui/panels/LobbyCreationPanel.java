@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 import src.gui.panels.event.ControllerLobbyCreationPanel;
 
 /**
- *
- * @author Richard, Gustav
- * 
- * LobbyCreationPanel
+
  * Makes a lobbycreationpanel
+ * 
+ * @author Richard, Gustav
+ * @version 2016-03-04
  */
 public class LobbyCreationPanel extends SuperPanel {
 

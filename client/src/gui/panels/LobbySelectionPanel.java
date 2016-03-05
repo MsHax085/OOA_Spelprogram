@@ -17,11 +17,10 @@ import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
 /**
- *
- * @author Richard, Gustav
- * 
- * LobbySelectionPanel
  * Makes a lobbyselectionpanel
+ * 
+ * @author Richard, Gustav
+ * @version 2016-03-04
  */
 public class LobbySelectionPanel extends SuperPanel {
     

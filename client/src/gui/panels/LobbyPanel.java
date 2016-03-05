@@ -17,11 +17,10 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- *
- * @author Richard, Gustav
- * 
- * LobbyPanel
  * Makes a lobbypanel
+ * 
+ * @author Richard, Gustav
+ * @version 2016-03-04
  */
 public class LobbyPanel extends SuperPanel {
     

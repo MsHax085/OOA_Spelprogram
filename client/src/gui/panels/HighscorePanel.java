@@ -17,11 +17,10 @@ import src.gui.panels.event.ControllerHighscorePanel;
 import src.resourceManager.Database;
 
 /**
+ * Makes a highscorepanel
  * 
  * @author Richard, Gustav
- * 
- * HighscorePanel
- * Makes a highscorepanel
+ * @version 2016-03-04
  */
 public class HighscorePanel extends SuperPanel {
 
