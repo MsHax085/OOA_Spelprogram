@@ -3,8 +3,9 @@ package src.client;
 import java.net.InetAddress;
 
 /**
- *
+ * Contains information that is specific to a logged in client.
  * @author Richard
+ * @version 2016-02-28
  */
 public class ClientLoggedIn extends ClientSession {
     

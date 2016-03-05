@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
+ * Manages all the lobbies on the server.
  * @author Richard
+ * @version 2016-03-02
  */
 public class LobbyManager {
     
@@ -18,6 +19,11 @@ public class LobbyManager {
         return instance;
     }
     
+    /**
+     * Checks if a lobby exist based on the given name.
+     * @param lobbyName As a string.
+     * @return true, if the lobby did exist. false if it didn't.
+     */
     public boolean isRegistredLobby(String lobbyName) {
         final Iterator itr = getLobbies();
         while (itr.hasNext()) {
@@ -27,14 +33,27 @@ public class LobbyManager {
         return false;
     }
     
+    /**
+     * Creates a new lobby with the given parameters and adds it to the list of lobbies.
+     * @param lobbyName As a string.
+     * @param password Lobby password as a string.
+     */
     public void addLobby(String lobbyName, String password) {
         addLobby(new Lobby(lobbyName, password));
     }
     
+    /**
+     * Adds a created Lobby object to the list of lobbies.
+     * @param lobby
+     */
     public void addLobby(Lobby lobby) {
         lobbies.add(lobby);
     }
     
+    /**
+     * Return lobby list.
+     * @return The list of lobbies as an Iterator objects.
+     */
     public Iterator getLobbies() {
         return lobbies.iterator();
     }

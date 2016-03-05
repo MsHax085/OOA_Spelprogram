@@ -3,8 +3,9 @@ package src.client;
 import java.net.InetAddress;
 
 /**
- *
+ * Information about a connected client with a unique ID.
  * @author Richard
+ * @version 2016-02-27
  */
 public class ClientSession {
 

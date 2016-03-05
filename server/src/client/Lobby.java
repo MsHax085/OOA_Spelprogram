@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
+ * Contains a list of clients that are currently in the lobby and lobby specific variables.
  * @author Richard
+ * @version 2016-03-01
  */
 public class Lobby {
 
@@ -20,14 +21,27 @@ public class Lobby {
         this.lobbyPassword = lobbyPassword;
     }
     
+    /**
+     * Checks if the client is in the lobby.
+     * @param cli As a ClientLoggedIn
+     * @return true, if the client is in the lobby. false, if it isn't.
+     */
     public boolean isClientRegistredInLobby(ClientLoggedIn cli) {
         return clientLogIns.contains(cli);
     }
     
+    /**
+     * Adds a client to the lobby
+     * @param cli As a ClientLoggedIn
+     */
     public void addClientToLobby(ClientLoggedIn cli) {
         clientLogIns.add(cli);
     }
     
+    /**
+     * Returns client list.
+     * @return The list of clients as an Iterator object
+     */
     public Iterator getClientsInLobby() {
         return clientLogIns.iterator();
     }
@@ -48,6 +62,10 @@ public class Lobby {
         this.lobbyCurrentMap = lobbyCurrentMap;
     }
     
+    /**
+     * Removes a logged in client from the client list in theis lobby.
+     * @param cli As a ClientLoggedIn
+     */
     public void removeClientFromLobby(ClientLoggedIn cli) {
         clientLogIns.remove(cli);
     }
