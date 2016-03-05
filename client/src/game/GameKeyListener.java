@@ -4,11 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
+ * This KeyListner is based on toggles which are toggled when a key is pressed
+ * and released when the information is retreaved
  * 
  * @author ludwigfriborg
- *
- * This KeyListner is based on toggles wich ar toggled when a key is pressed
- * and released when the information is retreaved
+ * @version 2016-03-03
  */
 
 public class GameKeyListener implements KeyListener {	

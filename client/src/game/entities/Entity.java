@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import src.resourceManager.Resources;
 
 /**
- * 
+ * Baseclass for the gameplay objects
  * @author ludwigfriborg
- *
+ * @version 2016-02-26
  */
 public class Entity implements ImplEntity {
     

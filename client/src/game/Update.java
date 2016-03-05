@@ -8,12 +8,10 @@ import src.network.Connection;
 import src.network.PacketBuilder;
 
 /**
- * 
- * @author ludwigfriborg
- * 
  * Update is the model in the game packet and the class job is to keep track of the local game.
- * It is here normal game logic is acounted for. 
- *
+ * It is here normal game logic are acounted for. 
+ * @author ludwigfriborg
+ * @version 2016-03-01
  */
 
 public class Update{

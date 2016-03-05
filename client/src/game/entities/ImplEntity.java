@@ -3,8 +3,9 @@ package src.game.entities;
 import java.awt.Graphics;
 
 /**
- *
+ * interface for Game entity
  * @author Richard
+ * @version 2016-02-24
  */
 public interface ImplEntity {
     

@@ -15,17 +15,15 @@ import src.resourceManager.client.ServerClient;
 
 
 /**
- * 
- * @author ludwigfriborg
- *
- *	Semi singleton 
  *	The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
  *
- *	MVC - for the game object
- *	Game, MultiplayerHandler = Controller
- *	Update = Model
- *	JFrame frame, draw = View
+ *	MVC - for the game Package. 
+ *	Game and MultiplayerHandler = Controller, 
+ *	Update = Model, 
+ *	JFrame frame and draw = View
  *
+ * @author ludwigfriborg
+ * @version 2016-03-01
  * @param mapNumber - desired map
  * @param clientList - a list containing the lobby's ServerClients
  *

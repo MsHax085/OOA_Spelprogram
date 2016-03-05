@@ -6,8 +6,9 @@ import src.Core;
 import src.gui.UserInterface;
 
 /**
- *
+ * The game WindowListener
  * @author Richard
+ * @version 2016-03-01
  */
 public class GameWindowListener implements WindowListener {
     

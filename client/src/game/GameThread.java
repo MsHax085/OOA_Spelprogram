@@ -3,8 +3,9 @@ package src.game;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- *
+ * Is the game thread
  * @author Richard, ludwigfriborg
+ * @version 2016-03-01
  */
 public class GameThread implements Runnable  {
 

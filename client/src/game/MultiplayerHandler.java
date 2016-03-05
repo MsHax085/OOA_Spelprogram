@@ -11,11 +11,9 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- * 
- * @author ludwigfriborg
- *
  * MultiplayerHandler handles all the external players, by containing a list of their boards (Draw-class).  
- *
+ * @author ludwigfriborg
+ * @version 2016-03-01
  */
 public class MultiplayerHandler {
     private TreeMap<Integer, Draw> playerMap;
