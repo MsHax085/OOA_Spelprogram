@@ -10,8 +10,10 @@ import javax.imageio.ImageIO;
 import src.Core;
 
 /**
+ * This class loads images and makes them available for other classes.
  * 
  * @author Richard
+ * @version 
  *
  */
 public class Resources {
@@ -38,6 +40,12 @@ public class Resources {
         }
     }
     
+    /**
+     * Returns an image of a specific materialId
+     * 
+     * @param materialId - The materialId of the image that is going to be returned
+     * @return image of the materialId
+     */
     public Image getImage(int materialId) {
         return images.get(materialId);
     }

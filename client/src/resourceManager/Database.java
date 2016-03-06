@@ -10,6 +10,7 @@ import src.resourceManager.client.ServerClient;
 /**
  *
  * @author Richard
+ * @version
  */
 public class Database {
 

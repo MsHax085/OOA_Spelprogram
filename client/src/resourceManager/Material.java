@@ -1,8 +1,10 @@
 package src.resourceManager;
 
 /**
+ * Gives material-variables predefined constant values.
  *
  * @author Richard
+ * @version
  */
 public enum Material {
     GRASS(0),
