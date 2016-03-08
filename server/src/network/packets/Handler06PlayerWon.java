@@ -20,10 +20,10 @@ import src.network.PacketBuilder;
 import src.resourceManager.Score;
 
 /**
- * Sends a packet to all clients but the sender. Containing the senders ID and time of completion.
- * The time is saved on the server. When all clients are done the times are saved in the highscore list.
+ * Handles a player won packet, if everyone is done save the score and end the game. Send the information to all other clients in the lobby.
  * 
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler06PlayerWon implements ImplPacketHandler {
     

@@ -15,9 +15,10 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * Sends a packet to all clients but the sender. The packet contains the ID of the client who reseted.
+ * Handler a player reset, sends the information to all other clients in the lobby.
  * 
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler07PlayerReset implements ImplPacketHandler {
     

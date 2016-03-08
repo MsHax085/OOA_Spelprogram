@@ -11,9 +11,10 @@ import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * Sends a create00LobbyListResponcePacket to the client who requested all the lobbies.
+ * Handles a highscore request, responds with a Highscore response packet based on the requested map.
  * 
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler04HighscoreRequest implements ImplPacketHandler {
     

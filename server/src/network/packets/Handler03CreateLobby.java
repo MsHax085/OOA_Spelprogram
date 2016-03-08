@@ -16,9 +16,9 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * Checks if the client can enter a lobby. if it can the client is added, all clients in the lobby is notified
- * and the client who joined receives a status packet. If it fails the client is told why with a status packet.
+ * Handles a create a lobby packet, Creates a lobby. Adds the client to it. Responds with a status packet.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler03CreateLobby implements ImplPacketHandler {
 	

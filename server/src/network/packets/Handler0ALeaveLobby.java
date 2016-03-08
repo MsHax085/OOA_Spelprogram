@@ -17,9 +17,9 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * Checks if the client can leave a lobby. if it can the client is removed, all clients in the lobby is notified
- * and the client who left receives a status packet. If it fails the client is told why with the status packet.
+ * Handles a leave lobby packet, removes the client from a lobby. responds with a status.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-03
  */
 public class Handler0ALeaveLobby implements ImplPacketHandler {
 	

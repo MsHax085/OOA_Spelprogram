@@ -15,8 +15,9 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * Sends a packet to all clients but the sender containing game entities position.
+ * Handles a move game entities packet, sends the received information to all clients in the lobby except for the sender.
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler05MoveGameEntities implements ImplPacketHandler {
     

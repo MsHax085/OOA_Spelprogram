@@ -17,10 +17,9 @@ import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * Changes the client who sent the packet, readyToStart to true. Sends out the 
- * current client status of all clients to all clients.
- * If everyone is ready: send startGamePacket to all clients.
+ * Handles a ready request, update the status of all clients in the lobby. Start the game if everyone is ready,
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler02ReadyRequest implements ImplPacketHandler {
     

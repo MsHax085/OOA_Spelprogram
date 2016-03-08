@@ -11,9 +11,10 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- * Sends a create00LobbyListResponcePacket to the client who requested all the lobbies.
+ * Handles a lobby list request, sends back a lobby list response packet. 
  * 
  * @author Erik Thorsson Högfeldt
+ * @version 2016-03-02
  */
 public class Handler00LobbyListRequest implements ImplPacketHandler {
     
