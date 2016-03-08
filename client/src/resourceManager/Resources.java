@@ -13,7 +13,7 @@ import src.Core;
  * This class loads images and makes them available for other classes.
  * 
  * @author Richard
- * @version 
+ * @version 2016-2-26
  *
  */
 public class Resources {
