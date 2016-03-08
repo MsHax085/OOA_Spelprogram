@@ -109,8 +109,8 @@ public class LobbyPanel extends SuperPanel {
      * Removes all things in the JTable.
      */
     private void clearRows() {
-	DefaultTableModel model = (DefaultTableModel) lobbyList.getModel();
-	model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) lobbyList.getModel();
+        model.setRowCount(0);
     }
     
     private void addRow(String str) {

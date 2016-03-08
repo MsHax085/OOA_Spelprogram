@@ -13,8 +13,6 @@ public class FileHandler implements ImplFileHandler {
 
     private static FileHandler instance = null;
 
-    /* Singleton Designpattern
-     */
     public static FileHandler getInstance() {
         if (instance == null) instance = new FileHandler();
         return instance;

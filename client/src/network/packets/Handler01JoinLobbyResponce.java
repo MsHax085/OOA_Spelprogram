@@ -16,7 +16,7 @@ import src.network.ImplPacketHandler;
 public class Handler01JoinLobbyResponce implements ImplPacketHandler {
     
     private DataInputStream dis = null;
-	int joinLobbyStatus;
+    int joinLobbyStatus;
 	
     @Override
     public void handlePacket() {
@@ -32,11 +32,11 @@ public class Handler01JoinLobbyResponce implements ImplPacketHandler {
             } else if (joinLobbyStatus == 2) {
                 System.out.println("Could not enter lobby: Lobby is full");
             } else if (joinLobbyStatus == 3) {
-        	System.out.println("Could not enter Lobby: Lobby is running a game");
+                System.out.println("Could not enter Lobby: Lobby is running a game");
             } else if (joinLobbyStatus == 4) {
-        	System.out.println("Could not enter Lobby: Already in one");
+                System.out.println("Could not enter Lobby: Already in one");
             } else if (joinLobbyStatus == 5) {
-        	System.out.println("Could not enter Lobby: Lobby does not exist");
+                System.out.println("Could not enter Lobby: Lobby does not exist");
             }
         } catch (IOException ex) {
             Logger.getLogger(Handler01JoinLobbyResponce.class.getName()).log(Level.SEVERE, null, ex);

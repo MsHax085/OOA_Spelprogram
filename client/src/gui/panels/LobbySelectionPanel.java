@@ -116,25 +116,25 @@ public class LobbySelectionPanel extends SuperPanel {
     }
     
     public void getCouldNotJoinPane(int i) {
-    	if(i == 1) {
-    		JOptionPane.showMessageDialog(null,"Could not join lobby, wrong password!");
-    	}
-    	else if(i == 2) {
-        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is full!");
-    	}
-    	else if(i == 3) {
-        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is running a game!");
-    	}
-    	else if(i == 4) {
-        	JOptionPane.showMessageDialog(null,"Could not join lobby, already in one!");
-    	}
-    	else {
-        	JOptionPane.showMessageDialog(null,"Could not join lobby, lobby does not exist!");
+        if(i == 1) {
+    	    JOptionPane.showMessageDialog(null,"Could not join lobby, wrong password!");
+        }
+        else if(i == 2) {
+            JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is full!");
+        }
+        else if(i == 3) {
+            JOptionPane.showMessageDialog(null,"Could not join lobby, lobby is running a game!");
+        }
+        else if(i == 4) {
+            JOptionPane.showMessageDialog(null,"Could not join lobby, already in one!");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Could not join lobby, lobby does not exist!");
     	}
     }
     
     public String getPasswordPane() {
-    	return JOptionPane.showInputDialog("Enter password");
+        return JOptionPane.showInputDialog("Enter password");
     }
     
     public JButton getJoinButton() {

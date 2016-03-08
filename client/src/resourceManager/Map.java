@@ -63,12 +63,12 @@ public class Map {
     }
     
 
-	/**
-	 * Returns a specific map.
-	 * 
-	 * @param map - number of the map that is to be returned
-	 * @return - the map
-	 */
+    /**
+     * Returns a specific map.
+     * 
+     * @param map - number of the map that is to be returned
+     * @return - the map
+     */
     public char[][] getMap(int map){
     	switch (map) {
         case 1:

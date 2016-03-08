@@ -102,9 +102,9 @@ public class HighscorePanel extends SuperPanel {
      * Clears the JTable, adds information about all clients in the lobby.
      */
     public void updateHighscoreList() {
-    	clearRows();
+        clearRows();
     	
-    	final Iterator itr = Database.getInstance().getHighscore();
+        final Iterator itr = Database.getInstance().getHighscore();
         while (itr.hasNext()) {
             addRow((String) itr.next());
         }
@@ -114,8 +114,8 @@ public class HighscorePanel extends SuperPanel {
      * Removes all things in the JTable.
      */
     private void clearRows() {
-    	DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();
-    	model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) highScoreList.getModel();
+        model.setRowCount(0);
     }
     
     private void addRow(String str) {
@@ -128,10 +128,10 @@ public class HighscorePanel extends SuperPanel {
     }
     
     public JButton getRefreshButton() {
-	return refresh;
+        return refresh;
     }
     
     public JSpinner getSpinner() {
-	return spinner;
+        return spinner;
     }
 }
