@@ -34,7 +34,7 @@ public class MapHandler {
         ArrayList<Entity> list = new ArrayList<>();
         int mapWidth, mapHeight;
         try{
-            map = Map.getInstance().readMap(mapNumber);
+            map = Map.getInstance().getMap(mapNumber);
             mapWidth = ConfigHandler.getInstance().getGameWidth();
             mapHeight = ConfigHandler.getInstance().getGameHeight();
         } catch (Exception e) {

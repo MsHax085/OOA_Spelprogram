@@ -60,14 +60,21 @@ public class Map {
         }
     }
     
-    /* getMap1 and 2, returns map1 and map2
-     * 
-     */
-    public char[][] getMap1(){ 
-    	return map1;
+
+	/**
+	 * Returns a specific map.
+	 * 
+	 * @param map - number of the map that is to be returned
+	 * @return - the map
+	 */
+    public char[][] getMap(int map){
+    	switch (map) {
+        case 1:
+            return map1;
+        case 2:
+        	return map2;	
     }
-    public char[][] getMap2(){
-    	return map2;
+    	return null; //else returns null
     }
 }
 	
