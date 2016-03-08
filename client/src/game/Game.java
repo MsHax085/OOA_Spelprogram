@@ -1,4 +1,4 @@
-package src.game;
+﻿package src.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,12 +15,12 @@ import src.resourceManager.client.ServerClient;
 
 
 /**
- *	The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
+ * The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
  *
- *	MVC - for the game Package. 
- *	Game and MultiplayerHandler = Controller, 
- *	Update = Model, 
- *	JFrame frame and draw = View
+ * MVC - for the game Package. 
+ * Game and MultiplayerHandler = Controller, 
+ * Update = Model, 
+ * JFrame frame and draw = View
  *
  * @author ludwigfriborg
  * @version 2016-03-01
@@ -55,7 +55,7 @@ public class Game implements DefaultFrameState, Observer {
      */
     public static Game getCurrentInstance(){
     	if(currentGame == null){
-    		return null;
+    	    return null;
     	}
     	return currentGame;
     }
@@ -76,8 +76,8 @@ public class Game implements DefaultFrameState, Observer {
         superPanel.add(draw);
 
         for(ServerClient obj : clientList){
-        	AddMultiplayers(obj.getClientId(), obj.getUsername());
-        	System.out.println(obj.getUsername() + " Has been added to the game");
+            AddMultiplayers(obj.getClientId(), obj.getUsername());
+            System.out.println(obj.getUsername() + " Has been added to the game");
         }
         
         new Thread(gameThread).start();
@@ -98,12 +98,12 @@ public class Game implements DefaultFrameState, Observer {
     @Override
     public void dispose() {
         if(!update.hasFinished()){
-	    	try {
-			 	Connection.getInstance().sendPacket(
-						PacketBuilder.getInstance().create0ALeaveLobbyPacket());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	    try {
+	 	    Connection.getInstance().sendPacket(
+			PacketBuilder.getInstance().create0ALeaveLobbyPacket());
+		} catch (IOException e) {
+		    e.printStackTrace();
+		  }
         }
     }
 
@@ -114,10 +114,10 @@ public class Game implements DefaultFrameState, Observer {
      */
     public void UpdateMultiplayer(int id, int pX, int pY, int sX, int sY){
         if(pX != -1 && pY != -1){
-        	multiplayerHandler.updatePlayer(id, pX, pY);
+            multiplayerHandler.updatePlayer(id, pX, pY);
         }
         if(sX != -1 && sY != -1){
-        	multiplayerHandler.updateSlab(id, sX, sY);
+            multiplayerHandler.updateSlab(id, sX, sY);
         }
     }
 
@@ -160,11 +160,11 @@ public class Game implements DefaultFrameState, Observer {
         if (update.hasFinished()) {
             if(!draw.getHasFinished()){
             	try {
-        			Connection.getInstance().sendPacket(
-        					PacketBuilder.getInstance().create06PlayerWonPacket(time));
-        		} catch (IOException e) {
-        			e.printStackTrace();
-        		}
+        	    Connection.getInstance().sendPacket(
+        		PacketBuilder.getInstance().create06PlayerWonPacket(time));
+        	    } catch (IOException e) {
+        	          e.printStackTrace();
+        	      }
             	
 	        	System.out.println("You are done.");	
 	            draw.setHasFinished();
@@ -173,7 +173,7 @@ public class Game implements DefaultFrameState, Observer {
 	                draw.setIsWinner();
 	            }
 
-	            draw.drawList(update.getList(), time);
+	        draw.drawList(update.getList(), time);
             }
             
         	
@@ -182,7 +182,7 @@ public class Game implements DefaultFrameState, Observer {
                 stopGame();
             }
         }else{
-            draw.drawList(update.getList(), time);
+             draw.drawList(update.getList(), time);
         }
     }
     
@@ -193,7 +193,7 @@ public class Game implements DefaultFrameState, Observer {
     @Override
     public void update(Observable o, Object arg) {
     	if(Changes.CLIENTLIST_CHANGE.getValue()==(int)arg){
-    		multiplayerHandler.refreshList();
+    	    multiplayerHandler.refreshList();
     	}
     }
 }

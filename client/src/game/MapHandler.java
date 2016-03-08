@@ -25,11 +25,11 @@ public class MapHandler {
                             {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
                             {'0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'g'}};
     
-	/**
-	 * Retrives the desired map from the database
-	 * @param mapNumber
-	 * @return the desired map
-	 */
+    /**
+     * Retrives the desired map from the database
+     * @param mapNumber
+     * @return the desired map
+     */
     public ArrayList<Entity> getMap(int mapNumber){
         ArrayList<Entity> list = new ArrayList<>();
         int mapWidth, mapHeight;

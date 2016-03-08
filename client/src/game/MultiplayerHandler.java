@@ -42,20 +42,20 @@ public class MultiplayerHandler {
      */
     public void addPlayer(int id , String name, int mapNumber){
     	if(playerMap.get(id) == null){
-	        ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
-	        Player player = new Player(0, 0);
-	        for (Entity ent : list) {
-	            if (ent instanceof Start) {
-	                player.setX(ent.getX());
-	                player.setY(ent.getY());
-	            }
+	    ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
+	    Player player = new Player(0, 0);
+	    for (Entity ent : list) {
+	        if (ent instanceof Start) {
+	            player.setX(ent.getX());
+	            player.setY(ent.getY());
 	        }
-	        list.add(player);
-	        playerMap.put(id, new Draw(list, name, 16));
-	        panel.add(playerMap.get(id));
-	        System.out.println(name + " has been added.");
+	    }
+	    list.add(player);
+	    playerMap.put(id, new Draw(list, name, 16));
+	    panel.add(playerMap.get(id));
+	    System.out.println(name + " has been added.");
     	}else{
-    		System.out.println("client does allready exist");
+    	    System.out.println("client does allready exist");
     	}
     }
 
@@ -67,16 +67,16 @@ public class MultiplayerHandler {
      */
     public void updatePlayer(int id, int x, int y){
     	if(playerMap.get(id) == null){
-    		System.out.println("client not available");
+    	    System.out.println("client not available");
     	}else{
-	        ArrayList<Entity> list = playerMap.get(id).getList();
-	        for (Entity ent : list) {
-	            if (ent instanceof Player) {
-	                ent.setX(x);
-	                ent.setY(y);
-	            }
+	    ArrayList<Entity> list = playerMap.get(id).getList();
+	    for (Entity ent : list) {
+	        if (ent instanceof Player) {
+	            ent.setX(x);
+	            ent.setY(y);
 	        }
-	        playerMap.get(id).drawList(list);
+	    }
+            playerMap.get(id).drawList(list);
     	}
     }
 
@@ -88,16 +88,16 @@ public class MultiplayerHandler {
      */
     public void updateSlab(int id, int x, int y){
     	if(playerMap.get(id) == null){
-    		System.out.println("client not available");
+    	    System.out.println("client not available");
     	}else{
-	        ArrayList<Entity> list = playerMap.get(id).getList();
-	        for (Entity ent : list) {
-	            if (ent instanceof Slab) {
-	                ent.setX(x);
-	                ent.setY(y);
-	            }
+	    ArrayList<Entity> list = playerMap.get(id).getList();
+	    for (Entity ent : list) {
+	        if (ent instanceof Slab) {
+	            ent.setX(x);
+	            ent.setY(y);
 	        }
-	        playerMap.get(id).drawList(list);
+	    }
+	    playerMap.get(id).drawList(list);
     	}
     }
     
@@ -118,7 +118,7 @@ public class MultiplayerHandler {
     public boolean hasEveryBodyFinished(){
     	boolean temp = true;
     	for(Draw obj : playerMap.values()){
-    		temp = obj.getHasFinished();
+    	    temp = obj.getHasFinished();
     	}
     	return temp;
     }
@@ -130,14 +130,14 @@ public class MultiplayerHandler {
      */
     public void playerHasFinished(int id, int time){
     	if(!playerMap.get(id).getHasFinished() && playerMap.get(id) != null){
-	        if(anyOneHasFinished == false){
-	            anyOneHasFinished = true;
-	            playerMap.get(id).setIsWinner();
-	        }
-	        System.out.println(playerMap.get(id).getName() + " is done.");
-	        playerMap.get(id).setHasFinished();
-	        playerMap.get(id).setTime(time);
-	        playerMap.get(id).repaint();
+	    if(anyOneHasFinished == false){
+	        anyOneHasFinished = true;
+	        playerMap.get(id).setIsWinner();
+	    }
+	    System.out.println(playerMap.get(id).getName() + " is done.");
+	    playerMap.get(id).setHasFinished();
+	    playerMap.get(id).setTime(time);
+	    playerMap.get(id).repaint();
     	}
     }
 
@@ -148,18 +148,18 @@ public class MultiplayerHandler {
      */
     public void resetPlayer(int id, int mapNumber){
     	if(playerMap.get(id) == null){
-    		System.out.println("client not available");
+    	    System.out.println("client not available");
     	}else{
-    		ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
-	        Player player = new Player(0, 0);
-	        for (Entity ent : list) {
-	            if (ent instanceof Start) {
-	                player.setX(ent.getX());
-	                player.setY(ent.getY());
-	            }
+    	    ArrayList<Entity> list = new MapHandler().getMap(mapNumber);
+	    Player player = new Player(0, 0);
+            for (Entity ent : list) {
+	        if (ent instanceof Start) {
+	            player.setX(ent.getX());
+	            player.setY(ent.getY());
 	        }
-	        list.add(player);
-    		playerMap.get(id).drawList(list);
+	    }
+	    list.add(player);
+    	    playerMap.get(id).drawList(list);
     	}
     }
     
@@ -168,16 +168,16 @@ public class MultiplayerHandler {
     	
     	ArrayList<Integer> list = new ArrayList<Integer>();
     	while(it.hasNext()){
-    		ServerClient temp = it.next();
-    		if(temp.getClientId() != Database.getInstance().getId()){
-    			list.add(temp.getClientId());
-    		}
+    	    ServerClient temp = it.next();
+    	    if(temp.getClientId() != Database.getInstance().getId()){
+    		list.add(temp.getClientId());
+    	    }
     	}
     	
     	for(int id : playerMap.keySet()){
-    		if(!list.contains(id)){
-    			playerMap.get(id).setHasFinished();
-    		}
+    	    if(!list.contains(id)){
+    		playerMap.get(id).setHasFinished();
+    	    }
     	}
     }
 }

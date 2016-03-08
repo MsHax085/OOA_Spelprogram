@@ -1,4 +1,4 @@
-package src.game;
+﻿package src.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,12 +126,12 @@ public class Update{
      */ 
     private void UpdateMoveMultiplayer(int playerX, int playerY, int slabX, int slabY){
     	try {
-			Connection.getInstance().sendPacket(
-					PacketBuilder.getInstance().create05MoveGameEntetiesPacket(playerX, playerY, slabX, slabY));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    Connection.getInstance().sendPacket(
+		PacketBuilder.getInstance().create05MoveGameEntetiesPacket(playerX, playerY, slabX, slabY));
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
     
     /**
@@ -139,12 +139,12 @@ public class Update{
      */
     private void UpdateResetMultiplayer(){
     	try {
-			Connection.getInstance().sendPacket(
-					PacketBuilder.getInstance().create07PlayerResetPacket());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    Connection.getInstance().sendPacket(
+	        PacketBuilder.getInstance().create07PlayerResetPacket());
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
     
     public boolean hasFinished(){

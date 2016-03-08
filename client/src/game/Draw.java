@@ -13,12 +13,12 @@ import src.resourceManager.Resources;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- *	Draws is a JPanel that displays a game playing field
- *	the field could belong to anyone, the only thing draw 
- *	does is to draw the passed list of entities
+ * Draws is a JPanel that displays a game playing field
+ * the field could belong to anyone, the only thing draw 
+ * does is to draw the passed list of entities
  *  
- * 	@author ludwigfriborg
- * 	@vesion 2016-02-29
+ * @author ludwigfriborg
+ * @vesion 2016-02-29
  */
 
 public class Draw extends JPanel {
