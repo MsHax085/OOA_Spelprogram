@@ -1,4 +1,4 @@
-package src.gui.panels.event;
+﻿package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 
@@ -44,17 +44,16 @@ public class ControllerLobbyCreationPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    	if (e.getSource().equals(panel.getPrevButton())) {
+        if (e.getSource().equals(panel.getPrevButton())) {
             UserInterface.changeCard("menupanel");
         } else if (e.getSource().equals(panel.getCreateButton())) {
-        	if(!panel.getServerNameInput().getText().equals("") ) {
-        		try {
+            if(!panel.getServerNameInput().getText().equals("") ) {
+                 try {
                     Connection.getInstance().sendPacket(PacketBuilder.getInstance().create03CreateLobbyPacket(panel.getServerNameInput().getText(),panel.getServerPasswordInput().getText()));
                 } catch (IOException ex) {
                     Logger.getLogger(ControllerLobbyCreationPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        	}
-
+            }
         }
     }
 }

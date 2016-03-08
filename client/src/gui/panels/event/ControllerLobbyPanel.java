@@ -1,4 +1,4 @@
-package src.gui.panels.event;
+﻿package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -51,7 +51,7 @@ public class ControllerLobbyPanel implements MouseListener {
             }
             UserInterface.changeCard("menupanel");
         } else if (e.getSource().equals(panel.getStartButton())) {
-        	try {
+            try {
                 Connection.getInstance().sendPacket(PacketBuilder.getInstance().create02ReadyRequest());
             } catch (IOException ex) {
                 Logger.getLogger(LobbyPanel.class.getName()).log(Level.SEVERE, null, ex);

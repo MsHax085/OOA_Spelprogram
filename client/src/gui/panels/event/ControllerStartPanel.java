@@ -1,4 +1,4 @@
-package src.gui.panels.event;
+﻿package src.gui.panels.event;
 
 
 import java.awt.event.MouseListener;
@@ -26,17 +26,17 @@ public class ControllerStartPanel implements MouseListener {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         if (e.getSource().equals(panel.getContinueButton())) {
-        	if(panel.getUsernameInput().getText().equals("Choose a username") || panel.getUsernameInput().getText().equals("")) {
-        	}
-        	else {
-        		ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());
-        		try {
-					Connection.getInstance().sendPacket(
-							PacketBuilder.getInstance().create08ClientLoginPacket(panel.getUsernameInput().getText()));
+            if(panel.getUsernameInput().getText().equals("Choose a username") || panel.getUsernameInput().getText().equals("")) {
+            }
+            else {
+                ConfigHandler.getInstance().setUsername(panel.getUsernameInput().getText());
+                try {
+		            Connection.getInstance().sendPacket(
+                            PacketBuilder.getInstance().create08ClientLoginPacket(panel.getUsernameInput().getText()));
 	        		
-				} catch (IOException e1) {
-					System.out.println("Couldn't successfully send the packet");
-					e1.printStackTrace();
+                } catch (IOException e1) {
+                    System.out.println("Couldn't successfully send the packet");
+                    e1.printStackTrace();
 				}
         		
         		
