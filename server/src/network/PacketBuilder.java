@@ -16,7 +16,7 @@ import src.resourceManager.config.ConfigHandler;
  * collection of the packet building methods. 
  * 
  * @author Erik Thorsson Högfeldt
- *
+ * @version 2016-03-03
  */
 
 public class PacketBuilder {
@@ -29,7 +29,8 @@ public class PacketBuilder {
     }
     
     /**
-     * A packet made for testing. if send to client some debugging stuff is written in the console.
+     * Builds a packet made for testing. if send to client some debugging stuff is written in the console.
+     * Not used in the final code.
      */
     public byte[] createTestPacket() throws IOException {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -41,8 +42,10 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with basic information about all lobbies.
-     * @return
+     * Builds a packet with basic information about all lobbies.
+     * @param numberOfLobbies As an int
+     * @param lobbies As an iterator object with all lobbies.
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create00LobbyListResponsePacket(int numberOfLobbies, Iterator lobbies) throws IOException {
@@ -64,9 +67,10 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the status of the lobby; joined:0, incorrect password:1, lobby is full:2.
-     * @param	joinLobbyStatus	as an int
-     * @return
+     * Builds a packet containing data with the status of the lobby; joined:0, incorrect password:1, lobby is full:2,
+     * lobby is running a game:3, client is already in a lobby:4, lobby does not exist:5
+     * @param joinLobbyStatus As an int.
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create01JoinLobbyResponcePacket(int joinLobbyStatus) throws IOException {
@@ -79,8 +83,10 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with basic information(name, ready to start) about all clients in the current lobby.
-     * @return
+     *  Builds a packet with information about all clients in a lobby.
+     * @param numberOfClientsInLobby As an int.
+     * @param listOfClientsInLobby As an iterator object.
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create02UpdateClientLobbyPacket(int numberOfClientsInLobby, Iterator listOfClientsInLobby) throws IOException {
@@ -100,9 +106,9 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the status of the lobby creation; created:0, lobby with same name:1.
-     * @param	createLobbyStatus	as an int.
-     * @return
+     * Builds a packet with the status of a lobby creation. Created:0, Lobby with same name:1.
+     * @param createLobbyStatus As an int.
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create03CreateLobbyStatusPacket(int createLobbyStatus) throws IOException {
@@ -115,8 +121,9 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the map number for the game.
-     * @return
+     * Builds a packet with the map number of a game to signal the clients to start a game.
+     * @param mapId As an int
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create04StartGamePacket(int mapId) throws IOException {
@@ -129,8 +136,9 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the high score list of a specific map. The list only contains the first 20 players.
-     * @return
+     * Builds a packet with the high score list of a specified map. The list only contains the first 14 players.
+     * @param mapId As an int.
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create05HighscoreResponcePacket(int mapId) throws IOException {
@@ -156,12 +164,13 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with positions of client player/movable-block.
-     * @param boxPositionY 
-     * @param boxPositionX 
-     * @param playerPositionY 
-     * @param playerPositionX 
-     * @return
+     * Builds a packet with a client positions of a game player and a game box.
+     * @param clientId
+     * @param playerPositionX
+     * @param playerPositionY
+     * @param boxPositionX
+     * @param boxPositionY
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create06MoveGameEntetiesPacket(int clientId, int playerPositionX, int playerPositionY, int boxPositionX, int boxPositionY) throws IOException {
@@ -178,10 +187,10 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data containing 
-     * @param	clientId	the id of the client who completed the map as an int.
-     * 		TimeOfCompletion	as an int.
-     * @return
+     * Builds a packet with time of completion and the id of the client who completed the map.
+     * @param clientId
+     * @param timeOfCompletion As an int
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create07PlayerWonPacket(int clientId, int timeOfCompletion) throws IOException {
@@ -195,9 +204,9 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data to inform other clients that a client has restarted the map.
-     * @param	clientId	the id of the client who restarted the map as an int.
-     * @return
+     * Builds a packet to tell a client that a player has restarted its map.
+     * @param clientId
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create08ClientMapResetPacket(int clientId) throws IOException {
@@ -210,9 +219,9 @@ public class PacketBuilder {
     }
     
     /**
-     * Creates packet data with the clients ID; -1 if the login failed
-     * @param   clientLoginStatus   as an int.
-     * @return
+     * Builds a packet with the clients ID; -1 if the login failed
+     * @param clientId
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create09ClientLoginResponsePacket(int clientId) throws IOException {
@@ -225,9 +234,9 @@ public class PacketBuilder {
     }
     
     /**
-     * creates a packet with status about the client logout.
+     * Builds a packet with status about the client logout.
      * @param clientLogoutStatus    0:successful, 1:client is not loggedIn, 2:other problem.
-     * @return
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create0AClientLogoutResponsePacket(int clientLogoutStatus) throws IOException {
@@ -239,9 +248,9 @@ public class PacketBuilder {
             return byteArrayOutputStream.toByteArray();
         }
     /**
-     * creates a packet with status of leaving a lobby.
+     * Builds a packet with status of leaving a lobby.
      * @param clientLeaveLobbyStatus    0:successful, 1:lobby didn't exist. 2:other problem
-     * @return
+     * @return The packet message as an byte array.
      * @throws IOException
      */
     public byte[] create0BLeaveLobbyResponsePacket(int clientLeaveLobbyStatus) throws IOException {
