@@ -6,6 +6,7 @@ import src.client.ClientSession;
 /**
  *
  * @author Richard
+ * @version 2016-02-27
  */
 public class Packet {
 

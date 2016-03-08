@@ -5,8 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * Network thread for continuous receiving and responding of packets.
  * @author Richard, Erik Thorsson Högfeldt
+ * @version 2016-03-02
  *
  */
 
@@ -30,7 +31,7 @@ public class Network implements Runnable{
 	
 	/**
      * Stops the tread after the run loop ends.
-     * Closes the socket to force an interrupt in the .receive(). This might be fucking insane.
+     * Closes the socket to force an interrupt in the .receive().
      */
 	public synchronized void stop() {
 		running = false;

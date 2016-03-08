@@ -15,6 +15,7 @@ import src.resourceManager.config.ConfigHandler;
 /**
  * 
  * @author Richard, Erik Thorsson Högfeldt
+ * @version 2016-03-02
  *
  */
 public class Connection {
@@ -59,8 +60,10 @@ public class Connection {
     }
     
     /**
-     * This is called when a packet should be sent. Sends a packet to a specific node.
-     * @param: The message as an byte[] (ByteArrayStream), the destination IP, the destination port number.
+     * Sends a packet to a specific client.
+     * @param packetData Bytearray, is built by the PacketBuilder.
+     * @param cs A client session
+     * @throws IOException
      */
     public void sendPacket(byte[] packetData, ClientSession cs) throws IOException {
         DatagramPacket packet = new DatagramPacket(packetData, packetData.length, cs.getAddress(), cs.getPort());

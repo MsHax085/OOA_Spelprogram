@@ -16,10 +16,10 @@ import src.network.packets.TestHandler;
 
 /**
  * 
- * Links Packet ID with packet classes
+ * Gathers the packet handlers so they can easily be created.
  * 
  * @author Richard
- *  
+ * @version 2016-03-02
  */
 
 public class PacketProcessor {
