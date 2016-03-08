@@ -3,9 +3,10 @@ package src;
 import src.network.Network;
 
 /**
+ * Connects all the parts of the program.
  * 
- * @author 
- * 
+ * @author Richard
+ * @version 2016-02-25
  */
 
 public class Core{
