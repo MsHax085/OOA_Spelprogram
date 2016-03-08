@@ -32,9 +32,11 @@ public class Map {
         if (instance == null) instance = new Map();
         return instance;
     }
-    /** This method read the content of a map file and return the map
+    /**
+     * This method read the content of a map file and return the map
      * as a char[][].
      * @param mapnumber - the number of the map that is to be read.
+     * @return a specified map as a char[][].
      */
     public char[][] readMap(int mapnumber) {
         int width = cO.getGameWidth();

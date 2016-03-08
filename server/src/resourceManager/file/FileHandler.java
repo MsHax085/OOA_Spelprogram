@@ -20,11 +20,12 @@ public class FileHandler implements ImplFileHandler {
         return instance;
     }
 
-    /** This method recieves one string containing the filename.
+    /** 
+     * This method recieves one string containing the filename.
      * 
      * A stringbuilder is created and is later converted and returned as a string.
-     * 
-     * @param fileName - the path of the file thats going to be written to.
+     * @param fileName - The name of the file
+     * @return Filecontent in String format.
      */
 
     @Override
@@ -54,7 +55,8 @@ public class FileHandler implements ImplFileHandler {
         return tempArr.toString();
     }
 
-    /** This method recieves 2 strings, a fileName and a string to write in the file
+    /** 
+     * This method recieves 2 strings, a fileName and a string to write in the file
      * 
      * The content string will be "converted" into an
      * string array, devided by every \n character.
@@ -65,6 +67,7 @@ public class FileHandler implements ImplFileHandler {
      * 
      * @param fileName - the path of the file thats going to be written to.
      * @param writeContent - The content that is going to be written.
+     * @return true if the write was successful, false otherwise.
      */
 
     @Override

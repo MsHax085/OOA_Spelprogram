@@ -35,10 +35,10 @@ public class ConfigHandler {
         return instance;
     }
     
-    /* Reads a value related to a specific setting.
-     *
+    /*
+     * Reads a value related to a specific setting.
     */
-    public String readConfig() {
+    public void readConfig() {
         final String tempString = fh.readFile(configPath);
         final String[] splitRows = tempString.split("\n");
         String[] splitCol;
@@ -57,12 +57,11 @@ public class ConfigHandler {
                     break;
             }
         }
-
-        return null; //Marks that readConfig could not find the setting.
     }
 
-    /* Overwrites a value related to a specific setting. 
-     * 
+    /**
+     * Overwrites a value related to a specific setting. 
+     * @return true if successful config write, else false.
     */
     public Boolean writeConfig() {
         final StringBuilder tempArr = new StringBuilder(); 
