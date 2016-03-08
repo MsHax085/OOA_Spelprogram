@@ -81,7 +81,8 @@ public class ConfigHandler {
         return fh.writeFile("config.txt", tempArr.toString());
    }
     
-    /** Checks variables
+    /**
+     * Checks variables
      * If they are not assigned, assign default values to them
      */
     private void checkVars(){
