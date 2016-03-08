@@ -1,8 +1,9 @@
 package src.frame;
 
 /**
- *
+ * Interface that defines the structure classes using the pattern "state".
  * @author Richard
+ * @vesion 2016-02-20
  */
 public interface DefaultFrameState {
     

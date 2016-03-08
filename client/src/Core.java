@@ -8,9 +8,9 @@ import src.gui.UserInterface;
 import src.network.Network;
 
 /**
- * 
+ * Manages the different states and ties the program together.
  * @author ludwigfriborg
- *
+ * @version 2016-03-02
  */
 public class Core extends Observable {
 	

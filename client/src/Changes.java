@@ -1,8 +1,9 @@
 package src;
 
 /**
- *
+ * Delivers codes describing changes in the program.
  * @author Richard
+ * @version 2016-03-02
  */
 public enum Changes {
     PACKET_RECEIVED(0),
