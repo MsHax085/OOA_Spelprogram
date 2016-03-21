@@ -1,7 +1,7 @@
 package src.game.entities;
 
 /**
- * Subclass to entity
+ * Class that holds data around specific enyty objects, for example the type of material or texture. 
  * @author ludwigfriborg
  * @version 2016-02-25
  */

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import src.resourceManager.Resources;
 
 /**
- * Baseclass for the gameplay objects
+ * Class that holds all the basic information about a specific game objects, as for example the position.
  * @author ludwigfriborg
  * @version 2016-02-26
  */
