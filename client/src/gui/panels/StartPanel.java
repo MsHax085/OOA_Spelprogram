@@ -15,7 +15,8 @@ import src.gui.panels.event.ControllerStartPanel;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * Makes a startpanel
+ * Makes a startpanel.
+ * This is the start page. Here you choose your username. 
  * 
  * @author Richard
  * @version 2016-03-04

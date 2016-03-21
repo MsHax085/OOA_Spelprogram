@@ -19,7 +19,8 @@ import src.gui.panels.event.ControllerHighscorePanel;
 import src.resourceManager.Database;
 
 /**
- * Makes a highscorepanel
+ * Makes a highscorepanel. The highscorepanel shows the 
+ * highscore for each stage in the game.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04

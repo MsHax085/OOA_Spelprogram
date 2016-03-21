@@ -17,7 +17,8 @@ import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
 /**
- * Makes a lobbyselectionpanel
+ * Makes a lobbyselectionpanel. 
+ * Shows the lobbys which you can connect to.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04

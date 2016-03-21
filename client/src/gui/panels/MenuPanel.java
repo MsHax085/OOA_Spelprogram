@@ -12,7 +12,8 @@ import src.Core;
 import src.gui.panels.event.ControllerMenuPanel;
 
 /**
- * Makes a menupanel
+ * Makes a menupanel. 
+ * Shows the main menu.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04

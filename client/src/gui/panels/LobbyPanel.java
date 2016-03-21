@@ -17,7 +17,8 @@ import src.resourceManager.Database;
 import src.resourceManager.client.ServerClient;
 
 /**
- * Makes a lobbypanel
+ * Makes a lobbypanel. Shows the players that are connected to the lobby.
+ * Also shows if the players are ready for a new game.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04

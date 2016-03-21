@@ -10,7 +10,7 @@ import src.network.Connection;
 import src.network.PacketBuilder;
 
 /**
- * Controlls all the actions allowed in the highscorepanel
+ * Controlls all the actions allowed in the highscorepanel.
  * 
  * @author Gustav Ländström
  * @version 2016-03-04

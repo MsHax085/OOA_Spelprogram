@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 import src.Core;
 
 /**
- * Makes a superpanel
+ * Makes a superpanel. 
+ * Sets the dimensions of the frame and the background.
  * 
  * @author Richard
  * @version 2016-03-04

@@ -15,7 +15,8 @@ import src.gui.panels.event.ControllerLobbyCreationPanel;
 
 /**
 
- * Makes a lobbycreationpanel
+ * Makes a lobbycreationpanel. 
+ * Handles the creation of a server.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04

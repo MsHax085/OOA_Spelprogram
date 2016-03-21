@@ -14,7 +14,8 @@ import src.gui.panels.event.ControllerOptionsPanel;
 import src.resourceManager.config.ConfigHandler;
 
 /** 
- * Makes a optionspanel
+ * Makes a optionspanel.
+ * In this panel you can change your username and look up which server you are connected to.
  * 
  * @author Richard, Gustav
  * @version 2016-03-04
