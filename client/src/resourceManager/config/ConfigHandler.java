@@ -6,6 +6,9 @@ import src.resourceManager.file.FileHandler;
  * This class manages the handling of the config-settings.
  * The class have the ability to load settings from files and also
  * handle the parametres of the running config and storing it to a config-file.
+ * It stores the running config in local variables because its desirable to
+ * have often used information stored in the memory
+ * instead of putting unnecessary load on the harddrive
  * 
  * @author Oscar Andersson
  * @version 2016-3-01
@@ -32,13 +35,20 @@ public class ConfigHandler {
         readConfig();
         checkVars();
     }
+    
+    /**
+     * Returns the current instance of ConfigHandler.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of ConfigHandler.
+     */
     public static ConfigHandler getInstance() {
         if (instance == null) instance = new ConfigHandler();
         return instance;
     }
     
     /**
-     * Reads a value related to a specific setting.
+     * Reads setting values from a file and saves them in variables.
     */
     public void readConfig() {
         final String tempString = fh.readFile(configPath);
@@ -94,6 +104,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Gets the username setting values
+     * 
      * @return the username
      */
     public String getUsername() {
@@ -101,6 +113,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the username setting values
+     * 
      * @param username, the username to set
      */
     public void setUsername(String username) {
@@ -109,6 +123,8 @@ public class ConfigHandler {
 
 
     /**
+     * Gets the gamewidth setting values
+     * 
      * @return the gameWidth
      */
     public int getGameWidth() {
@@ -116,6 +132,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the gamewidth setting values
+     * 
      * @param gameWidth, the gameWidth to set
      */
     public void setGameWidth(int gameWidth) {
@@ -123,6 +141,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Gets the gameheight setting values
+     * 
      * @return the gameHeight
      */
     public int getGameHeight() {
@@ -130,6 +150,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the gameheight setting values
+     * 
      * @param gameHeight, the gameHeight to set
      */
     public void setGameHeight(int gameHeight) {
@@ -137,6 +159,8 @@ public class ConfigHandler {
     }
     
     /**
+     * Gets the serverIp setting values
+     * 
      * @return the serverIp
      */
     public String getServerIp() {
@@ -144,12 +168,16 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the serverIp setting values
+     * 
      * @param serverIp, the serverIp to set
      */
     public void setServerIp(String serverIp) {
         this.serverIp = serverIp;
     }
     /**
+     * Gets the serverPort setting values
+     * 
      * @return the serverPort
      */
     public int getServerPort() {
@@ -157,6 +185,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the serverPort setting values
+     * 
      * @param serverPort, the serverPort to set
      */
     public void setServerPort(int serverPort) {

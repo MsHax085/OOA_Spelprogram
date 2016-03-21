@@ -31,6 +31,13 @@ public class Database {
     private final ReentrantReadWriteLock rrwl_lobbylist = new ReentrantReadWriteLock(true);
     private final ReentrantReadWriteLock rrwl_serverclientlist = new ReentrantReadWriteLock(true);
     
+    
+    /**
+     * Returns the current instance of Database.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of Database.
+     */
     public static Database getInstance() {
         if (database == null) database = new Database();
         return database;

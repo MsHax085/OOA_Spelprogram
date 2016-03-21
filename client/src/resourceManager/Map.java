@@ -5,7 +5,11 @@ import src.resourceManager.file.FileHandler;
 
 
 /**
- * This class handles reading of map files. 
+ * This class handles reading of map files.
+ * It reads the maps from a file and saves them
+ * to local variables, because its desirable to
+ * have often used information stored in the memory
+ * instead of putting unnecessary load on the harddrive. 
  * 
  * @author Oscar Andersson
  * @version 2016-2-28
@@ -28,6 +32,12 @@ public class Map {
         map2 = readMap(2);
     }
     
+    /**
+     * Returns the current instance of Map.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of Map.
+     */
     public static Map getInstance() {
         if (instance == null) instance = new Map();
         return instance;

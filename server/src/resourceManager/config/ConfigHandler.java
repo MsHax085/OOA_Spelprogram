@@ -6,6 +6,9 @@ import src.resourceManager.file.FileHandler;
  * This class manages the handling of the config-settings.
  * The class have the ability to load settings from files and also
  * handle the parametres of the running config and storing it to a config-file.
+ * It stores the running config in local variables because its desirable to
+ * have often used information stored in the memory
+ * instead of putting unnecessary load on the harddrive. 
  * 
  * @author Oscar Andersson
  * @version 2016-3-01

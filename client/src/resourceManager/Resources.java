@@ -21,6 +21,12 @@ public class Resources {
     private static Resources instance = null;
     private ArrayList<Image> images = new ArrayList<>();
 
+    /**
+     * Returns the current instance of Resources.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of Resources.
+     */
     public static Resources getInstance() {
         if (instance == null) instance = new Resources();
         return instance;
