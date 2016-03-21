@@ -29,6 +29,12 @@ public class Score {
 	}
     }
 
+    /**
+     * Returns the current instance of Score.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of Score.
+     */
     public static Score getInstance() {
         if (instance == null) instance = new Score();
         return instance;

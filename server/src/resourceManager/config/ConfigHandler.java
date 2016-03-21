@@ -30,13 +30,19 @@ public class ConfigHandler {
         readConfig();
         checkVars();
     }
+    /**
+     * Returns the current instance of ConfigHandler.
+     * If there is none, one will be created.
+     * 
+     * @return The instance of ConfigHandler.
+     */
     public static ConfigHandler getInstance() {
         if (instance == null) instance = new ConfigHandler();
         return instance;
     }
     
-    /*
-     * Reads a value related to a specific setting.
+    /**
+     * Reads setting values from a file and saves them in variables.
     */
     public void readConfig() {
         final String tempString = fh.readFile(configPath);
@@ -71,7 +77,8 @@ public class ConfigHandler {
         return fh.writeFile(configPath, tempArr.toString());
    }
     
-    /* Checks variables
+    /**
+     * Checks variables
      * If they are not assigned, assign default values to them
      */
     private void checkVars(){
@@ -81,6 +88,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Gets the portnumber setting values
+     * 
      * @return portNumber
      */
     public int getPortNumber() {
@@ -88,6 +97,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the portnumber setting values
+     * 
      * @param portNumber to be set
      */
     public void setPortNumber(int portNumber) {
@@ -95,6 +106,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Gets the MaxClientsLobby setting values
+     * 
      * @return maxClientsLobby
      */
     public int getMaxClientsLobby() {
@@ -102,6 +115,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the MaxClientsLobby setting values
+     * 
      * @param maxClientsLobby to be set
      */
     public void setMaxClientsLobby(int maxClientsLobby) {
@@ -109,6 +124,8 @@ public class ConfigHandler {
     }
     
     /**
+     * Gets the NumberOfMaps setting values
+     * 
      * @return numberOfMaps
      */
     public int getNumberOfMaps() {
@@ -116,6 +133,8 @@ public class ConfigHandler {
     }
 
     /**
+     * Sets the NumberOfMaps setting values
+     * 
      * @param numberOfMaps to be set 
      */
     public void setNumberOfMaps(int numberOfMaps) {
