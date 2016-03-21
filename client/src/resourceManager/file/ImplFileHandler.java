@@ -1,7 +1,7 @@
 package src.resourceManager.file;
 
 /**
- * Declares the structure for FileHandler class.
+ * An interface that declares the structure for FileHandler class.
  * @author Richard
  */
 public interface ImplFileHandler {
