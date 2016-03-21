@@ -15,7 +15,7 @@ import src.resourceManager.Database;
 import src.resourceManager.client.Lobby;
 
 /**
- * Controlls all the actions allowed in the serverselectionpanel
+ * Controlls all the actions allowed in the serverselectionpanel.
  * 
  * @author Gustav Ländström
  * @version 2016-03-04

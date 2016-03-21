@@ -10,7 +10,7 @@ import src.network.PacketBuilder;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * Controlls all the actions allowed in the startpanel
+ * Controlls all the actions allowed in the startpanel.
  * 
  * @author Richard, Gustav Ländström
  * @version 2016-03-04
