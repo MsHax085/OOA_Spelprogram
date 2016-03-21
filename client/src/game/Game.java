@@ -1,4 +1,4 @@
-﻿package src.game;
+package src.game;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import src.resourceManager.client.ServerClient;
 
 
 /**
- * The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
+ * Game holds and handles the controll over the Game Frame aswell as the different views and a gamethread. This ties the Game-segment together. The class works exactly as a singleton with the exeption that only extern forces can build new Game objects
  *
  * MVC - for the game Package. 
  * Game and MultiplayerHandler = Controller, 
@@ -51,7 +51,7 @@ public class Game implements DefaultFrameState, Observer {
 	
     /**
      * @return current instance if no current instance return null, 
-     * some kind of "catch" may be needed for protection agains mean nullpointers
+     * some kind of "catch" may be needed for protection againts mean nullpointers
      */
     public static Game getCurrentInstance(){
     	if(currentGame == null){
