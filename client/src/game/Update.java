@@ -1,4 +1,4 @@
-﻿package src.game;
+package src.game;
 
 import java.io.IOException;
 import java.util.ArrayList;

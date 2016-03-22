@@ -1,4 +1,4 @@
-﻿package src.gui.panels.event;
+package src.gui.panels.event;
 
 import java.awt.event.MouseEvent;
 

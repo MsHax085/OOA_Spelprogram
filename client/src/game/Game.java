@@ -36,7 +36,6 @@ public class Game implements DefaultFrameState, Observer {
     private Draw draw;
     private GameKeyListener gameKeyListener;
     private GameThread gameThread;
-    
     private Update update;
     private MultiplayerHandler multiplayerHandler;
     private int mapNumber;
