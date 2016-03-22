@@ -8,7 +8,7 @@ import src.resourceManager.client.Lobby;
 import src.resourceManager.client.ServerClient;
 
 /**
- * Handles thread secure read and write to lists and variables used
+ * Handles thread safe read and write to lists and variables used
  * by several treads.
  *
  * @author Richard
