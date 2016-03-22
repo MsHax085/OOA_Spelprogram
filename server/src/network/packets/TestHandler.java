@@ -10,7 +10,8 @@ import src.network.Packet;
 import src.network.PacketBuilder;
 
 /**
- *
+ * Handles a test packet, prints packet information for debugging.
+ * Is not used in the final code.
  * @author Erik Thorsson Högfeldt
  */
 public class TestHandler implements ImplPacketHandler {
