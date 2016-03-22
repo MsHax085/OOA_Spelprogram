@@ -6,7 +6,7 @@ import src.Core;
 import src.gui.UserInterface;
 
 /**
- * The game WindowListener
+ * The game WindowListener, this class listens to the gameframe and switches framestate when the window is closed
  * @author Richard
  * @version 2016-03-01
  */

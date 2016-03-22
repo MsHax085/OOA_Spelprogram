@@ -3,7 +3,7 @@ package src.game.entities;
 import java.awt.Graphics;
 
 /**
- * interface for Game entity
+ * An interface that declres the structure for the entityclass
  * @author Richard
  * @version 2016-02-24
  */

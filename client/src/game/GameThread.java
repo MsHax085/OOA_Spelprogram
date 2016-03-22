@@ -3,7 +3,7 @@ package src.game;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * Is the game thread
+ * Is the game thread, this class updates the game in even intervals.
  * @author Richard, ludwigfriborg
  * @version 2016-03-01
  */
