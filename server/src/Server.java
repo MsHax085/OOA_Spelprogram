@@ -1,7 +1,7 @@
 package src;
 
 /**
- * Contains the main method, that starts the rest of the program.
+ * Contains the main method, that creates an instance of Core.
  * @author Richard
  * @version 2016-02-29
  */

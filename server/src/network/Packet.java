@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import src.client.ClientSession;
 
 /**
- *
+ * Stores the client session and message of a received packet.
  * @author Richard
  * @version 2016-02-27
  */

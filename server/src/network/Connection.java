@@ -13,7 +13,7 @@ import src.client.ClientSession;
 import src.resourceManager.config.ConfigHandler;
 
 /**
- * 
+ * Starts a socket, sends and retrieves packets to and from clients.
  * @author Richard, Erik Thorsson Högfeldt
  * @version 2016-03-02
  *
@@ -28,7 +28,7 @@ public class Connection {
     private int serverPort;
     
     /**
-     * Constructor: starts the socket.
+     * Constructor: starts the socket. loads the port from config.txt.
      */
     private Connection() {
     	this.serverPort = ConfigHandler.getInstance().getPortNumber();
@@ -46,8 +46,8 @@ public class Connection {
     
     /**
      * This is used by the Network Thread. Waits till a packet is received on the serverSocket.
-     * Saves the IP and port of the packet in local variables.
-     * @return: The packet data as an ByteArrayInputStream.
+     * Saves the IP and port as a client session
+     * @return: The packet as a Packet containing the client session and the packet data as a ByteArrayInputStream.
      */
     public Packet receivePacket() throws IOException {
         final byte[] bytes = new byte[bufferSize];
@@ -70,6 +70,9 @@ public class Connection {
         serverSocket.send(packet);
     }
     
+    /**
+     * closes the socket and interrupts the receiving of packets.
+     */
     public void closeSocket() {
     	serverSocket.close();
     }

@@ -39,7 +39,7 @@ public class Network implements Runnable{
     }
 
     /**
-    * Receives a packet, checks the ID of the packet and sends the packet information to the corresponding packet class.
+    * Receives a packet, checks the ID of the packet and sends the packet information to a new corresponding packet handler.
     */
     @Override
     public void run() {

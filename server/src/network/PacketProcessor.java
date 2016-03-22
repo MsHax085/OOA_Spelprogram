@@ -15,8 +15,8 @@ import src.network.packets.Handler0ALeaveLobby;
 import src.network.packets.TestHandler;
 
 /**
- * 
- * Gathers the packet handlers so they can easily be created.
+ * List of the receiving packet handlers.
+ * Is used to create a specific packet handler
  * 
  * @author Richard
  * @version 2016-03-02
@@ -37,7 +37,7 @@ public class PacketProcessor {
     }
     
     /*
-     * Add new packets to the HashMap here..
+     * Initiate the list of packet handlers.
      */
     public void loadRecvHandlers() {
         handlers = new HashMap<>();
